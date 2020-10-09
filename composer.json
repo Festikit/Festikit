@@ -1,0 +1,12 @@
+{
+    "$schema": "https://json-schema.org/draft-04/schema#",
+    "require": {
+        "php": "~7"
+    },
+    "properties": {
+        "description": {
+            "type": "string",
+            "description": "Application Web destiné à la gestion de bénévole"
+        }
+    }
+}
