@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <title> Mon premier php </title>
+</head>
+
+<body>
+    <form method="post" action="creerVoiture.php">
+        <fieldset>
+            <legend>Inscription :</legend>
+            <p>
+                <label for="user_mail">Adresse e-mail<abbr title="Ce champ est obligatoire">*</abbr> </label> :
+                <input type="email" placeholder="Votre adresse email" name="user_mail" id="user_mail" required />
+            </p>
+            <p>
+                <label for="user_lastname">Nom<abbr title="Ce champ est obligatoire">*</abbr> </label> :
+                <input type="text" placeholder="Dupont" name="user_lastname" id="user_lastname" required />
+            </p>
+            <p>
+                <label for="user_firstname">Prenom<abbr title="Ce champ est obligatoire">*</abbr> </label> :
+                <input type="text" placeholder="Julien" name="user_firstname" id="user_firstname" required />
+            </p>
+
+            <!-- TODO: Date de naissance -->
+
+            <!-- TODO : Importation photo -->
+
+            <p>
+                <label for="Code-postal">Code postal<abbr title="Ce champ est obligatoire">*</abbr> </label> :
+                <input type="text" placeholder="Dupont" name="nom" id="nom" required />
+            </p>
+
+            <p>
+                <label for="user_phone"> </label>N° de téléphone<abbr title="Ce champ est obligatoire">*</abbr> :
+                <input type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" placeholder="06097978" name="user_phone" id="user_phone" required />
+            </p>
+            <p>
+                <fieldset>
+                    <legend>Permis de conduire <abbr title="Ce champ est obligatoire">*</abbr></legend>
+                    <input type="radio" required name="title" id="r1" value="True"><label for="r1">Oui</label>
+                    <input type="radio" required name="title" id="r2" value="False"><label for="r2">Non</label>
+                </fieldset>
+            </p>
+            <p>
+                <input type="submit" value="Envoyer" />
+            </p>
+        </fieldset>
+    </form>
+</body>
+
+</html>
