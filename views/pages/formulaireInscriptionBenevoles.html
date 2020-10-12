@@ -83,6 +83,58 @@
             <label for="depart_id">Votre jour et horaire approximatifs de départ de Pézenas</label> :
             <input type="datetime-local" name="depart_id" id="arrivee_id" />
 
+            <!-- TO DO: Disponibilité -->
+
+            <!-- TO DO: Autres crénaux -->
+
+            <p>
+                <fieldset>
+                    <legend>Seriez-vous disponible pour flyer en amont du festival ? <abbr title="Ce champ est obligatoire">*</abbr></legend>
+                    <input type="radio" required name="title" id="r9" value="True"><label for="r9">Oui</label>
+                    <input type="radio" required name="title" id="r10" value="False"><label for="r10">Non</label>
+                </fieldset>
+            </p>
+
+            <!-- TO DO: Comissions -->
+
+            <label for="choisirconcert_id">Choisissez un concert auquel vous souhaiteriez assister</label>
+            <select name="choisirconcert" id="choisirconcert_id">
+                <option value="">Sélectionner</option>
+                <option value="concert1">Cinéma le Molière</option>
+                <option value="concert2">Théâtre Historique</option>
+                <option value="concert3">Théâtre Historique</option>
+                <option value="concert4">Théâtre Historique</option>
+                <option value="concert5">Foyer des campagnes</option>
+                <option value="concert6">PI. Gambetta</option>
+                <option value="concert7">Théâtre Historique</option>
+                <option value="concert8">Théâtre Historique</option>
+                <option value="concert9">Foyer des campagnes</option>
+                <option value="concert10">PI. Gambetta</option>
+                <option value="concert11">Théâtre Historique</option>
+                <option value="concert12">Foyer des campagnes</option>
+                <option value="concert13">Foyer des campagnes</option>
+            </select>
+
+            <p>
+                <fieldset>
+                    <legend>Avez-vous déjà été bénévole sur le festival ? <abbr title="Ce champ est obligatoire">*</abbr></legend>
+                    <input type="radio" required name="title" id="r11" value="True"><label for="r11">Oui</label>
+                    <input type="radio" required name="title" id="r12" value="False"><label for="r12">Non</label>
+                </fieldset>
+            </p>
+
+            <label for="motivation_id">Si non, pourriez-vous nous expliquer brièvement votre motivation ?</label> <br/>
+            <textarea id="motivation_id" name="motivation" rows="5" cols="33"> Votre réponse
+            </textarea> <br/>
+
+            <label for="allergie_id">Avez-vous des allergies / régimes particuliers ?</label> <br/>
+            <textarea id="allergie_id" name="allergie" rows="5" cols="33"> Votre réponse
+            </textarea> <br/>
+
+            <label for="autres_id">Avez-vous d'autres requêtes / questions / remarques ?</label> <br/>
+            <textarea id="autres_id" name="autres" rows="5" cols="33"> Votre réponse
+            </textarea> <br/>
+
             <p>
                 <input type="submit" value="Envoyer" />
             </p>
