@@ -43,33 +43,39 @@
             </p>
             <p>
                 <label for="permis">Permis de conduire<abbr title="Ce champ est obligatoire">*</abbr>
-                <input type="radio" required name="permis" id="permis" value="True">Oui
-                <input type="radio" required name="permis" id="permis" value="False">Non
+                    <input type="radio" required name="permis" id="permis" value="True">Oui
+                    <input type="radio" required name="permis" id="permis" value="False">Non
                 </label>
             </p>
 
             <p>
-                <legend>Venez vous avec votre véhicule ? <abbr title="Ce champ est obligatoire">*</abbr></legend>
-                <input type="radio" required name="title" id="r3" value="True"><label for="r3">Oui</label>
-                <input type="radio" required name="title" id="r4" value="False"><label for="r4">Non</label>
+
+                <label for="vehicule">Venez vous avec votre véhicule ? <abbr title="Ce champ est obligatoire">*</abbr>
+                    <input type="radio" required name="vehicule" id="vehicule" value="True">Oui
+                    <input type="radio" required name="vehicule" id="vehicule" value="False">Non
+                </label>
             </p>
 
             <p>
-                <legend>Avez vous besoin d'être hébergé ? <abbr title="Ce champ est obligatoire">*</abbr></legend>
-                <input type="radio" required name="title" id="r5" value="True"><label for="r5">Oui</label>
-                <input type="radio" required name="title" id="r6" value="False"><label for="r6">Non</label>
+                <label for="besoin_heberge">Avez vous besoin d'être hébergé ? <abbr
+                        title="Ce champ est obligatoire">*</abbr>
+                    <input type="radio" required name="besoin_heberge" id="besoin_heberge" value="True">Oui
+                    <input type="radio" required name="besoin_heberge" id="besoin_heberge" value="False">Non
+                </label>
             </p>
 
             <p>
-                <legend>Pouvez vous héberger des personnes ? <abbr title="Ce champ est obligatoire">*</abbr></legend>
-                <input type="radio" required name="title" id="r7" value="True"><label for="r7">Oui</label>
-                <input type="radio" required name="title" id="r8" value="False"><label for="r8">Non</label>
+                <label for="peut_heberge">Pouvez vous héberger des personnes ?<abbr
+                        title="Ce champ est obligatoire">*</abbr>
+                    <input type="radio" required name="peut_heberge" id="peut_heberge" value="True">Oui
+                    <input type="radio" required name="peut_heberge" id="peut_heberge" value="False">Non
+                </label>
             </p>
 
             <label for="couchage_id">Si oui, combien et pouvez-vous nous expliquer la configuration de couchage
                 ?</label> <br />
             <textarea id="couchage_id" name="couchage" rows="5" cols="33"> clic-clac, chambre d'ami, accès indépendant...
-            </textarea> <br />
+                </textarea> <br />
 
             <label for="arrivee_id">Votre jour et horaire approximatifs d'arrivée à Pézenas</label> :
             <input type="datetime-local" name="arrivee_id" id="arrivee_id" /> <br />
@@ -108,10 +114,11 @@
             </select>
 
             <p>
-                <legend>Avez-vous déjà été bénévole sur le festival ? <abbr title="Ce champ est obligatoire">*</abbr>
-                </legend>
-                <input type="radio" required name="title" id="r11" value="True"><label for="r11">Oui</label>
-                <input type="radio" required name="title" id="r12" value="False"><label for="r12">Non</label>
+                <label for="deja_benevole">Avez-vous déjà été bénévole sur le festival ?<abbr
+                        title="Ce champ est obligatoire">*</abbr>
+                    <input type="radio" required name="deja_benevole" id="deja_benevole" value="True">Oui
+                    <input type="radio" required name="deja_benevole" id="deja_benevole" value="False">Non
+                </label>
             </p>
 
             <label for="motivation_id">Si non, pourriez-vous nous expliquer brièvement votre motivation ?</label> <br />
