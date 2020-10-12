@@ -23,9 +23,14 @@
                 <input type="text" placeholder="Julien" name="user_firstname" id="user_firstname" required />
             </p>
 
-            <!-- TODO: Date de naissance -->
-
-            <!-- TODO : Importation photo -->
+            <p>
+                <label for="datenaissance_id">Date de naissance<abbr title="Ce champ est obligatoire">*</abbr> </label> :
+                <input type="date" max="2010-01-01" min="1900-01-01" name="datenaissance_id" required/>
+            </p>
+            <p>
+                <label for="avatar_id">Photo</label> :
+                <input type="file" accept="image/png, image/jpeg" name="avatar" id="avatar" />
+            </p>
 
             <p>
                 <label for="Code-postal">Code postal<abbr title="Ce champ est obligatoire">*</abbr> </label> :
@@ -43,6 +48,41 @@
                     <input type="radio" required name="title" id="r2" value="False"><label for="r2">Non</label>
                 </fieldset>
             </p>
+
+            <p>
+                <fieldset>
+                    <legend>Venez vous avec votre véhicule ? <abbr title="Ce champ est obligatoire">*</abbr></legend>
+                    <input type="radio" required name="title" id="r3" value="True"><label for="r3">Oui</label>
+                    <input type="radio" required name="title" id="r4" value="False"><label for="r4">Non</label>
+                </fieldset>
+            </p>
+
+            <p>
+                <fieldset>
+                    <legend>Avez vous besoin d'être hébergé ? <abbr title="Ce champ est obligatoire">*</abbr></legend>
+                    <input type="radio" required name="title" id="r5" value="True"><label for="r5">Oui</label>
+                    <input type="radio" required name="title" id="r6" value="False"><label for="r6">Non</label>
+                </fieldset>
+            </p>
+
+            <p>
+                <fieldset>
+                    <legend>Pouvez vous héberger des personnes ? <abbr title="Ce champ est obligatoire">*</abbr></legend>
+                    <input type="radio" required name="title" id="r7" value="True"><label for="r7">Oui</label>
+                    <input type="radio" required name="title" id="r8" value="False"><label for="r8">Non</label>
+                </fieldset>
+            </p>
+
+            <label for="couchage_id">Si oui, combien et pouvez-vous nous expliquer la configuration de couchage ?</label> <br/>
+            <textarea id="couchage_id" name="couchage" rows="5" cols="33"> clic-clac, chambre d'ami, accès indépendant...
+            </textarea> <br/>
+
+            <label for="arrivee_id">Votre jour et horaire approximatifs d'arrivée à Pézenas</label> :
+            <input type="datetime-local" name="arrivee_id" id="arrivee_id" /> <br/>
+
+            <label for="depart_id">Votre jour et horaire approximatifs de départ de Pézenas</label> :
+            <input type="datetime-local" name="depart_id" id="arrivee_id" />
+
             <p>
                 <input type="submit" value="Envoyer" />
             </p>
