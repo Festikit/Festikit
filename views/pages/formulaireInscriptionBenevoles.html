@@ -42,9 +42,10 @@
                 <input type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" placeholder="06097978" name="user_phone" id="user_phone" required />
             </p>
             <p>
-                <legend>Permis de conduire <abbr title="Ce champ est obligatoire">*</abbr></legend>
-                <input type="radio" required name="title" id="r1" value="True"><label for="r1">Oui</label>
-                <input type="radio" required name="title" id="r2" value="False"><label for="r2">Non</label>
+                <label for="permis">Permis de conduire<abbr title="Ce champ est obligatoire">*</abbr>
+                <input type="radio" required name="permis" id="permis" value="True">Oui
+                <input type="radio" required name="permis" id="permis" value="False">Non
+                </label>
             </p>
 
             <p>
@@ -76,9 +77,9 @@
             <label for="depart_id">Votre jour et horaire approximatifs de départ de Pézenas</label> :
             <input type="datetime-local" name="depart_id" id="arrivee_id" />
 
-            <!-- TO DO: Disponibilité -->
+            <!-- TODO: Disponibilité -->
 
-            <!-- TO DO: Autres crénaux -->
+            <!-- TODO: Autres crénaux -->
 
             <p>
                 <legend>Seriez-vous disponible pour flyer en amont du festival ? <abbr title="Ce champ est obligatoire">*</abbr></legend>
@@ -86,7 +87,7 @@
                 <input type="radio" required name="title" id="r10" value="False"><label for="r10">Non</label>
             </p>
 
-            <!-- TO DO: Comissions -->
+            <!-- TODO: Comissions -->
 
             <label for="choisirconcert_id">Choisissez un concert auquel vous souhaiteriez assister</label>
             <select name="choisirconcert" id="choisirconcert_id">
