@@ -24,11 +24,11 @@
             </p>
 
             <p>
-                <label for="datenaissance_id">Date de naissance<abbr title="Ce champ est obligatoire">*</abbr> </label> :
-                <input type="date" max="2010-01-01" min="1900-01-01" name="datenaissance_id" required />
+                <label for="date_naissance">Date de naissance<abbr title="Ce champ est obligatoire">*</abbr> </label> :
+                <input type="date" max="2010-01-01" min="1900-01-01" name="date_naissance" id="date_naissance" required />
             </p>
             <p>
-                <label for="avatar_id">Photo</label> :
+                <label for="avatar">Photo</label> :
                 <input type="file" accept="image/png, image/jpeg" name="avatar" id="avatar" />
             </p>
 
@@ -49,7 +49,6 @@
             </p>
 
             <p>
-
                 <label for="vehicule">Venez vous avec votre véhicule ? <abbr title="Ce champ est obligatoire">*</abbr>
                     <input type="radio" required name="vehicule" id="vehicule" value="True">Oui
                     <input type="radio" required name="vehicule" id="vehicule" value="False">Non
@@ -57,8 +56,7 @@
             </p>
 
             <p>
-                <label for="besoin_heberge">Avez vous besoin d'être hébergé ?<abbr
-                        title="Ce champ est obligatoire">*</abbr>
+                <label for="besoin_heberge">Avez vous besoin d'être hébergé ?<abbr title="Ce champ est obligatoire">*</abbr>
                     <input type="radio" required name="besoin_heberge" id="besoin_heberge" value="True">Oui
                     <input type="radio" required name="besoin_heberge" id="besoin_heberge" value="False">Non
                 </label>
@@ -76,7 +74,7 @@
             <textarea id="couchage_id" name="couchage" rows="5" cols="33" placeholder=" clic-clac, chambre d'ami, accès indépendant..."></textarea> <br />
 
             <label for="arrivee_id">Votre jour et horaire approximatifs d'arrivée à Pézenas</label> :
-            <input type="datetime-local" name="arrivee_id" id="arrivee_id" /> <br />
+            <input type="datetime-local" value="2018-06-12T19:30" name="arrivee_id" id="arrivee_id" /> <br />
 
             <label for="depart_id">Votre jour et horaire approximatifs de départ de Pézenas</label> :
             <input type="datetime-local" name="depart_id" id="arrivee_id" />
