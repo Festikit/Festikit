@@ -1,0 +1,19 @@
+/*
+GLOBAL
+*/
+
+* {
+  margin: 0;
+}
+
+header > h1 {
+	margin: 50px 20% 50px 20%;
+}
+
+form {
+	margin: 0 20% 0 20%;
+}
+
+form p {
+	margin: 20px 0 20px 0;
+}

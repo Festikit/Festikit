@@ -2,246 +2,269 @@
 <html lang="fr">
 
 <head>
-    <meta charset="utf-8" />
-    <title> Mon premier php </title>
+    <title> Printival 2020 - Formulaire d'inscription pour bénévoles </title>
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+
+    <!-- Link -->
+    <link rel="stylesheet" type="text/css" href="stylesFormulaire.css">
+    <!-- Link -->
+    
+    <!-- Font -->
+
+    <!-- Font -->
+
+    <!-- meta SEO-->
+    <meta name="description" content="">
+    <!-- meta SEO-->
+
 </head>
 
-<body>
-    <form method="post" action="creerVoiture.php">
-        <fieldset>
-            <legend>Inscription :</legend>
-            <p>
-                <label for="user_mail">Adresse e-mail<abbr title="Ce champ est obligatoire">*</abbr> </label> :
-                <input type="email" placeholder="Votre adresse email" name="user_mail" id="user_mail" required />
-            </p>
-            <p>
-                <label for="user_lastname">Nom<abbr title="Ce champ est obligatoire">*</abbr> </label> :
-                <input type="text" placeholder="Dupont" name="user_lastname" id="user_lastname" required />
-            </p>
-            <p>
-                <label for="user_firstname">Prenom<abbr title="Ce champ est obligatoire">*</abbr> </label> :
-                <input type="text" placeholder="Julien" name="user_firstname" id="user_firstname" required />
-            </p>
+<body> 
+    <header>
+        <h1>
+        Formulaire d'inscription pour les bénévoles
+    </h1>
+    </header>
+    
+    <article>
+        <form method="post" action="creerVoiture.php">
+            <fieldset>
+                <legend>Inscription :</legend>
+                <p>
+                    <label for="user_mail">Adresse e-mail<abbr title="Ce champ est obligatoire">*</abbr> </label> :
+                    <input type="email" placeholder="Votre adresse email" name="user_mail" id="user_mail" required />
+                </p>
+                <p>
+                    <label for="user_lastname">Nom<abbr title="Ce champ est obligatoire">*</abbr> </label> :
+                    <input type="text" placeholder="Dupont" name="user_lastname" id="user_lastname" required />
+                </p>
+                <p>
+                    <label for="user_firstname">Prenom<abbr title="Ce champ est obligatoire">*</abbr> </label> :
+                    <input type="text" placeholder="Julien" name="user_firstname" id="user_firstname" required />
+                </p>
 
-            <p>
-                <label for="date_naissance">Date de naissance<abbr title="Ce champ est obligatoire">*</abbr> </label> :
-                <input type="date" max="2010-01-01" min="1900-01-01" name="date_naissance" id="date_naissance" required />
-            </p>
-            <p>
-                <label for="avatar">Photo</label> :
-                <input type="file" accept="image/png, image/jpeg" name="avatar" id="avatar" />
-            </p>
+                <p>
+                    <label for="date_naissance">Date de naissance<abbr title="Ce champ est obligatoire">*</abbr> </label> :
+                    <input type="date" max="2010-01-01" min="1900-01-01" name="date_naissance" id="date_naissance" required />
+                </p>
+                <p>
+                    <label for="avatar">Photo</label> :
+                    <input type="file" accept="image/png, image/jpeg" name="avatar" id="avatar" />
+                </p>
 
-            <p>
-                <label for="code_postal">Code postal<abbr title="Ce champ est obligatoire">*</abbr> </label> :
-                <input type="number" placeholder="34000" name="code_postal" id="code_postal" required />
-            </p>
+                <p>
+                    <label for="code_postal">Code postal<abbr title="Ce champ est obligatoire">*</abbr> </label> :
+                    <input type="number" placeholder="34000" name="code_postal" id="code_postal" required />
+                </p>
 
-            <p>
-                <label for="user_phone"> </label>N° de téléphone<abbr title="Ce champ est obligatoire">*</abbr> :
-                <input type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" placeholder="06097978" name="user_phone" id="user_phone" required />
-            </p>
-            <p>
-                <label for="permis">Permis de conduire<abbr title="Ce champ est obligatoire">*</abbr>
-                    <input type="radio" required name="permis" id="permis" value="True">Oui
-                    <input type="radio" required name="permis" id="permis" value="False">Non
-                </label>
-            </p>
+                <p>
+                    <label for="user_phone"> </label>N° de téléphone<abbr title="Ce champ est obligatoire">*</abbr> :
+                    <input type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" placeholder="06097978" name="user_phone" id="user_phone" required />
+                </p>
+                <p>
+                    <label for="permis">Permis de conduire<abbr title="Ce champ est obligatoire">*</abbr>
+                        <input type="radio" required name="permis" id="permis" value="True">Oui
+                        <input type="radio" required name="permis" id="permis" value="False">Non
+                    </label>
+                </p>
 
-            <p>
-                <label for="vehicule">Venez vous avec votre véhicule ? <abbr title="Ce champ est obligatoire">*</abbr>
-                    <input type="radio" required name="vehicule" id="vehicule" value="True">Oui
-                    <input type="radio" required name="vehicule" id="vehicule" value="False">Non
-                </label>
-            </p>
+                <p>
+                    <label for="vehicule">Venez vous avec votre véhicule ? <abbr title="Ce champ est obligatoire">*</abbr>
+                        <input type="radio" required name="vehicule" id="vehicule" value="True">Oui
+                        <input type="radio" required name="vehicule" id="vehicule" value="False">Non
+                    </label>
+                </p>
 
-            <p>
-                <label for="besoin_heberge">Avez vous besoin d'être hébergé ?<abbr title="Ce champ est obligatoire">*</abbr>
-                    <input type="radio" required name="besoin_heberge" id="besoin_heberge" value="True">Oui
-                    <input type="radio" required name="besoin_heberge" id="besoin_heberge" value="False">Non
-                </label>
-            </p>
+                <p>
+                    <label for="besoin_heberge">Avez vous besoin d'être hébergé ?<abbr title="Ce champ est obligatoire">*</abbr>
+                        <input type="radio" required name="besoin_heberge" id="besoin_heberge" value="True">Oui
+                        <input type="radio" required name="besoin_heberge" id="besoin_heberge" value="False">Non
+                    </label>
+                </p>
 
-            <p>
-                <label for="peut_heberge">Pouvez vous héberger des personnes ?<abbr
-                        title="Ce champ est obligatoire">*</abbr>
-                    <input type="radio" required name="peut_heberge" id="peut_heberge" value="True">Oui
-                    <input type="radio" required name="peut_heberge" id="peut_heberge" value="False">Non
-                </label>
-            </p>
+                <p>
+                    <label for="peut_heberge">Pouvez vous héberger des personnes ?<abbr
+                            title="Ce champ est obligatoire">*</abbr>
+                        <input type="radio" required name="peut_heberge" id="peut_heberge" value="True">Oui
+                        <input type="radio" required name="peut_heberge" id="peut_heberge" value="False">Non
+                    </label>
+                </p>
 
-            <p>
-                <label for="couchage_id">Si oui, combien et pouvez-vous nous expliquer la configuration de couchage ?</label> <br />
-                <textarea id="couchage_id" name="couchage" rows="5" cols="33" placeholder=" clic-clac, chambre d'ami, accès indépendant..."></textarea> <br />
-            </p>
+                <p>
+                    <label for="couchage_id">Si oui, combien et pouvez-vous nous expliquer la configuration de couchage ?</label> <br />
+                    <textarea id="couchage_id" name="couchage" rows="5" cols="33" placeholder=" clic-clac, chambre d'ami, accès indépendant..."></textarea> <br />
+                </p>
 
-            <p>
-                <label for="arrivee_id">Votre jour et horaire approximatifs d'arrivée à Pézenas</label> :
-                <input type="date" name="arrivee_id_date" id="arrivee_id" required />
-                <input type="time" name="arrivee_id_heure" id="arrivee_id" required /> <br/>
-            </p>
+                <p>
+                    <label for="arrivee_id">Votre jour et horaire approximatifs d'arrivée à Pézenas</label> :
+                    <input type="date" name="arrivee_id_date" id="arrivee_id" required />
+                    <input type="time" name="arrivee_id_heure" id="arrivee_id" required /> <br/>
+                </p>
 
-            <p>
-                <label for="depart_id">Votre jour et horaire approximatifs d'arrivée à Pézenas</label> :
-                <input type="date" name="depart_id_date" id="depart_id" required />
-                <input type="time" name="depart_id_heure" id="depart_id" required /> <br/>
-            </p>
+                <p>
+                    <label for="depart_id">Votre jour et horaire approximatifs d'arrivée à Pézenas</label> :
+                    <input type="date" name="depart_id_date" id="depart_id" required />
+                    <input type="time" name="depart_id_heure" id="depart_id" required /> <br/>
+                </p>
 
-            <p> 
-                <!-- TODO : Ajouter label a table ?-->
-                <!-- TODO : l'affichage de cette partie doit être automatisé avec le php -->
-                <table>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td><label for="dispo_date1">Matin: 8h-14h</label></td>
-                        <td><label for="dispo_date2">Après-midi: 14h-17h</label></td>
-                        <td><label for="dispo_date3">Fin d'après-midi: 17h-20h</label></td>
-                        <td><label for="dispo_date4">Soirée: 20h-22h</label></td>
-                        <td><label for="dispo_date5">Fin de soirée: 22h-00h</label></td>
-                        <td><label for="dispo_date6">Apres 00h</label></td>
-                    </tr>
-                    <tr>
-                        <td><label for="dispo_lieu1">Samedi 4 Avril (au marché de Pézenas)</label></td>
-                        <td><input type="checkbox" name="dispo_lieu1_date1" class="dispo_lieu1 dispo_date1"></td>
-                        <td><input type="checkbox" name="dispo_lieu1_date2" class="dispo_lieu1 dispo_date2"></td>
-                        <td><input type="checkbox" name="dispo_lieu1_date3" class="dispo_lieu1 dispo_date3"></td>
-                        <td><input type="checkbox" name="dispo_lieu1_date4" class="dispo_lieu1 dispo_date4"></td>
-                        <td><input type="checkbox" name="dispo_lieu1_date5" class="dispo_lieu1 dispo_date5"></td>
-                        <td><input type="checkbox" name="dispo_lieu1_date6" class="dispo_lieu1 dispo_date6"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="dispo_lieu2">Samedi 11 Avril (au marché de Pézenas)</label></td>
-                        <td><input type="checkbox" name="dispo_lieu2_date1" class="dispo_lieu2 dispo_date1"></td>
-                        <td><input type="checkbox" name="dispo_lieu2_date2" class="dispo_lieu2 dispo_date2"></td>
-                        <td><input type="checkbox" name="dispo_lieu2_date3" class="dispo_lieu2 dispo_date3"></td>
-                        <td><input type="checkbox" name="dispo_lieu2_date4" class="dispo_lieu2 dispo_date4"></td>
-                        <td><input type="checkbox" name="dispo_lieu2_date5" class="dispo_lieu2 dispo_date5"></td>
-                        <td><input type="checkbox" name="dispo_lieu2_date6" class="dispo_lieu2 dispo_date6"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="dispo_lieu3">Lundi 13 avril (déco+ install + barbecue d'accueil)</label></td>
-                        <td><input type="checkbox" name="dispo_lieu3_date1" class="dispo_lieu3 dispo_date1"></td>
-                        <td><input type="checkbox" name="dispo_lieu3_date2" class="dispo_lieu3 dispo_date2"></td>
-                        <td><input type="checkbox" name="dispo_lieu3_date3" class="dispo_lieu3 dispo_date3"></td>
-                        <td><input type="checkbox" name="dispo_lieu3_date4" class="dispo_lieu3 dispo_date4"></td>
-                        <td><input type="checkbox" name="dispo_lieu3_date5" class="dispo_lieu3 dispo_date5"></td>
-                        <td><input type="checkbox" name="dispo_lieu3_date6" class="dispo_lieu3 dispo_date6"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="dispo_lieu4">Mardi 14 avril</label></td>
-                        <td><input type="checkbox" name="dispo_lieu4_date1" class="dispo_lieu4 dispo_date1"></td>
-                        <td><input type="checkbox" name="dispo_lieu4_date2" class="dispo_lieu4 dispo_date2"></td>
-                        <td><input type="checkbox" name="dispo_lieu4_date3" class="dispo_lieu4 dispo_date3"></td>
-                        <td><input type="checkbox" name="dispo_lieu4_date4" class="dispo_lieu4 dispo_date4"></td>
-                        <td><input type="checkbox" name="dispo_lieu4_date5" class="dispo_lieu4 dispo_date5"></td>
-                        <td><input type="checkbox" name="dispo_lieu4_date6" class="dispo_lieu4 dispo_date6"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="dispo_lieu5">Mercredi 15 avril</label></td>
-                        <td><input type="checkbox" name="dispo_lieu5_date1" class="dispo_lieu5 dispo_date1"></td>
-                        <td><input type="checkbox" name="dispo_lieu5_date2" class="dispo_lieu5 dispo_date2"></td>
-                        <td><input type="checkbox" name="dispo_lieu5_date3" class="dispo_lieu5 dispo_date3"></td>
-                        <td><input type="checkbox" name="dispo_lieu5_date4" class="dispo_lieu5 dispo_date4"></td>
-                        <td><input type="checkbox" name="dispo_lieu5_date5" class="dispo_lieu5 dispo_date5"></td>
-                        <td><input type="checkbox" name="dispo_lieu5_date6" class="dispo_lieu5 dispo_date6"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="dispo_lieu6">Jeudi 16 avril</label></td>
-                        <td><input type="checkbox" name="dispo_lieu6_date1" class="dispo_lieu6 dispo_date1"></td>
-                        <td><input type="checkbox" name="dispo_lieu6_date2" class="dispo_lieu6 dispo_date2"></td>
-                        <td><input type="checkbox" name="dispo_lieu6_date3" class="dispo_lieu6 dispo_date3"></td>
-                        <td><input type="checkbox" name="dispo_lieu6_date4" class="dispo_lieu6 dispo_date4"></td>
-                        <td><input type="checkbox" name="dispo_lieu6_date5" class="dispo_lieu6 dispo_date5"></td>
-                        <td><input type="checkbox" name="dispo_lieu6_date6" class="dispo_lieu6 dispo_date6"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="dispo_lieu7">Vendredi 17 avril</label></td>
-                        <td><input type="checkbox" name="dispo_lieu7_date1" class="dispo_lieu7 dispo_date1"></td>
-                        <td><input type="checkbox" name="dispo_lieu7_date2" class="dispo_lieu7 dispo_date2"></td>
-                        <td><input type="checkbox" name="dispo_lieu7_date3" class="dispo_lieu7 dispo_date3"></td>
-                        <td><input type="checkbox" name="dispo_lieu7_date4" class="dispo_lieu7 dispo_date4"></td>
-                        <td><input type="checkbox" name="dispo_lieu7_date5" class="dispo_lieu7 dispo_date5"></td>
-                        <td><input type="checkbox" name="dispo_lieu7_date6" class="dispo_lieu7 dispo_date6"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="dispo_lieu8">Samedi 18 avril</label></td>
-                        <td><input type="checkbox" name="dispo_lieu8_date1" class="dispo_lieu8 dispo_date1"></td>
-                        <td><input type="checkbox" name="dispo_lieu8_date2" class="dispo_lieu8 dispo_date2"></td>
-                        <td><input type="checkbox" name="dispo_lieu8_date3" class="dispo_lieu8 dispo_date3"></td>
-                        <td><input type="checkbox" name="dispo_lieu8_date4" class="dispo_lieu8 dispo_date4"></td>
-                        <td><input type="checkbox" name="dispo_lieu8_date5" class="dispo_lieu8 dispo_date5"></td>
-                        <td><input type="checkbox" name="dispo_lieu8_date6" class="dispo_lieu8 dispo_date6"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="dispo_lieu9">Dimanche 19 avril (rangement, désinstallation)</label></td>
-                        <td><input type="checkbox" name="dispo_lieu9_date1" class="dispo_lieu9 dispo_date1"></td>
-                        <td><input type="checkbox" name="dispo_lieu9_date2" class="dispo_lieu9 dispo_date2"></td>
-                        <td><input type="checkbox" name="dispo_lieu9_date3" class="dispo_lieu9 dispo_date3"></td>
-                        <td><input type="checkbox" name="dispo_lieu9_date4" class="dispo_lieu9 dispo_date4"></td>
-                        <td><input type="checkbox" name="dispo_lieu9_date5" class="dispo_lieu9 dispo_date5"></td>
-                        <td><input type="checkbox" name="dispo_lieu9_date6" class="dispo_lieu9 dispo_date6"></td>
-                    </tr>
-                </table>
-            </p>
+                <p> 
+                    <!-- TODO : Ajouter label a table ?-->
+                    <!-- TODO : l'affichage de cette partie doit être automatisé avec le php -->
+                    <table>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td><label for="dispo_date1">Matin: 8h-14h</label></td>
+                            <td><label for="dispo_date2">Après-midi: 14h-17h</label></td>
+                            <td><label for="dispo_date3">Fin d'après-midi: 17h-20h</label></td>
+                            <td><label for="dispo_date4">Soirée: 20h-22h</label></td>
+                            <td><label for="dispo_date5">Fin de soirée: 22h-00h</label></td>
+                            <td><label for="dispo_date6">Apres 00h</label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="dispo_lieu1">Samedi 4 Avril (au marché de Pézenas)</label></td>
+                            <td><input type="checkbox" name="dispo_lieu1_date1" class="dispo_lieu1 dispo_date1"></td>
+                            <td><input type="checkbox" name="dispo_lieu1_date2" class="dispo_lieu1 dispo_date2"></td>
+                            <td><input type="checkbox" name="dispo_lieu1_date3" class="dispo_lieu1 dispo_date3"></td>
+                            <td><input type="checkbox" name="dispo_lieu1_date4" class="dispo_lieu1 dispo_date4"></td>
+                            <td><input type="checkbox" name="dispo_lieu1_date5" class="dispo_lieu1 dispo_date5"></td>
+                            <td><input type="checkbox" name="dispo_lieu1_date6" class="dispo_lieu1 dispo_date6"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="dispo_lieu2">Samedi 11 Avril (au marché de Pézenas)</label></td>
+                            <td><input type="checkbox" name="dispo_lieu2_date1" class="dispo_lieu2 dispo_date1"></td>
+                            <td><input type="checkbox" name="dispo_lieu2_date2" class="dispo_lieu2 dispo_date2"></td>
+                            <td><input type="checkbox" name="dispo_lieu2_date3" class="dispo_lieu2 dispo_date3"></td>
+                            <td><input type="checkbox" name="dispo_lieu2_date4" class="dispo_lieu2 dispo_date4"></td>
+                            <td><input type="checkbox" name="dispo_lieu2_date5" class="dispo_lieu2 dispo_date5"></td>
+                            <td><input type="checkbox" name="dispo_lieu2_date6" class="dispo_lieu2 dispo_date6"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="dispo_lieu3">Lundi 13 avril (déco+ install + barbecue d'accueil)</label></td>
+                            <td><input type="checkbox" name="dispo_lieu3_date1" class="dispo_lieu3 dispo_date1"></td>
+                            <td><input type="checkbox" name="dispo_lieu3_date2" class="dispo_lieu3 dispo_date2"></td>
+                            <td><input type="checkbox" name="dispo_lieu3_date3" class="dispo_lieu3 dispo_date3"></td>
+                            <td><input type="checkbox" name="dispo_lieu3_date4" class="dispo_lieu3 dispo_date4"></td>
+                            <td><input type="checkbox" name="dispo_lieu3_date5" class="dispo_lieu3 dispo_date5"></td>
+                            <td><input type="checkbox" name="dispo_lieu3_date6" class="dispo_lieu3 dispo_date6"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="dispo_lieu4">Mardi 14 avril</label></td>
+                            <td><input type="checkbox" name="dispo_lieu4_date1" class="dispo_lieu4 dispo_date1"></td>
+                            <td><input type="checkbox" name="dispo_lieu4_date2" class="dispo_lieu4 dispo_date2"></td>
+                            <td><input type="checkbox" name="dispo_lieu4_date3" class="dispo_lieu4 dispo_date3"></td>
+                            <td><input type="checkbox" name="dispo_lieu4_date4" class="dispo_lieu4 dispo_date4"></td>
+                            <td><input type="checkbox" name="dispo_lieu4_date5" class="dispo_lieu4 dispo_date5"></td>
+                            <td><input type="checkbox" name="dispo_lieu4_date6" class="dispo_lieu4 dispo_date6"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="dispo_lieu5">Mercredi 15 avril</label></td>
+                            <td><input type="checkbox" name="dispo_lieu5_date1" class="dispo_lieu5 dispo_date1"></td>
+                            <td><input type="checkbox" name="dispo_lieu5_date2" class="dispo_lieu5 dispo_date2"></td>
+                            <td><input type="checkbox" name="dispo_lieu5_date3" class="dispo_lieu5 dispo_date3"></td>
+                            <td><input type="checkbox" name="dispo_lieu5_date4" class="dispo_lieu5 dispo_date4"></td>
+                            <td><input type="checkbox" name="dispo_lieu5_date5" class="dispo_lieu5 dispo_date5"></td>
+                            <td><input type="checkbox" name="dispo_lieu5_date6" class="dispo_lieu5 dispo_date6"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="dispo_lieu6">Jeudi 16 avril</label></td>
+                            <td><input type="checkbox" name="dispo_lieu6_date1" class="dispo_lieu6 dispo_date1"></td>
+                            <td><input type="checkbox" name="dispo_lieu6_date2" class="dispo_lieu6 dispo_date2"></td>
+                            <td><input type="checkbox" name="dispo_lieu6_date3" class="dispo_lieu6 dispo_date3"></td>
+                            <td><input type="checkbox" name="dispo_lieu6_date4" class="dispo_lieu6 dispo_date4"></td>
+                            <td><input type="checkbox" name="dispo_lieu6_date5" class="dispo_lieu6 dispo_date5"></td>
+                            <td><input type="checkbox" name="dispo_lieu6_date6" class="dispo_lieu6 dispo_date6"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="dispo_lieu7">Vendredi 17 avril</label></td>
+                            <td><input type="checkbox" name="dispo_lieu7_date1" class="dispo_lieu7 dispo_date1"></td>
+                            <td><input type="checkbox" name="dispo_lieu7_date2" class="dispo_lieu7 dispo_date2"></td>
+                            <td><input type="checkbox" name="dispo_lieu7_date3" class="dispo_lieu7 dispo_date3"></td>
+                            <td><input type="checkbox" name="dispo_lieu7_date4" class="dispo_lieu7 dispo_date4"></td>
+                            <td><input type="checkbox" name="dispo_lieu7_date5" class="dispo_lieu7 dispo_date5"></td>
+                            <td><input type="checkbox" name="dispo_lieu7_date6" class="dispo_lieu7 dispo_date6"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="dispo_lieu8">Samedi 18 avril</label></td>
+                            <td><input type="checkbox" name="dispo_lieu8_date1" class="dispo_lieu8 dispo_date1"></td>
+                            <td><input type="checkbox" name="dispo_lieu8_date2" class="dispo_lieu8 dispo_date2"></td>
+                            <td><input type="checkbox" name="dispo_lieu8_date3" class="dispo_lieu8 dispo_date3"></td>
+                            <td><input type="checkbox" name="dispo_lieu8_date4" class="dispo_lieu8 dispo_date4"></td>
+                            <td><input type="checkbox" name="dispo_lieu8_date5" class="dispo_lieu8 dispo_date5"></td>
+                            <td><input type="checkbox" name="dispo_lieu8_date6" class="dispo_lieu8 dispo_date6"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="dispo_lieu9">Dimanche 19 avril (rangement, désinstallation)</label></td>
+                            <td><input type="checkbox" name="dispo_lieu9_date1" class="dispo_lieu9 dispo_date1"></td>
+                            <td><input type="checkbox" name="dispo_lieu9_date2" class="dispo_lieu9 dispo_date2"></td>
+                            <td><input type="checkbox" name="dispo_lieu9_date3" class="dispo_lieu9 dispo_date3"></td>
+                            <td><input type="checkbox" name="dispo_lieu9_date4" class="dispo_lieu9 dispo_date4"></td>
+                            <td><input type="checkbox" name="dispo_lieu9_date5" class="dispo_lieu9 dispo_date5"></td>
+                            <td><input type="checkbox" name="dispo_lieu9_date6" class="dispo_lieu9 dispo_date6"></td>
+                        </tr>
+                    </table>
+                </p>
 
-            <p>
-                <label for="depart_id">Vous êtes disponible à des créneaux différents et souhaitez nous en informer ?</label> :
-                <input type="date" name="depart_id_date" id="depart_id" />
-                <input type="time" name="depart_id_heure" id="depart_id" /> <br/>
-            </p>
+                <p>
+                    <label for="depart_id">Vous êtes disponible à des créneaux différents et souhaitez nous en informer ?</label> :
+                    <input type="date" name="depart_id_date" id="depart_id" />
+                    <input type="time" name="depart_id_heure" id="depart_id" /> <br/>
+                </p>
 
-            <p>
-                <label for="dispo_flyer">Seriez-vous disponible pour flyer en amont du festival ?
-                    <input type="radio" required name="dispo_flyer" id="dispo_flyer" value="True">Oui
-                    <input type="radio" required name="dispo_flyer" id="dispo_flyer" value="False">Non
-                </label>
-            </p>
+                <p>
+                    <label for="dispo_flyer">Seriez-vous disponible pour flyer en amont du festival ?
+                        <input type="radio" required name="dispo_flyer" id="dispo_flyer" value="True">Oui
+                        <input type="radio" required name="dispo_flyer" id="dispo_flyer" value="False">Non
+                    </label>
+                </p>
 
-            <!-- TODO: Comissions -->
+                <!-- TODO: Comissions -->
 
-            <label for="choisirconcert_id">Choisissez un concert auquel vous souhaiteriez assister</label>
-            <select name="choisirconcert" id="choisirconcert_id">
-                <!-- TODO : l'affichage de cette partie doit être automatisé avec le php -->
-                <option >Sélectionner</option>
-                <option value="concert1">13/04 - Cinéma Le Molière - film Daniel Darc - lecture Dimoné</option>
-                <option value="concert2">14/04 -Théâtre Historique - 20h30- Estelle Meyer + Wally Le Projet Derli</option>
-                <option value="concert3">15/04 - Théâtre Historique - 14h30 -  Presque Oui Icibalao (Jeune Public)</option>
-                <option value="concert4">15/04 - Théâtre Historique - 19h - Jerrycan</option>
-                <option value="concert5">15/04 - Foyer des Campagnes - 21h - La Pieta + Soirée Girls Gang</option>
-                <option value="concert6">16/04 - Pl. Gambetta - 12h - Création Canada/Occitanie</option>
-                <option value="concert7">16/04 - Théâtre Historique - 19h - programmation en cours</option>
-                <option value="concert8">16/04 - Foyer des Campagnes - 21h - Natasha Kanapé + Diane Tell</option>
-                <option value="concert9">17/04 - Pl. Gambetta - 12h - François Bijou</option>
-                <option value="concert11">17/04 - Th. Historique - 14h - Remise des coups de Cœur Chanson de l'Académie Ch. Cros</option>
-                <option value="concert12">17/04 - Th. Historique - 19h - Clara Ysé</option>
-                <option value="concert13">17/04 - Foyer des Campagnes - 21h - Nemir</option>
-                <option value="concert14">18/04 - Pl. Gambetta - 12h - Sugar & Tiger</option>
-                <option value="concert15">18/04 - Th. Historique - 15h - Plateaux découvertes - L'Affaire Sirven / Orly / Murielle Holtz</option>
-                <option value="concert16">18/04 - Foyer des Campagnes - 19h - Melba</option>
-                <option value="concert17">18/04 - Foyer des Campagnes - 21H - Batlik + Dimoné & Kursed</option>
-            </select>
+                <label for="choisirconcert_id">Choisissez un concert auquel vous souhaiteriez assister</label> :
+                <select name="choisirconcert" id="choisirconcert_id">
+                    <!-- TODO : l'affichage de cette partie doit être automatisé avec le php -->
+                    <option >Sélectionner</option>
+                    <option value="concert1">13/04 - Cinéma Le Molière - film Daniel Darc - lecture Dimoné</option>
+                    <option value="concert2">14/04 -Théâtre Historique - 20h30- Estelle Meyer + Wally Le Projet Derli</option>
+                    <option value="concert3">15/04 - Théâtre Historique - 14h30 -  Presque Oui Icibalao (Jeune Public)</option>
+                    <option value="concert4">15/04 - Théâtre Historique - 19h - Jerrycan</option>
+                    <option value="concert5">15/04 - Foyer des Campagnes - 21h - La Pieta + Soirée Girls Gang</option>
+                    <option value="concert6">16/04 - Pl. Gambetta - 12h - Création Canada/Occitanie</option>
+                    <option value="concert7">16/04 - Théâtre Historique - 19h - programmation en cours</option>
+                    <option value="concert8">16/04 - Foyer des Campagnes - 21h - Natasha Kanapé + Diane Tell</option>
+                    <option value="concert9">17/04 - Pl. Gambetta - 12h - François Bijou</option>
+                    <option value="concert11">17/04 - Th. Historique - 14h - Remise des coups de Cœur Chanson de l'Académie Ch. Cros</option>
+                    <option value="concert12">17/04 - Th. Historique - 19h - Clara Ysé</option>
+                    <option value="concert13">17/04 - Foyer des Campagnes - 21h - Nemir</option>
+                    <option value="concert14">18/04 - Pl. Gambetta - 12h - Sugar & Tiger</option>
+                    <option value="concert15">18/04 - Th. Historique - 15h - Plateaux découvertes - L'Affaire Sirven / Orly / Murielle Holtz</option>
+                    <option value="concert16">18/04 - Foyer des Campagnes - 19h - Melba</option>
+                    <option value="concert17">18/04 - Foyer des Campagnes - 21H - Batlik + Dimoné & Kursed</option>
+                </select>
 
-            <p>
-                <label for="deja_benevole">Avez-vous déjà été bénévole sur le festival ?<abbr title="Ce champ est obligatoire">*</abbr>
-                    <input type="radio" required name="deja_benevole" id="deja_benevole" value="True">Oui
-                    <input type="radio" required name="deja_benevole" id="deja_benevole" value="False">Non
-                </label>
-            </p>
+                <p>
+                    <label for="deja_benevole">Avez-vous déjà été bénévole sur le festival ?<abbr title="Ce champ est obligatoire">*</abbr>
+                        <input type="radio" required name="deja_benevole" id="deja_benevole" value="True">Oui
+                        <input type="radio" required name="deja_benevole" id="deja_benevole" value="False">Non
+                    </label>
+                </p>
 
-            <label for="motivation_id">Si non, pourriez-vous nous expliquer brièvement votre motivation ?</label> <br />
-            <textarea id="motivation_id" name="motivation" rows="5" cols="25" placeholder="Votre réponse"></textarea> <br />
+                <label for="motivation_id">Si non, pourriez-vous nous expliquer brièvement votre motivation ?</label> <br />
+                <textarea id="motivation_id" name="motivation" rows="5" cols="25" placeholder="Votre réponse"></textarea> <br />
 
-            <label for="allergie_id">Avez-vous des allergies / régimes particuliers ?</label> <br />
-            <textarea id="allergie_id" name="allergie" rows="5" cols="25" placeholder="Votre réponse"></textarea> <br />
+                <label for="allergie_id">Avez-vous des allergies / régimes particuliers ?</label> <br />
+                <textarea id="allergie_id" name="allergie" rows="5" cols="25" placeholder="Votre réponse"></textarea> <br />
 
-            <label for="autres_id">Avez-vous d'autres requêtes / questions / remarques ?</label> <br />
-            <textarea id="autres_id" name="autres" rows="5" cols="25" placeholder="Votre réponse"></textarea>
+                <label for="autres_id">Avez-vous d'autres requêtes / questions / remarques ?</label> <br />
+                <textarea id="autres_id" name="autres" rows="5" cols="25" placeholder="Votre réponse"></textarea>
 
-            <p>
-                <input type="submit" value="Envoyer" />
-            </p>
-        </fieldset>
-    </form>
+                <p>
+                    <input type="submit" value="Envoyer" />
+                </p>
+            </fieldset>
+        </form>
+    </article>
 </body>
 
 </html>
