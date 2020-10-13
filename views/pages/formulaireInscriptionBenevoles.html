@@ -70,14 +70,22 @@
                 </label>
             </p>
 
-            <label for="couchage_id">Si oui, combien et pouvez-vous nous expliquer la configuration de couchage ?</label> <br />
-            <textarea id="couchage_id" name="couchage" rows="5" cols="33" placeholder=" clic-clac, chambre d'ami, accès indépendant..."></textarea> <br />
+            <p>
+                <label for="couchage_id">Si oui, combien et pouvez-vous nous expliquer la configuration de couchage ?</label> <br />
+                <textarea id="couchage_id" name="couchage" rows="5" cols="33" placeholder=" clic-clac, chambre d'ami, accès indépendant..."></textarea> <br />
+            </p>
 
-            <label for="arrivee_id">Votre jour et horaire approximatifs d'arrivée à Pézenas</label> :
-            <input type="datetime-local" value="2018-06-12T19:30" name="arrivee_id" id="arrivee_id" /> <br />
+            <p>
+                <label for="arrivee_id">Votre jour et horaire approximatifs d'arrivée à Pézenas</label> :
+                <input type="date" name="arrivee_id_date" id="arrivee_id" required />
+                <input type="time" name="arrivee_id_heure" id="arrivee_id" required /> <br/>
+            </p>
 
-            <label for="depart_id">Votre jour et horaire approximatifs de départ de Pézenas</label> :
-            <input type="datetime-local" name="depart_id" id="arrivee_id" />
+            <p>
+                <label for="depart_id">Votre jour et horaire approximatifs d'arrivée à Pézenas</label> :
+                <input type="date" name="depart_id_date" id="depart_id" required />
+                <input type="time" name="depart_id_heure" id="depart_id" required /> <br/>
+            </p>
 
             <!-- TODO: Disponibilité -->
 
