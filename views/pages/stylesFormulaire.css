@@ -2,24 +2,98 @@
 GLOBAL
 */
 
-* {
-  margin: 0;
+body {
+	background-color: #938A62;
+}
+
+h1,h2,h3,h4,h5 {
+	font-family: 'Oswald', sans-serif;
+}
+
+p, table {
+	font-family: 'Roboto', sans-serif;
 }
 
 header > h1 {
-	margin: 50px 20% 50px 20%;
+	margin: 50px 30% 50px 30%;
+	text-align: center;
+	color: #F8CB00;
 }
 
+/*
+Formulaire
+*/
+
 form {
-	margin: 0 20% 0 20%;
+	margin: 0 30% 0 30%;
+	text-align: center;
+	background-color: #E6E1CC;
+}
+
+form fieldset {
+	border: none;
 }
 
 form p {
 	margin: 20px 0 20px 0;
+	display: block;
 }
 
-/*
-td  {
+td {
 	text-align: center;
 }
-*/
+
+.firstColumn {
+	text-align: left;
+}
+
+form input[type=text], 
+form input[type=date],
+form input[type=email],
+textarea, 
+select{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border:1px solid #BEBEBE;
+	padding: 7px;
+	margin:0px;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	outline: none;	
+	display: block;
+	margin: auto;
+}
+form input[type=text]:focus, 
+form input[type=date]:focus,
+form input[type=email]:focus,
+form textarea:focus, 
+form select:focus{
+	-moz-box-shadow: 0 0 8px #F8CB00;
+	-webkit-box-shadow: 0 0 8px #F8CB00;
+	box-shadow: 0 0 8px #F8CB00;
+	border: 1px solid #F8CB00;
+}
+
+form .fieldDivided{
+	width: 49%;
+}
+
+form input[type=submit] {
+	border: solid;
+	border-color: #F8CB00;
+	padding: 15px;
+	font-family: 'Orbitron', sans-serif;
+	color: #2D2B24;
+}
+
+form input[type=submit]:hover {
+	background-color: #F8CB00;
+	border-color: #2D2B24;
+	transition: 0.4s;
+}
+form .required{
+	color:red;
+}
