@@ -35,7 +35,7 @@ form fieldset {
 }
 
 form p {
-	margin: 20px 0 20px 0;
+	margin: 20px 0 0 0;
 	display: block;
 }
 
@@ -50,6 +50,8 @@ td {
 form input[type=text], 
 form input[type=date],
 form input[type=email],
+form input[type=number],
+form input[type=tel],
 textarea, 
 select{
 	box-sizing: border-box;
@@ -69,6 +71,9 @@ select{
 form input[type=text]:focus, 
 form input[type=date]:focus,
 form input[type=email]:focus,
+form input[type=number]:focus,
+form input[type=tel]:focus,
+
 form textarea:focus, 
 form select:focus{
 	-moz-box-shadow: 0 0 8px #F8CB00;
@@ -76,10 +81,10 @@ form select:focus{
 	box-shadow: 0 0 8px #F8CB00;
 	border: 1px solid #F8CB00;
 }
-
+/*
 form .fieldDivided{
 	width: 49%;
-}
+}*/
 
 form input[type=submit] {
 	border: solid;
@@ -94,6 +99,37 @@ form input[type=submit]:hover {
 	border-color: #2D2B24;
 	transition: 0.4s;
 }
-form .required{
+
+form abbr{
 	color:red;
+}
+
+.nomPrenom, .postalPhone {
+	display: flex;
+}
+
+.nomPrenom > p, .postalPhone > p {
+	height: 100%;
+	width: 100%;
+	text-align: left;
+}
+
+.nomPrenom > p > input, .postalPhone > p > input {
+	width: 96%;
+	margin-right: 4%;
+}
+
+.mail {
+	display: flex;
+}
+
+.mail > p {
+	height: 100%;
+	width: 100%;
+	text-align: left;
+}
+
+.mail > p > input {
+	width: 98%;
+	margin-right: 2%;
 }

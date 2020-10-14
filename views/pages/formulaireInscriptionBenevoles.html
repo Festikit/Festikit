@@ -32,19 +32,23 @@
     <article>
         <form method="post" action="creerVoiture.php">
             <fieldset>
-                <p>
-                    <label for="user_mail">Adresse e-mail<abbr title="Ce champ est obligatoire">*</abbr> </label>
-                    <input type="email" class="fieldDivided" placeholder="Votre adresse email" name="user_mail" id="user_mail" required />
-                </p>
-                <p>
-                    <label for="user_lastname">Nom<abbr title="Ce champ est obligatoire">*</abbr> </label> :
-                    <input type="text" class="fieldDivided" placeholder="Dupont" name="user_lastname" id="user_lastname" required />
-                </p>
-                <p>
-                    <label for="user_firstname">Prenom<abbr title="Ce champ est obligatoire">*</abbr> </label> :
-                    <input type="text" class="fieldDivided" placeholder="Julien" name="user_firstname" id="user_firstname" required />
-                </p>
+                <div class="mail">
+                    <p>
+                        <label for="user_mail">Adresse e-mail<abbr title="Ce champ est obligatoire">*</abbr> </label>
+                        <input type="email" class="fieldDivided" placeholder="Votre adresse email" name="user_mail" id="user_mail" required />
+                    </p>
+                </div>
 
+                <div class="nomPrenom">
+                    <p>
+                        <label for="user_lastname">Nom<abbr title="Ce champ est obligatoire">*</abbr> </label> :
+                        <input type="text" class="fieldDivided" placeholder="Dupont" name="user_lastname" id="user_lastname" required />
+                    </p>
+                    <p>
+                        <label for="user_firstname">Prenom<abbr title="Ce champ est obligatoire">*</abbr> </label> :
+                        <input type="text" class="fieldDivided" placeholder="Julien" name="user_firstname" id="user_firstname" required />
+                    </p>
+                </div>
                 <p>
                     <label for="date_naissance">Date de naissance<abbr title="Ce champ est obligatoire">*</abbr> </label> :
                     <input type="date" class="fieldDivided" max="2010-01-01" min="1900-01-01" name="date_naissance" id="date_naissance" required />
@@ -54,21 +58,24 @@
                     <input type="file" class="fieldDivided" accept="image/png, image/jpeg" name="avatar" id="avatar" />
                 </p>
 
-                <p>
-                    <label for="code_postal">Code postal<abbr title="Ce champ est obligatoire">*</abbr> </label> :
-                    <input type="number" class="fieldDivided" placeholder="34000" name="code_postal" id="code_postal" required />
-                </p>
+                <div class="postalPhone">
+                    <p>
+                        <label for="code_postal">Code postal<abbr title="Ce champ est obligatoire">*</abbr> </label> :
+                        <input type="number" class="fieldDivided" placeholder="34000" name="code_postal" id="code_postal" required />
+                    </p>
+
+                    <p>
+                        <label for="user_phone"> </label>N° de téléphone<abbr title="Ce champ est obligatoire">*</abbr> :
+                        <input type="tel" class="fieldDivided" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" placeholder="06097978" name="user_phone" id="user_phone" required />
+                    </p>
+                </div>
 
                 <p>
-                    <label for="user_phone"> </label>N° de téléphone<abbr title="Ce champ est obligatoire">*</abbr> :
-                    <input type="tel" class="fieldDivided" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" placeholder="06097978" name="user_phone" id="user_phone" required />
-                </p>
-                <p>
                     <label for="permis">Permis de conduire<abbr title="Ce champ est obligatoire">*</abbr></label>
-                    <div class="fieldDivided">
+                    <!--<div class="fieldDivided">-->
                         <input type="radio" required name="permis" id="permis" value="True">Oui
                         <input type="radio" required name="permis" id="permis" value="False">Non
-                    </div>
+                    <!--</div>-->
                 </p>
 
                 <p>
