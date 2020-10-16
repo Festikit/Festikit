@@ -24,9 +24,14 @@ header > h1 {
 Formulaire
 */
 
+article {
+	display: flex;
+}
+
 form {
-	margin: 0 30% 0 30%;
-	text-align: center;
+	width: 500px;
+	padding: 10px;
+	margin: auto;
 	background-color: #E6E1CC;
 }
 
@@ -35,7 +40,7 @@ form fieldset {
 }
 
 form p {
-	margin: 20px 0 0 0;
+	margin: 10px 0 10px; 0;
 	display: block;
 }
 
@@ -104,11 +109,11 @@ form abbr{
 	color:red;
 }
 
-.nomPrenom, .postalPhone {
+.nomPrenom, .postalPhone, .mail {
 	display: flex;
 }
 
-.nomPrenom > p, .postalPhone > p {
+.nomPrenom > p, .postalPhone > p, .mail > p {
 	height: 100%;
 	width: 100%;
 	text-align: left;
@@ -119,17 +124,16 @@ form abbr{
 	margin-right: 4%;
 }
 
-.mail {
-	display: flex;
-}
-
-.mail > p {
-	height: 100%;
-	width: 100%;
-	text-align: left;
-}
-
 .mail > p > input {
 	width: 98%;
 	margin-right: 2%;
+}
+
+.date-time {
+	display: flex;
+	justify-content: center;
+}
+
+.field-long {
+	width: 100%
 }
