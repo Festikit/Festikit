@@ -41,7 +41,6 @@ form p {
 }
 
 form label {
-	padding-bottom: 10px;
 	font-weight: bold;
 }
 
@@ -76,7 +75,7 @@ select{
 	-o-transition: all 0.30s ease-in-out;
 	outline: none;	
 	display: block;
-	margin: auto;
+	margin: 3px auto auto auto;
 }
 form input[type=text]:focus, 
 form input[type=date]:focus,
@@ -116,7 +115,7 @@ form abbr{
 }
 
 .content {
-	margin: 30px 0 30px 0;
+	margin: 0 0 30px 0;
 }
 
 .contentDouble > p {
