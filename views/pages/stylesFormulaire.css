@@ -35,20 +35,18 @@ form {
 	background-color: #E6E1CC;
 }
 
-form fieldset {
-	border: none;
-}
-
 form p {
-	margin: 10px 0 10px; 0;
+	margin: 0;
 	display: block;
 }
 
 form label {
-	margin: 0 0 3px 0;
-	padding: 0px;
-	display: block;
+	padding-bottom: 10px;
 	font-weight: bold;
+}
+
+form table label {
+	font-weight: normal;
 }
 
 td {
@@ -93,10 +91,7 @@ form select:focus{
 	box-shadow: 0 0 8px #F8CB00;
 	border: 1px solid #F8CB00;
 }
-/*
-form .fieldDivided{
-	width: 49%;
-}*/
+
 
 form input[type=submit] {
 	border: solid;
@@ -120,6 +115,10 @@ form abbr{
 	display: flex;
 }
 
+.content {
+	margin: 30px 0 30px 0;
+}
+
 .contentDouble > p {
 	height: 100%;
 	width: 100%;
@@ -136,5 +135,12 @@ form abbr{
 
 .date-time {
 	display: flex;
-	justify-content: center;
+}
+
+.envoyer {
+	display: flex;
+}
+
+.envoyer > p {
+	margin: auto;
 }
