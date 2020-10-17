@@ -21,7 +21,7 @@ header > h1 {
 }
 
 /*
-Formulaire
+FORMULAIRE
 */
 
 article {
@@ -30,9 +30,15 @@ article {
 
 form {
 	width: 500px;
-	padding: 10px;
+	padding: 15px;
 	margin: auto;
 	background-color: #E6E1CC;
+	border: solid;
+	border:1px solid grey;
+	border-radius: 5px;
+	-moz-box-shadow: 0 0 8px grey;
+	-webkit-box-shadow: 0 0 8px grey;
+	box-shadow: 0 0 8px grey;
 }
 
 form p {
@@ -108,6 +114,7 @@ form input[type=submit]:hover {
 
 form abbr{
 	color:red;
+	text-decoration: none;
 }
 
 .contentDouble {
@@ -142,4 +149,8 @@ form abbr{
 
 .envoyer > p {
 	margin: auto;
+}
+
+.envoyer > p > input {
+	font-weight: bold;
 }
