@@ -44,6 +44,13 @@ form p {
 	display: block;
 }
 
+form label {
+	margin: 0 0 3px 0;
+	padding: 0px;
+	display: block;
+	font-weight: bold;
+}
+
 td {
 	text-align: center;
 }
@@ -109,31 +116,25 @@ form abbr{
 	color:red;
 }
 
-.nomPrenom, .postalPhone, .mail {
+.contentDouble {
 	display: flex;
 }
 
-.nomPrenom > p, .postalPhone > p, .mail > p {
+.contentDouble > p {
 	height: 100%;
 	width: 100%;
 	text-align: left;
 }
 
-.nomPrenom > p > input, .postalPhone > p > input {
-	width: 96%;
-	margin-right: 4%;
+.contentDouble p:nth-child(2) {
+	margin-left: 5px;
 }
 
-.mail > p > input {
-	width: 98%;
-	margin-right: 2%;
+.field {
+	width: 100%;
 }
 
 .date-time {
 	display: flex;
 	justify-content: center;
-}
-
-.field-long {
-	width: 100%
 }

@@ -32,50 +32,50 @@
     <article>
         <form method="post" action="creerVoiture.php">
             
-                <div class="mail">
+                <div class="contentDouble mail">
                     <p>
-                        <label for="user_mail">Adresse e-mail<abbr title="Ce champ est obligatoire">*</abbr> </label>
-                        <input type="email" placeholder="Votre adresse email" name="user_mail" id="user_mail" required />
+                        <label for="user_mail">Adresse mail<abbr title="Ce champ est obligatoire">*</abbr> </label>
+                        <input type="email" class="field" placeholder="Votre adresse email" name="user_mail" id="user_mail" required />
                     </p>
                 </div>
 
-                <div class="nomPrenom">
+                <div class="contentDouble nomPrenom">
                     <p>
-                        <label for="user_lastname">Nom<abbr title="Ce champ est obligatoire">*</abbr> </label> :
-                        <input type="text" class="fieldDivided" placeholder="Dupont" name="user_lastname" id="user_lastname" required />
+                        <label for="user_lastname">Nom<abbr title="Ce champ est obligatoire">*</abbr> </label>
+                        <input type="text" class="field" placeholder="Dupont" name="user_lastname" id="user_lastname" required />
                     </p>
                     <p>
-                        <label for="user_firstname">Prenom<abbr title="Ce champ est obligatoire">*</abbr> </label> :
-                        <input type="text" class="fieldDivided" placeholder="Julien" name="user_firstname" id="user_firstname" required />
+                        <label for="user_firstname">Prenom<abbr title="Ce champ est obligatoire">*</abbr> </label>
+                        <input type="text" class="field" placeholder="Julien" name="user_firstname" id="user_firstname" required />
                     </p>
                 </div>
-                <p>
-                    <label for="date_naissance">Date de naissance<abbr title="Ce champ est obligatoire">*</abbr> </label> :
-                    <input type="date" class="fieldDivided" max="2010-01-01" min="1900-01-01" name="date_naissance" id="date_naissance" required />
-                </p>
-                <p>
-                    <label for="avatar">Photo</label> :
-                    <input type="file" class="fieldDivided" accept="image/png, image/jpeg" name="avatar" id="avatar" />
-                </p>
-
-                <div class="postalPhone">
+                <div class="contentDouble naissancePhoto">
                     <p>
-                        <label for="code_postal">Code postal<abbr title="Ce champ est obligatoire">*</abbr> </label> :
-                        <input type="number" class="fieldDivided" placeholder="34000" name="code_postal" id="code_postal" required />
+                        <label for="date_naissance">Date de naissance<abbr title="Ce champ est obligatoire">*</abbr> </label>
+                        <input type="date" class="field" max="2010-01-01" min="1900-01-01" name="date_naissance" id="date_naissance" required />
+                    </p>
+                    <p>
+                        <label for="avatar">Photo</label>
+                        <input type="file" class="field" accept="image/png, image/jpeg" name="avatar" id="avatar" />
+                    </p>
+                </div>
+
+                <div class="contentDouble postalPhone">
+                    <p>
+                        <label for="code_postal">Code postal<abbr title="Ce champ est obligatoire">*</abbr> </label>
+                        <input type="number" class="field" placeholder="34000" name="code_postal" id="code_postal" required />
                     </p>
 
                     <p>
-                        <label for="user_phone"> </label>N° de téléphone<abbr title="Ce champ est obligatoire">*</abbr> :
-                        <input type="tel" class="fieldDivided" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" placeholder="06097978" name="user_phone" id="user_phone" required />
+                        <label for="user_phone"> N° de téléphone<abbr title="Ce champ est obligatoire">*</abbr></label>
+                        <input type="tel" class="field" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" placeholder="06097978" name="user_phone" id="user_phone" required />
                     </p>
                 </div>
 
                 <p>
                     <label for="permis">Permis de conduire<abbr title="Ce champ est obligatoire">*</abbr></label>
-                    <!--<div class="fieldDivided">-->
-                        <input type="radio" required name="permis" id="permis" value="True">Oui
-                        <input type="radio" required name="permis" id="permis" value="False">Non
-                    <!--</div>-->
+                    <input type="radio" required name="permis" id="permis" value="True">Oui
+                    <input type="radio" required name="permis" id="permis" value="False">Non
                 </p>
 
                 <p>
@@ -104,7 +104,7 @@
                 </p>
 
                 <p>
-                    <label for="arrivee_id">Votre jour et horaire approximatifs d'arrivée à Pézenas</label> :
+                    <label for="arrivee_id">Votre jour et horaire approximatifs d'arrivée à Pézenas</label>
                     <div class=date-time>
                         <div><input type="date" name="arrivee_id_date" id="arrivee_id" /></div>
                         <div><input type="time" name="arrivee_id_heure" id="arrivee_id" /></div>
@@ -112,7 +112,7 @@
                 </p>
 
                 <p>
-                    <label for="depart_id">Votre jour et horaire approximatifs de départ de Pézenas</label> :
+                    <label for="depart_id">Votre jour et horaire approximatifs de départ de Pézenas</label>
                     <div class=date-time>
                         <div><input type="date" name="depart_id_date" id="depart_id" /></div>
                         <div><input type="time" name="depart_id_heure" id="depart_id" /></div>
@@ -232,8 +232,8 @@
                 <!-- TODO: Comissions -->
 
                 <p>
-                    <label for="choisirconcert_id">Choisissez un concert auquel vous souhaiteriez assister</label> :
-                    <select class="field-long" name="choisirconcert" id="choisirconcert_id">
+                    <label for="choisirconcert_id">Choisissez un concert auquel vous souhaiteriez assister</label>
+                    <select class="fieldLong" name="choisirconcert" id="choisirconcert_id">
                         <!-- TODO : l'affichage de cette partie doit être automatisé avec le php -->
                         <option >Sélectionner</option>
                         <option value="concert1">13/04 - Cinéma Le Molière - film Daniel Darc - lecture Dimoné</option>
