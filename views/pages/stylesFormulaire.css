@@ -14,10 +14,14 @@ p, table {
 	font-family: 'Roboto', sans-serif;
 }
 
+header {
+	display: flex;
+}
+
 header > h1 {
-	margin: 50px 30% 50px 30%;
-	text-align: center;
+	margin: 50px auto 50px auto;
 	color: #F8CB00;
+	text-align: center;
 }
 
 /*
