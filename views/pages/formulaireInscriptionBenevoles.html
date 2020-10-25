@@ -247,6 +247,103 @@
 
                     <!-- TODO: Comissions -->
 
+                <div class="content">
+                    <p>
+                        <label for="dispo">Choix des commissions pour le festival (1 = grand intérêt, 2=intérêt moyen, 3 =aucun intérêt)</label>
+                        <table>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td><label for="interet1">1</label></td>
+                                <td><label for="interet2">2</label></td>
+                                <td><label for="interet3">3</label></td>
+                                <td><label for="commentaires">Commentaires</label></td>
+                                <td><label for="toute_semaine">Je suis prêt à ne faire que cette mission toute la semaine</label></td>
+                            </tr>
+                            <tr>
+                                <td class="firstColumn"><label for="runs">Runs (transfert en voiture des artistes et pros lieu d'arrivée, festival, lieu d'hébergement)</label></td>
+                                <td><input type="checkbox" name="runs_interet1" id="runs_interet1"></td>
+                                <td><input type="checkbox" name="runs_interet2" id="runs_interet2"></td>
+                                <td><input type="checkbox" name="runs_interet3" id="runs_interet3"></td>
+                                <td><input type="text" name="runs_commentaires" id="runs_commentaires"></td>
+                                <td><input type="checkbox" name="runs_toute_semaine" id="runs_toute_semaine"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstColumn"><label for="accueil">Accueil Public et prévention (vérification billets, gestion du public pendant le concert)</label></td>
+                                <td><input type="checkbox" name="accueil_interet1" id="accueil_interet1"></td>
+                                <td><input type="checkbox" name="accueil_interet2" id="accueil_interet2"></td>
+                                <td><input type="checkbox" name="accueil_interet3" id="accueil_interet3"></td>
+                                <td><input type="text" name="accueil_commentaires" id="accueil_commentaires"></td>
+                                <td><input type="checkbox" name="accueil_toute_semaine" id="accueil_toute_semaine"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstColumn"><label for="diffusion">Diffusion (distribution hélicon, vérification affichage, flyage, sondages)</label></td>
+                                <td><input type="checkbox" name="diffusion_interet1" id="diffusion_interet1"></td>
+                                <td><input type="checkbox" name="diffusion_interet2" id="diffusion_interet2"></td>
+                                <td><input type="checkbox" name="diffusion_interet3" id="diffusion_interet3"></td>
+                                <td><input type="text" name="diffusion_commentaires" id="diffusion_commentaires"></td>
+                                <td><input type="checkbox" name="diffusion_toute_semaine" id="diffusion_toute_semaine"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstColumn"><label for="after">After : Préparation, Accueil, Nettoyage</label></td>
+                                <td><input type="checkbox" name="after_interet1" id="after_interet1"></td>
+                                <td><input type="checkbox" name="after_interet2" id="after_interet2"></td>
+                                <td><input type="checkbox" name="after_interet3" id="after_interet3"></td>
+                                <td><input type="text" name="after_commentaires" id="after_commentaires"></td>
+                                <td><input type="checkbox" name="after_toute_semaine" id="after_toute_semaine"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstColumn"><label for="billeterie">Billetterie</label></td>
+                                <td><input type="checkbox" name="billetterie_interet1" id="billetterie_interet1"></td>
+                                <td><input type="checkbox" name="billetterie_interet2" id="billetterie_interet2"></td>
+                                <td><input type="checkbox" name="billetterie_interet3" id="billetterie_interet3"></td>
+                                <td><input type="text" name="billeterie_commentaires" id="billeterie_commentaires"></td>
+                                <td><input type="checkbox" name="billeterie_toute_semaine" id="billeterie_toute_semaine"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstColumn"><label for="aide">Aide à la technique</label></td>
+                                <td><input type="checkbox" name="aide_interet1" id="aide_interet1"></td>
+                                <td><input type="checkbox" name="aide_interet2" id="aide_interet2"></td>
+                                <td><input type="checkbox" name="aide_interet3" id="aide_interet3"></td>
+                                <td><input type="text" name="aide_commentaires" id="aide_commentaires"></td>
+                                <td><input type="checkbox" name="aide_toute_semaine" id="aide_toute_semaine"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstColumn"><label for="buvette">Buvette</label></td>
+                                <td><input type="checkbox" name="buvette_interet1" id="buvette_interet1"></td>
+                                <td><input type="checkbox" name="buvette_interet2" id="buvette_interet2"></td>
+                                <td><input type="checkbox" name="buvette_interet3" id="buvette_interet3"></td>
+                                <td><input type="text" name="buvette_commentaires" id="buvette_commentaires"></td>
+                                <td><input type="checkbox" name="buvette_toute_semaine" id="buvette_toute_semaine"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstColumn"><label for="joker">Joker : petites missions différentes tout au long de la journée, vous êtes donc d'astreinte sur vos heures de dispo</label></td>
+                                <td><input type="checkbox" name="joker_interet1" id="joker_interet1"></td>
+                                <td><input type="checkbox" name="joker_interet2" id="joker_interet2"></td>
+                                <td><input type="checkbox" name="joker_interet3" id="joker_interet3"></td>
+                                <td><input type="text" name="joker_commentaires" id="joker_commentaires"></td>
+                                <td><input type="checkbox" name="joker_toute_journee" id="joker_toute_journee"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstColumn"><label for="cuisine">Cuisine (préparation des plats, service au self, plonge, nettoyage...)</label></td>
+                                <td><input type="checkbox" name="cuisine_interet1" class="cuisine_interet1"></td>
+                                <td><input type="checkbox" name="cuisine_interet2" class="cuisine_interet2"></td>
+                                <td><input type="checkbox" name="cuisine_interet3" class="cuisine_interet3"></td>
+                                <td><input type="text" name="cuisine_commentaires" class="cuisine_commentaires"></td>
+                                <td><input type="checkbox" name="cuisine_toute_journee" class="cuisine_toute_journee"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstColumn"><label for="decoration">Décoration</label></td>
+                                <td><input type="checkbox" name="decoration_interet1" class="decoration_interet1"></td>
+                                <td><input type="checkbox" name="decoration_interet2" class="decoration_interet2"></td>
+                                <td><input type="checkbox" name="decoration_interet3" class="decoration_interet3"></td>
+                                <td><input type="text" name="decoration_commentaires" class="decoration_commentaires"></td>
+                                <td><input type="checkbox" name="decoration_toute_journee" class="decoration_toute_journee"></td>
+                            </tr>
+                        </table>
+                    </p>
+                </div>
+
+
 
                 <div class="content">
                     <p>
