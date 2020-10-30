@@ -81,6 +81,48 @@ class ModelUtilisateur /*extends Model*/ {
   public function setpicture($picture2) {
     $this->user_picture = $picture2;
   }
+
+  public static function getAllUtilisateurs() {
+    try {
+         $sql = "SELECT * from user";
+         $rep = Model::$pdo->query($sql);
+         $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+         return $rep->fetchAll();
+    } catch (PDOException $e) {
+         if (Conf::getDebug()) {
+             echo $e->getMessage();
+         } else {
+             echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+         }
+         die();
+    }
+  }
+
+  public static function getAllUtilisateurById($user_id) {
+      try {
+          $sql = "SELECT * from user WHERE user_id=:nom_tag";
+          $req_prep = Model::$pdo->prepare($sql);
+          $values = array(
+              "nom_tag" => $user_id,
+          );
+          $req_prep->execute($values);
+          $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+          $tab_voit = $req_prep->fetchAll();
+
+          if (empty($tab_user))
+              return false;
+          return $tab_user[0];
+
+      } catch (PDOException $e) {
+          if (Conf::getDebug()) {
+              echo $e->getMessage();
+          } else {
+              echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+          }
+          die();
+      }
+  }
+
 }
 
 ?>
