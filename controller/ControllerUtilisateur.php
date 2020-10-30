@@ -5,7 +5,7 @@ require_once File::build_path(array("model","ModelUtilisateur.php"));
 class ControllerUtilisateur {
 
     public static function readAll() {
-        $tab_u = ModelUtilisateur::getAllUtilisateursByFestival($festival_id);
+        $tab_u = ModelUtilisateur::getAllUtilisateurs();
 
         $pagetitle = 'Liste des utilisateurs';
         $controller = 'utilisateur';
@@ -20,7 +20,7 @@ class ControllerUtilisateur {
         $view = 'detail';
         
         $user_id = $_GET['user_id'];
-        $u = ModelVoiture::getAllUtilisateurById($user_id);
+        $u = ModelVoiture::getUtilisateurById($user_id);
         if($u == false) {
             require File::build_path(array("view","utilisateur","error.php"));
         } else {

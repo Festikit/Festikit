@@ -98,7 +98,7 @@ class ModelUtilisateur /*extends Model*/ {
     }
   }
 
-  public static function getAllUtilisateurById($user_id) {
+  public static function getUtilisateurById($user_id) {
       try {
           $sql = "SELECT * from user WHERE user_id=:nom_tag";
           $req_prep = Model::$pdo->prepare($sql);
