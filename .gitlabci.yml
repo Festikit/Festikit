@@ -1,0 +1,15 @@
+staging:
+    stage: deploy
+    script:
+      - git remote add staging $SERVEUR_CONNECTION_INDEVLOPMENT
+      - git push -f -q staging HEAD:master
+    only:
+      - master
+
+production:
+  stage: deploy
+  script:
+    - git remote add serveur $SERVEUR_CONNECTION_PRODUCTION
+    - git push -f -q serveur HEAD:master
+  only:
+    - tags
