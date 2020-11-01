@@ -10,6 +10,7 @@
     $user_picture = htmlspecialchars($u->getPicture());
 
     echo "<p> Utilisateur $user_id: $user_firstname $user_lastname,</br>mail: $user_mail téléphone: $user_phone $user_birthdate </br>$user_picture  </p>";
+    echo '<a href="index.php?action=delete&user_id=' .rawurlencode($user_id) .'">Supprimer utilisateur</a>';
 
     echo "<p> Retour: <a href=\"index.php?action=readAll\">Cliquez ici </a> </p>";
 

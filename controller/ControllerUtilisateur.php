@@ -27,6 +27,16 @@ class ControllerUtilisateur {
             require File::build_path(array("view","view.php"));
         }
     }
+
+    public static function delete(){
+        $controller = 'utilisateur';
+        $pagetitle = 'supprimons ceci';
+        $view = 'deleted';
+        $user_id = $_GET['user_id'];
+        ModelUtilisateur::deleteById($user_id);
+        $tab_u = ModelUtilisateur::getAllUtilisateurs();
+        require File::build_path(array("view","view.php"));
+    }
 }
 
 ?>
