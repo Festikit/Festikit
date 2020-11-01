@@ -5,9 +5,9 @@ class Conf {
 
   static private $databases = array(
     'hostname' => 'webinfo',
-    'database' => 'benevole',
-    'login' => 'root',
-    'password' => ''
+    'database' => 'davierp',
+    'login' => 'davierp',
+    'password' => 'ProjetPrincipalS32020'
   );
    
   static public function getLogin() {
