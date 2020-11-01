@@ -4,10 +4,10 @@ class Conf {
   static private $debug = true;
 
   static private $databases = array(
-    'hostname' => 'webinfo',
-    'database' => 'davierp',
-    'login' => 'davierp',
-    'password' => 'ProjetPrincipalS32020'
+    'hostname' => 'localhost',
+    'database' => 'benevole',
+    'login' => 'root',
+    'password' => ''
   );
    
   static public function getLogin() {
