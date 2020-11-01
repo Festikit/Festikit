@@ -1,13 +1,17 @@
-<?php
-  require_once('connection.php');
+<!DOCTYPE html>
+<html lang="fr">
 
-  if (isset($_GET['controller']) && isset($_GET['action'])) {
-    $controller = $_GET['controller'];
-    $action     = $_GET['action'];
-  } else {
-    $controller = 'pages';
-    $action     = 'home';
-  }
+<head>
+    <meta charset="utf-8" />
+    <title> Mon premier php </title>
+</head>
 
-  require_once('views/layout.php');
-?>
+<body>
+    Voici le résultat du script PHP :
+    <?php
+    $texte = "hello world !";
+    echo $texte;
+    ?>
+</body>
+
+</html>
