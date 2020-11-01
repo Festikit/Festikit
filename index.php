@@ -9,7 +9,7 @@
 <body>
     Voici le résultat du script PHP :
     <?php
-    $texte = "hello world !";
+    $texte = "Test branch";
     echo $texte;
     ?>
 </body>
