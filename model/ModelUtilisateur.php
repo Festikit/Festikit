@@ -38,47 +38,47 @@ class ModelUtilisateur /*extends Model*/ {
   public function getFirstname() {
     return $this->user_firstname;  
   } 
-  public function setfirstname($firstname2) {
+  public function setFirstname($firstname2) {
     $this->user_firstname = $firstname2;
   }
 
   // Getter et Setter: user_lastname
-  public function getlastname() {
+  public function getLastname() {
     return $this->user_lastname;  
   }  
-  public function setlastname($lastname2) {
+  public function setLastname($lastname2) {
     $this->user_lastname = $lastname2;
   }
 
   // Getter et Setter: user_mail
-  public function getmail() {
+  public function getMail() {
     return $this->user_mail;  
   }
-  public function setmail($mail2) {
+  public function setMail($mail2) {
     $this->user_mail = $mail2;
   }
 
   // Getter et Setter: user_phone
-  public function getphone() {
+  public function getPhone() {
     return $this->user_phone;  
   }
-  public function setphone($phone2) {
+  public function setPhone($phone2) {
     $this->user_phone = $phone2;
   }
 
   // Getter et Setter: user_birthdate
-  public function getbirthdate() {
+  public function getBirthdate() {
     return $this->user_birthdate;  
   }
-  public function setbirthdate($birthdate2) {
+  public function setBirthdate($birthdate2) {
     $this->user_birthdate = $birthdate2;
   }
 
   // Getter et Setter: user_picture
-  public function getpicture() {
+  public function getPicture() {
     return $this->user_picture;  
   }
-  public function setpicture($picture2) {
+  public function setPicture($picture2) {
     $this->user_picture = $picture2;
   }
 
@@ -107,7 +107,7 @@ class ModelUtilisateur /*extends Model*/ {
           );
           $req_prep->execute($values);
           $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
-          $tab_voit = $req_prep->fetchAll();
+          $tab_user = $req_prep->fetchAll();
 
           if (empty($tab_user))
               return false;
