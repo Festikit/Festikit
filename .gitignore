@@ -1,0 +1,6 @@
+#VS code
+.vscode
+
+#Composer
+composer.phar
+/vendor/
