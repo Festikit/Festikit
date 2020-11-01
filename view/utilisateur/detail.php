@@ -8,9 +8,14 @@
     $user_phone = htmlspecialchars($u->getPhone());
     $user_birthdate = htmlspecialchars($u->getBirthdate());
     $user_picture = htmlspecialchars($u->getPicture());
-
-    echo "<p> Utilisateur $user_id: $user_firstname $user_lastname,</br>mail: $user_mail téléphone: $user_phone $user_birthdate </br>$user_picture  </p>";
-
+    
+    echo "<p> Utilisateur $user_id: $user_firstname $user_lastname</br>
+    Mail: $user_mail </br>
+    Téléphone: $user_phone </br>
+    Date de naissance: $user_birthdate</p>";
+    // header("Content-type: image/jpg");
+    echo "<img src=\"$user_picture\" alt=\"Photo de l'utilisateur $user_id\"></p>";
+    echo "$user_picture"; // getPicture ne renvoie rien ...
     echo "<p> Retour: <a href=\"index.php?action=readAll\">Cliquez ici </a> </p>";
 
 ?>
