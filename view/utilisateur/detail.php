@@ -16,7 +16,6 @@
     // header("Content-type: image/jpg");
     echo "<img src=\"$user_picture\" alt=\"Photo de l'utilisateur $user_id\"></p>";
     echo "$user_picture"; // getPicture ne renvoie rien ...
-    echo '<a href="index.php?action=delete&user_id=' .rawurlencode($user_id) .'">Supprimer utilisateur</a>';
     echo "<p> Retour: <a href=\"index.php?action=readAll\">Cliquez ici </a> </p>";
 
 ?>
