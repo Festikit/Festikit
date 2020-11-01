@@ -1,14 +1,13 @@
 <?php
-
 class Conf {
    
   static private $debug = true;
 
   static private $databases = array(
     'hostname' => 'webinfo',
-    'database' => 'cours_php',
+    'database' => 'benevole',
     'login' => 'root',
-    'password' => 'root'
+    'password' => ''
   );
    
   static public function getLogin() {
