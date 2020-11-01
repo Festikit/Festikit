@@ -20,7 +20,7 @@ class ControllerUtilisateur {
         $view = 'detail';
         
         $user_id = $_GET['user_id'];
-        $u = ModelVoiture::getUtilisateurById($user_id);
+        $u = ModelUtilisateur::getUtilisateurById($user_id);
         if($u == false) {
             require File::build_path(array("view","utilisateur","error.php"));
         } else {
