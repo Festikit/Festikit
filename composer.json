@@ -1,12 +1,12 @@
 {
-    "$schema": "https://json-schema.org/draft-04/schema#",
+    "name": "benevoles/iut",
+    "description": "Application web destiné à faciliter la gestion de bénévoles au sein d'un festival",
+    "keywords": [],
+    "type": "app-web",
     "require": {
         "php": "~7"
     },
-    "properties": {
-        "description": {
-            "type": "string",
-            "description": "Application Web destiné à la gestion de bénévole"
-        }
+    "require-dev": {
+        "phpunit/phpunit": "9.4.1"
     }
 }
