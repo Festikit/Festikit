@@ -158,4 +158,34 @@ class ModelUtilisateur /*extends Model*/
     die();  
     }
   }
+
+  public function update($data)
+    {
+        try {
+            $sql = "UPDATE user SET user_firstname = :user_firstname, user_lastname = :user_lastname, user_mail = :user_mail, 
+             user_phone = :user_phone, user_birthdate = :user_birthdate WHERE user_id = :user_id";
+
+            // Préparation de la requête
+            $req_prep = Model::$pdo->prepare($sql);
+
+            $values = array(
+                "user_id" => $data['user_id'],
+                "user_firstname" => $data['user_firstname'],
+                "user_lastname" => $data['user_lastname'],
+                "user_mail" => $data['user_mail'],
+                "user_phone" => $data['user_phone'],
+                "user_birthdate" => $data['user_birthdate'],
+            );
+            // On donne les valeurs et on exécute la requête    
+            $req_prep->execute($values);
+            // echo $sql;
+        } catch (PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage(); // affiche un message d'erreur
+            } else {
+                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
 }
