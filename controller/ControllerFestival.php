@@ -14,10 +14,6 @@ class ControllerFestival {
     }
 
     public static function read() {
-
-        $pagetitle = 'Détail du festival';
-        $controller = 'festival';
-        $view = 'detail';
         
         $festival_id = $_GET['festival_id'];
         $f = ModelFestival::getFestivalById($festival_id);
