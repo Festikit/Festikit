@@ -11,8 +11,8 @@ class ModelFestival /*extends Model*/
   private $festival_description;
   private $city;
 
-  //protected static $object = 'utilisateur';
-  //protected static $primary= 'user_id';
+  //protected static $object = 'festival';
+  //protected static $primary= 'festival_id';
 
   public function __construct($id = NULL, $name = NULL, $startdate = NULL, $enddate = NULL, $description = NULL, $city = NULL)
   {
@@ -27,7 +27,7 @@ class ModelFestival /*extends Model*/
   }
 
   // Getter et Setter: festival_id
-  public function getId()
+  public function getFestivalId()
   {
     return $this->festival_id;
   }
@@ -56,18 +56,18 @@ class ModelFestival /*extends Model*/
 
   public static function getFestivalById($festival_id) {
     try {
-      $sql = "SELECT * from festival WHERE festival_id=:nom_tag";
+      $sql = "SELECT * from festival WHERE festival_id=:id_tag";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
-        "nom_tag" => $festival_id,
+        "id_tag" => $festival_id,
       );
       $req_prep->execute($values);
       $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFestival');
       $tab_festival = $req_prep->fetchAll();
 
-      if (empty($tab_festival))
-        return false;
+      if (empty($tab_festival)) return false;
       return $tab_festival[0];
+
     } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage();

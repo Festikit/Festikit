@@ -188,4 +188,30 @@ class ModelUtilisateur /*extends Model*/
             die();
         }
     }
+
+    // postuler_accepted = true dans la table "postuler"
+  public static function getBenevoleAcceptedByFestival($festival_id) {
+    try {
+      $sql = "SELECT p.user_id FROM postuler p JOIN festival f ON p.festival_id=f.festival_id WHERE f.festival_id=:id_tag AND postuler_accepted=:accepted_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $festival_id,
+        "accepted_tag" => 1,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+      $tab_benevoleAccepted = $req_prep->fetchAll();
+
+      if (empty($tab_benevoleAccepted)) return false;
+      return $tab_benevoleAccepted;
+
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
 }

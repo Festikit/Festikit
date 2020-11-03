@@ -14,10 +14,15 @@ class ControllerFestival {
     }
 
     public static function read() {
-        
+
         $festival_id = $_GET['festival_id'];
         $f = ModelFestival::getFestivalById($festival_id);
+        //$tab_benevoleAccepted = ModelFestival::getBenevoleAcceptedByFestival($festival_id);
+        // La solution serait d'appeler ModelUtilisateur 
+        $tab_benevoleAccepted = ModelUtilisateur::getBenevoleAcceptedByFestival($festival_id);
+        //Mais a-ton le droit ?
         
+
         if($f == false) {
             $pagetitle = 'Erreur action read';
             $controller = 'festival';
