@@ -38,4 +38,19 @@ class ModelFestival /*extends Model*/
 
   /* TODO GETTER/SETTER */
 
+  public static function getAllFestivals() {
+    try {
+      $sql = "SELECT * from festival";
+      $rep = Model::$pdo->query($sql);
+      $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelFestival');
+      return $rep->fetchAll();
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
 }

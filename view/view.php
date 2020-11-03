@@ -12,6 +12,7 @@
                 <!-- ou: 
     			<li><a href="index.php?action=readAll&controller=utilisateur">Accueil Utilisateurs</a></li>
                 -->
+                <li><a href="index.php?action=readAll&controller=festival">Accueil Festival</a></li>
     		</ul>
     	</nav>
 
