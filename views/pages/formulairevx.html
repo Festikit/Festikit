@@ -13,7 +13,7 @@
     </script>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('select').material_select();
         });
     </script>
@@ -52,8 +52,7 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">insert_invitation</i>
-                            <input id="date_naissance" placeholder=" " type="date" max="2010-01-01" min="1900-01-01"
-                                class="validate" required>
+                            <input id="date_naissance" placeholder=" " type="date" max="2010-01-01" min="1900-01-01" class="validate" required>
                             <label for="date_naissance">date de naissance<abbr
                                     title="Ce champ est obligatoire ">*</abbr></label>
                         </div>
@@ -77,9 +76,7 @@
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">phone</i>
-                            <input id="user_phone" type="tel" class="validate"
-                                pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"
-                                required>
+                            <input id="user_phone" type="tel" class="validate" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" required>
                             <label for="user_phone">Numéro de Téléphone<abbr
                                     title="Ce champ est obligatoire ">*</abbr></label>
                         </div>
@@ -91,8 +88,7 @@
                     <!-- TODO: Corrigé le h5 degeu -->
                     <div class="row">
                         <div class="col s12">
-                            <label for="permis"></label> Permis de conduire<abbr
-                                title="Ce champ est obligatoire">*</abbr> :
+                            <label for="permis"></label> Permis de conduire<abbr title="Ce champ est obligatoire">*</abbr> :
                             <label>
                                 <input required name="permis" type="radio" value="1" />
                                 <span>Oui</span>
@@ -106,8 +102,7 @@
 
                     <div class="row">
                         <div class="col s12">
-                            <label for="vehicule"></label> Venez vous avec votre véhicule ?<abbr
-                                title="Ce champ est obligatoire">*</abbr> :
+                            <label for="vehicule"></label> Venez vous avec votre véhicule ?<abbr title="Ce champ est obligatoire">*</abbr> :
                             <label>
                                 <input required name="vehicule" type="radio" value="1" />
                                 <span>Oui</span>
@@ -124,8 +119,7 @@
                     <h5>Hébergement</h5>
                     <div class="row">
                         <div class="col s12">
-                            <label for="besoin_heberge"></label>Avez vous besoin d'être hébergé ?<abbr
-                                title="Ce champ est obligatoire">*</abbr> :
+                            <label for="besoin_heberge"></label>Avez vous besoin d'être hébergé ?<abbr title="Ce champ est obligatoire">*</abbr> :
                             <label>
                                 <input required name="besoin_heberge" type="radio" value="1" />
                                 <span>Oui</span>
@@ -139,8 +133,7 @@
 
                     <div class="row">
                         <div class="col s12">
-                            <label for="peut_heberge"></label>Pouvez vous héberger des personnes ?<abbr
-                                title="Ce champ est obligatoire">*</abbr> :
+                            <label for="peut_heberge"></label>Pouvez vous héberger des personnes ?<abbr title="Ce champ est obligatoire">*</abbr> :
                             <label>
                                 <input required name="peut_heberge" type="radio" value="1" />
                                 <span>Oui</span>
@@ -154,10 +147,8 @@
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <label for="couchage_id"></label>Si oui, pouvez-vous nous expliquer la configuration de
-                            couchage ?
-                            <textarea id="couchage_id" placeholder=" clic-clac, chambre d'ami, accès indépendant..."
-                                class="materialize-textarea"></textarea>
+                            <label for="couchage_id"></label>Si oui, pouvez-vous nous expliquer la configuration de couchage ?
+                            <textarea id="couchage_id" placeholder=" clic-clac, chambre d'ami, accès indépendant..." class="materialize-textarea"></textarea>
                         </div>
                     </div>
                 </div>
@@ -183,13 +174,13 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">insert_invitation</i>
-                            <label for="depart_date">Date de depart approximatif</label>
                             <input id="depart_date" placeholder=" " type="date" class="validate">
+                            <label for="depart_date">Date de depart approximatif</label>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">access_time</i>
-                            <label for="depart-heure">Date de départ approximatif</label>
                             <input id="depart-heure" placeholder=" " type="time" class="validate">
+                            <label for="depart-heure">Date de départ approximatif</label>
                         </div>
                     </div>
 
@@ -415,12 +406,12 @@
                             </td>
                         </tr>
                     </table>
-                    <h5>Concerts</h5>
+
                     <div class="row">
+                        <h5>Concerts</h5>
                         <div class="col s12">
                             <div class="row">
-                                <label for="choisirconcert_id"></label>Choisissez un concert auquel vous souhaiteriez
-                                assister
+                                <label for="choisirconcert_id">Choisissez un concert auquel vous souhaiteriez assister</label>
                                 <select id="choisirconcert_id">
                                     <!-- TODO : l'affichage de cette partie doit être automatisé avec le php -->
                                     <option value="" disabled selected>Sélectionner</option>
