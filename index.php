@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="utf-8" />
-    <title> Mon premier php </title>
-</head>
-
-<body>
-    Voici le résultat du script PHP :
-    <?php
-    $texte = "Test branch";
-    echo $texte;
-    ?>
-</body>
-
-</html>
+<?php
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'File.php';
+require_once File::build_path(array("controller","routeur.php"));
+?>
