@@ -19,7 +19,7 @@
 	</script>
 </head>
 
-<body>
+<body class="grey lighten-3">
 	<!-- HEADER -->
 	<header>
 		<nav>

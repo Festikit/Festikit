@@ -1,4 +1,3 @@
-<body class="grey lighten-3">
     <div class="row">
         <div class="col s12 m4 l2">
         </div>
@@ -33,8 +32,7 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">insert_invitation</i>
                             <input id="date_naissance" placeholder=" " type="date" max="2010-01-01" min="1900-01-01" class="validate" required>
-                            <label for="date_naissance">date de naissance<abbr
-                                    title="Ce champ est obligatoire ">*</abbr></label>
+                            <label for="date_naissance">date de naissance<abbr title="Ce champ est obligatoire ">*</abbr></label>
                         </div>
                         <div class="file-field input-field col s6">
                             <div class="btn">
@@ -57,8 +55,7 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">phone</i>
                             <input id="user_phone" type="tel" class="validate" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" required>
-                            <label for="user_phone">Numéro de Téléphone<abbr
-                                    title="Ce champ est obligatoire ">*</abbr></label>
+                            <label for="user_phone">Numéro de Téléphone<abbr title="Ce champ est obligatoire ">*</abbr></label>
                         </div>
                     </div>
                 </div>
@@ -253,17 +250,17 @@
                         <tr>
                             <td class="firstColumn"><label for="dispo_lieu9">Dimanche 19 avril (rangement,
                                     désinstallation)</label></td>
-                            <td><label><input type="checkbox" id="dispo_lieu9_date1"  value="dispo_date1" /><span> </span></label>
+                            <td><label><input type="checkbox" id="dispo_lieu9_date1" value="dispo_date1" /><span> </span></label>
                             </td>
-                            <td><label><input type="checkbox" id="dispo_lieu9_date2"  value="dispo_date2" /><span> </span></label>
+                            <td><label><input type="checkbox" id="dispo_lieu9_date2" value="dispo_date2" /><span> </span></label>
                             </td>
-                            <td><label><input type="checkbox" id="dispo_lieu9_date3"  value="dispo_date3" /><span> </span></label>
+                            <td><label><input type="checkbox" id="dispo_lieu9_date3" value="dispo_date3" /><span> </span></label>
                             </td>
-                            <td><label><input type="checkbox" id="dispo_lieu9_date4"  value="dispo_date4" /><span> </span></label>
+                            <td><label><input type="checkbox" id="dispo_lieu9_date4" value="dispo_date4" /><span> </span></label>
                             </td>
-                            <td><label><input type="checkbox" id="dispo_lieu9_date5"  value="dispo_date5" /><span> </span></label>
+                            <td><label><input type="checkbox" id="dispo_lieu9_date5" value="dispo_date5" /><span> </span></label>
                             </td>
-                            <td><label><input type="checkbox" id="dispo_lieu9_date6"  value="dispo_date6" /><span> </span></label>
+                            <td><label><input type="checkbox" id="dispo_lieu9_date6" value="dispo_date6" /><span> </span></label>
                             </td>
                         </tr>
                     </table>
@@ -297,81 +294,81 @@
                         <tr>
                             <td class="firstColumn "><label for="runs">Runs (transfert en voiture des artistes et pros
                                     lieu d'arrivée, festival, lieu d'hébergement)</label></td>
-                            <td><label><input type="radio" id="runs" value="1" /><span> </span></label></td>
-                            <td><label><input type="radio" id="runs" value="2" /><span> </span></label></td>
-                            <td><label><input type="radio" id="runs" value="3" /><span> </span></label></td>
-                            <td><label><input type="radio" id="runs" value="4" /><span> </span></label></td>
+                            <td><label><input type="radio" id="runs" name="runs" value="1" /><span> </span></label></td>
+                            <td><label><input type="radio" id="runs" name="runs" value="2" /><span> </span></label></td>
+                            <td><label><input type="radio" id="runs" name="runs" value="3" /><span> </span></label></td>
+                            <td><label><input type="radio" id="runs" name="runs" value="4" /><span> </span></label></td>
                         </tr>
                         <tr>
                             <td class="firstColumn "><label for="accueil">Accueil Public et prévention (vérification
                                     billets, gestion du public pendant le concert)</label></td>
-                            <td><label><input type="radio" id="accueil" value="1" /><span> </span></label></td>
-                            <td><label><input type="radio" id="accueil" value="2" /><span> </span></label></td>
-                            <td><label><input type="radio" id="accueil" value="3" /><span> </span></label></td>
-                            <td><label><input type="radio" id="accueil" value="4" /><span> </span></label></td>
+                            <td><label><input type="radio" id="accueil" name="accueil" value="1" /><span> </span></label></td>
+                            <td><label><input type="radio" id="accueil" name="accueil" value="2" /><span> </span></label></td>
+                            <td><label><input type="radio" id="accueil" name="accueil" value="3" /><span> </span></label></td>
+                            <td><label><input type="radio" id="accueil" name="accueil" value="4" /><span> </span></label></td>
                         </tr>
                         <tr>
                             <td class="firstColumn "><label for="diffusion">Diffusion (distribution hélicon,
                                     vérification affichage, flyage, sondages)</label></td>
-                            <td><label><input type="radio" id="diffusion" value="1" /><span> </span></label></td>
-                            <td><label><input type="radio" id="diffusion" value="2" /><span> </span></label></td>
-                            <td><label><input type="radio" id="diffusion" value="3" /><span> </span></label></td>
-                            <td><label><input type="radio" id="diffusion" value="4" /><span> </span></label></td>
+                            <td><label><input type="radio" id="diffusion" name="diffusion" value="1" /><span> </span></label></td>
+                            <td><label><input type="radio" id="diffusion" name="diffusion" value="2" /><span> </span></label></td>
+                            <td><label><input type="radio" id="diffusion" name="diffusion" value="3" /><span> </span></label></td>
+                            <td><label><input type="radio" id="diffusion" name="diffusion" value="4" /><span> </span></label></td>
                         </tr>
                         <tr>
                             <td class="firstColumn "><label for="after">After : Préparation, Accueil, Nettoyage</label>
                             </td>
-                            <td><label><input type="radio" id="after" value="1" /><span> </span></label></td>
-                            <td><label><input type="radio" id="after" value="2" /><span> </span></label></td>
-                            <td><label><input type="radio" id="after" value="3" /><span> </span></label></td>
-                            <td><label><input type="radio" id="after" value="4" /><span> </span></label></td>
+                            <td><label><input type="radio" id="after" name="after" value="1" /><span> </span></label></td>
+                            <td><label><input type="radio" id="after" name="after" value="2" /><span> </span></label></td>
+                            <td><label><input type="radio" id="after" name="after" value="3" /><span> </span></label></td>
+                            <td><label><input type="radio" id="after" name="after" value="4" /><span> </span></label></td>
                         </tr>
                         <tr>
                             <td class="firstColumn "><label for="billeterie">Billetterie</label></td>
-                            <td><label><input type="radio" id="billetterie" value="1" /><span> </span></label></td>
-                            <td><label><input type="radio" id="billetterie" value="2" /><span> </span></label></td>
-                            <td><label><input type="radio" id="billetterie" value="3" /><span> </span></label></td>
-                            <td><label><input type="radio" id="billetterie" value="4" /><span> </span></label>
+                            <td><label><input type="radio" id="billetterie" name="billetterie" value="1" /><span> </span></label></td>
+                            <td><label><input type="radio" id="billetterie" name="billetterie" value="2" /><span> </span></label></td>
+                            <td><label><input type="radio" id="billetterie" name="billetterie" value="3" /><span> </span></label></td>
+                            <td><label><input type="radio" id="billetterie" name="billetterie" value="4" /><span> </span></label>
                             </td>
                         </tr>
                         <tr>
                             <td class="firstColumn "><label for="aide">Aide à la technique</label></td>
-                            <td><label><input type="radio" id="aide" value="1" /><span> </span></label></td>
-                            <td><label><input type="radio" id="aide" value="2" /><span> </span></label></td>
-                            <td><label><input type="radio" id="aide" value="3" /><span> </span></label></td>
-                            <td><label><input type="radio" id="aide" value="4" /><span> </span></label></td>
+                            <td><label><input type="radio" id="aide" name="aide" value="1" /><span> </span></label></td>
+                            <td><label><input type="radio" id="aide" name="aide" value="2" /><span> </span></label></td>
+                            <td><label><input type="radio" id="aide" name="aide" value="3" /><span> </span></label></td>
+                            <td><label><input type="radio" id="aide" name="aide" value="4" /><span> </span></label></td>
                         </tr>
                         <tr>
                             <td class="firstColumn "><label for="buvette">Buvette</label></td>
-                            <td><label><input type="radio" id="buvette" value="1" /><span> </span></label></td>
-                            <td><label><input type="radio" id="buvette" value="2" /><span> </span></label></td>
-                            <td><label><input type="radio" id="buvette" value="3" /><span> </span></label></td>
-                            <td><label><input type="radio" id="buvette" value="4" /><span> </span></label></td>
+                            <td><label><input type="radio" id="buvette" name="buvette" value="1" /><span> </span></label></td>
+                            <td><label><input type="radio" id="buvette" name="buvette" value="2" /><span> </span></label></td>
+                            <td><label><input type="radio" id="buvette" name="buvette" value="3" /><span> </span></label></td>
+                            <td><label><input type="radio" id="buvette" name="buvette" value="4" /><span> </span></label></td>
                         </tr>
                         <tr>
                             <td class="firstColumn "><label for="joker">Joker : petites missions différentes tout au
                                     long de la journée, vous êtes donc d'astreinte sur vos heures de dispo</label></td>
-                            <td><label><input type="radio" id="joker" value="1" /><span> </span></label></td>
-                            <td><label><input type="radio" id="joker" value="2" /><span> </span></label></td>
-                            <td><label><input type="radio" id="joker" value="3" /><span> </span></label></td>
-                            <td><label><input type="radio" id="joker" value="4" /><span> </span></label></td>
+                            <td><label><input type="radio" id="joker" name="joker" value="1" /><span> </span></label></td>
+                            <td><label><input type="radio" id="joker" name="joker" value="2" /><span> </span></label></td>
+                            <td><label><input type="radio" id="joker" name="joker" value="3" /><span> </span></label></td>
+                            <td><label><input type="radio" id="joker" name="joker" value="4" /><span> </span></label></td>
                         </tr>
                         <tr>
                             <td class="firstColumn "><label for="cuisine">Cuisine (préparation des plats, service au
                                     self, plonge, nettoyage...)</label></td>
-                            <td><label><input type="radio" id="cuisine" value="1" /><span> </span></label></td>
-                            <td><label><input type="radio" id="cuisine" value="2" /><span> </span></label></td>
-                            <td><label><input type="radio" id="cuisine" value="3" /><span> </span></label></td>
-                            <td><label><input type="radio" id="cuisine" value="4" /><span> </span></label>
+                            <td><label><input type="radio" id="cuisine" name="cuisine" value="1" /><span> </span></label></td>
+                            <td><label><input type="radio" id="cuisine" name="cuisine" value="2" /><span> </span></label></td>
+                            <td><label><input type="radio" id="cuisine" name="cuisine" value="3" /><span> </span></label></td>
+                            <td><label><input type="radio" id="cuisine" name="cuisine" value="4" /><span> </span></label>
                             </td>
                         </tr>
                         <tr>
                             <td class="firstColumn "><label for="decoration">Décoration</label></td>
-                            <td><label><input type="radio" id="decoration" value="1" /><span> </span></label></td>
-                            <td><label><input type="radio" id="decoration" value="2" /><span> </span></label></td>
-                            <td><label><input type="radio" id="decoration" value="3" /><span> </span></label></td>
+                            <td><label><input type="radio" id="decoration" name="decoration" value="1" /><span> </span></label></td>
+                            <td><label><input type="radio" id="decoration" name="decoration" value="2" /><span> </span></label></td>
+                            <td><label><input type="radio" id="decoration" name="decoration" value="3" /><span> </span></label></td>
                             </td4>
-                            <td><label><input type="radio" id="decoration" value="4" /><span> </span></label>
+                            <td><label><input type="radio" id="decoration" name="decoration" value="4" /><span> </span></label>
                             </td>
                         </tr>
                     </table>
@@ -446,6 +443,3 @@
             </form>
         </div>
     </div>
-</body>
-
-</html>
