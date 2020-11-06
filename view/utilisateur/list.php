@@ -3,8 +3,8 @@
 
 	$i = 1;
 	foreach ($tab_u as $u) {
-		echo "<p>$i : L'utilisateur d'id 
-		<a href=\"index.php?action=read&user_id=" . rawurlencode($u->getId()) . "\">" . htmlspecialchars($u->getId()) . "</a> ~ ~ 
+		echo "<p>$i :
+		<a href=\"index.php?action=read&user_id=" . rawurlencode($u->getId()) . "\">" . htmlspecialchars($u->getFirstname()) . " " . htmlspecialchars($u->getLastname()) . "</a> ~ ~ 
 		<a href=\"index.php?action=delete&user_id=" .rawurlencode($u->getId()) . "\"> (Supprimer utilisateur) </a>  ~ ~ 
 		<a href=\"index.php?action=update&user_id=" .rawurlencode($u->getId()) . "\"> (Modifier utilisateur) </a> 
 		</p>";

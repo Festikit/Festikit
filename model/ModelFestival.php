@@ -31,9 +31,19 @@ class ModelFestival /*extends Model*/
   {
     return $this->festival_id;
   }
-  public function setId($id2)
+  public function setFestivalId($id2)
   {
     $this->festival_id = $id2;
+  }
+
+  // Getter et Setter: festival_name
+  public function getFestivalName()
+  {
+    return $this->festival_name;
+  }
+  public function setFestivalName($name2)
+  {
+    $this->festival_name = $name2;
   }
 
   /* TODO GETTER/SETTER */
