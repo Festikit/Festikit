@@ -19,7 +19,7 @@
     Adresse mail: $user_mail </br>
     Téléphone: $user_phone </br>
     Date de naissance: $user_birthdate </br>
-    Adresse postale: $user_phone </br>
+    Adresse postale: $user_postal_code </br>
     Permis de conduire: $user_driving_license </br>";
     // header("Content-type: image/jpg");
     echo "<img src=\"$user_picture\" alt=\"Photo de l'utilisateur $user_id\"></p>";
