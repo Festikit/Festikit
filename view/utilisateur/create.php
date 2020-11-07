@@ -3,7 +3,7 @@
         </div>
         <div class="col s12 m4 l8">
             <!-- TODO: mettre l'action created -->
-            <form method="post" action="crested.php" class="col s12">
+            <form method="post" action="index.php?action=create" class="col s12">
 
                 <div class="card-panel grey lighten-4">
                     <h5>À propos de moi</h5>
@@ -443,7 +443,7 @@
 
                 <div class="row">
                     <div class="col s12 m4 l4"></div>
-                    <input type="hidden" name="action" value="created">
+                    <input type="hidden" name="action" value="create">
                     <input class="btn col s12 m4 l4" type="submit" value="Envoyer" />
                 </div>
             </form>
