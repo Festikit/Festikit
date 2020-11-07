@@ -187,7 +187,7 @@ class ModelUtilisateur /*extends Model*/
     {
         try {
             $sql = "UPDATE user SET user_firstname = :user_firstname, user_lastname = :user_lastname, user_mail = :user_mail, 
-             user_phone = :user_phone, user_birthdate = :user_birthdate WHERE user_id = :user_id";
+             user_phone = :user_phone, user_birthdate = :user_birthdate, user_postal_code = :user_postal_code WHERE user_id = :user_id";
 
             // Préparation de la requête
             $req_prep = Model::$pdo->prepare($sql);
@@ -198,6 +198,7 @@ class ModelUtilisateur /*extends Model*/
                 "user_lastname" => $data['user_lastname'],
                 "user_mail" => $data['user_mail'],
                 "user_phone" => $data['user_phone'],
+                "user_postal_code" => $data['user_postal_code'],
                 "user_birthdate" => $data['user_birthdate'],
             );
             // On donne les valeurs et on exécute la requête    
