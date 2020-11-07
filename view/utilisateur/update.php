@@ -9,7 +9,7 @@ if (!($log_u == "" && $user_firstname == "" && $user_lastname == "" && $user_mai
 }
 ?>
 
-<form method="get" action="index.php?action=updated ">
+<form method="get" action="index.php?action=updated">
         <div class="card-panel col s12 grey lighten-4">
             <h5 class="center-align">À propos de moi</h5>
             <div class="row">
