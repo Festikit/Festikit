@@ -11,20 +11,24 @@ class ModelUtilisateur /*extends Model*/
   private $user_phone;
   private $user_birthdate;
   private $user_picture;
+  private $user_postal_code;
+  private $user_driving_license;
 
   //protected static $object = 'utilisateur';
   //protected static $primary= 'user_id';
 
-  public function __construct($id = NULL, $firstname = NULL, $lastname = NULL, $mail = NULL, $phone = NULL, $birthdate = NULL, $picture = NULL)
+  public function __construct($id = NULL, $firstname = NULL, $lastname = NULL, $mail = NULL, $phone = NULL, $birthdate = NULL, $picture = NULL, $postal_code = NULL, $driving_license = NULL)
   {
-    if (!is_null($id) && !is_null($firstname) && !is_null($lastname) && !is_null($mail) && !is_null($phone) && !is_null($birthdate) && !is_null($picture)) {
+    if (!is_null($id) && !is_null($firstname) && !is_null($lastname) && !is_null($mail) && !is_null($phone) && !is_null($birthdate) && !is_null($picture) && !is_null($postal_code) && !is_null($picture)) {
       $this->user_id = $id;
       $this->user_firstname = $firstname;
       $this->user_lastname = $lastname;
       $this->user_mail = $mail;
       $this->user_phone = $phone;
       $this->user_birthdate = $birthdate;
-      $this->user_lastname = $picture;
+      $this->user_picture = $picture;
+      $this->user_postal_code = $postal_code;
+      $this->user_driving_license = $driving_license;
     }
   }
 
@@ -96,6 +100,26 @@ class ModelUtilisateur /*extends Model*/
   public function setPicture($picture2)
   {
     $this->user_picture = $picture2;
+  }
+
+  // Getter et Setter: user_postal_code
+  public function getPostalCode()
+  {
+    return $this->user_postal_code;
+  }
+  public function setPostalCode($postal_code2)
+  {
+    $this->user_postal_code = $postal_code2;
+  }
+
+  // Getter et Setter: user_driving_license
+  public function getDrivingLicense()
+  {
+    return $this->user_driving_license;
+  }
+  public function setDrivingLicense($driving_license2)
+  {
+    $this->user_driving_license = $driving_license2;
   }
 
   public static function getAllUtilisateurs()
@@ -188,30 +212,4 @@ class ModelUtilisateur /*extends Model*/
             die();
         }
     }
-
-    // postuler_accepted = true dans la table "postuler"
-  public static function getBenevoleAcceptedByFestival($festival_id) {
-    try {
-      $sql = "SELECT p.user_id FROM postuler p JOIN festival f ON p.festival_id=f.festival_id WHERE f.festival_id=:id_tag AND postuler_accepted=:accepted_tag";
-      $req_prep = Model::$pdo->prepare($sql);
-      $values = array(
-        "id_tag" => $festival_id,
-        "accepted_tag" => 1,
-      );
-      $req_prep->execute($values);
-      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
-      $tab_benevoleAccepted = $req_prep->fetchAll();
-
-      if (empty($tab_benevoleAccepted)) return false;
-      return $tab_benevoleAccepted;
-
-    } catch (PDOException $e) {
-      if (Conf::getDebug()) {
-        echo $e->getMessage();
-      } else {
-        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-      }
-      die();
-    }
-  }
 }

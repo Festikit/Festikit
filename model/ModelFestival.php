@@ -31,9 +31,19 @@ class ModelFestival /*extends Model*/
   {
     return $this->festival_id;
   }
-  public function setId($id2)
+  public function setFestivalId($id2)
   {
     $this->festival_id = $id2;
+  }
+
+  // Getter et Setter: festival_name
+  public function getFestivalName()
+  {
+    return $this->festival_name;
+  }
+  public function setFestivalName($name2)
+  {
+    $this->festival_name = $name2;
   }
 
   /* TODO GETTER/SETTER */
@@ -67,6 +77,60 @@ class ModelFestival /*extends Model*/
 
       if (empty($tab_festival)) return false;
       return $tab_festival[0];
+
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
+
+  // postuler_accepted = 1 dans la table "postuler"
+  public static function getBenevoleAcceptedByFestival($festival_id) {
+    try {
+      $sql = "SELECT p.user_id FROM postuler p JOIN festival f ON p.festival_id=f.festival_id WHERE f.festival_id=:id_tag AND postuler_accepted=:accepted_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $festival_id,
+        "accepted_tag" => 1,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+      $tab_benevoleAccepted = $req_prep->fetchAll();
+
+      if (empty($tab_benevoleAccepted)) return false;
+      return $tab_benevoleAccepted;
+
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
+
+  // postuler_accepted = 0 dans la table "postuler"
+  public static function getCandidatByFestival($festival_id) {
+    try {
+      $sql = "SELECT p.user_id FROM postuler p JOIN festival f ON p.festival_id=f.festival_id WHERE f.festival_id=:id_tag AND postuler_accepted=:accepted_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $festival_id,
+        "accepted_tag" => 0,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+      $tab_candidature = $req_prep->fetchAll();
+
+      if (empty($tab_candidature)) return false;
+      return $tab_candidature;
 
     } catch (PDOException $e) {
       if (Conf::getDebug()) {
