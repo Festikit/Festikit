@@ -20,7 +20,7 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">person</i>
                             <input id="user_lastname" type="text" class="validate" required>
-                            <label for="user_lastname">Non<abbr title="Ce champ est obligatoire ">*</abbr></label>
+                            <label for="user_lastname">Nom<abbr title="Ce champ est obligatoire ">*</abbr></label>
                         </div>
                         <div class="input-field col s6">
                             <input id="user_fistname" type="text" class="validate" required>
@@ -32,8 +32,8 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">insert_invitation</i>
-                            <input id="date_naissance" placeholder=" " type="date" max="2010-01-01" min="1900-01-01" class="validate" required>
-                            <label for="date_naissance">date de naissance<abbr
+                            <input id="user_birthdate" placeholder=" " type="date" max="2010-01-01" min="1900-01-01" class="validate" required>
+                            <label for="user_birthdate">date de naissance<abbr
                                     title="Ce champ est obligatoire ">*</abbr></label>
                         </div>
                         <div class="file-field input-field col s6">
@@ -51,8 +51,8 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">person_pin</i>
-                            <input id="code_postal" type="number" class="validate" required>
-                            <label for="code_postal">Code Postal<abbr title="Ce champ est obligatoire ">*</abbr></label>
+                            <input id="user_postal_code" type="number" class="validate" required>
+                            <label for="user_postal_code">Code Postal<abbr title="Ce champ est obligatoire ">*</abbr></label>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">phone</i>
@@ -68,13 +68,13 @@
                     <!-- TODO: Corrigé le h5 degeu -->
                     <div class="row">
                         <div class="col s12">
-                            <label for="permis"></label> Permis de conduire<abbr title="Ce champ est obligatoire">*</abbr> :
+                            <label for="user_driving_license"></label> Permis de conduire<abbr title="Ce champ est obligatoire">*</abbr> :
                             <label>
-                                <input required name="permis" type="radio" value="1" />
+                                <input required id="user_driving_license" name="user_driving_license" type="radio" value="1" />
                                 <span>Oui</span>
                             </label>
                             <label>
-                                <input required name="permis" type="radio" value="0" />
+                                <input required id="user_driving_license" name="user_driving_license" type="radio" value="0" />
                                 <span>Non</span>
                             </label>
                         </div>

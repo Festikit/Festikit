@@ -142,55 +142,54 @@ class ModelUtilisateur /*extends Model*/
 
   public static function deleteById($id)
   {
-    try{
-    $sql = "DELETE FROM user WHERE user_id =:nom_tag";
-    $req_prep = Model::$pdo->prepare($sql);
-    $values = array(
-      "nom_tag" => $id,
-    );
-    $req_prep->execute($values);
-  }
-  catch (PDOException $e){
-    if (Conf::getDebug()){
-      echo $e->getMessage();
-    }
-    else echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-    die();  
+    try {
+      $sql = "DELETE FROM user WHERE user_id =:nom_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "nom_tag" => $id,
+      );
+      $req_prep->execute($values);
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      die();
     }
   }
 
   public function update($data)
-    {
-        try {
-            $sql = "UPDATE user SET user_firstname = :user_firstname, user_lastname = :user_lastname, user_mail = :user_mail, 
+  {
+    try {
+      $sql = "UPDATE user SET user_firstname = :user_firstname, user_lastname = :user_lastname, user_mail = :user_mail, 
              user_phone = :user_phone, user_birthdate = :user_birthdate WHERE user_id = :user_id";
 
-            // Préparation de la requête
-            $req_prep = Model::$pdo->prepare($sql);
+      // Préparation de la requête
+      $req_prep = Model::$pdo->prepare($sql);
 
-            $values = array(
-                "user_id" => $data['user_id'],
-                "user_firstname" => $data['user_firstname'],
-                "user_lastname" => $data['user_lastname'],
-                "user_mail" => $data['user_mail'],
-                "user_phone" => $data['user_phone'],
-                "user_birthdate" => $data['user_birthdate'],
-            );
-            // On donne les valeurs et on exécute la requête    
-            $req_prep->execute($values);
-            // echo $sql;
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-            }
-            die();
-        }
+      $values = array(
+        "user_id" => $data['user_id'],
+        "user_firstname" => $data['user_firstname'],
+        "user_lastname" => $data['user_lastname'],
+        "user_mail" => $data['user_mail'],
+        "user_phone" => $data['user_phone'],
+        "user_birthdate" => $data['user_birthdate'],
+      );
+      // On donne les valeurs et on exécute la requête    
+      $req_prep->execute($values);
+      // echo $sql;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage(); // affiche un message d'erreur
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
     }
+  }
 
-    // postuler_accepted = true dans la table "postuler"
-  public static function getBenevoleAcceptedByFestival($festival_id) {
+  // postuler_accepted = true dans la table "postuler"
+  public static function getBenevoleAcceptedByFestival($festival_id)
+  {
     try {
       $sql = "SELECT p.user_id FROM postuler p JOIN festival f ON p.festival_id=f.festival_id WHERE f.festival_id=:id_tag AND postuler_accepted=:accepted_tag";
       $req_prep = Model::$pdo->prepare($sql);
@@ -204,10 +203,43 @@ class ModelUtilisateur /*extends Model*/
 
       if (empty($tab_benevoleAccepted)) return false;
       return $tab_benevoleAccepted;
-
     } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
+  public function save()
+  {
+    try {
+      $sql = "INSERT INTO user (user_id, user_firstname, user_lastname, user_mail, user_phone, user_birthdate, user_picture, user_postal_code, user_driving_license) VALUES (:user_id, :user_firstname, :user_lastname, :user_mail, :user_phone, :user_birthdate, :user_picture, :user_postal_code, :user_driving_license)";
+      // echo $sql;
+      // Préparation de la requête
+      $req_prep = Model::$pdo->prepare($sql);
+
+      $values = array(
+        "user_id" => $this->user_id,
+        "user_firstname" => $this->user_firstname,
+        "user_lastname" => $this->user_lastname,
+        "user_mail" => $this->user_mail,
+        "user_phone" => $this->user_phone,
+        "user_lastname" => $this->user_lastname,
+        "user_picture" => $this->user_picture,
+        "user_birthdate" => $this->user_birthdate,
+        "user_postal_code" => $this->user_postal_code,
+        "user_driving_license" => $this->user_driving_license,
+        // TODO: Rajouter les champs manquant 
+      );
+      // On donne les valeurs et on exécute la requête     
+      $req_prep->execute($values);
+      // echo $sql;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage(); // affiche un message d'erreur
       } else {
         echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
       }
