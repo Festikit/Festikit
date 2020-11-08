@@ -19,7 +19,6 @@
 			<a title=\"en savoir plus\" href=\"index.php?action=read&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
 			<a title=\"supprimer\" href=\"index.php?action=delete&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
 			<a title=\"modifier\" href=\"index.php?action=update&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
-		}
 		</div>
 	</li>";
 	$i++;
