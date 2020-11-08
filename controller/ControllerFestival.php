@@ -25,10 +25,12 @@ class ControllerFestival {
             $pagetitle = 'Erreur action read';
             $controller = 'festival';
             $view = 'error';
+            $nom_erreur = 'festival';
         } else {
             $pagetitle = 'Détail du festival';
             $controller = 'festival';
-            $view = 'detail';  
+            $view = 'detail';
+              
         }
         
         require File::build_path(array("view","view.php"));

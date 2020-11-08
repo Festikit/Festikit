@@ -25,6 +25,7 @@ class ControllerUtilisateur {
             $pagetitle = 'Erreur action';
             $controller = 'utilisateur';
             $view = 'error';
+            $nom_erreur = 'utilisateur';
         } else {
             $pagetitle = 'Détail de l\'utilisateur';
             $controller = 'utilisateur';

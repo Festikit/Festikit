@@ -27,7 +27,13 @@
 
 	<!-- BODY -->
 	<?php
-	$filepath = File::build_path(array("view", $controller, "$view.php"));
+	
+	if ($view === 'error'){
+		$view = ''.$view.'_'.$nom_erreur.'';
+		$filepath = File::build_path(array("view", $controller, "erreurs", "$view.php"));
+	}
+	else $filepath = File::build_path(array("view", $controller, "$view.php"));
+
 	require $filepath;
 	?>
 
