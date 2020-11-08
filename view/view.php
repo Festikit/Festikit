@@ -29,9 +29,7 @@
 	<!-- BODY -->
 	<?php
 	
-	if ($view === 'error'){
-		$message;	
-	}
+	
 	$filepath = File::build_path(array("view", $controller, "$view.php"));
 
 	require $filepath;
