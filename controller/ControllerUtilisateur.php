@@ -20,6 +20,11 @@ class ControllerUtilisateur {
         $view = 'detail';
         
         $user_id = $_GET['user_id'];
+        /*
+        Dans modelUtilisateur : créer fonction getter de festival (avec jointure ect)
+        Idem pour utilisateur / festival
+        récupérer le tableau de festival associé au bénévole
+        */
         $u = ModelUtilisateur::getUtilisateurById($user_id);
         if($u == false) {
             require File::build_path(array("view","utilisateur","error.php"));

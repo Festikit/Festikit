@@ -8,11 +8,19 @@
     $user_phone = htmlspecialchars($u->getPhone());
     $user_birthdate = htmlspecialchars($u->getBirthdate());
     $user_picture = htmlspecialchars($u->getPicture());
-    
-    echo "<p> Utilisateur $user_id: $user_firstname $user_lastname</br>
-    Mail: $user_mail </br>
+    $user_postal_code = htmlspecialchars($u->getPostalCode());
+    if($u->getDrivingLicense() == 1) {
+        $user_driving_license = "oui";
+    } else {
+        $user_driving_license = "non";
+    }
+
+    echo "<p> $user_firstname $user_lastname</br>
+    Adresse mail: $user_mail </br>
     Téléphone: $user_phone </br>
-    Date de naissance: $user_birthdate</p>";
+    Date de naissance: $user_birthdate </br>
+    Adresse postale: $user_postal_code </br>
+    Permis de conduire: $user_driving_license </br>";
     // header("Content-type: image/jpg");
     echo "<img src=\"$user_picture\" alt=\"Photo de l'utilisateur $user_id\"></p>";
     echo '<a href="index.php?action=delete&user_id=' .rawurlencode($user_id) .'">Supprimer utilisateur</a>';
