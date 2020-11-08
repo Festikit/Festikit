@@ -23,7 +23,7 @@ if (!($log_u == "" && $user_firstname == "" && $user_lastname == "" && $user_mai
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">email</i>
-                    <?php echo '<input name="user_firstname" id="user_email" type="email" value="' . rawurldecode($user_mail) . '" required disabled>'; ?>
+                    <?php echo '<input name="user_email" id="user_email" type="email" value="' . rawurldecode($user_mail) . '" required>'; ?>
                     <label class="active" for="user_email">Email</label>
                 </div>
             </div>
@@ -35,8 +35,8 @@ if (!($log_u == "" && $user_firstname == "" && $user_lastname == "" && $user_mai
                     <label class="active" for="user_lastname">Nom</label>
                 </div>
                 <div class="input-field col s6">
-                <?php echo '<input id="user_fistname" type="text" value="' . rawurlencode($user_firstname) . '" class="validate" required>'; ?>
-                    <label class="active" for="user_fistname">Prenom</label>
+                <?php echo '<input id="user_firstname" type="text" value="' . rawurlencode($user_firstname) . '" class="validate" required>'; ?>
+                    <label class="active" for="user_firstname">Prenom</label>
                 </div>
             </div>
 

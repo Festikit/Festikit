@@ -45,7 +45,7 @@ class ControllerUtilisateur {
     }
 
     public static function update(){
-        $controller = 'Utilisateur';
+        $controller = 'utilisateur';
         $view='update';
         $pagetitle='modification utilisateur';
         $log_u  = $_GET['user_id'];
@@ -55,7 +55,7 @@ class ControllerUtilisateur {
 
     public static function updated(){
     
-        $controller = 'Utilisateur';
+        $controller = 'utilisateur';
         $view='updated';
         $pagetitle='modification utilisateur';
         
