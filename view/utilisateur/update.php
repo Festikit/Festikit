@@ -31,11 +31,11 @@ if (!($log_u == "" && $user_firstname == "" && $user_lastname == "" && $user_mai
             <div class="row">
                 <div class="input-field col s6">
                     <i class="material-icons prefix">person</i>
-                    <?php echo '<input id="user_lastname" type="text" value="' . rawurlencode($user_lastname) .'" class="validate" required>'; ?>
+                    <?php echo '<input name="user_lastname" id="user_lastname" type="text" value="' . rawurlencode($user_lastname) .'" class="validate" required>'; ?>
                     <label class="active" for="user_lastname">Nom</label>
                 </div>
                 <div class="input-field col s6">
-                <?php echo '<input id="user_firstname" type="text" value="' . rawurlencode($user_firstname) . '" class="validate" required>'; ?>
+                <?php echo '<input name="user_firstname" id="user_firstname" type="text" value="' . rawurlencode($user_firstname) . '" class="validate" required>'; ?>
                     <label class="active" for="user_firstname">Prenom</label>
                 </div>
             </div>
@@ -43,7 +43,7 @@ if (!($log_u == "" && $user_firstname == "" && $user_lastname == "" && $user_mai
             <div class="row">
                 <div class="input-field col s6">
                     <i class="material-icons prefix">insert_invitation</i>
-                <?php echo '<input name"user_birthdate" id="user_birthdate" type="date" max="2010-01-01" min="1900-01-01" class="validate" value="' . rawurlencode($user_birthdate) . '" name="user_birthdate" required>'; ?>
+                <?php echo '<input name="user_birthdate" id="user_birthdate" type="date" max="2010-01-01" min="1900-01-01" class="validate" value="' . rawurlencode($user_birthdate) . '" name="user_birthdate" required>'; ?>
                     <label for="user_birthdate" class="active">date de naissance</label>
                 </div>
                 <div class="file-field input-field col s6">
@@ -61,7 +61,7 @@ if (!($log_u == "" && $user_firstname == "" && $user_lastname == "" && $user_mai
             <div class="row">
                 <div class="input-field col s6">
                     <i class="material-icons prefix">person_pin</i>
-                    <?php echo '<input id="user_postal_code" type="number" value="' .rawurlencode($user_postal_code). '" class="validate" required>'; ?>
+                    <?php echo  '<input name="user_postal_code" id="user_postal_code" type="number" value="' .rawurlencode($user_postal_code). '" class="validate" required>'; ?>
                     <label for="user_postal_code" class="active">Code Postal</label>
                 </div>
                 <div class="input-field col s6">
