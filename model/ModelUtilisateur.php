@@ -266,4 +266,39 @@ class ModelUtilisateur /*extends Model*/
       die();
     }
   }
+
+    public function save()
+  {
+    try {
+      $sql = "INSERT INTO user (user_id, user_firstname, user_lastname, user_mail, user_phone, user_birthdate, user_picture, user_postal_code, user_driving_license) VALUES (:user_id, :user_firstname, :user_lastname, :user_mail, :user_phone, :user_birthdate, :user_picture, :user_postal_code, :user_driving_license)";
+      // echo $sql;
+      // Préparation de la requête
+      $req_prep = Model::$pdo->prepare($sql);
+
+      $values = array(
+        "user_id" => $this->user_id,
+        "user_firstname" => $this->user_firstname,
+        "user_lastname" => $this->user_lastname,
+        "user_mail" => $this->user_mail,
+        "user_phone" => $this->user_phone,
+        "user_lastname" => $this->user_lastname,
+        "user_picture" => $this->user_picture,
+        "user_birthdate" => $this->user_birthdate,
+        "user_postal_code" => $this->user_postal_code,
+        "user_driving_license" => $this->user_driving_license,
+        // TODO: Rajouter les champs manquant 
+      );
+      // On donne les valeurs et on exécute la requête     
+      $req_prep->execute($values);
+      // echo $sql;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage(); // affiche un message d'erreur
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+  
 }

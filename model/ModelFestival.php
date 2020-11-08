@@ -46,6 +46,16 @@ class ModelFestival /*extends Model*/
     $this->festival_name = $name2;
   }
 
+  // Getter et Setter: city
+  public function getFestivalCity()
+  {
+    return $this->city;
+  }
+  public function setFestivalCity($city2)
+  {
+    $this->city = $city2;
+  }
+
   /* TODO GETTER/SETTER */
 
   public static function getAllFestivals() {
