@@ -23,6 +23,7 @@ class ControllerResponsable {
             $pagetitle = 'Erreur action';
             $controller = 'responsable';
             $view = 'error';
+            $message = 'read ~ responsable';
         } else {
             $pagetitle = 'Détail du responsable';
             $controller = 'responsable';

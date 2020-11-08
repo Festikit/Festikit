@@ -25,7 +25,7 @@ class ControllerFestival {
             $pagetitle = 'Erreur action read';
             $controller = 'festival';
             $view = 'error';
-            $nom_erreur = 'festival';
+            $message = 'read ~ festival';
         } else {
             $pagetitle = 'Détail du festival';
             $controller = 'festival';
