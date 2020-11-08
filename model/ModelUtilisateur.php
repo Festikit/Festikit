@@ -209,7 +209,6 @@ class ModelUtilisateur /*extends Model*/
       }
       die();
     }
-<<<<<<< HEAD
   }
 
   // postuler_accepted = true dans la table "postuler"
@@ -271,6 +270,4 @@ class ModelUtilisateur /*extends Model*/
       die();
     }
   }
-=======
->>>>>>> 03b70ab24d10c691d9c47b902010ae8726552fc7
 }
