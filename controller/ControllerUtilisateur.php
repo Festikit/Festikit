@@ -14,23 +14,23 @@ class ControllerUtilisateur {
     }
 
     public static function read() {
-
-        $pagetitle = 'Détail de l\'utilisateur';
-        $controller = 'utilisateur';
-        $view = 'detail';
         
         $user_id = $_GET['user_id'];
-        /*
-        Dans modelUtilisateur : créer fonction getter de festival (avec jointure ect)
-        Idem pour utilisateur / festival
-        récupérer le tableau de festival associé au bénévole
-        */
         $u = ModelUtilisateur::getUtilisateurById($user_id);
+
+        $tab_festivalWhereAccepted = ModelUtilisateur::getFestivalWhereAccepted($user_id);
+        $tab_festivalWhereCandidat = ModelUtilisateur::getFestivalWhereCandidat($user_id);
+
         if($u == false) {
-            require File::build_path(array("view","utilisateur","error.php"));
+            $pagetitle = 'Erreur action';
+            $controller = 'utilisateur';
+            $view = 'error';
         } else {
-            require File::build_path(array("view","view.php"));
+            $pagetitle = 'Détail de l\'utilisateur';
+            $controller = 'utilisateur';
+            $view = 'detail';
         }
+        require File::build_path(array("view","view.php"));
     }
 
     public static function delete(){

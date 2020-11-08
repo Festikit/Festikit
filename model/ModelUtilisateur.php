@@ -213,4 +213,57 @@ class ModelUtilisateur /*extends Model*/
             die();
         }
     }
+
+  // postuler_accepted = 1 dans la table "postuler"
+  public static function getFestivalWhereAccepted($user_id) {
+    try {
+      $sql = "SELECT festival_id FROM postuler WHERE user_id=:id_tag AND postuler_accepted=:accepted_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $user_id,
+        "accepted_tag" => 1,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFestival');
+      $tab_festivalWhereAccepted = $req_prep->fetchAll();
+
+      if (empty($tab_festivalWhereAccepted)) return false;
+      return $tab_festivalWhereAccepted;
+
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
+
+  // postuler_accepted = 0 dans la table "postuler"
+  public static function getFestivalWhereCandidat($user_id) {
+    try {
+      $sql = "SELECT festival_id FROM postuler WHERE user_id=:id_tag AND postuler_accepted=:accepted_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $user_id,
+        "accepted_tag" => 0,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFestival');
+      $tab_festivalWhereCandidat = $req_prep->fetchAll();
+
+      if (empty($tab_festivalWhereCandidat)) return false;
+      return $tab_festivalWhereCandidat;
+
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
 }
