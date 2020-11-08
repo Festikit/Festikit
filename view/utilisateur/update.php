@@ -5,6 +5,7 @@ if (!($log_u == "" && $user_firstname == "" && $user_lastname == "" && $user_mai
     $user_lastname = htmlspecialchars($tab_u->getLastname());
     $user_mail = htmlspecialchars($tab_u->getMail());
     $user_phone = htmlspecialchars($tab_u->getPhone());
+    $user_postal_code = htmlspecialchars($tab_u->getPostalCode());
     $user_birthdate = htmlspecialchars($tab_u->getBirthdate());
 }
 ?>
@@ -15,7 +16,7 @@ if (!($log_u == "" && $user_firstname == "" && $user_lastname == "" && $user_mai
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">assignment_ind</i>
-                    <?php echo '<input name="user_id" id="user_id" type="number" value="'. rawurldecode($log_u) . '" required disabled>' '<input type="text" value="'; ?>
+                    <?php echo '<input name="user_id" id="user_id" type="number" value="' . rawurldecode($log_u) . '" required disabled>'; ?>
                     <label class="active" for="user_id">ID</label>
                 </div>
             </div>

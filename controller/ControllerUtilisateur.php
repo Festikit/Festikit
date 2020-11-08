@@ -57,18 +57,22 @@ class ControllerUtilisateur {
         $controller = 'Utilisateur';
         $view='updated';
         $pagetitle='modification utilisateur';
+        
         $log_u = $_GET['user_id'];
         $user_firstname = $_GET['user_firstname'];
         $user_lastname = $_GET['user_lastname'];
         $user_mail = $_GET['user_mail'];
         $user_phone = $_GET['user_phone'];
+        $user_postal_code = $_GET['user_postal_code'];
         $user_birthdate = $_GET['user_birthdate'];
+        
         $tab_umod = array(
             "user_id" => $log_u,
             "user_firstname" => $user_firstname,
             "user_lastname" => $user_lastname,
             "user_mail" => $user_mail,
             "user_phone" => $user_phone,
+            "user_postal_code" => $user_postal_code,
             "user_birthdate" => $user_birthdate
         );
         $utilisateurmod = new ModelUtilisateur();
