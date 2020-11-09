@@ -10,6 +10,7 @@ class ModelFestival /*extends Model*/
   private $festival_enddate;
   private $festival_description;
   private $city;
+  private $user_id;
 
   //protected static $object = 'festival';
   //protected static $primary= 'festival_id';
@@ -46,9 +47,20 @@ class ModelFestival /*extends Model*/
     $this->festival_name = $name2;
   }
 
+  // Getter et Setter: city
+  public function getFestivalCity()
+  {
+    return $this->city;
+  }
+  public function setFestivalCity($city2)
+  {
+    $this->city = $city2;
+  }
+
   /* TODO GETTER/SETTER */
 
-  public static function getAllFestivals() {
+  public static function getAllFestivals()
+  {
     try {
       $sql = "SELECT * from festival";
       $rep = Model::$pdo->query($sql);
@@ -64,7 +76,8 @@ class ModelFestival /*extends Model*/
     }
   }
 
-  public static function getFestivalById($festival_id) {
+  public static function getFestivalById($festival_id)
+  {
     try {
       $sql = "SELECT * from festival WHERE festival_id=:id_tag";
       $req_prep = Model::$pdo->prepare($sql);
@@ -77,7 +90,6 @@ class ModelFestival /*extends Model*/
 
       if (empty($tab_festival)) return false;
       return $tab_festival[0];
-
     } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage();
@@ -90,9 +102,10 @@ class ModelFestival /*extends Model*/
 
 
   // postuler_accepted = 1 dans la table "postuler"
-  public static function getBenevoleAcceptedByFestival($festival_id) {
+  public static function getBenevoleAcceptedByFestival($festival_id)
+  {
     try {
-      $sql = "SELECT p.user_id FROM postuler p JOIN festival f ON p.festival_id=f.festival_id WHERE f.festival_id=:id_tag AND postuler_accepted=:accepted_tag";
+      $sql = "SELECT u.user_id, u.user_firstname, u.user_lastname FROM postuler p JOIN user u ON u.user_id=p.user_id WHERE festival_id=:id_tag AND postuler_accepted=:accepted_tag";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
         "id_tag" => $festival_id,
@@ -104,7 +117,6 @@ class ModelFestival /*extends Model*/
 
       if (empty($tab_benevoleAccepted)) return false;
       return $tab_benevoleAccepted;
-
     } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage();
@@ -117,9 +129,10 @@ class ModelFestival /*extends Model*/
 
 
   // postuler_accepted = 0 dans la table "postuler"
-  public static function getCandidatByFestival($festival_id) {
+  public static function getCandidatByFestival($festival_id)
+  {
     try {
-      $sql = "SELECT p.user_id FROM postuler p JOIN festival f ON p.festival_id=f.festival_id WHERE f.festival_id=:id_tag AND postuler_accepted=:accepted_tag";
+      $sql = "SELECT u.user_id, u.user_firstname, u.user_lastname FROM postuler p JOIN user u ON u.user_id=p.user_id WHERE festival_id=:id_tag AND postuler_accepted=:accepted_tag";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
         "id_tag" => $festival_id,
@@ -131,7 +144,6 @@ class ModelFestival /*extends Model*/
 
       if (empty($tab_candidature)) return false;
       return $tab_candidature;
-
     } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage();

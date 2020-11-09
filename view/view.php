@@ -19,7 +19,7 @@
 	</script>
 </head>
 
-<body class="grey lighten-3">
+<body>
 	<!-- HEADER -->
 	<header>
 		<nav>
@@ -29,7 +29,7 @@
 					<li><a href="index.php?action=readAll">Accueil Utilisateur</a></li>
 					<!-- ou: <li><a href="index.php?action=readAll&controller=utilisateur">Accueil Utilisateurs</a></li>-->
 					<li><a href="index.php?action=readAll&controller=festival">Accueil Festival</a></li>
-					<li><a href="index.php?action=create">Formulaire</a></li>
+					<li><a href="index.php?action=readAll&controller=responsable">Accueil Responsable</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -38,7 +38,10 @@
 
 	<!-- BODY -->
 	<?php
+
+
 	$filepath = File::build_path(array("view", $controller, "$view.php"));
+
 	require $filepath;
 	?>
 

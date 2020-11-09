@@ -14,23 +14,24 @@ class ControllerUtilisateur {
     }
 
     public static function read() {
-
-        $pagetitle = 'Détail de l\'utilisateur';
-        $controller = 'utilisateur';
-        $view = 'detail';
         
         $user_id = $_GET['user_id'];
-        /*
-        Dans modelUtilisateur : créer fonction getter de festival (avec jointure ect)
-        Idem pour utilisateur / festival
-        récupérer le tableau de festival associé au bénévole
-        */
         $u = ModelUtilisateur::getUtilisateurById($user_id);
+
+        $tab_festivalWhereAccepted = ModelUtilisateur::getFestivalWhereAccepted($user_id);
+        $tab_festivalWhereCandidat = ModelUtilisateur::getFestivalWhereCandidat($user_id);
+
         if($u == false) {
-            require File::build_path(array("view","utilisateur","error.php"));
+            $pagetitle = 'Erreur action';
+            $controller = 'utilisateur';
+            $view = 'error';
+            $message = "erreur read du controller";
         } else {
-            require File::build_path(array("view","view.php"));
+            $pagetitle = 'Détail de l\'utilisateur';
+            $controller = 'utilisateur';
+            $view = 'detail';
         }
+        require File::build_path(array("view","view.php"));
     }
 
     public static function delete(){
@@ -44,7 +45,7 @@ class ControllerUtilisateur {
     }
 
     public static function update(){
-        $controller = 'Utilisateur';
+        $controller = 'utilisateur';
         $view='update';
         $pagetitle='modification utilisateur';
         $log_u  = $_GET['user_id'];
@@ -54,21 +55,25 @@ class ControllerUtilisateur {
 
     public static function updated(){
     
-        $controller = 'Utilisateur';
+        $controller = 'utilisateur';
         $view='updated';
         $pagetitle='modification utilisateur';
+        
         $log_u = $_GET['user_id'];
         $user_firstname = $_GET['user_firstname'];
         $user_lastname = $_GET['user_lastname'];
         $user_mail = $_GET['user_mail'];
         $user_phone = $_GET['user_phone'];
+        $user_postal_code = $_GET['user_postal_code'];
         $user_birthdate = $_GET['user_birthdate'];
+        
         $tab_umod = array(
             "user_id" => $log_u,
             "user_firstname" => $user_firstname,
             "user_lastname" => $user_lastname,
             "user_mail" => $user_mail,
             "user_phone" => $user_phone,
+            "user_postal_code" => $user_postal_code,
             "user_birthdate" => $user_birthdate
         );
         $utilisateurmod = new ModelUtilisateur();
@@ -78,5 +83,3 @@ class ControllerUtilisateur {
         
     }
 }
-
-?>
