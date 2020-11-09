@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">email</i>
-                        <input id="user_email" type="email" class="validate" required>
+                        <input name="user_email" id="user_email" type="email" class="validate" required>
                         <label for="user_email">Email<abbr title="Ce champ est obligatoire ">*</abbr></label>
                     </div>
                 </div>
@@ -18,12 +18,12 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">person</i>
-                        <input id="user_lastname" type="text" class="validate" required>
+                        <input name="user_lastname" id="user_lastname" type="text" class="validate" required>
                         <label for="user_lastname">Nom<abbr title="Ce champ est obligatoire ">*</abbr></label>
                     </div>
                     <div class="input-field col s6">
-                        <input id="user_fistname" type="text" class="validate" required>
-                        <label for="user_fistname">Prenom<abbr title="Ce champ est obligatoire ">*</abbr></label>
+                        <input name="user_firstname" id="user_firstname" type="text" class="validate" required>
+                        <label for="user_firstname">Prenom<abbr title="Ce champ est obligatoire ">*</abbr></label>
                     </div>
                 </div>
 
@@ -49,7 +49,7 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">person_pin</i>
-                        <input id="user_postal_code" type="number" class="validate" required>
+                        <input name="user_postal_code" id="user_postal_code" type="number" class="validate" required>
                         <label for="user_postal_code">Code Postal<abbr title="Ce champ est obligatoire ">*</abbr></label>
                     </div>
                     <div class="input-field col s6">
@@ -151,13 +151,13 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">insert_invitation</i>
-                        <input id="depart_date" placeholder=" " type="date" class="validate">
+                        <input name="depart_date" id="depart_date" placeholder=" " type="date" class="validate">
                         <label for="depart_date">Date de depart approximatif</label>
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">access_time</i>
-                        <input id="depart-heure" placeholder=" " type="time" class="validate">
-                        <label for="depart-heure">Date de départ approximatif</label>
+                        <input name="depart-heure" id="depart-heure" placeholder=" " type="time" class="validate">
+                        <label for="depart-heure">Heure de départ approximatif</label>
                     </div>
                 </div>
 
@@ -175,92 +175,92 @@
                     <tr>
                         <td class="firstColumn"><label for="dispo_lieu1">Samedi 4 Avril (au marché de
                                 Pézenas)</label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu1_date1" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu1_date2" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu1_date3" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu1_date4" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu1_date5" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu1_date6" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu1_date1" id="dispo_lieu1_date1" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu1_date2" id="dispo_lieu1_date2" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu1_date3" id="dispo_lieu1_date3" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu1_date4" id="dispo_lieu1_date4" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu1_date5" id="dispo_lieu1_date5" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu1_date6" id="dispo_lieu1_date6" value="1" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn"><label for="dispo_lieu2">Samedi 11 Avril (au marché de
                                 Pézenas)</label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu2_date1" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu2_date2" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu2_date3" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu2_date4" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu2_date5" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu2_date6" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu2_date1" id="dispo_lieu2_date1" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu2_date2" id="dispo_lieu2_date2" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu2_date3" id="dispo_lieu2_date3" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu2_date4" id="dispo_lieu2_date4" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu2_date5" id="dispo_lieu2_date5" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu2_date6" id="dispo_lieu2_date6" value="1" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn"><label for="dispo_lieu3">Lundi 13 avril (déco+ install + barbecue
                                 d'accueil)</label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu3_date1" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu3_date2" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu3_date3" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu3_date4" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu3_date5" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu3_date6" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu3_date1" id="dispo_lieu3_date1" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu3_date2" id="dispo_lieu3_date2" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu3_date3" id="dispo_lieu3_date3" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu3_date4" id="dispo_lieu3_date4" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu3_date5" id="dispo_lieu3_date5" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu3_date6" id="dispo_lieu3_date6" value="1" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn"><label for="dispo_lieu4">Mardi 14 avril</label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu4_date1" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu4_date2" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu4_date3" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu4_date4" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu4_date5" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu4_date6" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu4_date1" id="dispo_lieu4_date1" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu4_date2" id="dispo_lieu4_date2" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu4_date3" id="dispo_lieu4_date3" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu4_date4" id="dispo_lieu4_date4" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu4_date5" id="dispo_lieu4_date5" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu4_date6" id="dispo_lieu4_date6" value="1" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn"><label for="dispo_lieu5">Mercredi 15 avril</label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu5_date1" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu5_date2" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu5_date3" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu5_date4" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu5_date5" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu5_date6" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu5_date1" id="dispo_lieu5_date1" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu5_date2" id="dispo_lieu5_date2" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu5_date3" id="dispo_lieu5_date3" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu5_date4" id="dispo_lieu5_date4" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu5_date5" id="dispo_lieu5_date5" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu5_date6" id="dispo_lieu5_date6" value="1" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn"><label for="dispo_lieu6">Jeudi 16 avril</label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu6_date1" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu6_date2" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu6_date3" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu6_date4" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu6_date5" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu6_date6" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu6_date1" id="dispo_lieu6_date1" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu6_date2" id="dispo_lieu6_date2" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu6_date3" id="dispo_lieu6_date3" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu6_date4" id="dispo_lieu6_date4" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu6_date5" id="dispo_lieu6_date5" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu6_date6" id="dispo_lieu6_date6" value="1" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn"><label for="dispo_lieu7">Vendredi 17 avril</label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu7_date1" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu7_date2" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu7_date3" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu7_date4" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu7_date5" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu7_date6" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu7_date1" id="dispo_lieu7_date1" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu7_date2" id="dispo_lieu7_date2" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu7_date3" id="dispo_lieu7_date3" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu7_date4" id="dispo_lieu7_date4" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu7_date5" id="dispo_lieu7_date5" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu7_date6" id="dispo_lieu7_date6" value="1" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn"><label for="dispo_lieu8">Samedi 18 avril</label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu8_date1" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu8_date2" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu8_date3" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu8_date4" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu8_date5" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu8_date6" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu8_date1" id="dispo_lieu8_date1" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu8_date2" id="dispo_lieu8_date2" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu8_date3" id="dispo_lieu8_date3" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu8_date4" id="dispo_lieu8_date4" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu8_date5" id="dispo_lieu8_date5" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu8_date6" id="dispo_lieu8_date6" value="1" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn"><label for="dispo_lieu9">Dimanche 19 avril (rangement,
                                 désinstallation)</label></td>
-                        <td><label><input type="checkbox" id="dispo_lieu9_date1" value="dispo_date1" /><span> </span></label>
+                        <td><label><input type="checkbox" name="dispo_lieu9_date1" id="dispo_lieu9_date1" value="dispo_date1" /><span> </span></label>
                         </td>
-                        <td><label><input type="checkbox" id="dispo_lieu9_date2" value="dispo_date2" /><span> </span></label>
+                        <td><label><input type="checkbox" name="dispo_lieu9_date2" id="dispo_lieu9_date2" value="dispo_date2" /><span> </span></label>
                         </td>
-                        <td><label><input type="checkbox" id="dispo_lieu9_date3" value="dispo_date3" /><span> </span></label>
+                        <td><label><input type="checkbox" name="dispo_lieu9_date3" id="dispo_lieu9_date3" value="dispo_date3" /><span> </span></label>
                         </td>
-                        <td><label><input type="checkbox" id="dispo_lieu9_date4" value="dispo_date4" /><span> </span></label>
+                        <td><label><input type="checkbox" name="dispo_lieu9_date4" id="dispo_lieu9_date4" value="dispo_date4" /><span> </span></label>
                         </td>
-                        <td><label><input type="checkbox" id="dispo_lieu9_date5" value="dispo_date5" /><span> </span></label>
+                        <td><label><input type="checkbox" name="dispo_lieu9_date5" id="dispo_lieu9_date5" value="dispo_date5" /><span> </span></label>
                         </td>
-                        <td><label><input type="checkbox" id="dispo_lieu9_date6" value="dispo_date6" /><span> </span></label>
+                        <td><label><input type="checkbox" name="dispo_lieu9_date6" id="dispo_lieu9_date6" value="dispo_date6" /><span> </span></label>
                         </td>
                     </tr>
                 </table>
@@ -269,12 +269,12 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">insert_invitation</i>
-                        <input id="creneau_date" placeholder=" " type="date" class="validate">
+                        <input name="creneau_date" id="creneau_date" placeholder=" " type="date" class="validate">
                         <label for="creneau_date">Date de disponibilités</label>
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">access_time</i>
-                        <input id="creneau_heure" placeholder=" " type="time" class="validate">
+                        <input name="creneau_heure" id="creneau_heure" placeholder=" " type="time" class="validate">
                         <label for="creneau_heure">Heure de disponibilités</label>
                     </div>
                 </div>
@@ -294,81 +294,81 @@
                     <tr>
                         <td class="firstColumn "><label for="runs">Runs (transfert en voiture des artistes et pros
                                 lieu d'arrivée, festival, lieu d'hébergement)</label></td>
-                        <td><label><input type="radio" id="runs" value="1" /><span> </span></label></td>
-                        <td><label><input type="radio" id="runs" value="2" /><span> </span></label></td>
-                        <td><label><input type="radio" id="runs" value="3" /><span> </span></label></td>
-                        <td><label><input type="radio" id="runs" value="4" /><span> </span></label></td>
+                        <td><label><input type="radio" name="runs" id="runs" value="1" /><span> </span></label></td>
+                        <td><label><input type="radio" name="runs" id="runs" value="2" /><span> </span></label></td>
+                        <td><label><input type="radio" name="runs" id="runs" value="3" /><span> </span></label></td>
+                        <td><label><input type="radio" name="runs" id="runs" value="4" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn "><label for="accueil">Accueil Public et prévention (vérification
                                 billets, gestion du public pendant le concert)</label></td>
-                        <td><label><input type="radio" id="accueil" value="1" /><span> </span></label></td>
-                        <td><label><input type="radio" id="accueil" value="2" /><span> </span></label></td>
-                        <td><label><input type="radio" id="accueil" value="3" /><span> </span></label></td>
-                        <td><label><input type="radio" id="accueil" value="4" /><span> </span></label></td>
+                        <td><label><input type="radio" name="accueil" id="accueil" value="1" /><span> </span></label></td>
+                        <td><label><input type="radio" name="accueil" id="accueil" value="2" /><span> </span></label></td>
+                        <td><label><input type="radio" name="accueil" id="accueil" value="3" /><span> </span></label></td>
+                        <td><label><input type="radio" name="accueil" id="accueil" value="4" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn "><label for="diffusion">Diffusion (distribution hélicon,
                                 vérification affichage, flyage, sondages)</label></td>
-                        <td><label><input type="radio" id="diffusion" value="1" /><span> </span></label></td>
-                        <td><label><input type="radio" id="diffusion" value="2" /><span> </span></label></td>
-                        <td><label><input type="radio" id="diffusion" value="3" /><span> </span></label></td>
-                        <td><label><input type="radio" id="diffusion" value="4" /><span> </span></label></td>
+                        <td><label><input type="radio" name="diffusion" id="diffusion" value="1" /><span> </span></label></td>
+                        <td><label><input type="radio" name="diffusion" id="diffusion" value="2" /><span> </span></label></td>
+                        <td><label><input type="radio" name="diffusion" id="diffusion" value="3" /><span> </span></label></td>
+                        <td><label><input type="radio" name="diffusion" id="diffusion" value="4" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn "><label for="after">After : Préparation, Accueil, Nettoyage</label>
                         </td>
-                        <td><label><input type="radio" id="after" value="1" /><span> </span></label></td>
-                        <td><label><input type="radio" id="after" value="2" /><span> </span></label></td>
-                        <td><label><input type="radio" id="after" value="3" /><span> </span></label></td>
-                        <td><label><input type="radio" id="after" value="4" /><span> </span></label></td>
+                        <td><label><input type="radio" name="after" id="after" value="1" /><span> </span></label></td>
+                        <td><label><input type="radio" name="after" id="after" value="2" /><span> </span></label></td>
+                        <td><label><input type="radio" name="after" id="after" value="3" /><span> </span></label></td>
+                        <td><label><input type="radio" name="after" id="after" value="4" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn "><label for="billeterie">Billetterie</label></td>
-                        <td><label><input type="radio" id="billetterie" value="1" /><span> </span></label></td>
-                        <td><label><input type="radio" id="billetterie" value="2" /><span> </span></label></td>
-                        <td><label><input type="radio" id="billetterie" value="3" /><span> </span></label></td>
-                        <td><label><input type="radio" id="billetterie" value="4" /><span> </span></label>
+                        <td><label><input type="radio" name="billetterie" id="billetterie" value="1" /><span> </span></label></td>
+                        <td><label><input type="radio" name="billetterie" id="billetterie" value="2" /><span> </span></label></td>
+                        <td><label><input type="radio" name="billetterie" id="billetterie" value="3" /><span> </span></label></td>
+                        <td><label><input type="radio" name="billetterie" id="billetterie" value="4" /><span> </span></label>
                         </td>
                     </tr>
                     <tr>
                         <td class="firstColumn "><label for="aide">Aide à la technique</label></td>
-                        <td><label><input type="radio" id="aide" value="1" /><span> </span></label></td>
-                        <td><label><input type="radio" id="aide" value="2" /><span> </span></label></td>
-                        <td><label><input type="radio" id="aide" value="3" /><span> </span></label></td>
-                        <td><label><input type="radio" id="aide" value="4" /><span> </span></label></td>
+                        <td><label><input type="radio" name="aide" id="aide" value="1" /><span> </span></label></td>
+                        <td><label><input type="radio" name="aide" id="aide" value="2" /><span> </span></label></td>
+                        <td><label><input type="radio" name="aide" id="aide" value="3" /><span> </span></label></td>
+                        <td><label><input type="radio" name="aide" id="aide" value="4" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn "><label for="buvette">Buvette</label></td>
-                        <td><label><input type="radio" id="buvette" value="1" /><span> </span></label></td>
-                        <td><label><input type="radio" id="buvette" value="2" /><span> </span></label></td>
-                        <td><label><input type="radio" id="buvette" value="3" /><span> </span></label></td>
-                        <td><label><input type="radio" id="buvette" value="4" /><span> </span></label></td>
+                        <td><label><input type="radio" name="buvette" id="buvette" value="1" /><span> </span></label></td>
+                        <td><label><input type="radio" name="buvette" id="buvette" value="2" /><span> </span></label></td>
+                        <td><label><input type="radio" name="buvette" id="buvette" value="3" /><span> </span></label></td>
+                        <td><label><input type="radio" name="buvette" id="buvette" value="4" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn "><label for="joker">Joker : petites missions différentes tout au
                                 long de la journée, vous êtes donc d'astreinte sur vos heures de dispo</label></td>
-                        <td><label><input type="radio" id="joker" value="1" /><span> </span></label></td>
-                        <td><label><input type="radio" id="joker" value="2" /><span> </span></label></td>
-                        <td><label><input type="radio" id="joker" value="3" /><span> </span></label></td>
-                        <td><label><input type="radio" id="joker" value="4" /><span> </span></label></td>
+                        <td><label><input type="radio" name="joker" id="joker" value="1" /><span> </span></label></td>
+                        <td><label><input type="radio" name="joker" id="joker" value="2" /><span> </span></label></td>
+                        <td><label><input type="radio" name="joker" id="joker" value="3" /><span> </span></label></td>
+                        <td><label><input type="radio" name="joker" id="joker" value="4" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn "><label for="cuisine">Cuisine (préparation des plats, service au
                                 self, plonge, nettoyage...)</label></td>
-                        <td><label><input type="radio" id="cuisine" value="1" /><span> </span></label></td>
-                        <td><label><input type="radio" id="cuisine" value="2" /><span> </span></label></td>
-                        <td><label><input type="radio" id="cuisine" value="3" /><span> </span></label></td>
-                        <td><label><input type="radio" id="cuisine" value="4" /><span> </span></label>
+                        <td><label><input type="radio" name="cuisine" id="cuisine" value="1" /><span> </span></label></td>
+                        <td><label><input type="radio" name="cuisine" id="cuisine" value="2" /><span> </span></label></td>
+                        <td><label><input type="radio" name="cuisine" id="cuisine" value="3" /><span> </span></label></td>
+                        <td><label><input type="radio" name="cuisine" id="cuisine" value="4" /><span> </span></label>
                         </td>
                     </tr>
                     <tr>
                         <td class="firstColumn "><label for="decoration">Décoration</label></td>
-                        <td><label><input type="radio" id="decoration" value="1" /><span> </span></label></td>
-                        <td><label><input type="radio" id="decoration" value="2" /><span> </span></label></td>
-                        <td><label><input type="radio" id="decoration" value="3" /><span> </span></label></td>
+                        <td><label><input type="radio" name="decoration" id="decoration" value="1" /><span> </span></label></td>
+                        <td><label><input type="radio" name="decoration" id="decoration" value="2" /><span> </span></label></td>
+                        <td><label><input type="radio" name="decoration" id="decoration" value="3" /><span> </span></label></td>
                         </td4>
-                        <td><label><input type="radio" id="decoration" value="4" /><span> </span></label>
+                        <td><label><input type="radio" name="decoration" id="decoration" value="4" /><span> </span></label>
                         </td>
                     </tr>
                 </table>
@@ -379,7 +379,7 @@
                         <div class="row">
                             <label for="choisirconcert_id">Choisissez un concert auquel vous souhaiteriez
                                 assister</label>
-                            <select id="choisirconcert_id">
+                            <select name="choisirconcert_id" id="choisirconcert_id">
                                 <!-- TODO : l'affichage de cette partie doit être automatisé avec le php -->
                                 <option value="" disabled selected>Sélectionner</option>
 
