@@ -16,7 +16,7 @@ if (!($log_u == "" && $user_firstname == "" && $user_lastname == "" && $user_mai
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">assignment_ind</i>
-                    <?php echo '<input name="user_id" id="user_id" type="number" value="' . rawurldecode($log_u) . '" required disabled>'; ?>
+                    <?php echo '<input name="user_id" id="user_id" type="number" value="' . rawurldecode($log_u) . '" required readonly>'; ?>
                     <label class="active" for="user_id">ID</label>
                 </div>
             </div>
