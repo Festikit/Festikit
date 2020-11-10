@@ -32,7 +32,7 @@
                     <div class="input-field col s6">
                         <i class="material-icons prefix">insert_invitation</i>
                         <input id="user_birthdate" placeholder=" " type="date" max="2010-01-01" min="1900-01-01" class="validate" required>
-                        <label for="user_birthdate">date de naissance<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
+                        <label for="user_birthdate">Date de naissance<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
                     </div>
                     <div class="file-field input-field col s6">
                         <div class="btn">
@@ -143,7 +143,7 @@
                     <div class="input-field col s6">
                         <i class="material-icons prefix">access_time</i>
                         <input id="arrivee-heure" placeholder=" " type="time" class="validate">
-                        <label for="arrivee-heure">Date d'arrivée approximatif</label>
+                        <label for="arrivee-heure">Heure d'arrivée approximatif</label>
                     </div>
                 </div>
 
