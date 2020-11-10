@@ -11,20 +11,21 @@ if (!($log_u == "" && $user_firstname == "" && $user_lastname == "" && $user_mai
 ?>
 
 <form method="get" action="index.php?action=updated">
-    <div class="card-panel col s12 grey lighten-4">
-        <h5 class="center-align">À propos de moi</h5>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">assignment_ind</i>
-                <?php echo '<input name="user_id" id="user_id" type="number" value="' . rawurldecode($log_u) . '" required disabled>'; ?>
-                <label class="active" for="user_id">ID</label>
+        <div class="card-panel col s12 grey lighten-4">
+            <h5 class="center-align">À propos de moi</h5>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">assignment_ind</i>
+                    <?php echo '<input name="user_id" id="user_id" type="number" value="' . rawurldecode($log_u) . '" required readonly>'; ?>
+                    <label class="active" for="user_id">ID</label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">email</i>
-                <?php echo '<input name="user_email" id="user_email" type="email" value="' . rawurldecode($user_mail) . '" required>'; ?>
-                <label class="active" for="user_email">Email</label>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">email</i>
+                    <?php echo '<input name="user_mail" id="user_mail" type="email" value="' . rawurldecode($user_mail) . '" required>'; ?>
+                    <label class="active" for="user_mail">Email</label>
+                </div>
             </div>
         </div>
 
