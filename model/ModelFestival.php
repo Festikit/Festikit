@@ -153,4 +153,31 @@ class ModelFestival /*extends Model*/
       die();
     }
   }
+
+
+  // Pour générer le formulaire dynamiquement
+  public static function getPosteByFestival($festival_id)
+  {
+    try {
+      $sql = "SELECT poste_id, poste_name, poste_desciption FROM poste WHERE festival_id=:id_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $festival_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelPoste');
+      $tab_poste = $req_prep->fetchAll();
+
+      if (empty($tab_poste)) return false;
+      return $tab_poste;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
 }
