@@ -23,8 +23,8 @@ if (!($log_u == "" && $user_firstname == "" && $user_lastname == "" && $user_mai
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">email</i>
-                    <?php echo '<input name="user_email" id="user_email" type="email" value="' . rawurldecode($user_mail) . '" required>'; ?>
-                    <label class="active" for="user_email">Email</label>
+                    <?php echo '<input name="user_mail" id="user_mail" type="email" value="' . rawurldecode($user_mail) . '" required>'; ?>
+                    <label class="active" for="user_mail">Email</label>
                 </div>
             </div>
 

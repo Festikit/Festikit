@@ -22,13 +22,15 @@ if(isset($_GET['action'])) {
 		} else {
 			$pagetitle = 'Erreur action';
 	        $controller = 'utilisateur';
-	        $view = 'error';
+			$view = 'error';
+			$message = 'erreur de action (routeur)';
 	        require File::build_path(array("view","view.php"));
 		}
 	} else {
 		$pagetitle = 'Erreur classe';
         $controller = 'utilisateur';
-        $view = 'error';
+		$view = 'error';
+		$message = 'erreur de classe (routeur)';
         require File::build_path(array("view","view.php"));
 	}
 } else {
