@@ -21,7 +21,7 @@
 			<a title=\"modifier\" href=\"index.php?action=update&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
 		</div>
 	</li>";
-	$i++;
+		$i++;
 	}
 	?>
 </ul>

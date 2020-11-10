@@ -4,6 +4,13 @@ require_once File::build_path(array("model","ModelUtilisateur.php"));
 
 class ControllerUtilisateur {
 
+    public static function create() {
+        $pagetitle = 'Formulaire d\'enregistrement';
+        $controller = 'utilisateur';
+        $view = 'create';
+        require File::build_path(array("view","view.php"));
+    }
+
     public static function readAll() {
         $tab_u = ModelUtilisateur::getAllUtilisateurs();
 
@@ -83,5 +90,3 @@ class ControllerUtilisateur {
         
     }
 }
-
-?>

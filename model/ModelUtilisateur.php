@@ -166,56 +166,55 @@ class ModelUtilisateur /*extends Model*/
 
   public static function deleteById($id)
   {
-    try{
-    $sql = "DELETE FROM user WHERE user_id =:nom_tag";
-    $req_prep = Model::$pdo->prepare($sql);
-    $values = array(
-      "nom_tag" => $id,
-    );
-    $req_prep->execute($values);
-  }
-  catch (PDOException $e){
-    if (Conf::getDebug()){
-      echo $e->getMessage();
-    }
-    else echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-    die();  
+    try {
+      $sql = "DELETE FROM user WHERE user_id =:nom_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "nom_tag" => $id,
+      );
+      $req_prep->execute($values);
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      die();
     }
   }
 
   public function update($data)
-    {
-        try {
-            $sql = "UPDATE user SET user_firstname = :user_firstname, user_lastname = :user_lastname, user_mail = :user_mail, 
+  {
+    try {
+      $sql = "UPDATE user SET user_firstname = :user_firstname, user_lastname = :user_lastname, user_mail = :user_mail, 
              user_phone = :user_phone, user_birthdate = :user_birthdate, user_postal_code = :user_postal_code WHERE user_id = :user_id";
 
-            // Préparation de la requête
-            $req_prep = Model::$pdo->prepare($sql);
+      // Préparation de la requête
+      $req_prep = Model::$pdo->prepare($sql);
 
-            $values = array(
-                "user_id" => $data['user_id'],
-                "user_firstname" => $data['user_firstname'],
-                "user_lastname" => $data['user_lastname'],
-                "user_mail" => $data['user_mail'],
-                "user_phone" => $data['user_phone'],
-                "user_postal_code" => $data['user_postal_code'],
-                "user_birthdate" => $data['user_birthdate'],
-            );
-            // On donne les valeurs et on exécute la requête    
-            $req_prep->execute($values);
-            // echo $sql;
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-            }
-            die();
-        }
+      $values = array(
+        "user_id" => $data['user_id'],
+        "user_firstname" => $data['user_firstname'],
+        "user_lastname" => $data['user_lastname'],
+        "user_mail" => $data['user_mail'],
+        "user_phone" => $data['user_phone'],
+        "user_postal_code" => $data['user_postal_code'],
+        "user_birthdate" => $data['user_birthdate'],
+      );
+      // On donne les valeurs et on exécute la requête    
+      $req_prep->execute($values);
+      // echo $sql;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage(); // affiche un message d'erreur
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
     }
+  }
 
   // postuler_accepted = 1 dans la table "postuler"
-  public static function getFestivalWhereAccepted($user_id) {
+  public static function getFestivalWhereAccepted($user_id)
+  {
     try {
       $sql = "SELECT festival_id FROM postuler WHERE user_id=:id_tag AND postuler_accepted=:accepted_tag";
       $req_prep = Model::$pdo->prepare($sql);
@@ -229,7 +228,6 @@ class ModelUtilisateur /*extends Model*/
 
       if (empty($tab_festivalWhereAccepted)) return false;
       return $tab_festivalWhereAccepted;
-
     } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage();
@@ -242,7 +240,8 @@ class ModelUtilisateur /*extends Model*/
 
 
   // postuler_accepted = 0 dans la table "postuler"
-  public static function getFestivalWhereCandidat($user_id) {
+  public static function getFestivalWhereCandidat($user_id)
+  {
     try {
       $sql = "SELECT festival_id FROM postuler WHERE user_id=:id_tag AND postuler_accepted=:accepted_tag";
       $req_prep = Model::$pdo->prepare($sql);
@@ -256,7 +255,6 @@ class ModelUtilisateur /*extends Model*/
 
       if (empty($tab_festivalWhereCandidat)) return false;
       return $tab_festivalWhereCandidat;
-
     } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage();
@@ -267,7 +265,7 @@ class ModelUtilisateur /*extends Model*/
     }
   }
 
-    public function save()
+  public function save()
   {
     try {
       $sql = "INSERT INTO user (user_id, user_firstname, user_lastname, user_mail, user_phone, user_birthdate, user_picture, user_postal_code, user_driving_license) VALUES (:user_id, :user_firstname, :user_lastname, :user_mail, :user_phone, :user_birthdate, :user_picture, :user_postal_code, :user_driving_license)";
@@ -300,5 +298,4 @@ class ModelUtilisateur /*extends Model*/
       die();
     }
   }
-  
 }

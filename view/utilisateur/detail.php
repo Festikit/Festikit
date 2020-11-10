@@ -60,5 +60,3 @@
     echo '~~';
     echo '<a href="index.php?action=update&user_id=' .rawurlencode($user_id) .'">Modifier utilisateur</a>';
     echo "<p> Retour: <a href=\"index.php?action=readAll\">Cliquez ici </a> </p>";
-
-?>
