@@ -10,8 +10,8 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">email</i>
-                        <input name="user_email" id="user_email" type="email" class="validate" required>
-                        <label for="user_email">Email<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
+                        <input name="user_mail" id="user_mail" type="email" class="validate" required>
+                        <label for="user_mail">Email<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
                     </div>
                 </div>
 
