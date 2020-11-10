@@ -4,10 +4,10 @@ class Conf {
   static private $debug = true;
 
   static private $databases = array(
-    'hostname' => 'localhost',
-    'database' => 'benevole',
-    'login' => 'root',
-    'password' => ''
+    'hostname' => 'webinfo.iutmontp.univ-montp2.fr',
+    'database' => 'davierp',
+    'login' => 'davierp',
+    'password' => 'ProjetPrincipalS32020'
   );
    
   static public function getLogin() {
