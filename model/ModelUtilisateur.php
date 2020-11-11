@@ -181,6 +181,8 @@ class ModelUtilisateur /*extends Model*/
     }
   }
 
+
+
   public function update($data)
   {
     try {
