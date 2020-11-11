@@ -1,6 +1,6 @@
 <ul class="collection">
 	<li class="collection-header">
-		<h4>Liste de tous les utilisateurs</h4>
+		<h4>Liste de tous les festivals</h4>
 	</li>
 	<?php
 	// Liste tous les utilisateurs de la base de donnée: bénévoles (postulé accepté: oui et non) et les responsables
