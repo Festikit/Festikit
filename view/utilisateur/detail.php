@@ -33,7 +33,7 @@
     } else {
         $i = 1;
         foreach ($tab_festivalWhereAccepted as $f) {
-            echo " $i : <a href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\">" . htmlspecialchars($f->getFestivalId()) . "</a></p>";
+            echo " $i : <a href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\">" . htmlspecialchars($f->getFestivalName()) . "</a></p>";
             $i++;
         }
     }
@@ -48,15 +48,15 @@
     } else {
         $i = 1;
         foreach ($tab_festivalWhereCandidat as $c) {
-            echo " $i : <a href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($c->getFestivalId()) . "\">" . htmlspecialchars($c->getFestivalId()) . "</a></p>";
+            echo " $i : <a href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($c->getFestivalId()) . "\">" . htmlspecialchars($c->getFestivalName()) . "</a></p>";
             $i++;
         }
     }
 
 
 
-
-    echo '<a href="index.php?action=delete&user_id=' .rawurlencode($user_id) .'">Supprimer utilisateur</a>';
+    
+    echo '<br><a href="index.php?action=delete&user_id=' .rawurlencode($user_id) .'">Supprimer utilisateur</a>';
     echo '~~';
     echo '<a href="index.php?action=update&user_id=' .rawurlencode($user_id) .'">Modifier utilisateur</a>';
     echo "<p> Retour: <a href=\"index.php?action=readAll\">Cliquez ici </a> </p>";

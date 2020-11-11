@@ -216,7 +216,7 @@ class ModelUtilisateur /*extends Model*/
   public static function getFestivalWhereAccepted($user_id)
   {
     try {
-      $sql = "SELECT festival_id FROM postuler WHERE user_id=:id_tag AND postuler_accepted=:accepted_tag";
+      $sql = "SELECT f.festival_id, f.festival_name FROM postuler p JOIN festival f ON p.festival_id=f.festival_id WHERE p.user_id=:id_tag AND postuler_accepted=:accepted_tag";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
         "id_tag" => $user_id,
@@ -243,7 +243,7 @@ class ModelUtilisateur /*extends Model*/
   public static function getFestivalWhereCandidat($user_id)
   {
     try {
-      $sql = "SELECT festival_id FROM postuler WHERE user_id=:id_tag AND postuler_accepted=:accepted_tag";
+      $sql = "SELECT f.festival_id, f.festival_name FROM postuler p JOIN festival f ON p.festival_id=f.festival_id WHERE p.user_id=:id_tag AND postuler_accepted=:accepted_tag";      
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
         "id_tag" => $user_id,
