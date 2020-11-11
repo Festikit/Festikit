@@ -32,10 +32,7 @@
     } else {
         $i = 1;
         foreach ($tab_benevoleAccepted as $b) {
-
-            $nom = $b->getFirstname();
-            echo " $i : <a href=\"index.php?action=read&user_id=" . rawurlencode($b->getId()) . "\">" . $b->getId() . "</a></p>";
-            /* Je n'arrive pas à afficher le nom et le prénom du bénévole...*/
+              echo " $i : <a href=\"index.php?action=read&user_id=" . rawurlencode($b->getId()) . "\">" . htmlspecialchars($b->getFirstname()) . " " .htmlspecialchars($b->getLastname()) . "</a></p>";
             $i++;
         }
     }
@@ -50,10 +47,7 @@
     } else {
         $i = 1;
         foreach ($tab_candidature as $c) {
-
-            $nom = $c->getFirstname();
-            echo " $i : <a href=\"index.php?action=read&user_id=" . rawurlencode($c->getId()) . "\">" . $c->getId() . "</a></p>";
-            /* Je n'arrive pas à afficher le nom et le prénom du candidat...*/
+            echo " $i : <a href=\"index.php?action=read&user_id=" . rawurlencode($c->getId()) . "\">" . htmlspecialchars($c->getFirstname()) . " " .htmlspecialchars($c->getLastname()) . "</a></p>";
             $i++;
         }
     }
