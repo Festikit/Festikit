@@ -159,7 +159,7 @@ class ModelFestival /*extends Model*/
   public static function getPosteByFestival($festival_id)
   {
     try {
-      $sql = "SELECT poste_id, poste_name, poste_desciption FROM poste WHERE festival_id=:id_tag";
+      $sql = "SELECT poste_id, poste_name, poste_description FROM poste WHERE festival_id=:id_tag";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
         "id_tag" => $festival_id,
