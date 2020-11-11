@@ -294,10 +294,11 @@
                     <?php
                     foreach (ModelFestival::getPostesByFestival($_GET['festival_id']) as $post) {
                         $nomPoste = $post->getPosteName();
+                        $descriptionPoste = $post->getPosteDescription();
                         $idPoste = $post->getPosteId();
                         echo "
                         <tr>
-                        <td><label for=\"$idPoste\">$nomPoste</label></td>
+                        <td><label for=\"$idPoste\">$nomPoste<br>$descriptionPoste</label></td>
                         <td><label><input type=\"radio\" name=\"$idPoste\" id=\"$idPoste\" value=\"1\" /><span> </span></label></td>
                         <td><label><input type=\"radio\" name=\"$idPoste\" id=\"$idPoste\" value=\"2\" /><span> </span></label></td>
                         <td><label><input type=\"radio\" name=\"$idPoste\" id=\"$idPoste\" value=\"3\" /><span> </span></label></td>
