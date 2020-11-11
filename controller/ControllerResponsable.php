@@ -6,6 +6,7 @@ class ControllerResponsable {
 
     public static function readAll() {
         $tab_r = ModelResponsable::getAllResponsables();
+        $tab_nomResponsable = ModelResponsable::getNomResponsable();
 
         $pagetitle = 'Liste des responsables';
         $controller = 'responsable';

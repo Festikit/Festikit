@@ -49,6 +49,24 @@ class ModelResponsable /*extends Model*/
         $this->festival_id = $festivalId2;
     }
 
+    public static function getNomResponsable()
+    {
+        try {
+            $sql = "SELECT u.user_firstname, r.responsable_id from user u
+            JOIN responsable r ON  u.user_id = r.user_id";
+            $rep = Model::$pdo->query($sql);
+            $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+            return $rep->fetchAll();
+        } catch (PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage();
+            } else {
+                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
+
 
 
     public static function getAllResponsables()
