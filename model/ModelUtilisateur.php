@@ -296,7 +296,7 @@ class ModelUtilisateur /*extends Model*/
     }
   }
 
-
+  /*
   public function savePostuler(){
     try{
       $sql = "INSERT INTO postuler (postuler_accepted) VALUES (0)";
@@ -350,5 +350,5 @@ class ModelUtilisateur /*extends Model*/
       }
       die();
     }
-  }
+  } */
 }
