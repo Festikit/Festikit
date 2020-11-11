@@ -76,7 +76,7 @@ class ModelFestival /*extends Model*/
     }
   }
 
-  public static function getFestivalById($festival_id)
+  public static function getFestivalsById($festival_id)
   {
     try {
       $sql = "SELECT * from festival WHERE festival_id=:id_tag";
@@ -102,7 +102,7 @@ class ModelFestival /*extends Model*/
 
 
   // postuler_accepted = 1 dans la table "postuler"
-  public static function getBenevoleAcceptedByFestival($festival_id)
+  public static function getBenevolesAcceptedByFestival($festival_id)
   {
     try {
       $sql = "SELECT u.user_id, u.user_firstname, u.user_lastname FROM postuler p JOIN user u ON u.user_id=p.user_id WHERE festival_id=:id_tag AND postuler_accepted=:accepted_tag";
@@ -129,7 +129,7 @@ class ModelFestival /*extends Model*/
 
 
   // postuler_accepted = 0 dans la table "postuler"
-  public static function getCandidatByFestival($festival_id)
+  public static function getCandidatsByFestival($festival_id)
   {
     try {
       $sql = "SELECT u.user_id, u.user_firstname, u.user_lastname FROM postuler p JOIN user u ON u.user_id=p.user_id WHERE festival_id=:id_tag AND postuler_accepted=:accepted_tag";
@@ -157,7 +157,7 @@ class ModelFestival /*extends Model*/
 
   // Pour générer le formulaire dynamiquement
   // et afficher les postes par festival
-  public static function getPosteByFestival($festival_id)
+  public static function getPostesByFestival($festival_id)
   {
     try {
       $sql = "SELECT p.poste_id, p.poste_name, p.poste_description FROM poste p WHERE festival_id=:id_tag";

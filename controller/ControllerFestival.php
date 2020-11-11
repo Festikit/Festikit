@@ -16,11 +16,11 @@ class ControllerFestival {
     public static function read() {
 
         $festival_id = $_GET['festival_id'];
-        $f = ModelFestival::getFestivalById($festival_id);
+        $f = ModelFestival::getFestivalsById($festival_id);
         
-        $tab_benevoleAccepted = ModelFestival::getBenevoleAcceptedByFestival($festival_id);
-        $tab_candidature = ModelFestival::getCandidatByFestival($festival_id);
-        $tab_poste = ModelFestival::getPosteByFestival($festival_id);
+        $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
+        $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
+        $tab_poste = ModelFestival::getPostesByFestival($festival_id);
 
         if($f == false) {
             $pagetitle = 'Erreur action read';
