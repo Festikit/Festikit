@@ -156,10 +156,11 @@ class ModelFestival /*extends Model*/
 
 
   // Pour générer le formulaire dynamiquement
+  // et afficher les postes par festival
   public static function getPosteByFestival($festival_id)
   {
     try {
-      $sql = "SELECT poste_id, poste_name, poste_description FROM poste WHERE festival_id=:id_tag";
+      $sql = "SELECT p.poste_id, p.poste_name, p.poste_description FROM poste p WHERE festival_id=:id_tag";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
         "id_tag" => $festival_id,

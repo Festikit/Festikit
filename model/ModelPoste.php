@@ -61,3 +61,21 @@ class ModelPoste /*extends Model*/
   {
     $this->festival_id = $id2;
   }
+
+  public static function getAllPostes()
+  {
+    try {
+      $sql = "SELECT * from poste";
+      $rep = Model::$pdo->query($sql);
+      $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelPoste');
+      return $rep->fetchAll();
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+}

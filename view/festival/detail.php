@@ -7,20 +7,19 @@
 
 
     // Affichage des postes EN COURS
-    /*
+    
     echo "<p> Liste des postes: </br>";
 
     if(empty($tab_poste)) {
         echo "Il n'y a pas encore de postes pour ce festival.</br>";
     } else {
         $i = 1;
-        print_r($tab_poste);
         foreach ($tab_poste as $p) {
-            echo " $i :" . htmlspecialchars($p->getPosteName()) . "(" . htmlspecialchars($p->getPosteDescription()) . ")</a></p>";
+            echo " $i : " . htmlspecialchars($p->getPosteName()) . "(" . htmlspecialchars($p->getPosteDescription()) . ")</a></p>";
             $i++;
         }
     }
-    */
+    
 
 
     // Affichage des bénévoles
