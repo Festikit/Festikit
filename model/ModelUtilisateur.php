@@ -296,14 +296,17 @@ class ModelUtilisateur /*extends Model*/
     }
   }
 
-  
+  /*
   public function savePostuler(){
     try{
-      $sql = "INSERT INTO postuler(user_id,festival_id, postuler_accepted) VALUES (:user_lastname, :user_mail, :user_phone, :user_birthdate, :user_picture, :user_postal_code, :user_driving_license)";
+      $sql = "INSERT INTO postuler(user_id, festival_id, postuler_accepted) VALUES (:user_id, :festival_id, :postuler_accepted)";
       $req_prep = Model::$pdo->prepare($sql);
 
-      $values = array();
-
+      $values = array(
+        "user_id" => ,
+        "festival_id" => ,
+        "postuler_accepted" => 0,
+      );
     }
     catch (PDOException $e) {
       if (Conf::getDebug()) {
@@ -315,7 +318,7 @@ class ModelUtilisateur /*extends Model*/
     }
 
   }
-
+  */
   /*
   public function saveDisponible(){
     try{
