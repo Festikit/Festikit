@@ -265,21 +265,18 @@ class ModelUtilisateur /*extends Model*/
     }
   }
 
-  public function save()
-  {
+  public function saveUser(){
     try {
-      $sql = "INSERT INTO user (user_id, user_firstname, user_lastname, user_mail, user_phone, user_birthdate, user_picture, user_postal_code, user_driving_license) VALUES (:user_id, :user_firstname, :user_lastname, :user_mail, :user_phone, :user_birthdate, :user_picture, :user_postal_code, :user_driving_license)";
+      $sql = "INSERT INTO user (user_firstname, user_lastname, user_mail, user_phone, user_birthdate, user_picture, user_postal_code, user_driving_license) VALUES (:user_firstname, :user_lastname, :user_mail, :user_phone, :user_birthdate, :user_picture, :user_postal_code, :user_driving_license)";
       // echo $sql;
       // Préparation de la requête
       $req_prep = Model::$pdo->prepare($sql);
 
       $values = array(
-        "user_id" => $this->user_id,
         "user_firstname" => $this->user_firstname,
         "user_lastname" => $this->user_lastname,
         "user_mail" => $this->user_mail,
         "user_phone" => $this->user_phone,
-        "user_lastname" => $this->user_lastname,
         "user_picture" => $this->user_picture,
         "user_birthdate" => $this->user_birthdate,
         "user_postal_code" => $this->user_postal_code,
@@ -290,6 +287,62 @@ class ModelUtilisateur /*extends Model*/
       $req_prep->execute($values);
       // echo $sql;
     } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage(); // affiche un message d'erreur
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
+
+  public function savePostuler(){
+    try{
+      $sql = "INSERT INTO postuler (postuler_accepted) VALUES (0)";
+      $req_prep = Model::$pdo->prepare($sql);
+
+      $values = array()
+
+    }
+    catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage(); // affiche un message d'erreur
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+
+  }
+
+  public function saveDisponible(){
+    try{
+      $sql = "INSERT INTO disponible () VALUES ()";
+      $req_prep = Model::$pdo->prepare($sql);
+
+      $values = array()
+
+    }
+    catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage(); // affiche un message d'erreur
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
+  public function savePreference(){
+    try{
+      $sql = "INSERT INTO preference () VALUES ()";
+      $req_prep = Model::$pdo->prepare($sql);
+
+      $values = array()
+
+    }
+    catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage(); // affiche un message d'erreur
       } else {
