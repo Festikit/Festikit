@@ -89,4 +89,34 @@ class ControllerUtilisateur {
         require (File::build_path(array("view","view.php")));
         
     }
+
+    public static function created(){
+        $controller = 'utilisateur';
+        $view='created';
+        $pagetitle='creation utilisateur';
+
+        $log_u = $_POST['user_id'];
+        $user_firstname = $_POST['user_firstname'];
+        $user_lastname = $_POST['user_lastname'];
+        $user_mail = $_POST['user_mail'];
+        $user_phone = $_POST['user_phone'];
+        $user_postal_code = $_POST['user_postal_code'];
+        $user_birthdate = $_POST['user_birthdate'];
+
+        $tab_umod = array(
+            "user_id" => $log_u,
+            "user_firstname" => $user_firstname,
+            "user_lastname" => $user_lastname,
+            "user_mail" => $user_mail,
+            "user_phone" => $user_phone,
+            "user_postal_code" => $user_postal_code,
+            "user_birthdate" => $user_birthdate
+        );
+        $utilisateurmod = new ModelUtilisateur();
+        $utilisateurmod->save($tab_umod);
+        $tab_u = ModelUtilisateur::getAllUtilisateurs();
+        require (File::build_path(array("view","view.php")));
+    
+        
+    }
 }
