@@ -5,9 +5,9 @@ class Conf {
 
   static private $databases = array(
     'hostname' => 'webinfo.iutmontp.univ-montp2.fr',
-    'database' => 'davierp',
-    'login' => 'davierp',
-    'password' => 'ProjetPrincipalS32020'
+    'database' => 'albautb',
+    'login' => 'albautb',
+    'password' => '8B93wyzQC'
   );
    
   static public function getLogin() {
