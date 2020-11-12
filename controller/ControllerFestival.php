@@ -61,4 +61,27 @@ class ControllerFestival
         }
         require File::build_path(array("view", "view.php"));
     }
+
+    public static function refuserUtilisateur()
+    {
+        $festival_id = $_GET['festival_id'];
+        $f = ModelFestival::getFestivalsById($festival_id);
+        $f->refuserUtilisateur($_GET['user_id']);
+
+        $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
+        $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
+        $tab_poste = ModelFestival::getPostesByFestival($festival_id);
+        $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
+
+        if ($f == false) {
+            $pagetitle = 'Erreur action read';
+            $controller = 'festival';
+            $view = 'error';
+        } else {
+            $pagetitle = 'Détail du festival';
+            $controller = 'festival';
+            $view = 'detail';
+        }
+        require File::build_path(array("view", "view.php"));
+    }
 }

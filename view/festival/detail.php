@@ -5,25 +5,25 @@
 
 echo "<p> Festival " . htmlspecialchars($f->getFestivalName()) . "</p>";
 
-    // Affichage des créneaux 
-    
-    echo "<p> Liste des créneaux: </br>";
+// Affichage des créneaux 
 
-    if(empty($tab_creneau)) {
-        echo "Il n'y a pas encore de créneaux pour ce festival.</br>";
-    } else {
-        $i = 1;
-        foreach ($tab_creneau as $c) {
-            echo " $i : " . htmlspecialchars($c->getCreneauStart()) . " - " . htmlspecialchars($c->getCreneauEnd()) . ")</a></p>";
-            $i++;
-        }
+echo "<p> Liste des créneaux: </br>";
+
+if (empty($tab_creneau)) {
+    echo "Il n'y a pas encore de créneaux pour ce festival.</br>";
+} else {
+    $i = 1;
+    foreach ($tab_creneau as $c) {
+        echo " $i : " . htmlspecialchars($c->getCreneauStart()) . " - " . htmlspecialchars($c->getCreneauEnd()) . ")</a></p>";
+        $i++;
     }
+}
 
 
 
-    // Affichage des postes
-    
-    echo "<p> Liste des postes: </br>";
+// Affichage des postes
+
+echo "<p> Liste des postes: </br>";
 
 // Affichage des postes EN COURS
 
@@ -48,9 +48,11 @@ echo "<p> Liste des bénévoles acceptés: </br>";
 if (empty($tab_benevoleAccepted)) {
     echo "Il n'y a pas encore de bénévoles pour ce festival.</br>";
 } else {
+    echo "<iframe style=\"display:none;\" id=\"target\"></iframe>";
     $i = 1;
     foreach ($tab_benevoleAccepted as $b) {
         echo " $i : <a href=\"index.php?action=read&user_id=" . rawurlencode($b->getId()) . "\">" . htmlspecialchars($b->getFirstname()) . " " . htmlspecialchars($b->getLastname()) . "</a></p>";
+        echo " $i : <a href=\"index.php?action=refuserUtilisateur&controller=festival&user_id=" . rawurlencode($b->getId()) . "&festival_id=" . rawurlencode($f->getFestivalId()) . "\" target=\"target\" > Refuser </a></p>";
         $i++;
     }
 }
@@ -62,8 +64,8 @@ echo "<p> Liste des candidatures: </br>";
 
 if (empty($tab_candidature)) {
     echo "Il n'y a pas de candidature pour ce festival.</br>";
-    echo "<iframe style=\"display:none;\" id=\"target\"></iframe>";
 } else {
+    echo "<iframe style=\"display:none;\" id=\"target\"></iframe>";
     $i = 1;
     foreach ($tab_candidature as $c) {
         echo " $i : <a href=\"index.php?action=read&user_id=" . rawurlencode($c->getId()) . "\">" . htmlspecialchars($c->getFirstname()) . " " . htmlspecialchars($c->getLastname()) . "</a></p>";
