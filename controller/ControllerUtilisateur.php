@@ -87,7 +87,6 @@ class ControllerUtilisateur {
         $utilisateurmod->update($tab_umod);
         $tab_u = ModelUtilisateur::getAllUtilisateurs();
         require (File::build_path(array("view","view.php")));
-        
     }
 
     
@@ -97,7 +96,6 @@ class ControllerUtilisateur {
         $view='created';
         $pagetitle='creation utilisateur';
 
-        $log_u = $_POST['user_id'];
         $user_firstname = $_POST['user_firstname'];
         $user_lastname = $_POST['user_lastname'];
         $user_mail = $_POST['user_mail'];
@@ -105,6 +103,7 @@ class ControllerUtilisateur {
         $user_postal_code = $_POST['user_postal_code'];
         $user_birthdate = $_POST['user_birthdate'];
 
+<<<<<<< HEAD
         $tab_umod = array(
             "user_id" => $log_u,
             "user_firstname" => $user_firstname,
@@ -115,10 +114,11 @@ class ControllerUtilisateur {
             "user_birthdate" => $user_birthdate
         );
         $utilisateurmod = new ModelUtilisateur();
+=======
+        $utilisateurmod = new ModelUtilisateur($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate);
+>>>>>>> e9da74ffb7a8f78416b193e1f1b0177b7f363c19
         $utilisateurmod->saveUser();
         $tab_u = ModelUtilisateur::getAllUtilisateurs();
         require (File::build_path(array("view","view.php")));
-    
-        
     }
 }

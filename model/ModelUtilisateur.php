@@ -283,11 +283,9 @@ class ModelUtilisateur /*extends Model*/
         "user_birthdate" => $this->user_birthdate,
         "user_postal_code" => $this->user_postal_code,
         "user_driving_license" => $this->user_driving_license,
-        // TODO: Rajouter les champs manquant 
       );
       // On donne les valeurs et on exécute la requête     
       $req_prep->execute($values);
-      // echo $sql;
     } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage(); // affiche un message d'erreur
