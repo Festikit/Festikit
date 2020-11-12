@@ -55,7 +55,6 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
 		</div>
 	</li>";
         $i++;
->>>>>>> 36254d01bb8d7cf3e5aa21dc830d17ed1e012ff0
     }
     ?>
 </ul>
