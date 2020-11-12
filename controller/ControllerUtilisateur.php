@@ -90,6 +90,8 @@ class ControllerUtilisateur {
         
     }
 
+    
+
     public static function created(){
         $controller = 'utilisateur';
         $view='created';
@@ -113,7 +115,7 @@ class ControllerUtilisateur {
             "user_birthdate" => $user_birthdate
         );
         $utilisateurmod = new ModelUtilisateur();
-        $utilisateurmod->save($tab_umod);
+        $utilisateurmod->saveUser($tab_umod);
         $tab_u = ModelUtilisateur::getAllUtilisateurs();
         require (File::build_path(array("view","view.php")));
     

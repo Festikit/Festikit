@@ -1,5 +1,4 @@
 <?php
-    $modelUser = new ModelUtilisateur;
-    $modelUser->save();
-    ModelUtilisateur::getAllUtilisateurs();
+echo '<p>Utilisateur créé</p>';
+require File::build_path(array("view","utilisateur","list.php"));
 ?>
