@@ -57,8 +57,6 @@ class ModelFestival /*extends Model*/
     $this->city = $city2;
   }
 
-  /* TODO GETTER/SETTER */
-
   public static function getAllFestivals()
   {
     try {
@@ -197,6 +195,45 @@ class ModelFestival /*extends Model*/
 
       if (empty($tab_creneau)) return false;
       return $tab_creneau;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
+
+  public static function getJoursByFestival($festival_id)
+  {
+    try {
+      $sql = "SELECT CAST(creneau_startdate AS DATE) AS creneau_startdate FROM creneau WHERE festival_id=:id_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $festival_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelCreneau');
+      $tab_date = $req_prep->fetchAll();
+
+      if (empty($tab_date)) return false;
+      
+      //foreach ($tab_date as $date) {
+        //$date = date_format($date,'l j F');
+        //$date = DateTime::createFromFormat('Y-m-d', $date);
+        //$date = date_create_from_format('j-M-Y',$date);
+        //$date = date_format($date, 'd-m-Y');
+        //$date = $date->format('d-m-Y');
+       // }
+
+       //$dateTime = DateTime::createFromFormat('Y-m-d', $date);
+       //$dateTime = new DateTime($date);
+       //$date = $dateTime->format('d-m-Y');
+      
+
+      return $tab_date;
     } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage();
