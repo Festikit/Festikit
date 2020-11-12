@@ -22,6 +22,7 @@ class ControllerFestival {
         $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
         $tab_poste = ModelFestival::getPostesByFestival($festival_id);
         $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
+        $tab_date = ModelFestival::getJoursByFestival($festival_id);
 
         if($f == false) {
             $pagetitle = 'Erreur action read';

@@ -6,6 +6,20 @@
     echo "<p> Festival " . htmlspecialchars($f->getFestivalName()) . "</p>";
 
 
+    if(empty($tab_date)) {
+        echo "Il n'y a pas encore de dates pour ce festival.</br>";
+    } else {
+        $i = 1;
+        echo "<pre>";
+        print_r($tab_date);
+        echo "</pre>";
+        foreach ($tab_date as $d) {
+            echo $d->getCreneauStart() . " " ;
+            $i++;
+        }
+    }
+
+
     // Affichage des créneaux 
     
     echo "<p> Liste des créneaux: </br>";
@@ -15,7 +29,7 @@
     } else {
         $i = 1;
         foreach ($tab_creneau as $c) {
-            echo " $i : " . htmlspecialchars($c->getCreneauStart()) . " - " . htmlspecialchars($c->getCreneauEnd()) . ")</a></p>";
+            echo " $i : " . htmlspecialchars($c->getCreneauStart()) . " - " . htmlspecialchars($c->getCreneauEnd()) . ")</p>";
             $i++;
         }
     }
