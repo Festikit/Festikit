@@ -3,7 +3,7 @@
     </div>
     <div class="col s12 m4 l8">
         <!-- TODO: mettre l'action created -->
-        <form method="post" action="created.php" class="col s12">
+        <form method="post" action="created" class="col s12">
 
             <div class="card-panel grey lighten-4">
                 <h5>À propos de moi</h5>
