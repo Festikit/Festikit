@@ -42,6 +42,18 @@ class ModelFestival /*extends Model*/
   {
     return $this->festival_name;
   }
+  public function getFestivalDescription()
+  {
+    return $this->festival_description;
+  }
+  public function getFestivalStartDate()
+  {
+    return $this->festival_startdate;
+  }
+  public function getFestivalEndDate()
+  {
+    return $this->festival_enddate;
+  }
   public function setFestivalName($name2)
   {
     $this->festival_name = $name2;
@@ -248,5 +260,4 @@ class ModelFestival /*extends Model*/
       die();
     }
   }
-
 }
