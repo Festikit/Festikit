@@ -181,4 +181,30 @@ class ModelFestival /*extends Model*/
     }
   }
 
+  // Pour générer le formulaire dynamiquement
+  // et afficher les créneaux par festival
+  public static function getCreneauxByFestival($festival_id)
+  {
+    try {
+      $sql = "SELECT creneau_id, creneau_startdate, creneau_enddate FROM creneau WHERE festival_id=:id_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $festival_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelCreneau');
+      $tab_creneau = $req_prep->fetchAll();
+
+      if (empty($tab_creneau)) return false;
+      return $tab_creneau;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
 }
