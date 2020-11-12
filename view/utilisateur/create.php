@@ -3,11 +3,9 @@
     </div>
     <div class="col s12 m4 l8">
         <!-- TODO: mettre l'action created -->
-<<<<<<< HEAD
-        <form method="post" action="created" class="col s12">
-=======
+
         <form method="post" action="index.php?action=created" class="col s12">
->>>>>>> e9da74ffb7a8f78416b193e1f1b0177b7f363c19
+
 
             <div class="card-panel grey lighten-4">
                 <h5>À propos de moi</h5>
