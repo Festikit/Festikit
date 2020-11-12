@@ -103,7 +103,9 @@ class ControllerUtilisateur {
         $user_postal_code = $_POST['user_postal_code'];
         $user_birthdate = $_POST['user_birthdate'];
 
+
         $utilisateurmod = new ModelUtilisateur($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate);
+
         $utilisateurmod->saveUser();
         $tab_u = ModelUtilisateur::getAllUtilisateurs();
         require (File::build_path(array("view","view.php")));
