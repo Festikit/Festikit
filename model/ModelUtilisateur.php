@@ -13,6 +13,7 @@ class ModelUtilisateur /*extends Model*/
   private $user_picture;
   private $user_postal_code;
   private $user_driving_license;
+  private $user_accepter;
 
   //protected static $object = 'utilisateur';
   //protected static $primary= 'user_id';
@@ -245,7 +246,7 @@ class ModelUtilisateur /*extends Model*/
   public static function getFestivalWhereCandidat($user_id)
   {
     try {
-      $sql = "SELECT f.festival_id, f.festival_name FROM postuler p JOIN festival f ON p.festival_id=f.festival_id WHERE p.user_id=:id_tag AND postuler_accepted=:accepted_tag";      
+      $sql = "SELECT f.festival_id, f.festival_name FROM postuler p JOIN festival f ON p.festival_id=f.festival_id WHERE p.user_id=:id_tag AND postuler_accepted=:accepted_tag";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
         "id_tag" => $user_id,
@@ -267,7 +268,8 @@ class ModelUtilisateur /*extends Model*/
     }
   }
 
-  public function saveUser(){
+  public function saveUser()
+  {
     try {
       $sql = "INSERT INTO user (user_id, user_firstname, user_lastname, user_mail, user_phone, user_birthdate, user_picture, user_postal_code, user_driving_license) VALUES (:user_id, :user_firstname, :user_lastname, :user_mail, :user_phone, :user_birthdate, :user_picture, :user_postal_code, :user_driving_license)";
       // Préparation de la requête

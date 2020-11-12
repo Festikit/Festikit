@@ -17,7 +17,7 @@ class ModelCreneau /*extends Model*/
     if (!is_null($id) && !is_null($startdate) && !is_null($enddate) && !is_null($festival_id) && !is_null($poste_id)) {
       $this->creneau_id = $id;
       $this->creneau_startdate = $startdate;
-      $this->creneau_enddate = $description;
+      $this->creneau_enddate = $enddate;
       $this->festival_id = $festival_id;
       $this->poste_id = $poste_id;
     }

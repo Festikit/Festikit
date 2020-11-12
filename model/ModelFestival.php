@@ -42,6 +42,18 @@ class ModelFestival /*extends Model*/
   {
     return $this->festival_name;
   }
+  public function getFestivalDescription()
+  {
+    return $this->festival_description;
+  }
+  public function getFestivalStartDate()
+  {
+    return $this->festival_startdate;
+  }
+  public function getFestivalEndDate()
+  {
+    return $this->festival_enddate;
+  }
   public function setFestivalName($name2)
   {
     $this->festival_name = $name2;
@@ -120,6 +132,48 @@ class ModelFestival /*extends Model*/
         echo $e->getMessage();
       } else {
         echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
+  public function accepterUtilisateur($user_id)
+  {
+    try {
+      $sql = "UPDATE postuler SET postuler_accepted = 1 WHERE user_id = :user_id AND festival_id = :festival_id";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "user_id" => $user_id,
+        "festival_id" => $this->festival_id
+      );
+
+      $req_prep->execute($values);
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage(); // affiche un message d'erreur
+      } else {
+        echo 'Une erreur est survenue lors de l\'acceptation de l\'utilisateur';
+      }
+      die();
+    }
+  }
+
+  public function refuserUtilisateur($user_id)
+  {
+    try {
+      $sql = "UPDATE postuler SET postuler_accepted = 0 WHERE user_id = :user_id AND festival_id = :festival_id";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "user_id" => $user_id,
+        "festival_id" => $this->festival_id
+      );
+
+      $req_prep->execute($values);
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage(); // affiche un message d'erreur
+      } else {
+        echo 'Une erreur est survenue lors de l\'acceptation de l\'utilisateur';
       }
       die();
     }
@@ -243,5 +297,4 @@ class ModelFestival /*extends Model*/
       die();
     }
   }
-
 }
