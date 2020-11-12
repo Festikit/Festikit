@@ -6,7 +6,23 @@
     echo "<p> Festival " . htmlspecialchars($f->getFestivalName()) . "</p>";
 
 
-    // Affichage des postes EN COURS
+    // Affichage des créneaux 
+    
+    echo "<p> Liste des créneaux: </br>";
+
+    if(empty($tab_creneau)) {
+        echo "Il n'y a pas encore de créneaux pour ce festival.</br>";
+    } else {
+        $i = 1;
+        foreach ($tab_creneau as $c) {
+            echo " $i : " . htmlspecialchars($c->getCreneauStart()) . " - " . htmlspecialchars($c->getCreneauEnd()) . ")</a></p>";
+            $i++;
+        }
+    }
+
+
+
+    // Affichage des postes
     
     echo "<p> Liste des postes: </br>";
 

@@ -21,6 +21,7 @@ class ControllerFestival {
         $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
         $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
         $tab_poste = ModelFestival::getPostesByFestival($festival_id);
+        $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
 
         if($f == false) {
             $pagetitle = 'Erreur action read';
