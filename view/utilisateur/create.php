@@ -59,7 +59,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="card-panel grey lighten-4">
                 <h5>Mobilité</h5>
                 <!-- TODO: Corrigé le h5 degeu -->
@@ -67,11 +66,11 @@
                     <div class="col s12">
                         <label for="user_driving_license"></label> Permis de conduire<span class="flow-text red-text" title="Ce champ est obligatoire">*</span> :
                         <label>
-                            <input required id="user_driving_license" name="user_driving_license" type="radio" value="1" />
+                            <input id="user_driving_license" name="user_driving_license" type="radio" value="1" />
                             <span>Oui</span>
                         </label>
                         <label>
-                            <input required id="user_driving_license" name="user_driving_license" type="radio" value="0" />
+                            <input id="user_driving_license" name="user_driving_license" type="radio" value="0" />
                             <span>Non</span>
                         </label>
                     </div>
@@ -81,11 +80,11 @@
                     <div class="col s12">
                         <label for="vehicule"></label> Venez vous avec votre véhicule ?<span class="flow-text red-text" title="Ce champ est obligatoire">*</span> :
                         <label>
-                            <input required name="vehicule" type="radio" value="1" />
+                            <input name="vehicule" type="radio" value="1" />
                             <span>Oui</span>
                         </label>
                         <label>
-                            <input required name="vehicule" type="radio" value="0" />
+                            <input name="vehicule" type="radio" value="0" />
                             <span>Non</span>
                         </label>
                     </div>
@@ -98,11 +97,11 @@
                     <div class="col s12">
                         <label for="besoin_heberge"></label>Avez vous besoin d'être hébergé ?<span class="flow-text red-text" title="Ce champ est obligatoire">*</span> :
                         <label>
-                            <input required name="besoin_heberge" type="radio" value="1" />
+                            <input name="besoin_heberge" type="radio" value="1" />
                             <span>Oui</span>
                         </label>
                         <label>
-                            <input required name="besoin_heberge" type="radio" value="0" />
+                            <input name="besoin_heberge" type="radio" value="0" />
                             <span>Non</span>
                         </label>
                     </div>
@@ -112,11 +111,11 @@
                     <div class="col s12">
                         <label for="peut_heberge"></label>Pouvez vous héberger des personnes ?<span class="flow-text red-text" title="Ce champ est obligatoire">*</span> :
                         <label>
-                            <input required name="peut_heberge" type="radio" value="1" />
+                            <input name="peut_heberge" type="radio" value="1" />
                             <span>Oui</span>
                         </label>
                         <label>
-                            <input required name="peut_heberge" type="radio" value="0" />
+                            <input name="peut_heberge" type="radio" value="0" />
                             <span>Non</span>
                         </label>
                     </div>
@@ -366,11 +365,11 @@
                     <div class="col s12">
                         <label for="deja_benevole"></label>Avez-vous déjà été bénévole sur le festival ?<span class="flow-text red-text" title="Ce champ est obligatoire">*</span> :
                         <label>
-                            <input required name="deja_benevole" id="deja_benevole" type="radio" value="1" />
+                            <input name="deja_benevole" id="deja_benevole" type="radio" value="1" />
                             <span>Oui</span>
                         </label>
                         <label>
-                            <input required name="deja_benevole" id="deja_benevole" type="radio" value="0" />
+                            <input name="deja_benevole" id="deja_benevole" type="radio" value="0" />
                             <span>Non</span>
                         </label>
                     </div>
