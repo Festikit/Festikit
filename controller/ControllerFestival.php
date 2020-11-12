@@ -45,14 +45,19 @@ class ControllerFestival
         $f = ModelFestival::getFestivalsById($festival_id);
         $f->accepterUtilisateur($_GET['user_id']);
 
+        $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
+        $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
+        $tab_poste = ModelFestival::getPostesByFestival($festival_id);
+        $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
+
         if ($f == false) {
             $pagetitle = 'Erreur action read';
             $controller = 'festival';
             $view = 'error';
         } else {
-            $pagetitle = 'Utilisateur accepté';
+            $pagetitle = 'Détail du festival';
             $controller = 'festival';
-            $view = 'accepted';
+            $view = 'detail';
         }
         require File::build_path(array("view", "view.php"));
     }
