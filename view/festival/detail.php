@@ -49,8 +49,8 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
         <a href=\"index.php?action=read&controller=poste&poste_id=$poste_id\"> <span class=\"title\">$poste_name</span></a>
         <br> $poste_description <br>
 		<div class=\"secondary-content\">
-			<a title=\"en savoir plus\" href=\"index.php?action=read&controller=poste&poste_id=$poste_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
-			<a title=\"voir le formulaire\" href=\"index.php?action=create&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">assignment</i></a>
+            <a title=\"en savoir plus\" href=\"index.php?action=read&controller=poste&poste_id=$poste_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
+            <a title=\"modifier\" href=\"#!\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
 		</div>
 	</li>";
         $i++;
