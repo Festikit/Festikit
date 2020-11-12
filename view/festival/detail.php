@@ -46,9 +46,9 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
         $poste_name = htmlspecialchars($p->getPosteName());
         $poste_description = htmlspecialchars($p->getPosteDescription());
         $poste_id = $p->getPosteId();
-        echo "<li class=\"collection-item\">
-        <a href=\"index.php?action=read&controller=poste&poste_id=$poste_id\"> <span class=\"title\">$poste_name</span></a>
-        <br> $poste_description <br>
+        echo "<li class=\"collection-item avatar\">
+        <span class=\"title\"> <a href=\"index.php?action=read&controller=poste&poste_id=$poste_id\"> $poste_name</a> </span>
+        <p> $poste_description </p>
 		<div class=\"secondary-content\">
             <a title=\"en savoir plus\" href=\"index.php?action=read&controller=poste&poste_id=$poste_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
             <a title=\"modifier\" href=\"#!\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
