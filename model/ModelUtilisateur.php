@@ -342,10 +342,16 @@ class ModelUtilisateur /*extends Model*/
 
   public function savePreference(){
     try{
-      $sql = "INSERT INTO preference () VALUES ()";
+      $sql = "INSERT INTO preference (preference_id, user_id, poste_id, rang) VALUES (:preference_id, :user_id, :poste_id, :rang)";
       $req_prep = Model::$pdo->prepare($sql);
 
-      $values = array()
+      $values = array(
+        "preference_id" => ,
+        "user_id" => ,
+        "poste_id" => ,
+        "rang" => ,
+      );
+      $req_prep->execute($values);
 
     }
     catch (PDOException $e) {
