@@ -1,8 +1,13 @@
 <?php
 require_once File::build_path(array("model", "Model.php"));
 
-class ModelUtilisateur /*extends Model*/
+class ModelUtilisateur extends Model
 {
+
+  protected static $object_table = 'user';
+  protected static $object_model = 'Utilisateur';
+  protected static $primary= 'user_id';
+
 
   private $user_id;
   private $user_firstname;
@@ -15,8 +20,7 @@ class ModelUtilisateur /*extends Model*/
   private $user_driving_license;
   private $user_accepter;
 
-  //protected static $object = 'utilisateur';
-  //protected static $primary= 'user_id';
+  
 
   public function __construct($id = NULL, $firstname = NULL, $lastname = NULL, $mail = NULL, $phone = NULL, $birthdate = NULL, $picture = NULL, $postal_code = NULL, $driving_license = NULL)
   {
@@ -123,6 +127,7 @@ class ModelUtilisateur /*extends Model*/
     $this->user_driving_license = $driving_license2;
   }
 
+  /*
   public static function getAllUtilisateurs()
   {
     try {
@@ -139,6 +144,8 @@ class ModelUtilisateur /*extends Model*/
       die();
     }
   }
+  */
+  
 
   public static function getUtilisateurById($user_id)
   {

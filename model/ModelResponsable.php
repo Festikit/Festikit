@@ -1,8 +1,13 @@
 <?php
 require_once File::build_path(array("model", "Model.php"));
 
-class ModelResponsable /*extends Model*/
+class ModelResponsable extends Model
 {
+
+    protected static $object_table = 'responsable';
+    protected static $object_model = 'responsable';
+    protected static $primary= 'responsable_id';
+
 
     private $responsable_id;
     private $user_id;
@@ -69,7 +74,7 @@ class ModelResponsable /*extends Model*/
 
 
 
-    public static function getAllResponsables()
+    /*public static function getAllResponsables()
     {
         try {
             $sql = "SELECT * from responsable";
@@ -85,6 +90,7 @@ class ModelResponsable /*extends Model*/
             die();
         }
     }
+    */
 
     public static function getResponsableById($responsable_id)
     {

@@ -5,7 +5,7 @@ require_once File::build_path(array("model","ModelResponsable.php"));
 class ControllerResponsable {
 
     public static function readAll() {
-        $tab_r = ModelResponsable::getAllResponsables();
+        $tab_r = ModelResponsable::selectAll();
         $tab_nomResponsable = ModelResponsable::getNomResponsable();
 
         $pagetitle = 'Liste des responsables';
@@ -24,7 +24,7 @@ class ControllerResponsable {
             $pagetitle = 'Erreur action';
             $controller = 'responsable';
             $view = 'error';
-            $message = 'read ~ responsable';
+            $message = 'erreur de la fonction read dans le controller responsable';
         } else {
             $pagetitle = 'Détail du responsable';
             $controller = 'responsable';

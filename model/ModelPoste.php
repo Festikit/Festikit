@@ -1,16 +1,20 @@
 <?php
 require_once File::build_path(array("model", "Model.php"));
 
-class ModelPoste /*extends Model*/
+class ModelPoste extends Model
 {
+
+  protected static $object_table = 'poste';
+  protected static $object_model = 'poste';
+  protected static $primary= 'poste_id';
+
 
   private $poste_id;
   private $poste_name;
   private $poste_description;
   private $festival_id;
 
-  //protected static $object = 'poste';
-  //protected static $primary= 'poste_id';
+  
 
   public function __construct($id = NULL, $name = NULL, $description = NULL, $festival_id = NULL)
   {
@@ -62,6 +66,7 @@ class ModelPoste /*extends Model*/
     $this->festival_id = $id2;
   }
 
+  /*
   public static function getAllPostes()
   {
     try {
@@ -78,4 +83,5 @@ class ModelPoste /*extends Model*/
       die();
     }
   }
+  */
 }

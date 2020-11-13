@@ -7,7 +7,7 @@ class ControllerFestival
 
     public static function readAll()
     {
-        $tab_f = ModelFestival::getAllFestivals();
+        $tab_f = ModelFestival::selectAll();
 
         $pagetitle = 'Liste des festivals';
         $controller = 'festival';
