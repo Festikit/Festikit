@@ -99,8 +99,10 @@ class ControllerUtilisateur {
         $user_phone = $_POST['user_phone'];
         $user_postal_code = $_POST['user_postal_code'];
         $user_birthdate = $_POST['user_birthdate'];
+        $user_picture = $_POST['user_picture'];
+        $user_driving_license = $_POST['user_driving_license'];
 
-        $utilisateurmod = new ModelUtilisateur("Michel", $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate);
+        $utilisateurmod = new ModelUtilisateur($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license);
 
         $utilisateurmod->saveUser();
 
@@ -111,8 +113,8 @@ class ControllerUtilisateur {
         $postulermod = new ModelPostuler($user_id, $festival_id, $postuler_accepted);
         $postulermod->savePostuler();
 
-        //$tab_u = ModelUtilisateur::getAllUtilisateurs();
-        $tab_u = ModelUtilisateur::selectAll();
+        $tab_u = ModelUtilisateur::getAllUtilisateurs();
+        //$tab_u = ModelUtilisateur::selectAll();
 
         $controller = 'utilisateur';
         $view='created';

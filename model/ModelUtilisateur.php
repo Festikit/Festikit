@@ -18,8 +18,6 @@ class ModelUtilisateur extends Model
   private $user_picture;
   private $user_postal_code;
   private $user_driving_license;
-  private $user_accepter;
-
   
 
   public function __construct($id = NULL, $firstname = NULL, $lastname = NULL, $mail = NULL, $phone = NULL, $birthdate = NULL, $picture = NULL, $postal_code = NULL, $driving_license = NULL)
