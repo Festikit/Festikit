@@ -12,6 +12,24 @@ class ControllerPoste {
         $view = 'list';
         require File::build_path(array("view","view.php"));
     }
+
+    public static function read() {
+
+        $poste_id = $_GET['poste_id'];
+        $p = ModelPoste::getPosteById($poste_id);
+
+        if ($p == false) {
+            $pagetitle = 'Erreur action read';
+            $controller = 'poste';
+            $view = 'error';
+        } else {
+            $pagetitle = 'Détail du poste';
+            $controller = 'poste';
+            $view = 'detail';
+        }
+
+        require File::build_path(array("view", "view.php"));
+    }
 }
 
 ?>
