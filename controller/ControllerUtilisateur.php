@@ -32,7 +32,7 @@ class ControllerUtilisateur {
             $pagetitle = 'Erreur action';
             $controller = 'utilisateur';
             $view = 'error';
-            $message = "erreur read du controller";
+            $message = "erreur de la fonction read dans le controller utilisateur";
         } else {
             $pagetitle = 'Détail de l\'utilisateur';
             $controller = 'utilisateur';

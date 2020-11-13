@@ -22,6 +22,7 @@ class ControllerPoste {
             $pagetitle = 'Erreur action read';
             $controller = 'poste';
             $view = 'error';
+            $message = 'erreur de la fonction read dans le controller Poste';
         } else {
             $pagetitle = 'Détail du poste';
             $controller = 'poste';
