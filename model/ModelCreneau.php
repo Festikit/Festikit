@@ -1,23 +1,27 @@
 <?php
 require_once File::build_path(array("model", "Model.php"));
 
-class ModelCreneau /*extends Model*/
+class ModelCreneau extends Model
 {
+
+  protected static $object_table = 'creneau';
+  protected static $object_model = 'creneau';
+  protected static $primary= 'creneau_id';
+
   private $creneau_id;
   private $creneau_startdate;
   private $creneau_enddate;
   private $festival_id;
   private $poste_id;
 
-  //protected static $object = 'creneau';
-  //protected static $primary= 'creneau_id';
+  
 
   public function __construct($id = NULL, $startdate = NULL, $enddate = NULL, $festival_id = NULL, $poste_id = NULL)
   {
     if (!is_null($id) && !is_null($startdate) && !is_null($enddate) && !is_null($festival_id) && !is_null($poste_id)) {
       $this->creneau_id = $id;
       $this->creneau_startdate = $startdate;
-      $this->creneau_enddate = $description;
+      $this->creneau_enddate = $enddate;
       $this->festival_id = $festival_id;
       $this->poste_id = $poste_id;
     }
@@ -73,7 +77,7 @@ class ModelCreneau /*extends Model*/
     $this->poste_id = $poste_id2;
   }
 
-  public static function getAllCreneaux()
+  /*public static function getAllCreneaux()
   {
     try {
       $sql = "SELECT * from creneau";
@@ -89,4 +93,5 @@ class ModelCreneau /*extends Model*/
       die();
     }
   }
+  */
 }

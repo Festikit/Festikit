@@ -1,16 +1,20 @@
 <?php
 require_once File::build_path(array("model", "Model.php"));
 
-class ModelPoste /*extends Model*/
+class ModelPoste extends Model
 {
+
+  protected static $object_table = 'poste';
+  protected static $object_model = 'poste';
+  protected static $primary= 'poste_id';
+
 
   private $poste_id;
   private $poste_name;
   private $poste_description;
   private $festival_id;
 
-  //protected static $object = 'poste';
-  //protected static $primary= 'poste_id';
+  
 
   public function __construct($id = NULL, $name = NULL, $description = NULL, $festival_id = NULL)
   {
@@ -62,6 +66,7 @@ class ModelPoste /*extends Model*/
     $this->festival_id = $id2;
   }
 
+  /*
   public static function getAllPostes()
   {
     try {
@@ -78,4 +83,34 @@ class ModelPoste /*extends Model*/
       die();
     }
   }
+<<<<<<< HEAD
+  
+======= */
+
+   public static function getPosteById($poste_id)
+  {
+    try {
+      $sql = "SELECT * from poste WHERE poste_id=:nom_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "nom_tag" => $poste_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelPoste');
+      $tab_poste = $req_prep->fetchAll();
+
+      if (empty($tab_poste))
+        return false;
+      return $tab_poste[0];
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
+//>>>>>>> 1211c2969b661d33b0047d0e4f0921ac8612e8b2
 }

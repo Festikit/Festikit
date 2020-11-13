@@ -12,7 +12,7 @@ class ControllerUtilisateur {
     }
 
     public static function readAll() {
-        $tab_u = ModelUtilisateur::getAllUtilisateurs();
+        $tab_u = ModelUtilisateur::selectAll();
 
         $pagetitle = 'Liste des utilisateurs';
         $controller = 'utilisateur';
@@ -32,7 +32,7 @@ class ControllerUtilisateur {
             $pagetitle = 'Erreur action';
             $controller = 'utilisateur';
             $view = 'error';
-            $message = "erreur read du controller";
+            $message = "erreur de la fonction read dans le controller utilisateur";
         } else {
             $pagetitle = 'Détail de l\'utilisateur';
             $controller = 'utilisateur';
@@ -47,7 +47,7 @@ class ControllerUtilisateur {
         $view = 'deleted';
         $user_id = $_GET['user_id'];
         ModelUtilisateur::deleteById($user_id);
-        $tab_u = ModelUtilisateur::getAllUtilisateurs();
+        $tab_u = ModelUtilisateur::selectAll();
         require File::build_path(array("view","view.php"));
     }
 
@@ -85,7 +85,7 @@ class ControllerUtilisateur {
         );
         $utilisateurmod = new ModelUtilisateur();
         $utilisateurmod->update($tab_umod);
-        $tab_u = ModelUtilisateur::getAllUtilisateurs();
+        $tab_u = ModelUtilisateur::selectAll();
         require (File::build_path(array("view","view.php")));
     }
 
@@ -107,7 +107,7 @@ class ControllerUtilisateur {
         $utilisateurmod = new ModelUtilisateur($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate);
 
         $utilisateurmod->saveUser();
-        $tab_u = ModelUtilisateur::getAllUtilisateurs();
+        $tab_u = ModelUtilisateur::selectAll();
         require (File::build_path(array("view","view.php")));
     }
 }

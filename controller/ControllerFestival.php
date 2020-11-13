@@ -7,7 +7,7 @@ class ControllerFestival
 
     public static function readAll()
     {
-        $tab_f = ModelFestival::getAllFestivals();
+        $tab_f = ModelFestival::selectAll();
 
         $pagetitle = 'Liste des festivals';
         $controller = 'festival';
@@ -25,11 +25,13 @@ class ControllerFestival
         $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
         $tab_poste = ModelFestival::getPostesByFestival($festival_id);
         $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
+        $tab_date = ModelFestival::getJoursByFestival($festival_id);
 
         if ($f == false) {
             $pagetitle = 'Erreur action read';
             $controller = 'festival';
             $view = 'error';
+            $message = 'erreur de la fonction read dans le controller festival';
         } else {
             $pagetitle = 'Détail du festival';
             $controller = 'festival';
@@ -54,6 +56,7 @@ class ControllerFestival
             $pagetitle = 'Erreur action read';
             $controller = 'festival';
             $view = 'error';
+            $message = 'erreur de la fonction accepterUtilisateur dans le controller festival';
         } else {
             $pagetitle = 'Détail du festival';
             $controller = 'festival';
@@ -77,6 +80,7 @@ class ControllerFestival
             $pagetitle = 'Erreur action read';
             $controller = 'festival';
             $view = 'error';
+            $message = 'erreur de la fonction refuserUtilisateur dans le controller festival';
         } else {
             $pagetitle = 'Détail du festival';
             $controller = 'festival';
