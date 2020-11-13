@@ -1,8 +1,13 @@
 <?php
 require_once File::build_path(array("model", "Model.php"));
 
-class ModelFestival /*extends Model*/
+class ModelFestival extends Model
 {
+
+  protected static $object_table = 'festival';
+  protected static $object_model = 'festival';
+  protected static $primary= 'festival_id';
+
 
   private $festival_id;
   private $festival_name;
@@ -12,8 +17,7 @@ class ModelFestival /*extends Model*/
   private $city;
   private $user_id;
 
-  //protected static $object = 'festival';
-  //protected static $primary= 'festival_id';
+  
 
   public function __construct($id = NULL, $name = NULL, $startdate = NULL, $enddate = NULL, $description = NULL, $city = NULL)
   {
@@ -69,7 +73,7 @@ class ModelFestival /*extends Model*/
     $this->city = $city2;
   }
 
-  public static function getAllFestivals()
+  /*public static function getAllFestivals()
   {
     try {
       $sql = "SELECT * from festival";
@@ -85,6 +89,7 @@ class ModelFestival /*extends Model*/
       die();
     }
   }
+  */
 
   public static function getFestivalsById($festival_id)
   {

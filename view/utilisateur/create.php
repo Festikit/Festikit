@@ -176,92 +176,92 @@
                     <tr>
                         <td class="firstColumn"><label for="dispo_lieu1">Samedi 4 Avril (au marché de
                                 Pézenas)</label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu1_date1" id="dispo_lieu1_date1" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu1_date2" id="dispo_lieu1_date2" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu1_date3" id="dispo_lieu1_date3" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu1_date4" id="dispo_lieu1_date4" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu1_date5" id="dispo_lieu1_date5" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu1_date6" id="dispo_lieu1_date6" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu1[]" id="dispo_lieu1_date1" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu1[]" id="dispo_lieu1_date2" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu1[]" id="dispo_lieu1_date3" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu1[]" id="dispo_lieu1_date4" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu1[]" id="dispo_lieu1_date5" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu1[]" id="dispo_lieu1_date6" value="1" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn"><label for="dispo_lieu2">Samedi 11 Avril (au marché de
                                 Pézenas)</label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu2_date1" id="dispo_lieu2_date1" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu2_date2" id="dispo_lieu2_date2" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu2_date3" id="dispo_lieu2_date3" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu2_date4" id="dispo_lieu2_date4" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu2_date5" id="dispo_lieu2_date5" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu2_date6" id="dispo_lieu2_date6" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu2[]" id="dispo_lieu2_date1" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu2[]" id="dispo_lieu2_date2" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu2[]" id="dispo_lieu2_date3" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu2[]" id="dispo_lieu2_date4" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu2[]" id="dispo_lieu2_date5" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu2[]" id="dispo_lieu2_date6" value="1" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn"><label for="dispo_lieu3">Lundi 13 avril (déco+ install + barbecue
                                 d'accueil)</label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu3_date1" id="dispo_lieu3_date1" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu3_date2" id="dispo_lieu3_date2" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu3_date3" id="dispo_lieu3_date3" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu3_date4" id="dispo_lieu3_date4" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu3_date5" id="dispo_lieu3_date5" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu3_date6" id="dispo_lieu3_date6" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu3[]" id="dispo_lieu3_date1" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu3[]" id="dispo_lieu3_date2" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu3[]" id="dispo_lieu3_date3" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu3[]" id="dispo_lieu3_date4" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu3[]" id="dispo_lieu3_date5" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu3[]" id="dispo_lieu3_date6" value="1" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn"><label for="dispo_lieu4">Mardi 14 avril</label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu4_date1" id="dispo_lieu4_date1" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu4_date2" id="dispo_lieu4_date2" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu4_date3" id="dispo_lieu4_date3" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu4_date4" id="dispo_lieu4_date4" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu4_date5" id="dispo_lieu4_date5" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu4_date6" id="dispo_lieu4_date6" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu4[]" id="dispo_lieu4_date1" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu4[]" id="dispo_lieu4_date2" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu4[]" id="dispo_lieu4_date3" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu4[]" id="dispo_lieu4_date4" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu4[]" id="dispo_lieu4_date5" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu4[]" id="dispo_lieu4_date6" value="1" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn"><label for="dispo_lieu5">Mercredi 15 avril</label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu5_date1" id="dispo_lieu5_date1" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu5_date2" id="dispo_lieu5_date2" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu5_date3" id="dispo_lieu5_date3" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu5_date4" id="dispo_lieu5_date4" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu5_date5" id="dispo_lieu5_date5" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu5_date6" id="dispo_lieu5_date6" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu5[]" id="dispo_lieu5_date1" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu5[]" id="dispo_lieu5_date2" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu5[]" id="dispo_lieu5_date3" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu5[]" id="dispo_lieu5_date4" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu5[]" id="dispo_lieu5_date5" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu5[]" id="dispo_lieu5_date6" value="1" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn"><label for="dispo_lieu6">Jeudi 16 avril</label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu6_date1" id="dispo_lieu6_date1" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu6_date2" id="dispo_lieu6_date2" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu6_date3" id="dispo_lieu6_date3" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu6_date4" id="dispo_lieu6_date4" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu6_date5" id="dispo_lieu6_date5" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu6_date6" id="dispo_lieu6_date6" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu6[]" id="dispo_lieu6_date1" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu6[]" id="dispo_lieu6_date2" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu6[]" id="dispo_lieu6_date3" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu6[]" id="dispo_lieu6_date4" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu6[]" id="dispo_lieu6_date5" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu6[]" id="dispo_lieu6_date6" value="1" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn"><label for="dispo_lieu7">Vendredi 17 avril</label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu7_date1" id="dispo_lieu7_date1" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu7_date2" id="dispo_lieu7_date2" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu7_date3" id="dispo_lieu7_date3" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu7_date4" id="dispo_lieu7_date4" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu7_date5" id="dispo_lieu7_date5" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu7_date6" id="dispo_lieu7_date6" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu7[]" id="dispo_lieu7_date1" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu7[]" id="dispo_lieu7_date2" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu7[]" id="dispo_lieu7_date3" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu7[]" id="dispo_lieu7_date4" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu7[]" id="dispo_lieu7_date5" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu7[]" id="dispo_lieu7_date6" value="1" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn"><label for="dispo_lieu8">Samedi 18 avril</label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu8_date1" id="dispo_lieu8_date1" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu8_date2" id="dispo_lieu8_date2" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu8_date3" id="dispo_lieu8_date3" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu8_date4" id="dispo_lieu8_date4" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu8_date5" id="dispo_lieu8_date5" value="1" /><span> </span></label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu8_date6" id="dispo_lieu8_date6" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu8[]" id="dispo_lieu8_date1" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu8[]" id="dispo_lieu8_date2" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu8[]" id="dispo_lieu8_date3" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu8[]" id="dispo_lieu8_date4" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu8[]" id="dispo_lieu8_date5" value="1" /><span> </span></label></td>
+                        <td><label><input type="checkbox" name="dispo_lieu8[]" id="dispo_lieu8_date6" value="1" /><span> </span></label></td>
                     </tr>
                     <tr>
                         <td class="firstColumn"><label for="dispo_lieu9">Dimanche 19 avril (rangement,
                                 désinstallation)</label></td>
-                        <td><label><input type="checkbox" name="dispo_lieu9_date1" id="dispo_lieu9_date1" value="dispo_date1" /><span> </span></label>
+                        <td><label><input type="checkbox" name="dispo_lieu9[]" id="dispo_lieu9_date1" value="dispo_date1" /><span> </span></label>
                         </td>
-                        <td><label><input type="checkbox" name="dispo_lieu9_date2" id="dispo_lieu9_date2" value="dispo_date2" /><span> </span></label>
+                        <td><label><input type="checkbox" name="dispo_lieu9[]" id="dispo_lieu9_date2" value="dispo_date2" /><span> </span></label>
                         </td>
-                        <td><label><input type="checkbox" name="dispo_lieu9_date3" id="dispo_lieu9_date3" value="dispo_date3" /><span> </span></label>
+                        <td><label><input type="checkbox" name="dispo_lieu9[]" id="dispo_lieu9_date3" value="dispo_date3" /><span> </span></label>
                         </td>
-                        <td><label><input type="checkbox" name="dispo_lieu9_date4" id="dispo_lieu9_date4" value="dispo_date4" /><span> </span></label>
+                        <td><label><input type="checkbox" name="dispo_lieu9[]" id="dispo_lieu9_date4" value="dispo_date4" /><span> </span></label>
                         </td>
-                        <td><label><input type="checkbox" name="dispo_lieu9_date5" id="dispo_lieu9_date5" value="dispo_date5" /><span> </span></label>
+                        <td><label><input type="checkbox" name="dispo_lieu9[]" id="dispo_lieu9_date5" value="dispo_date5" /><span> </span></label>
                         </td>
-                        <td><label><input type="checkbox" name="dispo_lieu9_date6" id="dispo_lieu9_date6" value="dispo_date6" /><span> </span></label>
+                        <td><label><input type="checkbox" name="dispo_lieu9[]" id="dispo_lieu9_date6" value="dispo_date6" /><span> </span></label>
                         </td>
                     </tr>
                 </table>

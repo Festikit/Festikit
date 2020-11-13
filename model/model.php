@@ -23,6 +23,18 @@ class Model {
       die();
     }
   }
+
+  public static function selectAll(){
+    $table_name = static::$object_table;
+    $model_name = static::$object_model;
+    $class_name = 'Model'. ucfirst($model_name);
+      $pdo = Model::$pdo;
+      $sql = "SELECT * from ".$table_name;
+      $rep = $pdo->query($sql);
+      $rep->setFetchMode(PDO::FETCH_CLASS, $class_name);
+      return $rep->fetchAll();
+    }
+
 }
 
 Model::Init();
