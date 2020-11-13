@@ -271,12 +271,11 @@ class ModelUtilisateur /*extends Model*/
   public function saveUser()
   {
     try {
-      $sql = "INSERT INTO user (user_id, user_firstname, user_lastname, user_mail, user_phone, user_birthdate, user_picture, user_postal_code, user_driving_license) VALUES (:user_id, :user_firstname, :user_lastname, :user_mail, :user_phone, :user_birthdate, :user_picture, :user_postal_code, :user_driving_license)";
+      $sql = "INSERT INTO user (user_firstname, user_lastname, user_mail, user_phone, user_birthdate, user_picture, user_postal_code, user_driving_license) VALUES (:user_firstname, :user_lastname, :user_mail, :user_phone, :user_birthdate, :user_picture, :user_postal_code, :user_driving_license)";
       // Préparation de la requête
       $req_prep = Model::$pdo->prepare($sql);
 
       $values = array(
-        "user_id" => $this->user_id,
         "user_firstname" => $this->user_firstname,
         "user_lastname" => $this->user_lastname,
         "user_mail" => $this->user_mail,
@@ -297,30 +296,7 @@ class ModelUtilisateur /*extends Model*/
       die();
     }
   }
-
-  /*
-  public function savePostuler(){
-    try{
-      $sql = "INSERT INTO postuler(user_id, festival_id, postuler_accepted) VALUES (:user_id, :festival_id, :postuler_accepted)";
-      $req_prep = Model::$pdo->prepare($sql);
-
-      $values = array(
-        "user_id" => ,
-        "festival_id" => ,
-        "postuler_accepted" => 0,
-      );
-    }
-    catch (PDOException $e) {
-      if (Conf::getDebug()) {
-        echo $e->getMessage(); // affiche un message d'erreur
-      } else {
-        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-      }
-      die();
-    }
-
-  }
-  */
+  
   /*
   public function saveDisponible(){
     try{

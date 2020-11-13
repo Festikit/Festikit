@@ -5,6 +5,7 @@ require_once File::build_path(array("controller","ControllerFestival.php"));
 require_once File::build_path(array("controller","ControllerResponsable.php"));
 require_once File::build_path(array("controller","ControllerPoste.php"));
 require_once File::build_path(array("controller","ControllerCreneau.php"));
+require_once File::build_path(array("controller","ControllerPostuler.php"));
 
 if(isset($_GET['action'])) {
 

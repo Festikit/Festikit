@@ -92,10 +92,7 @@ class ControllerUtilisateur {
     
 
     public static function created(){
-        $controller = 'utilisateur';
-        $view='created';
-        $pagetitle='creation utilisateur';
-
+        
         $user_firstname = $_POST['user_firstname'];
         $user_lastname = $_POST['user_lastname'];
         $user_mail = $_POST['user_mail'];
@@ -103,11 +100,22 @@ class ControllerUtilisateur {
         $user_postal_code = $_POST['user_postal_code'];
         $user_birthdate = $_POST['user_birthdate'];
 
-
-        $utilisateurmod = new ModelUtilisateur($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate);
+        $utilisateurmod = new ModelUtilisateur("Michel", $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate);
 
         $utilisateurmod->saveUser();
+
+        $user_id = $utilisateurmod->getId();
+        $festival_id = $_GET['festival_id'];
+        $postuler_accepted = 0;
+
+        $postulermod = new ModelPostuler($user_id, $festival_id, $postuler_accepted);
+        $postulermod->savePostuler();
+
         $tab_u = ModelUtilisateur::getAllUtilisateurs();
+
+        $controller = 'utilisateur';
+        $view='created';
+        $pagetitle='creation utilisateur';
         require (File::build_path(array("view","view.php")));
     }
 }
