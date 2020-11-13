@@ -78,4 +78,30 @@ class ModelPoste /*extends Model*/
       die();
     }
   }
+
+   public static function getPosteById($poste_id)
+  {
+    try {
+      $sql = "SELECT * from poste WHERE poste_id=:nom_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "nom_tag" => $poste_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelPoste');
+      $tab_poste = $req_prep->fetchAll();
+
+      if (empty($tab_poste))
+        return false;
+      return $tab_poste[0];
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
 }
