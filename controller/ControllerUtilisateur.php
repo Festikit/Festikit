@@ -102,7 +102,7 @@ class ControllerUtilisateur {
         $user_picture = $_POST['user_picture'];
         $user_driving_license = $_POST['user_driving_license'];
 
-        $utilisateurmod = new ModelUtilisateur($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license);
+        $utilisateurmod = new ModelUtilisateur(-1, $user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license); // auto-incrémente avec -1 (c'est fou)
 
         $utilisateurmod->saveUser();
 
@@ -111,6 +111,7 @@ class ControllerUtilisateur {
         $postuler_accepted = 0;
 
         $postulermod = new ModelPostuler($user_id, $festival_id, $postuler_accepted);
+        
         $postulermod->savePostuler();
 
         $tab_u = ModelUtilisateur::selectAll();
