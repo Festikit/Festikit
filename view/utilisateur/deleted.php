@@ -1,5 +1,5 @@
 <?php
-echo "La voiture a bien été supprimée !";
+echo "L'Utilisateur a bien été supprimé !";
 require File::build_path(array("view","Utilisateur","list.php"));
 
 
