@@ -1,6 +1,7 @@
 <?php
 
 	// code a modif
-	echo $message;
+	echo $message."<br>";
+	echo "Du controller : " . $controller; 
 	
 ?>
