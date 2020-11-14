@@ -113,7 +113,7 @@ class ControllerUtilisateur {
         $postulermod = new ModelPostuler($user_id, $festival_id, $postuler_accepted);
         $postulermod->savePostuler();
 
-        $tab_u = ModelUtilisateur::getAllUtilisateurs();
+        $tab_u = ModelUtilisateur::selectAll();
         //$tab_u = ModelUtilisateur::selectAll();
 
         $controller = 'utilisateur';
