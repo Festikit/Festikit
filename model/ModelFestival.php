@@ -238,7 +238,6 @@ class ModelFestival extends Model
     }
   }
 
-  // Pour générer le formulaire dynamiquement
   // et afficher les créneaux par festival
   public static function getCreneauxByFestival($festival_id)
   {
@@ -264,7 +263,7 @@ class ModelFestival extends Model
     }
   }
 
-
+  // Pour générer le formulaire dynamiquement
   public static function getJoursByFestival($festival_id)
   {
     try {

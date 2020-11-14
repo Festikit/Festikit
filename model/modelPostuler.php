@@ -59,6 +59,9 @@ class ModelPostuler /*extends Model*/
         "postuler_accepted" => $this->postuler_accepted,
       );
     }
+
+    $req_prep->execute($values);
+    
     catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage(); // affiche un message d'erreur
