@@ -58,11 +58,9 @@ class ModelPostuler /*extends Model*/
         "festival_id" => $this->festival_id,
         "postuler_accepted" => $this->postuler_accepted,
       );
-    }
-
-    $req_prep->execute($values);
-    
-    catch (PDOException $e) {
+      
+      $req_prep->execute($values);
+      } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage(); // affiche un message d'erreur
       } else {
