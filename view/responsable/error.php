@@ -2,6 +2,6 @@
 
 	// code a modif
 	echo $message."<br>";
-	echo "Du controller : " . $controller; 
+	echo "Controller : " . $controller; 
 	
 ?>
