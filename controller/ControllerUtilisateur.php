@@ -89,7 +89,6 @@ class ControllerUtilisateur {
         require (File::build_path(array("view","view.php")));
     }
 
-    
 
     public static function created(){
         
@@ -102,25 +101,56 @@ class ControllerUtilisateur {
         $user_picture = $_POST['user_picture'];
         $user_driving_license = $_POST['user_driving_license'];
 
-        $utilisateurmod = new ModelUtilisateur(-1, $user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license); // auto-incrémente avec -1 (c'est fou)
+        if(isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license)) {
 
-        $utilisateurmod->saveUser();
+            $dataUser = array(
+                'user_firstname' => $user_firstname, 
+                'user_lastname' => $user_lastname, 
+                'user_mail' => $user_mail,  
+                'user_phone' => $user_phone, 
+                'user_postal_code' => $user_postal_code, 
+                'user_birthdate' => $user_birthdate, 
+                'user_picture' => $user_picture, 
+                'user_driving_license' => $user_driving_license, 
+            );
 
-        $user_id = $utilisateurmod->getId();
-        $festival_id = $_GET['festival_id'];
-        $postuler_accepted = 0;
+            if(is_bool(ModelUtilisateur::save($dataUser))) {
+                $controller = 'utilisateur';
+                $view = 'error';
+                $message = 'Erreur: Insertion des données dans la table user';
+                $pagetitle = 'erreur';
 
-        $postulermod = new ModelPostuler($user_id, $festival_id, $postuler_accepted);
+            } else {
+                $user_id = ModelUtilisateur::getIdByMail($user_mail);
+                $festival_id = $_GET['festival_id'];
+                $postuler_accepted = 0;
+
+                $dataPostuler = array(
+                    'user_id' => $user_id, 
+                    'festival_id' => $festival_id, 
+                    'postuler_accepted' => $postuler_accepted,   
+                );
+
+                if(is_bool(ModelPostuler::save($dataPostuler))) {
+                    $controller = 'utilisateur';
+                    $view = 'error';
+                    $message = 'Erreur: Insertion des données dans la table postuler';
+                    $pagetitle = 'erreur';
+                } else {
+                    $controller = 'utilisateur';
+                    $view = 'created';
+                    $pagetitle = 'creation utilisateur';
+                }
+            }
+        } else {
+            $controller = 'utilisateur';
+            $view = 'error';
+            $message = 'Erreur: initialisation des variables nécessaire à la création d\'un utilisateur';
+            $pagetitle = 'erreur';
+        }
         
-        $postulermod->savePostuler();
+        $tab_u = ModelUtilisateur::selectAll();
 
-        $tab_u = ModelUtilisateur::getAllUtilisateurs();
-        //$tab_u = ModelUtilisateur::selectAll();
-
-        $controller = 'utilisateur';
-        $view='created';
-        $pagetitle='creation utilisateur';
-        
         require (File::build_path(array("view","view.php")));
     }
 }

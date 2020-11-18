@@ -35,6 +35,38 @@ class Model {
       return $rep->fetchAll();
     }
 
+  public static function save($data){
+    $table_name = static::$object_table;
+    $primary_key = static::$primary;
+
+    try {
+      $sql = "INSERT INTO $table_name ( ";
+      foreach ($data as $name => $value) {
+        $sql = $sql . "$name";
+        if ($name != array_key_last($data)) {
+          $sql = $sql . ", ";
+        }
+      }
+      $sql = $sql . ") VALUES (";
+      foreach ($data as $name => $value) {
+        $sql = $sql . ":$name";
+        if ($name != array_key_last($data)) {
+          $sql = $sql . ", ";
+        }
+      }
+      $sql = $sql . ")";
+
+      $rep_prep = Model::$pdo->prepare($sql);
+      $rep_prep->execute($data);
+
+    } catch(PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      }
+      return false;
+    }
+  }
+
 }
 
 Model::Init();
