@@ -48,4 +48,29 @@ class ModelPostuler extends Model
       die();
     }
   }
+<<<<<<< HEAD
+=======
+
+  public function savePostuler(){
+    try{
+      $sql = "INSERT INTO postuler(user_id, festival_id, postuler_accepted) VALUES (:user_id, :festival_id, :postuler_accepted)";
+      $req_prep = Model::$pdo->prepare($sql);
+
+      $values = array(
+        "user_id" => $this->user_id,
+        "festival_id" => $this->festival_id,
+        "postuler_accepted" => $this->postuler_accepted,
+      );
+      
+      $req_prep->execute($values);
+      } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage(); // affiche un message d'erreur
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+>>>>>>> 7f9d2f5ea05e30b39730b117189aba56b9ff1e84
 }

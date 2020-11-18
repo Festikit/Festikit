@@ -24,7 +24,7 @@ class ControllerResponsable {
             $pagetitle = 'Erreur action';
             $controller = 'responsable';
             $view = 'error';
-            $message = 'erreur de la fonction read dans le controller responsable';
+            $message = 'erreur de la fonction read';
         } else {
             $pagetitle = 'Détail du responsable';
             $controller = 'responsable';

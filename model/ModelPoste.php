@@ -112,5 +112,32 @@ class ModelPoste extends Model
     }
   }
 
+
+  public function update($data)
+  {
+    try {
+      $sql = "UPDATE poste SET poste_name = :poste_name, poste_description = :poste_description WHERE poste_id = :poste_id";
+
+      // Préparation de la requête
+      $req_prep = Model::$pdo->prepare($sql);
+
+      $values = array(
+        "poste_id" => $data['poste_id'],
+        "poste_name" => $data['poste_name'],
+        "poste_description" => $data['poste_description'],
+      );
+      // On donne les valeurs et on exécute la requête    
+      $req_prep->execute($values);
+      // echo $sql;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage(); // affiche un message d'erreur
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
 //>>>>>>> 1211c2969b661d33b0047d0e4f0921ac8612e8b2
 }

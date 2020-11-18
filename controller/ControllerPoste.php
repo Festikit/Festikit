@@ -31,6 +31,36 @@ class ControllerPoste {
 
         require File::build_path(array("view", "view.php"));
     }
+
+    public static function update(){
+        $controller = 'poste';
+        $view='update';
+        $pagetitle='modification du poste';
+        $log_p  = $_GET['poste_id'];
+        $tab_p = ModelPoste::getPosteById($log_p);
+        require (File::build_path(array("view","view.php")));
+    }
+
+    public static function updated(){
+    
+        $controller = 'poste';
+        $view='updated';
+        $pagetitle='modification du poste';
+        
+        $log_p = $_GET['poste_id'];
+        $poste_name = $_GET['poste_name'];
+        $poste_description = $_GET['poste_description'];
+          
+        $tab_pmod = array(
+            "poste_id" => $log_p,
+            "poste_name" => $poste_name,
+            "poste_description" => $poste_description,
+        );
+        $postemod = new ModelPoste();
+        $postemod->update($tab_pmod);
+        $tab_p = ModelPoste::selectAll();
+        require (File::build_path(array("view","view.php")));
+    }
 }
 
 ?>

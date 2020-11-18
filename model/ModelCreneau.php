@@ -94,4 +94,29 @@ class ModelCreneau extends Model
     }
   }
   */
+
+  public static function getCreneauById($creneau_id)
+  {
+    try {
+      $sql = "SELECT * from creneau WHERE creneau_id=:nom_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "nom_tag" => $creneau_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelCreneau');
+      $tab_creneau = $req_prep->fetchAll();
+
+      if (empty($tab_creneau))
+        return false;
+      return $tab_creneau[0];
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
 }
