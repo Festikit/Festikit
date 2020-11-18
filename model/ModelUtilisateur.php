@@ -170,6 +170,31 @@ class ModelUtilisateur extends Model
     }
   }
 
+  public static function getIdByMail($user_mail)
+  {
+    try {
+      $sql = "SELECT user_id from user WHERE user_mail=:nom_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "nom_tag" => $user_mail,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+      $tab_user_id = $req_prep->fetchAll();
+
+      if (empty($tab_user_id))
+        return false;
+      return $tab_user_id[0];
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
   public static function deleteById($id)
   {
     try {
@@ -272,76 +297,4 @@ class ModelUtilisateur extends Model
       die();
     }
   }
-
-  public function saveUser()
-  {
-    try {
-      $sql = "INSERT INTO user (user_firstname, user_lastname, user_mail, user_phone, user_birthdate, user_picture, user_postal_code, user_driving_license) VALUES (:user_firstname, :user_lastname, :user_mail, :user_phone, :user_birthdate, :user_picture, :user_postal_code, :user_driving_license)";
-      // Préparation de la requête
-      $req_prep = Model::$pdo->prepare($sql);
-
-      $values = array(
-        "user_firstname" => $this->user_firstname,
-        "user_lastname" => $this->user_lastname,
-        "user_mail" => $this->user_mail,
-        "user_phone" => $this->user_phone,
-        "user_picture" => $this->user_picture,
-        "user_birthdate" => $this->user_birthdate,
-        "user_postal_code" => $this->user_postal_code,
-        "user_driving_license" => $this->user_driving_license,
-      );
-      // On donne les valeurs et on exécute la requête     
-      $req_prep->execute($values);
-    } catch (PDOException $e) {
-      if (Conf::getDebug()) {
-        echo $e->getMessage(); // affiche un message d'erreur
-      } else {
-        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-      }
-      die();
-    }
-  }
-  
-  /*
-  public function saveDisponible(){
-    try{
-      $sql = "INSERT INTO disponible () VALUES ()";
-      $req_prep = Model::$pdo->prepare($sql);
-
-      $values = array()
-
-    }
-    catch (PDOException $e) {
-      if (Conf::getDebug()) {
-        echo $e->getMessage(); // affiche un message d'erreur
-      } else {
-        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-      }
-      die();
-    }
-  }
-
-  public function savePreference(){
-    try{
-      $sql = "INSERT INTO preference (preference_id, user_id, poste_id, rang) VALUES (:preference_id, :user_id, :poste_id, :rang)";
-      $req_prep = Model::$pdo->prepare($sql);
-
-      $values = array(
-        "preference_id" => ,
-        "user_id" => ,
-        "poste_id" => ,
-        "rang" => ,
-      );
-      $req_prep->execute($values);
-
-    }
-    catch (PDOException $e) {
-      if (Conf::getDebug()) {
-        echo $e->getMessage(); // affiche un message d'erreur
-      } else {
-        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-      }
-      die();
-    }
-  } */
 }
