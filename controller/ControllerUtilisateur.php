@@ -92,6 +92,7 @@ class ControllerUtilisateur {
 
     public static function created(){
         
+        // Initialisation des variables pour user
         $user_firstname = $_POST['user_firstname'];
         $user_lastname = $_POST['user_lastname'];
         $user_mail = $_POST['user_mail'];
@@ -101,8 +102,10 @@ class ControllerUtilisateur {
         $user_picture = $_POST['user_picture'];
         $user_driving_license = $_POST['user_driving_license'];
 
+        // Test d'initialisation des variables pour user
         if(isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license)) {
 
+            // Création du tableau associatif pour l'insertion dans user
             $dataUser = array(
                 'user_firstname' => $user_firstname, 
                 'user_lastname' => $user_lastname, 
@@ -114,6 +117,7 @@ class ControllerUtilisateur {
                 'user_driving_license' => $user_driving_license, 
             );
 
+            // Insertion dans user + test d'insertion
             if(is_bool(ModelUtilisateur::save($dataUser))) {
                 $controller = 'utilisateur';
                 $view = 'error';
@@ -121,25 +125,39 @@ class ControllerUtilisateur {
                 $pagetitle = 'erreur';
 
             } else {
+
+                // Initialisation des variables pour postuler
                 $user_id = ModelUtilisateur::getIdByMail($user_mail);
                 $festival_id = $_GET['festival_id'];
                 $postuler_accepted = 0;
 
-                $dataPostuler = array(
-                    'user_id' => $user_id, 
-                    'festival_id' => $festival_id, 
-                    'postuler_accepted' => $postuler_accepted,   
-                );
+                // Test d'initialisation des variables pour postuler
+                if(isset($user_id, $festival_id, $postuler_accepted)) {
+                    
+                    // Création du tableau associatif pour l'insertion dans postuler
+                    $dataPostuler = array(
+                        'user_id' => $user_id, 
+                        'festival_id' => $festival_id, 
+                        'postuler_accepted' => $postuler_accepted,   
+                    );
 
-                if(is_bool(ModelPostuler::save($dataPostuler))) {
-                    $controller = 'utilisateur';
-                    $view = 'error';
-                    $message = 'Erreur: Insertion des données dans la table postuler';
-                    $pagetitle = 'erreur';
+                    // Insertion dans postuler + test d'insertion
+                    if(is_bool(ModelPostuler::save($dataPostuler))) {
+                        $controller = 'utilisateur';
+                        $view = 'error';
+                        $message = 'Erreur: Insertion des données dans la table postuler';
+                        $pagetitle = 'erreur';
+                    } else {
+                        // Reussite de toutes les insertions
+                        $controller = 'utilisateur';
+                        $view = 'created';
+                        $pagetitle = 'creation utilisateur';
+                    }
                 } else {
                     $controller = 'utilisateur';
-                    $view = 'created';
-                    $pagetitle = 'creation utilisateur';
+                    $view = 'error';
+                    $message = 'Erreur: initialisation des variables nécessaire à la création d\'une instance de postuler';
+                    $pagetitle = 'erreur';
                 }
             }
         } else {
