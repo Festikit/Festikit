@@ -119,4 +119,33 @@ class ModelCreneau extends Model
       die();
     }
   }
+
+  public function update($data)
+  {
+    try {
+      $sql = "UPDATE creneau SET creneau_startdate = :creneau_startdate, creneau_enddate = :creneau_enddate,
+      festival_id = :festival_id, poste_id = :poste_id WHERE creneau_id = :creneau_id";
+
+      // Préparation de la requête
+      $req_prep = Model::$pdo->prepare($sql);
+
+      $values = array(
+        "creneau_id" => $data['creneau_id'],
+        "creneau_startdate" => $data['creneau_startdate'],
+        "creneau_enddate" => $data['creneau_enddate'],
+        "festival_id" => $data['festival_id'],
+        "poste_id" => $data['poste_id'],
+      );
+      // On donne les valeurs et on exécute la requête    
+      $req_prep->execute($values);
+      // echo $sql;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage(); // affiche un message d'erreur
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
 }
