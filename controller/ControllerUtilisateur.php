@@ -99,8 +99,44 @@ class ControllerUtilisateur {
         $user_phone = $_POST['user_phone'];
         $user_postal_code = $_POST['user_postal_code'];
         $user_birthdate = $_POST['user_birthdate'];
-        $user_picture = $_POST['user_picture'];
         $user_driving_license = $_POST['user_driving_license'];
+
+        // test pour debug
+        if(isset($_FILES['user_picture'])) {
+            echo "instancié";
+        } else {
+            echo "non instancié";
+        }
+
+        // Test d'upload de la photo
+        if (!empty($_FILES['user_picture']) && is_uploaded_file($_FILES['user_picture']['tmp_name'])) {
+            
+            $img_taille = $_FILES['user_picture']['size'];
+            $taille_max = $_POST['MAX_FILE_SIZE'];
+
+            if ($img_taille > $taille_max) {
+                $controller = 'utilisateur';
+                $view = 'error';
+                $message = 'Erreur: L\'image est trop volumineuse' . "( > $taille_max)";
+                $pagetitle = 'erreur';
+
+            } else {
+                $user_picture = addslashes(file_get_contents($_FILES['user_picture']['tmp_name']));
+                echo $user_picture;
+                if($user_picture == false) {
+                    $controller = 'utilisateur';
+                    $view = 'error';
+                    $message = 'Erreur: file_get_contents';
+                    $pagetitle = 'erreur';
+                }
+            }
+        } else {
+            $controller = 'utilisateur';
+            $view = 'error';
+            $message = 'Erreur: Image non upload';
+            $pagetitle = 'erreur';
+        }
+
 
         // Test d'initialisation des variables pour user
         if(isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license)) {

@@ -4,7 +4,7 @@
     <div class="col s12 m4 l8">
         <!-- TODO: mettre l'action created -->
         <?php
-            echo '<form method="post" action="index.php?action=created&festival_id="' . $_GET['festival_id'] .' class="col s12">';
+            echo '<form method="post" action="index.php?action=created&festival_id="' . $_GET['festival_id'] . ' enctype="multipart/form-data"' . ' class="col s12">';
         ?>
 
             <div class="card-panel grey lighten-4">
@@ -40,6 +40,7 @@
                         <div class="btn">
                             <i class="material-icons">file_download</i>
                             <span>Photo de profil</span>
+                            <input type="hidden" name="MAX_FILE_SIZE" value="250000" />
                             <input name="user_picture" id="user_picture" type="file" accept="image/png, image/jpeg">
                         </div>
                         <div class="file-path-wrapper">
