@@ -51,7 +51,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
         <p> $poste_description </p>
 		<div class=\"secondary-content\">
             <a title=\"en savoir plus\" href=\"index.php?action=read&controller=poste&poste_id=$poste_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
-            <a title=\"modifier\" href=\"#!\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
+            <a title=\"modifier\" href=\"index.php?action=update&controller=poste&poste_id=$poste_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
 		</div>
 	</li>";
         $i++;
