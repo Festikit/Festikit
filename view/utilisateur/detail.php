@@ -13,6 +13,7 @@
     } else {
         $user_driving_license = "non";
     }
+    $user_picture = $u->getPicture();
 
     echo "<h5> $user_firstname $user_lastname</h5>
     <p>Adresse mail: $user_mail </br>
@@ -20,7 +21,8 @@
     Date de naissance: $user_birthdate </br>
     Adresse postale: $user_postal_code </br>
     Permis de conduire: $user_driving_license </br>";
-    //header("Content-type: image/jpg");
+    //header("Content-type: image/png");
+    //echo $user_picture;
 
 
 

@@ -12,9 +12,7 @@
 		echo "<li class=\"collection-item avatar\">
 		<div class=\"circle green\">
 		</div>
-		<span class=\"title\">$user_firstname</span>
-		<p>$user_lastname
-		</p>
+		<a href=\"index.php?action=read&user_id=$user_id\"> <span class=\"title\">$user_firstname $user_lastname</span></a>
 		<div class=\"secondary-content\">
 			<a title=\"en savoir plus\" href=\"index.php?action=read&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
 			<a title=\"supprimer\" href=\"index.php?action=delete&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
