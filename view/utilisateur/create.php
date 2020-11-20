@@ -2,7 +2,6 @@
     <div class="col s12 m4 l2">
     </div>
     <div class="col s12 m4 l8">
-        <!-- TODO: mettre l'action created -->
         <?php
             echo '<form method="post" action="index.php?action=created&festival_id="' . $_GET['festival_id'] . ' enctype="multipart/form-data"' . ' class="col s12">';
         ?>

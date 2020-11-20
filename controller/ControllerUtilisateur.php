@@ -97,16 +97,9 @@ class ControllerUtilisateur {
         $user_lastname = $_POST['user_lastname'];
         $user_mail = $_POST['user_mail'];
         $user_phone = $_POST['user_phone'];
-        $user_postal_code = $_POST['user_postal_code'];
         $user_birthdate = $_POST['user_birthdate'];
+        $user_postal_code = $_POST['user_postal_code'];
         $user_driving_license = $_POST['user_driving_license'];
-
-        // test pour debug
-        if(isset($_FILES['user_picture'])) {
-            echo "instancié";
-        } else {
-            echo "non instancié";
-        }
 
         // Test d'upload de la photo
         if (!empty($_FILES['user_picture']) && is_uploaded_file($_FILES['user_picture']['tmp_name'])) {
@@ -122,11 +115,10 @@ class ControllerUtilisateur {
 
             } else {
                 $user_picture = addslashes(file_get_contents($_FILES['user_picture']['tmp_name']));
-                echo $user_picture;
                 if($user_picture == false) {
                     $controller = 'utilisateur';
                     $view = 'error';
-                    $message = 'Erreur: file_get_contents';
+                    $message = 'Erreur: Initialisation de $user_picture';
                     $pagetitle = 'erreur';
                 }
             }
@@ -137,7 +129,6 @@ class ControllerUtilisateur {
             $pagetitle = 'erreur';
         }
 
-
         // Test d'initialisation des variables pour user
         if(isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license)) {
 
@@ -147,9 +138,9 @@ class ControllerUtilisateur {
                 'user_lastname' => $user_lastname, 
                 'user_mail' => $user_mail,  
                 'user_phone' => $user_phone, 
-                'user_postal_code' => $user_postal_code, 
                 'user_birthdate' => $user_birthdate, 
                 'user_picture' => $user_picture, 
+                'user_postal_code' => $user_postal_code,
                 'user_driving_license' => $user_driving_license, 
             );
 
