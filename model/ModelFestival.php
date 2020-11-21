@@ -267,7 +267,7 @@ class ModelFestival extends Model
   public static function getJoursByFestival($festival_id)
   {
     try {
-      $sql = "SELECT CAST(creneau_startdate AS DATE) AS creneau_startdate FROM creneau WHERE festival_id=:id_tag";
+      $sql = "SELECT DISTINCT CAST(creneau_startdate AS DATE) AS creneau_startdate FROM creneau WHERE festival_id=:id_tag";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
         "id_tag" => $festival_id,
