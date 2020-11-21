@@ -297,4 +297,33 @@ class ModelUtilisateur extends Model
       die();
     }
   }
+
+  public static function generatorPicture($user_id)
+  {
+    try {
+      $sql = "SELECT user_picture FROM user WHERE user_id=:id_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $user_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+      $tab_picture = $req_prep->fetchAll();
+
+      //$tab_picture = $req_prep->fetch();
+
+      if (empty($tab_picture)) return false;
+
+      //header("Content-type: image/png");
+      return $tab_picture[0];
+
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
 }

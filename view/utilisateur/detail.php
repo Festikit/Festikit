@@ -21,8 +21,11 @@
     Date de naissance: $user_birthdate </br>
     Adresse postale: $user_postal_code </br>
     Permis de conduire: $user_driving_license </br>";
-    //header("Content-type: image/png");
-    //echo $user_picture;
+    
+    
+    $picture = ModelUtilisateur::generatorPicture($user_id);
+    //header("Content-type: image/jpg");
+    //echo "<img src=\"" . $picture->getPicture() . "\" height=\"\" width=\"\" alt=\"mon image\" title=\"image\">";
 
 
 
