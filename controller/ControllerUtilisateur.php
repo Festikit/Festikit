@@ -104,23 +104,31 @@ class ControllerUtilisateur {
         // Test d'upload de la photo
         if (!empty($_FILES['user_picture']) && is_uploaded_file($_FILES['user_picture']['tmp_name'])) {
             
-            $img_taille = $_FILES['user_picture']['size'];
-            $taille_max = $_POST['MAX_FILE_SIZE'];
+            // Vérification de l'extension
+            $listeExtensions = array('/png', '/jpg', '/jpeg');
+            $extension = strrchr($_FILES['user_picture']['type'], '/');
+            if(in_array($extension, $listeExtensions)) {
 
-            if ($img_taille > $taille_max) {
-                $controller = 'utilisateur';
-                $view = 'error';
-                $message = 'Erreur: L\'image est trop volumineuse' . "( > $taille_max)";
-                $pagetitle = 'erreur';
-
-            } else {
-                $user_picture = addslashes(file_get_contents($_FILES['user_picture']['tmp_name']));
-                if($user_picture == false) {
+                // Vérification de la taille
+                if ($_FILES['user_picture']['size'] < $_POST['MAX_FILE_SIZE']) {
+                    $user_picture = addslashes(file_get_contents($_FILES['user_picture']['tmp_name']));
+                    if($user_picture == false) {
+                        $controller = 'utilisateur';
+                        $view = 'error';
+                        $message = 'Erreur: Initialisation de $user_picture';
+                        $pagetitle = 'erreur';
+                    }
+                } else {
                     $controller = 'utilisateur';
                     $view = 'error';
-                    $message = 'Erreur: Initialisation de $user_picture';
-                    $pagetitle = 'erreur';
+                    $message = 'Erreur: L\'image est trop volumineuse' . "( > $taille_max)";
+                    $pagetitle = 'erreur';                    
                 }
+            } else {
+                $controller = 'utilisateur';
+                $view = 'error';
+                $message = 'Erreur: Le format de l\'image n\'est pas autorisé (!= png jpg ou jpeg)';
+                $pagetitle = 'erreur';
             }
         } else {
             $controller = 'utilisateur';
