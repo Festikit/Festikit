@@ -38,6 +38,8 @@ class ControllerCreneau {
         $pagetitle='modification du creneau';
         $log_c  = $_GET['creneau_id'];
         $tab_c = ModelCreneau::getCreneauById($log_c);
+        $nom_poste = ModelPoste::getPosteById($tab_c->getPosteId())->getPosteName();
+        $nom_festival = ModelFestival::getFestivalsById($tab_c->getFestivalId())->getFestivalName();
         require (File::build_path(array("view","view.php")));
     }
 
