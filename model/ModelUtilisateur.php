@@ -310,11 +310,7 @@ class ModelUtilisateur extends Model
       $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
       $tab_picture = $req_prep->fetchAll();
 
-      //$tab_picture = $req_prep->fetch();
-
       if (empty($tab_picture)) return false;
-
-      //header("Content-type: image/png");
       return $tab_picture[0];
 
     } catch (PDOException $e) {

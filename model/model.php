@@ -57,6 +57,8 @@ class Model {
       }
       $sql = $sql . ")";
 
+      //echo $sql;
+
       $rep_prep = Model::$pdo->prepare($sql);
       $rep_prep->execute($data);
 

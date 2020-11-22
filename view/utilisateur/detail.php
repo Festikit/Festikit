@@ -22,12 +22,8 @@
     Adresse postale: $user_postal_code </br>
     Permis de conduire: $user_driving_license </br>";
     
-    
     $picture = ModelUtilisateur::generatorPicture($user_id);
-    //header("Content-type: image/jpg");
-    //echo "<img src=\"" . $picture->getPicture() . "\" height=\"\" width=\"\" alt=\"mon image\" title=\"image\">";
-
-
+    echo '<img src="data:image/jpg;base64,' . base64_encode($picture->getPicture()) . '" width="200px"/>';
 
     // Affichage des festivals où l'utilisateur est bénévole
 

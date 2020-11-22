@@ -3,8 +3,11 @@
     </div>
     <div class="col s12 m4 l8">
         <?php
-            echo '<form method="post" action="index.php?action=created&festival_id="' . $_GET['festival_id'] . ' enctype="multipart/form-data"' . ' class="col s12">';
+        /*
+            echo "<form method=\"post\" action=\"index.php?action=created&festival_id=" . $_GET['festival_id'] . "\" enctype=\"multipart/form-data" . " class=\"col s12\">";*/
         ?>
+
+        <form method="post" action="index.php?action=created&festival_id=1" enctype="multipart/form-data" class="col s12">
 
             <div class="card-panel grey lighten-4">
                 <h5>À propos de moi</h5>
@@ -40,7 +43,7 @@
                             <i class="material-icons">file_download</i>
                             <span>Photo de profil</span>
                             <input type="hidden" name="MAX_FILE_SIZE" value="250000" />
-                            <input name="user_picture" id="user_picture" type="file" accept="image/png, image/jpeg">
+                            <input name="user_picture" id="user_picture" type="file" accept="image/png, image/jpeg, image/jpg">
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">
@@ -309,7 +312,8 @@
 
             <div class="row">
                 <div class="col s12 m4 l4"></div>
-                <input type="hidden" name="action" value="create">
+                <input type="hidden" name="action" value="created">
+                <input type="hidden" name="festival_id" value=<?php echo "\"" . $_GET['festival_id'] . "\"" ?>>
                 <input class="btn col s12 m4 l4" type="submit" value="Envoyer" />
             </div>
         </form>
