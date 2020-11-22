@@ -7,6 +7,7 @@
             $log_p = htmlspecialchars($tab_p->getPosteId());
             $poste_name = htmlspecialchars($tab_p->getPosteName());
             $poste_description = htmlspecialchars($tab_p->getPosteDescription());
+            $festival_id = htmlspecialchars($tab_p->getFestivalId());
         }
         ?>
 
@@ -41,7 +42,7 @@
 </div>
 <ul class="collection">
     <li class="collection-header">
-        <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=read&controller=creneau&creneau_id=$creneau_id"> Ajouter un creneau</a>
+        <?php echo "<a class=\"btn-large waves-effect waves-light secondary-content\" href=\"index.php?action=create&controller=creneau&poste_id=$log_p&festival_id=$festival_id\"> Ajouter un creneau</a>"; ?>
         <h4 class="center">Liste des creneaux</h4>
     </li>
     <?php
