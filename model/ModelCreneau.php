@@ -6,7 +6,7 @@ class ModelCreneau extends Model
 
   protected static $object_table = 'creneau';
   protected static $object_model = 'creneau';
-  protected static $primary= 'creneau_id';
+  protected static $primary = 'creneau_id';
 
   private $creneau_id;
   private $creneau_startdate;
@@ -14,7 +14,7 @@ class ModelCreneau extends Model
   private $festival_id;
   private $poste_id;
 
-  
+
 
   public function __construct($id = NULL, $startdate = NULL, $enddate = NULL, $festival_id = NULL, $poste_id = NULL)
   {
@@ -94,6 +94,31 @@ class ModelCreneau extends Model
     }
   }
   */
+
+  public static function getAllCreneauxByPosteId($poste_id)
+  {
+    try {
+      $sql = "SELECT * from creneau WHERE poste_id=:poste_id";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "poste_id" => $poste_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelCreneau');
+      return $req_prep->fetchAll();
+
+      if (empty($tab_creneau))
+        return false;
+      return $tab_creneau;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
 
   public static function getCreneauById($creneau_id)
   {

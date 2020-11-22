@@ -17,6 +17,7 @@ class ControllerPoste {
 
         $poste_id = $_GET['poste_id'];
         $p = ModelPoste::getPosteById($poste_id);
+        $tab_creneau = ModelCreneau::getAllCreneauxByPosteId($poste_id);
 
         if ($p == false) {
             $pagetitle = 'Erreur action read';
@@ -37,6 +38,7 @@ class ControllerPoste {
         $view='update';
         $pagetitle='modification du poste';
         $log_p  = $_GET['poste_id'];
+        $tab_creneau = ModelCreneau::getAllCreneauxByPosteId($log_p);
         $tab_p = ModelPoste::getPosteById($log_p);
         require (File::build_path(array("view","view.php")));
     }
