@@ -100,13 +100,13 @@
                 <h5>Hébergement</h5>
                 <div class="row">
                     <div class="col s12">
-                        <label for="besoin_heberge"></label>Avez vous besoin d'être hébergé ?<span class="flow-text red-text" title="Ce champ est obligatoire">*</span> :
+                        <label for="besoin_hebergement"></label>Avez vous besoin d'être hébergé ?<span class="flow-text red-text" title="Ce champ est obligatoire">*</span> :
                         <label>
-                            <input name="besoin_heberge" type="radio" value="1" />
+                            <input name="besoin_hebergement" type="radio" value="1" />
                             <span>Oui</span>
                         </label>
                         <label>
-                            <input name="besoin_heberge" type="radio" value="0" />
+                            <input name="besoin_hebergement" type="radio" value="0" />
                             <span>Non</span>
                         </label>
                     </div>
@@ -114,13 +114,13 @@
 
                 <div class="row">
                     <div class="col s12">
-                        <label for="peut_heberge"></label>Pouvez vous héberger des personnes ?<span class="flow-text red-text" title="Ce champ est obligatoire">*</span> :
+                        <label for="peut_heberger"></label>Pouvez vous héberger des personnes ?<span class="flow-text red-text" title="Ce champ est obligatoire">*</span> :
                         <label>
-                            <input name="peut_heberge" type="radio" value="1" />
+                            <input name="peut_heberger" type="radio" value="1" />
                             <span>Oui</span>
                         </label>
                         <label>
-                            <input name="peut_heberge" type="radio" value="0" />
+                            <input name="peut_heberger" type="radio" value="0" />
                             <span>Non</span>
                         </label>
                     </div>
@@ -128,8 +128,8 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <label for="couchage_id"></label>Si oui, pouvez-vous nous expliquer la configuration de couchage ?
-                        <textarea id="couchage_id" placeholder=" clic-clac, chambre d'ami, accès indépendant..." class="materialize-textarea"></textarea>
+                        <label for="configuration_couchage"></label>Si oui, pouvez-vous nous expliquer la configuration de couchage ?
+                        <textarea name="configuration_couchage" id="configuration_couchage" placeholder=" clic-clac, chambre d'ami, accès indépendant..." class="materialize-textarea"></textarea>
                     </div>
                 </div>
             </div>
@@ -141,13 +141,13 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">insert_invitation</i>
-                        <input id="arrivee_date" placeholder=" " type="date" class="validate">
-                        <label for="arrivee_date">Date d'arrivée approximatif</label>
+                        <input name="arrivee_festival_date" id="arrivee_festival_date" placeholder=" " type="date" class="validate">
+                        <label for="arrivee_festival_date">Date d'arrivée approximatif</label>
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">access_time</i>
-                        <input id="arrivee-heure" placeholder=" " type="time" class="validate">
-                        <label for="arrivee-heure">Heure d'arrivée approximatif</label>
+                        <input name="arrivee_festival_heure" id="arrivee_festival_heure" placeholder=" " type="time" class="validate">
+                        <label for="arrivee_festival_heure">Heure d'arrivée approximatif</label>
                     </div>
                 </div>
 
@@ -155,13 +155,13 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">insert_invitation</i>
-                        <input name="depart_date" id="depart_date" placeholder=" " type="date" class="validate">
-                        <label for="depart_date">Date de depart approximatif</label>
+                        <input name="depart_festival_date" id="depart_festival_date" placeholder=" " type="date" class="validate">
+                        <label for="depart_festival_date">Date de depart approximatif</label>
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">access_time</i>
-                        <input name="depart-heure" id="depart-heure" placeholder=" " type="time" class="validate">
-                        <label for="depart-heure">Heure de départ approximatif</label>
+                        <input name="depart_festival_heure" id="depart_festival_heure" placeholder=" " type="time" class="validate">
+                        <label for="depart_festival_heure">Heure de départ approximatif</label>
                     </div>
                 </div>
 
@@ -202,13 +202,13 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">insert_invitation</i>
-                        <input name="creneau_date" id="creneau_date" placeholder=" " type="date" class="validate">
-                        <label for="creneau_date">Date de disponibilités</label>
+                        <input name="autres_dispos_date" id="autres_dispos_date" placeholder=" " type="date" class="validate">
+                        <label for="autres_dispos_date">Date de disponibilités</label>
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">access_time</i>
-                        <input name="creneau_heure" id="creneau_heure" placeholder=" " type="time" class="validate">
-                        <label for="creneau_heure">Heure de disponibilités</label>
+                        <input name="autres_dispos_heure" id="autres_dispos_heure" placeholder=" " type="time" class="validate">
+                        <label for="autres_dispos_heure">Heure de disponibilités</label>
                     </div>
                 </div>
             </div>
@@ -297,13 +297,13 @@
 
                 <div class="row">
                     <div class="col s12">
-                        <label for="deja_benevole"></label>Avez-vous déjà été bénévole sur le festival ?<span class="flow-text red-text" title="Ce champ est obligatoire">*</span> :
+                        <label for="experience"></label>Avez-vous déjà été bénévole sur le festival ?<span class="flow-text red-text" title="Ce champ est obligatoire">*</span> :
                         <label>
-                            <input name="deja_benevole" id="deja_benevole" type="radio" value="1" />
+                            <input name="experience" id="experience" type="radio" value="1" />
                             <span>Oui</span>
                         </label>
                         <label>
-                            <input name="deja_benevole" id="deja_benevole" type="radio" value="0" />
+                            <input name="experience" id="experience" type="radio" value="0" />
                             <span>Non</span>
                         </label>
                     </div>

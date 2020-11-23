@@ -7,6 +7,15 @@ class ModelPostuler extends Model
   private $user_id;
   private $festival_id;
   private $postuler_accepted;
+  private $venir_avec_vehicule;
+  private $besoin_hebergement;
+  private $peut_heberger;
+  private $configuration_couchage;
+  private $arrivee_festival;
+  private $depart_festival;
+  private $autres_dispos;
+  private $experience;
+
 
   protected static $object_table = 'postuler';
   protected static $object_model = 'postuler';

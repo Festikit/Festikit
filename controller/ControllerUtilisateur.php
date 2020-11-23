@@ -93,7 +93,7 @@ class ControllerUtilisateur {
     public static function created(){
         $reussiteUser = false;
 
-        // Initialisation des variables pour les insertions
+        // Initialisation des variables pour user
         $user_firstname = $_POST['user_firstname'];
         $user_lastname = $_POST['user_lastname'];
         $user_mail = $_POST['user_mail'];
@@ -102,6 +102,25 @@ class ControllerUtilisateur {
         $user_postal_code = $_POST['user_postal_code'];
         $user_driving_license = $_POST['user_driving_license'];
 
+        // Initialisation des variables pour postuler
+        $venir_avec_vehicule = $_POST['vehicule'];
+        $besoin_hebergement = $_POST['besoin_hebergement'];
+        $peut_heberger = $_POST['peut_heberger'];
+        $configuration_couchage = $_POST['configuration_couchage'];
+
+        $arrivee_festival_date = $_POST['arrivee_festival_date'];
+        $arrivee_festival_heure = $_POST['arrivee_festival_heure'];
+        $arrivee_festival = date('Y-m-d H:i:s', strtotime("$arrivee_festival_date $arrivee_festival_heure"));
+        
+        $depart_festival_date = $_POST['depart_festival_date'];
+        $depart_festival_heure = $_POST['depart_festival_heure'];
+        $depart_festival = date('Y-m-d H:i:s', strtotime("now"));
+
+        $autres_dispos_date = $_POST['autres_dispos_date'];
+        $autres_dispos_heure = $_POST['autres_dispos_heure'];
+        $autres_dispos = date('Y-m-d H:i:s', strtotime("$autres_dispos_date $autres_dispos_heure"));
+        
+        $experience = $_POST['experience'];
 
         //echo $_FILES['user_picture']['tmp_name'];
         
@@ -182,7 +201,7 @@ class ControllerUtilisateur {
 
         if($reussiteUser) {
             $festival_id = $_POST['festival_id'];
-            if(self::createdPostuler($user_mail, $festival_id)) {
+            if(self::createdPostuler($user_mail, $festival_id, $venir_avec_vehicule, $besoin_hebergement, $peut_heberger, $configuration_couchage, $arrivee_festival, $depart_festival, $autres_dispos, $experience)) {
                 // Reussite de toutes les insertions
                 $controller = 'utilisateur';
                 $view = 'created';
@@ -196,7 +215,7 @@ class ControllerUtilisateur {
     }
 
 
-    public static function createdPostuler($user_mail, $festival_id) {
+    public static function createdPostuler($user_mail, $festival_id, $venir_avec_vehicule, $besoin_hebergement, $peut_heberger, $configuration_couchage, $arrivee_festival, $depart_festival, $autres_dispos, $experience) {
         
         // Initialisation des variables pour postuler
         $user_id = ModelUtilisateur::getIdByMail($user_mail);
@@ -212,7 +231,15 @@ class ControllerUtilisateur {
             $dataPostuler = array(
                 'user_id' => $user_id, 
                 'festival_id' => $festival_id, 
-                'postuler_accepted' => $postuler_accepted,   
+                'postuler_accepted' => $postuler_accepted,
+                'venir_avec_vehicule' => $venir_avec_vehicule,
+                'besoin_hebergement' => $besoin_hebergement,
+                'peut_heberger' => $peut_heberger,
+                'configuration_couchage' => $configuration_couchage,
+                'arrivee_festival' => $arrivee_festival,
+                'depart_festival' => $depart_festival,
+                'autres_dispos' => $autres_dispos,
+                'experience' => $experience,   
             );
             /*
             echo "<pre>";
