@@ -4,7 +4,8 @@
     <div class="col s12 m4 l8">
         <?php
         /*
-            echo "<form method=\"post\" action=\"index.php?action=created&festival_id=" . $_GET['festival_id'] . "\" enctype=\"multipart/form-data" . " class=\"col s12\">";*/
+            echo "<form method=\"post\" action=\"index.php?action=created&festival_id=" . $_GET['festival_id'] . "\" enctype=\"multipart/form-data" . " class=\"col s12\">";
+        */
         ?>
 
         <form method="post" action="index.php?action=created&festival_id=1" enctype="multipart/form-data" class="col s12">
@@ -232,10 +233,10 @@
                         echo "
                         <tr>
                         <td><label for=\"$idPoste\">$nomPoste<br>$descriptionPoste</label></td>
-                        <td><label><input type=\"radio\" name=\"$idPoste\" id=\"$idPoste\" value=\"1\" /><span> </span></label></td>
-                        <td><label><input type=\"radio\" name=\"$idPoste\" id=\"$idPoste\" value=\"2\" /><span> </span></label></td>
-                        <td><label><input type=\"radio\" name=\"$idPoste\" id=\"$idPoste\" value=\"3\" /><span> </span></label></td>
-                        <td><label><input type=\"radio\" name=\"$idPoste\" id=\"$idPoste\" value=\"4\" /><span> </span></label></td>
+                        <td><label><input type=\"radio\" name=\"" . "Poste" . $idPoste . "\" id=\"$idPoste\" value=\"1\" /><span> </span></label></td>
+                        <td><label><input type=\"radio\" name=\"" . "Poste" . $idPoste . "\" id=\"$idPoste\" value=\"2\" /><span> </span></label></td>
+                        <td><label><input type=\"radio\" name=\"" . "Poste" . $idPoste . "\" id=\"$idPoste\" value=\"3\" /><span> </span></label></td>
+                        <td><label><input type=\"radio\" name=\"" . "Poste" . $idPoste . "\" id=\"$idPoste\" value=\"4\" /><span> </span></label></td>
                         </tr>
                         ";
                     }

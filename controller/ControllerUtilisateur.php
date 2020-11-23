@@ -122,8 +122,8 @@ class ControllerUtilisateur {
         
         $experience = $_POST['experience'];
 
-        //echo $_FILES['user_picture']['tmp_name'];
-        
+        $festival_id = $_POST['festival_id'];
+
         // Test d'upload de la photo
         if (!empty($_FILES['user_picture']) && is_uploaded_file($_FILES['user_picture']['tmp_name'])) {
             
@@ -200,15 +200,43 @@ class ControllerUtilisateur {
         }
 
         if($reussiteUser) {
-            $festival_id = $_POST['festival_id'];
             if(self::createdPostuler($user_mail, $festival_id, $venir_avec_vehicule, $besoin_hebergement, $peut_heberger, $configuration_couchage, $arrivee_festival, $depart_festival, $autres_dispos, $experience)) {
                 // Reussite de toutes les insertions
                 $controller = 'utilisateur';
                 $view = 'created';
                 $pagetitle = 'creation utilisateur';
+            } else {
+
+                /* TODO 
+                Pour afficher les messages d'erreurs des fonctions createdPreference createdPostuler...
+                Lorsqu'on veut lever l'erreur on renvoir false et on initialise la variable message
+                Ensuite on appelle la vue erreur ici dans create
+                */
+
+                $controller = 'utilisateur';
+                $view = 'erreur';
+                $pagetitle = 'creation utilisateur';
+            }
+
+            /* Insertion pour preference */
+
+            $user_id = ModelUtilisateur::getIdByMail($user_mail);
+            $user_id = $user_id->getId();
+
+            // Initialisation des variables pour préférence
+            foreach (ModelFestival::getPostesByFestival($festival_id) as $post) {
+                $poste_id = $post->getPosteId();
+                $post = "Poste" . $poste_id;
+                //echo $post . "<br>";
+                //echo $_POST[$post] . "<br>";
+                //${'Poste' . $poste_id} = $_POST[$post];
+                //$rang = $_POST[$post];
+                //echo "${'Poste' . $poste_id}";
+                //echo $poste_id;
+                self::createdPreference($user_id, $poste_id, $_POST[$post]);
             }
         }
-        
+
         $tab_u = ModelUtilisateur::selectAll();
 
         require (File::build_path(array("view","view.php")));
@@ -261,6 +289,24 @@ class ControllerUtilisateur {
             $view = 'error';
             $message = 'Erreur: initialisation des variables nécessaire à la création d\'une instance de postuler';
             $pagetitle = 'erreur';
+        }
+    }
+
+    public static function createdPreference($user_id, $poste_id, $rang) {
+        $dataPreference = array(
+            'user_id' => $user_id, 
+            'poste_id' => $poste_id, 
+            'rang' => $rang,
+        );
+
+        // Insertion dans preference + test d'insertion
+        if(is_bool(ModelPreference::save($dataPreference))) {
+            $controller = 'utilisateur';
+            $view = 'error';
+            $message = 'Erreur: Insertion des données dans la table preference';
+            $pagetitle = 'erreur';
+        } else {
+            return true;
         }
     }
 }
