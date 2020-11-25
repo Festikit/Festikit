@@ -73,6 +73,22 @@ class ControllerCreneau
         require(File::build_path(array("view", "view.php")));
     }
 
+    public static function deleteInPoste()
+    {
+        $controller = 'poste';
+        $view = 'update';
+        $pagetitle = 'modification du poste';
+
+        $creneau_id = $_GET['creneau_id'];
+        $log_p  = $_GET['poste_id'];
+
+        ModelCreneau::deleteById($creneau_id);
+        $tab_creneau = ModelCreneau::getAllCreneauxByPosteId($log_p);
+        $tab_p = ModelPoste::getPosteById($log_p);
+
+        require(File::build_path(array("view", "view.php")));
+    }
+
     public static function create()
     {
         $controller = 'creneau';

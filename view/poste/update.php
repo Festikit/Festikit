@@ -59,6 +59,7 @@
             <p>Fin: $creneau_enddate</p>
     		<div class=\"secondary-content\">
                 <a title=\"en savoir plus\" href=\"index.php?action=read&controller=creneau&creneau_id=$creneau_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
+                <a title=\"supprimer\" href=\"index.php?action=deleteInPoste&controller=creneau&creneau_id=$creneau_id&poste_id=$log_p\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
                 <a title=\"modifier\" href=\"index.php?action=update&controller=creneau&creneau_id=$creneau_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
     		</div>
     	</li>";

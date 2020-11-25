@@ -109,6 +109,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
                     <a title=\"en savoir plus\" href=\"index.php?action=read&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
                     <a title=\"supprimer\" href=\"index.php?action=delete&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
                     <a title=\"refuser\" href=\"index.php?action=refuserUtilisateur&controller=festival&user_id=$user_id&festival_id=$festival_id\" class=\"btn\">Refuser</a>
+                    <a title=\"Assigner en tant que responsable\" href=\"index.php?action=ajouterResponsable&controller=festival&user_id=$user_id&festival_id=$festival_id\" class=\"btn\">assigner</a>
                 </div>
             </li>";
                 $i++;
@@ -141,6 +142,38 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
                     <a title=\"supprimer\" href=\"index.php?action=delete&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
                     <a title=\"accepter\" href=\"index.php?action=accepterUtilisateur&controller=festival&user_id=$user_id&festival_id=$festival_id\" class=\"btn\">Accepter</a>
                 </div>
+            </li>";
+                $i++;
+            }
+        }
+        ?>
+    </ul>
+</div>
+
+<div class="row">
+    <ul class="collection col s12 m12 l6">
+        <li class="collection-header">
+            <h4>Liste des responsables</h4>
+        </li>
+        <?php
+
+        if (empty($tab_responsable)) {
+            echo "Il n'y a pas encore de responsable pour ce festival.</br>";
+        } else {
+            $i = 1;
+            echo "<pre>";
+            print_r($tab_responsable);
+            echo "</pre>";
+            foreach ($tab_responsable as $r) {
+                $festival_id = rawurlencode($f->getFestivalId());
+                $user_id = rawurlencode($r->getId());               
+                echo "<li class=\"collection-item avatar\">
+                <div class=\"circle green\">
+                </div>
+                <span class=\"title\">$user_firstname</span>
+                <p>$user_lastname
+                </p>
+                
             </li>";
                 $i++;
             }

@@ -184,6 +184,47 @@ class ModelFestival extends Model
     }
   }
 
+  public function ajouterResponsable($user_id, $festival_id){
+    try{
+      $sql = "INSERT INTO responsable(user_id,festival_id) VALUES ('$user_id','$festival_id')";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "user_id" => $user_id,
+        "festival_id" => $festival_id
+      );
+
+      $req_prep->execute($values);
+    }
+    catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage(); // affiche un message d'erreur
+      } else {
+        echo 'Une erreur est survenue lors de l\'ajout du responsable';
+      }
+      die();
+    }
+  }
+
+  /* public function desassignerResponsable($id){
+    try{
+      $sql = "DELETE FROM responsable WHERE responsable_id=:nom_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "nom_tag" => $id,
+      );
+
+      $req_prep->execute($values);
+    }
+    catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage(); // affiche un message d'erreur
+      } else {
+        echo 'Une erreur est survenue lors de la suppression du responsable';
+      }
+      die();
+    }
+  } */
+
 
   // postuler_accepted = 0 dans la table "postuler"
   public static function getCandidatsByFestival($festival_id)
@@ -303,23 +344,42 @@ class ModelFestival extends Model
     }
   }
 
-  // Pour générer le formulaire dynamiquement (disponible)
-  public static function getCreneauxGeneriquesHeure($festival_id)
-  {
+
+  public static function getResponsableByFestival($festival_id){
     try {
-      $sql = "SELECT creneau_id, CAST(creneau_startdate AS TIME) AS creneau_startdate , CAST(creneau_enddate AS TIME) AS creneau_enddate FROM creneau WHERE festival_id=:id_tag AND CAST(creneau_startdate AS DATE) <= DATE '2001-02-01'";
+      $sql = "SELECT r.responsable_id, r.festival_id, u.user_id, u.user_firstname, u.user_lastname FROM responsable r JOIN user u ON u.user_id=r.user_id WHERE festival_id=:id_tag";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
         "id_tag" => $festival_id,
       );
       $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelResponsable');
+      $tab_responsable = $req_prep->fetchAll();
+
+      if (empty($tab_responsable)) return false;
+      return $tab_responsable;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
+  // Pour générer le formulaire dynamiquement (disponible)
+  public static function getCreneauxGeneriquesHeure($festival_id)
+  {
+    try {
+      $sql = "SELECT creneau_id, CAST(creneau_startdate AS TIME) AS creneau_startdate , CAST(creneau_enddate AS TIME) AS creneau_enddate FROM creneau WHERE festival_id=:id_tag AND CAST(creneau_startdate AS DATE) <= DATE '2001-02-01'";
       $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelCreneau');
       $tab_creneaux_generique_heure = $req_prep->fetchAll();
 
       if (empty($tab_creneaux_generique_heure)) return false;
 
       return $tab_creneaux_generique_heure;
-    } catch (PDOException $e) {
+      } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage();
       } else {
