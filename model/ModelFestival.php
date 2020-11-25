@@ -267,7 +267,8 @@ class ModelFestival extends Model
   public static function getJoursByFestival($festival_id)
   {
     try {
-      $sql = "SELECT DISTINCT CAST(creneau_startdate AS DATE) AS creneau_startdate FROM creneau WHERE festival_id=:id_tag";
+      $sql = "SELECT DISTINCT CAST(creneau_startdate AS DATE) AS creneau_startdate FROM creneau WHERE festival_id=:id_tag ORDER BY creneau_startdate";
+
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
         "id_tag" => $festival_id,
@@ -301,4 +302,58 @@ class ModelFestival extends Model
       die();
     }
   }
+
+  // Pour générer le formulaire dynamiquement (disponible)
+  public static function getCreneauxGeneriquesHeure($festival_id)
+  {
+    try {
+      $sql = "SELECT creneau_id, CAST(creneau_startdate AS TIME) AS creneau_startdate , CAST(creneau_enddate AS TIME) AS creneau_enddate FROM creneau WHERE festival_id=:id_tag AND CAST(creneau_startdate AS DATE) <= DATE '2001-02-01'";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $festival_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelCreneau');
+      $tab_creneaux_generique_heure = $req_prep->fetchAll();
+
+      if (empty($tab_creneaux_generique_heure)) return false;
+
+      return $tab_creneaux_generique_heure;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
+
+  // Pour générer le formulaire dynamiquement (disponible)
+  public static function getCreneauxGeneriquesDate($festival_id)
+  {
+    try {
+      $sql = "SELECT creneau_id, CAST(creneau_startdate AS DATE) AS creneau_startdate FROM creneau WHERE festival_id=:id_tag AND CAST(creneau_startdate AS DATE) <= DATE '2001-02-01'";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $festival_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelCreneau');
+      $tab_creneaux_generique_date = $req_prep->fetchAll();
+
+      if (empty($tab_creneaux_generique_date)) return false;
+
+      return $tab_creneaux_generique_date;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
 }

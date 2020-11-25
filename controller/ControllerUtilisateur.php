@@ -235,6 +235,31 @@ class ControllerUtilisateur {
                 //echo $poste_id;
                 self::createdPreference($user_id, $poste_id, $_POST[$post]);
             }
+
+
+            /* Insertion pour disponible 
+            $festivalGenerique = 6;
+            $numCreneau = 1;
+            foreach (ModelFestival::getCreneauxGeneriques($festivalGenerique) as $c) {
+                $numCreneau++;
+                foreach (ModelFestival::getJoursByFestival($_GET['festival_id']) as $j) {
+                    $jour = $j->getCreneauStart();
+
+                    $creneau_id = $j->getCreneauId();
+
+                    $post = "dispo_lieu$numCreneau" . "date_$jour";
+                    $disponible = $_POST['$post'];
+
+                    if ($disponible == 1) {
+                        $dataDisponible = array(
+                            'user_id' => $user_id,
+                            'creneau_id' => $creneau_id,
+                        );
+
+                        ModelDisponible::save($dataDisponible);
+                    }
+                }
+            }   */
         }
 
         $tab_u = ModelUtilisateur::selectAll();

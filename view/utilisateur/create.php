@@ -170,33 +170,47 @@
                 <table>
                     <tr>
                         <th id=""><label for="dispo_date1">jour</label></th>
-                        <th id="matin"><label for="dispo_date1">Matin: 8h-14h</label></th>
-                        <th id="après-midi"><label for="dispo_date2">Après-midi: 14h-17h</label></th>
-                        <th id="fin-après-midi"><label for="dispo_date3">Fin d'après-midi: 17h-20h</label></th>
-                        <th id="soiree"><label for="dispo_date4">Soirée: 20h-22h</label></th>
-                        <th id="fin-soirée"><label for="dispo_date5">Fin de soirée: 22h-00h</label></th>
-                        <th id="minuit"><label for="dispo_date6">Apres 00h</label></th>
+
+                        <?php
+                        // Affichage dynamique des créneaux génériques
+
+                        $festivalGenerique = 6;
+                        $compteurCreneaux = 0;
+                        foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $c) {
+                            $cStart = $c->getCreneauStart();
+                            $cEnd = $c->getCreneauEnd();
+                            echo "<th id=\"\"><label for=\"dispo_date\">" . $cStart . " " . $cEnd . "</label></th>"; // TODO modifier le for et l'id
+                            $compteurCreneaux++;
+                        }
+                        ?>
+
                     </tr>
 
                         <?php
                         // Affichage dynamique des jours de festival
 
-                        $numLieu=1;
-                        foreach (ModelFestival::getJoursByFestival($_GET['festival_id']) as $j) {
+                        $numCreneau=1;
+                        foreach (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique) as $j) {
                             $jour = $j->getCreneauStart();
+                            /*
+
+                                Faire un get creneau_id by CAST(creneau_startdate AS TIME) AS creneau_enddate et CAST(creneau_startdate AS DATE) AS creneau_startdate
+                            */
                             echo "
-                            <tr>
-                                <td class=\"firstColumn\"><label for=\"dispo_lieu$numLieu\">$jour</label></td>
-                                <td><label><input type=\"checkbox\" name=\"dispo_lieu$numLieu\" id=\"dispo_lieu1_date1\" value=\"1\" /><span> </span></label></td>
-                                <td><label><input type=\"checkbox\" name=\"dispo_lieu$numLieu\" id=\"dispo_lieu1_date2\" value=\"1\" /><span> </span></label></td>
-                                <td><label><input type=\"checkbox\" name=\"dispo_lieu$numLieu\" id=\"dispo_lieu1_date3\" value=\"1\" /><span> </span></label></td>
-                                <td><label><input type=\"checkbox\" name=\"dispo_lieu$numLieu\" id=\"dispo_lieu1_date4\" value=\"1\" /><span> </span></label></td>
-                                <td><label><input type=\"checkbox\" name=\"dispo_lieu$numLieu\" id=\"dispo_lieu1_date5\" value=\"1\" /><span> </span></label></td>
-                                <td><label><input type=\"checkbox\" name=\"dispo_lieu$numLieu\" id=\"dispo_lieu1_date6\" value=\"1\" /><span> </span></label></td>
-                            </tr>";
-                            $numLieu++;
+                                  <tr>
+                                  <td class=\"firstColumn\"><label for=\"dispo_lieu$numCreneau\">$jour</label></td>
+                                  ";
+                            $compteur = $compteurCreneaux;
+                            while($compteur > 0) {
+                                echo "<td><label><input type=\"checkbox\" name=\"dispo_lieu$numCreneau" . "date_$jour\" id=\"dispo_lieu$numCreneau" . "date_$jour\" value=\"1\" /><span> </span></label></td>";
+                                $compteur--;
+                            }
+                            echo "</tr>";
+                            
+                            $numCreneau++;
                         }
                         ?>
+
                 </table>
 
                 <h6>Autres disponibilités</h6>
