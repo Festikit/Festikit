@@ -1,11 +1,13 @@
 <?php
 require_once File::build_path(array("config", "Conf.php"));
 
-class Model {
+class Model
+{
 
   public static $pdo;
 
-  public static function Init() {
+  public static function Init()
+  {
     $host = Conf::getHostname();
     $dbname = Conf::getDatabase();
     $login = Conf::getLogin();
@@ -24,19 +26,21 @@ class Model {
     }
   }
 
-  public static function selectAll(){
+  public static function selectAll()
+  {
     $table_name = static::$object_table;
     $model_name = static::$object_model;
-    $class_name = 'Model'. ucfirst($model_name);
-      $pdo = Model::$pdo;
-      $sql = "SELECT * from ".$table_name;
-      $rep = $pdo->query($sql);
-      $rep->setFetchMode(PDO::FETCH_CLASS, $class_name);
-      return $rep->fetchAll();
-    }
+    $class_name = 'Model' . ucfirst($model_name);
+    $pdo = Model::$pdo;
+    $sql = "SELECT * from " . $table_name;
+    $rep = $pdo->query($sql);
+    $rep->setFetchMode(PDO::FETCH_CLASS, $class_name);
+    return $rep->fetchAll();
+  }
 
 
-  public static function save($data){
+  public static function save($data)
+  {
     $table_name = static::$object_table;
     $primary_key = static::$primary;
 
@@ -61,15 +65,13 @@ class Model {
 
       $rep_prep = Model::$pdo->prepare($sql);
       $rep_prep->execute($data);
-
-    } catch(PDOException $e) {
+    } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage();
       }
       return false;
     }
   }
-
 }
 
 Model::Init();

@@ -173,4 +173,21 @@ class ModelCreneau extends Model
       die();
     }
   }
+
+  public static function deleteById($id)
+  {
+    try {
+      $sql = "DELETE FROM creneau WHERE creneau_id =:creneau_id";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "creneau_id" => $id
+      );
+      $req_prep->execute($values);
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      die();
+    }
+  }
 }
