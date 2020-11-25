@@ -90,8 +90,8 @@ class ControllerCreneau
 
     public static function created()
     {
-        $controller = 'creneau';
-        $view = 'created';
+        $controller = 'poste';
+        $view = 'update';
         $pagetitle = 'ajout d\'un créneau';
 
         $creneau_startdate = $_GET['creneau_startdate'];
@@ -106,10 +106,13 @@ class ControllerCreneau
             "poste_id" => $poste_id
         );
 
+        $log_p  = $poste_id;
+        $tab_creneau = ModelCreneau::getAllCreneauxByPosteId($log_p);
+        $tab_p = ModelPoste::getPosteById($log_p);
         if (is_bool(ModelCreneau::save($dataCreneau))) {
             $controller = 'creneau';
             $view = 'error';
-            $message = 'Erreur: Insertion des données dans la table user';
+            $message = 'Erreur: Insertion des données dans la table poste';
             $pagetitle = 'erreur';
         }
         require(File::build_path(array("view", "view.php")));
