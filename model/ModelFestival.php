@@ -372,7 +372,12 @@ class ModelFestival extends Model
   public static function getCreneauxGeneriquesHeure($festival_id)
   {
     try {
-      $sql = "SELECT creneau_id, CAST(creneau_startdate AS TIME) AS creneau_startdate , CAST(creneau_enddate AS TIME) AS creneau_enddate FROM creneau WHERE festival_id=:id_tag AND CAST(creneau_startdate AS DATE) <= DATE '2001-02-01'";
+      $sql = "SELECT DISTINCT CAST(creneau_startdate AS TIME) AS creneau_startdate , CAST(creneau_enddate AS TIME) AS creneau_enddate FROM creneau WHERE festival_id=:id_tag AND CAST(creneau_startdate AS DATE) <= DATE '2001-02-01'";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $festival_id,
+      );
+      $req_prep->execute($values);
       $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelCreneau');
       $tab_creneaux_generique_heure = $req_prep->fetchAll();
 
@@ -394,7 +399,7 @@ class ModelFestival extends Model
   public static function getCreneauxGeneriquesDate($festival_id)
   {
     try {
-      $sql = "SELECT creneau_id, CAST(creneau_startdate AS DATE) AS creneau_startdate FROM creneau WHERE festival_id=:id_tag AND CAST(creneau_startdate AS DATE) <= DATE '2001-02-01'";
+      $sql = "SELECT DISTINCT CAST(creneau_startdate AS DATE) AS creneau_startdate FROM creneau WHERE festival_id=:id_tag AND CAST(creneau_startdate AS DATE) <= DATE '2001-02-01'";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
         "id_tag" => $festival_id,

@@ -114,7 +114,7 @@ class ControllerUtilisateur {
         
         $depart_festival_date = $_POST['depart_festival_date'];
         $depart_festival_heure = $_POST['depart_festival_heure'];
-        $depart_festival = date('Y-m-d H:i:s', strtotime("now"));
+        $depart_festival = date('Y-m-d H:i:s', strtotime("depart_festival_date depart_festival_heure"));
 
         $autres_dispos_date = $_POST['autres_dispos_date'];
         $autres_dispos_heure = $_POST['autres_dispos_heure'];
@@ -237,29 +237,29 @@ class ControllerUtilisateur {
             }
 
 
-            /* Insertion pour disponible 
+            /* Insertion pour disponible */
             $festivalGenerique = 6;
-            $numCreneau = 1;
-            foreach (ModelFestival::getCreneauxGeneriques($festivalGenerique) as $c) {
-                $numCreneau++;
-                foreach (ModelFestival::getJoursByFestival($_GET['festival_id']) as $j) {
-                    $jour = $j->getCreneauStart();
+            $numCreneauHeure = 0;
+            foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $h) {
+                $numCreneauHeure++;
+                foreach (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique) as $d) {
+                    $CreneauDate = $d->getCreneauStart();
 
-                    $creneau_id = $j->getCreneauId();
-
-                    $post = "dispo_lieu$numCreneau" . "date_$jour";
-                    $disponible = $_POST['$post'];
-
-                    if ($disponible == 1) {
+                    //$creneau_id = $d->getCreneauId();
+                    $post = "dispo_heure$numCreneauHeure" . "date_$CreneauDate";
+                    
+                    if(isset($_POST["$post"])) {
+                        echo "Disponible: " . $post . "<br>";
+                        /*
                         $dataDisponible = array(
                             'user_id' => $user_id,
                             'creneau_id' => $creneau_id,
                         );
-
                         ModelDisponible::save($dataDisponible);
+                        */
                     }
                 }
-            }   */
+            }   
         }
 
         $tab_u = ModelUtilisateur::selectAll();

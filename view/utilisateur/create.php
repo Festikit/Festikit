@@ -175,12 +175,13 @@
                         // Affichage dynamique des créneaux génériques
 
                         $festivalGenerique = 6;
-                        $compteurCreneaux = 0;
+                        $compteurCreneauxHeure = 0;
                         foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $c) {
                             $cStart = $c->getCreneauStart();
                             $cEnd = $c->getCreneauEnd();
-                            echo "<th id=\"\"><label for=\"dispo_date\">" . $cStart . " " . $cEnd . "</label></th>"; // TODO modifier le for et l'id
-                            $compteurCreneaux++;
+                            echo "<th id=\"\"><label for=\"dispo_heure$compteurCreneauxHeure\">" . $cStart . " " . $cEnd . "</label></th>"; 
+
+                            $compteurCreneauxHeure++;
                         }
                         ?>
 
@@ -189,25 +190,22 @@
                         <?php
                         // Affichage dynamique des jours de festival
 
-                        $numCreneau=1;
+                        $numCreneauHeure=1;
                         foreach (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique) as $j) {
-                            $jour = $j->getCreneauStart();
-                            /*
+                            $CreneauDate = $j->getCreneauStart();
 
-                                Faire un get creneau_id by CAST(creneau_startdate AS TIME) AS creneau_enddate et CAST(creneau_startdate AS DATE) AS creneau_startdate
-                            */
                             echo "
                                   <tr>
-                                  <td class=\"firstColumn\"><label for=\"dispo_lieu$numCreneau\">$jour</label></td>
+                                  <td class=\"firstColumn\"><label for=\"date_$numCreneauHeure\">$CreneauDate</label></td>
                                   ";
-                            $compteur = $compteurCreneaux;
-                            while($compteur > 0) {
-                                echo "<td><label><input type=\"checkbox\" name=\"dispo_lieu$numCreneau" . "date_$jour\" id=\"dispo_lieu$numCreneau" . "date_$jour\" value=\"1\" /><span> </span></label></td>";
-                                $compteur--;
+                            $compteur = 1;
+                            while($compteur <= $compteurCreneauxHeure) {
+                                echo "<td><label><input type=\"checkbox\" name=\"dispo_heure$compteur" . "date_$CreneauDate\" id=\"dispo_heure$compteur" . "date_$CreneauDate\" value=\"1\" /><span> </span></label></td>";
+                                $compteur++; 
                             }
                             echo "</tr>";
                             
-                            $numCreneau++;
+                            $numCreneauHeure++;
                         }
                         ?>
 
