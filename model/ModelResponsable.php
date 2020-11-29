@@ -1,7 +1,7 @@
 <?php
 require_once File::build_path(array("model", "Model.php"));
 
-class ModelResponsable extends Model
+class ModelResponsable extends ModelUtilisateur
 {
 
     protected static $object_table = 'responsable';
@@ -53,6 +53,15 @@ class ModelResponsable extends Model
     {
         $this->festival_id = $festivalId2;
     }
+
+    public function getUserFirstName(){
+        return $this->user_firstname;
+      }
+    
+      public function getUserLastName(){
+        return $this->user_lastname;
+      }  
+
 
     public static function getNomResponsable()
     {

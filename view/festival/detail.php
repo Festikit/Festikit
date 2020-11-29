@@ -166,7 +166,9 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
             echo "</pre>";
             foreach ($tab_responsable as $r) {
                 $festival_id = rawurlencode($f->getFestivalId());
-                $user_id = rawurlencode($r->getId());               
+                $user_id = rawurlencode($r->getId());  
+                $user_firstname = rawurlencode($r->getUserFirstName());
+                $user_lastname = rawurlencode($r->getUserLastName());
                 echo "<li class=\"collection-item avatar\">
                 <div class=\"circle green\">
                 </div>

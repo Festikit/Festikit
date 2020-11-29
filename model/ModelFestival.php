@@ -73,6 +73,8 @@ class ModelFestival extends Model
     $this->city = $city2;
   }
 
+  
+
   /*public static function getAllFestivals()
   {
     try {
