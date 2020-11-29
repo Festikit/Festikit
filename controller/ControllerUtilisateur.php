@@ -114,7 +114,7 @@ class ControllerUtilisateur {
         
         $depart_festival_date = $_POST['depart_festival_date'];
         $depart_festival_heure = $_POST['depart_festival_heure'];
-        $depart_festival = date('Y-m-d H:i:s', strtotime("depart_festival_date depart_festival_heure"));
+        $depart_festival = date('Y-m-d H:i:s', strtotime("$depart_festival_date $depart_festival_heure"));
 
         $autres_dispos_date = $_POST['autres_dispos_date'];
         $autres_dispos_heure = $_POST['autres_dispos_heure'];
@@ -244,16 +244,19 @@ class ControllerUtilisateur {
                 $cEnd = $h->getCreneauEnd();
                 foreach (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique) as $d) {
                     $CreneauDate = $d->getCreneauStart();
-
-                    //$creneau_id = $d->getCreneauId();
                     $post = "dispo_heure$cStart" . "_$cEnd" . "date_$CreneauDate";
-                    
+
                     if(isset($_POST["$post"])) {
-                        echo "Disponible: " . $post . "<br>";
                         $heureStart = substr($post,11,8); // Je récupère 8 caractères à partir du 11ème (inclus)
                         $heureEnd = substr($post,20,8);
-                        $date = substr($post,35,10);
-                        echo "Disponible: " . $post . "<br>" . $heureStart ."   ". $heureEnd ."   ". $date."<br><br>";
+                        $date = substr($post,-10); // Je récupère les 10 derniers caractères
+
+                        $CreneauStart = date('Y-m-d H:i:s', strtotime("$date $heureStart"));
+                        $CreneauEnd = date('Y-m-d H:i:s', strtotime("$date $heureEnd"));
+                        echo "Disponible: " . $post . "<br>" . $CreneauStart ."   ". $CreneauEnd . "<br><br>";
+
+                        $creneau_id = ModelFestival::getCreneauxIdByDateHeure($festivalGenerique, $CreneauStart, $CreneauEnd);
+                        echo $creneau_id;
                     }
                 }
             }   

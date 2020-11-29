@@ -421,4 +421,35 @@ class ModelFestival extends Model
     }
   }
 
+  /*
+  Penser a mettre les creneau des paramètres au format datetime pour pouvoir les comparer avec ceux de la bd
+  */
+  public static function getCreneauxIdByDateHeure($festival_id, $creneau_startdate, $creneau_enddate)
+  {
+    try {
+      $sql = "SELECT creneau_id FROM creneau WHERE festival_id=:id_tag AND creneau_startdate:=creneau_startdate AND creneau_enddate:=creneau_enddate";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $festival_id,
+        "creneau_startdate" => $creneau_startdate,
+        "creneau_enddate" => $creneau_enddate,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelCreneau');
+      $tab_creneau_id = $req_prep->fetchAll();
+
+      if (empty($tab_creneau_id)) return false;
+
+      return $tab_creneau_id[0];
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
+
 }
