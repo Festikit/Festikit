@@ -172,13 +172,12 @@
                         <th id=""><label for="dispo_date1">jour</label></th>
 
                         <?php
-                        // Affichage dynamique des créneaux génériques
-
+                        // Affichage dynamique des heures correspondant aux créneaux génériques
                         $festivalGenerique = 6;
                         $compteurCreneauxHeure = 0;
-                        foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $c) {
-                            $cStart = $c->getCreneauStart();
-                            $cEnd = $c->getCreneauEnd();
+                        foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $h) {
+                            $cStart = $h->getCreneauStart();
+                            $cEnd = $h->getCreneauEnd();
                             echo "<th id=\"\"><label for=\"dispo_heure$compteurCreneauxHeure\">" . $cStart . " " . $cEnd . "</label></th>"; 
 
                             $compteurCreneauxHeure++;
@@ -188,24 +187,21 @@
                     </tr>
 
                         <?php
-                        // Affichage dynamique des jours de festival
-
+                        // Affichage dynamique des jours de festival (Les dates des créneaux génériques sans doublons)
                         $numCreneauHeure=1;
-                        foreach (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique) as $j) {
-                            $CreneauDate = $j->getCreneauStart();
-
+                        foreach (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique) as $d) {
+                            $CreneauDate = $d->getCreneauStart();
                             echo "
                                   <tr>
                                   <td class=\"firstColumn\"><label for=\"date_$numCreneauHeure\">$CreneauDate</label></td>
                                   ";
                             $compteur = 1;
-                            while($compteur <= $compteurCreneauxHeure) {
-                                echo "<td><label><input type=\"checkbox\" name=\"dispo_heure$compteur" . "date_$CreneauDate\" id=\"dispo_heure$compteur" . "date_$CreneauDate\" value=\"1\" /><span> </span></label></td>";
-                                $compteur++; 
+                            foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $h) {
+                                $cStart = $h->getCreneauStart();
+                                $cEnd = $h->getCreneauEnd();
+                                echo "<td><label><input type=\"checkbox\" name=\"dispo_heure$cStart" . "_$cEnd"  . "date_$CreneauDate\" id=\"dispo_heure$compteur" . "date_$CreneauDate\" value=\"1\" /><span> </span></label></td>";
                             }
                             echo "</tr>";
-                            
-                            $numCreneauHeure++;
                         }
                         ?>
 

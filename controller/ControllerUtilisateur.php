@@ -239,24 +239,17 @@ class ControllerUtilisateur {
 
             /* Insertion pour disponible */
             $festivalGenerique = 6;
-            $numCreneauHeure = 0;
             foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $h) {
-                $numCreneauHeure++;
+                $cStart = $h->getCreneauStart();
+                $cEnd = $h->getCreneauEnd();
                 foreach (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique) as $d) {
                     $CreneauDate = $d->getCreneauStart();
 
                     //$creneau_id = $d->getCreneauId();
-                    $post = "dispo_heure$numCreneauHeure" . "date_$CreneauDate";
+                    $post = "dispo_heure$cStart" . "_$cEnd" . "date_$CreneauDate";
                     
                     if(isset($_POST["$post"])) {
                         echo "Disponible: " . $post . "<br>";
-                        /*
-                        $dataDisponible = array(
-                            'user_id' => $user_id,
-                            'creneau_id' => $creneau_id,
-                        );
-                        ModelDisponible::save($dataDisponible);
-                        */
                     }
                 }
             }   
