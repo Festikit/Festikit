@@ -250,6 +250,10 @@ class ControllerUtilisateur {
                     
                     if(isset($_POST["$post"])) {
                         echo "Disponible: " . $post . "<br>";
+                        $heureStart = substr($post,11,8); // Je récupère 8 caractères à partir du 11ème (inclus)
+                        $heureEnd = substr($post,20,8);
+                        $date = substr($post,35,10);
+                        echo "Disponible: " . $post . "<br>" . $heureStart ."   ". $heureEnd ."   ". $date."<br><br>";
                     }
                 }
             }   
