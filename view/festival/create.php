@@ -8,7 +8,7 @@
         */
         ?>
 
-        <form method="post" action="index.php?action=created&user_id=1" enctype="multipart/form-data" class="col s12">
+        <form method="post" action="index.php?action=created&controller=festival" enctype="multipart/form-data" class="col s12">
 
             <div class="card-panel grey lighten-4">
                 <h5>À propos du festival</h5>

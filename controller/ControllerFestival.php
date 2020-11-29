@@ -49,6 +49,49 @@ class ControllerFestival
         require File::build_path(array("view","view.php"));
     }
 
+
+
+    public static function created(){
+        $festival_name = $_POST['festival_name'];
+        $festival_startdate = $_POST['festival_startdate'];
+        $festival_enddate = $_POST['festival_enddate'];
+        $festival_description = $_POST['festival_description'];
+        $user_id = 4;
+        $city = $_POST['city'];
+
+        if(isset($festival_name, $festival_startdate, $festival_enddate, $festival_description, $user_id, $city)) {
+            $dataUser = array(
+                'festival_name' => $festival_name, 
+                'festival_startdate' => $festival_startdate, 
+                'festival_enddate' => $festival_enddate,  
+                'festival_description' => $festival_description, 
+                'user_id' => $user_id,
+                'city' => $city, 
+                );
+
+            $f = new ModelFestival($dataUser);
+            $f->save($dataUser);
+            if ($f == false) {
+                $pagetitle = 'Erreur action read';
+                $controller = 'festival';
+                $view = 'error';
+                $message = 'erreur de la fonction ajouterResponsable dans le controller festival';
+            } else {
+                $pagetitle = 'Détail du festival';
+                $controller = 'festival';
+                $view = 'detail';
+            }
+            require File::build_path(array("view", "view.php"));
+            
+        } else {
+            $controller = 'utilisateur';
+            $view = 'error';
+            $message = 'Erreur: initialisation des variables nécessaire à la création d\'un utilisateur';
+            $pagetitle = 'erreur';
+        }
+    }
+    
+
     public static function accepterUtilisateur()
     {
         $festival_id = $_GET['festival_id'];
