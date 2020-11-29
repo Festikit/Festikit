@@ -42,6 +42,13 @@ class ControllerFestival
         require File::build_path(array("view", "view.php"));
     }
 
+    public static function create() {
+        $pagetitle = 'Formulaire d\'enregistrement';
+        $controller = 'festival';
+        $view = 'create';
+        require File::build_path(array("view","view.php"));
+    }
+
     public static function accepterUtilisateur()
     {
         $festival_id = $_GET['festival_id'];
