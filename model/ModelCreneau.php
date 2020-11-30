@@ -120,6 +120,7 @@ class ModelCreneau extends Model
     }
   }
 
+  /*
   public static function getCreneauById($creneau_id)
   {
     try {
@@ -144,6 +145,7 @@ class ModelCreneau extends Model
       die();
     }
   }
+  */
 
   public function update($data)
   {

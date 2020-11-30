@@ -41,6 +41,7 @@ class ModelLieu extends Model
     $this->nom_lieu = $nom_lieu2;
   }
 
+  /*
   public static function getAllLieu()
   {
     try {
@@ -57,4 +58,5 @@ class ModelLieu extends Model
       die();
     }
   }
+  */
 }

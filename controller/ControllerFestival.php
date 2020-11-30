@@ -19,7 +19,7 @@ class ControllerFestival
     {
 
         $festival_id = $_GET['festival_id'];
-        $f = ModelFestival::getFestivalsById($festival_id);
+        $f = ModelFestival::select($festival_id);
 
         $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
         $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);

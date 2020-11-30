@@ -145,7 +145,7 @@ class ModelUtilisateur extends Model
   */
   
 
-  public static function getUtilisateurById($user_id)
+  /*public static function getUtilisateurById($user_id)
   {
     try {
       $sql = "SELECT * from user WHERE user_id=:nom_tag";
@@ -169,6 +169,7 @@ class ModelUtilisateur extends Model
       die();
     }
   }
+  */
 
   public static function getIdByMail($user_mail)
   {

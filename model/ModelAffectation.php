@@ -31,6 +31,7 @@ class ModelAffectation extends Model
     $this->affectation_id = $affectation_id2;
   }
 
+  /*
   public static function getAllAffectation()
   {
     try {
@@ -47,4 +48,5 @@ class ModelAffectation extends Model
       die();
     }
   }
+  */
 }

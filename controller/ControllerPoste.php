@@ -16,7 +16,7 @@ class ControllerPoste {
     public static function read() {
 
         $poste_id = $_GET['poste_id'];
-        $p = ModelPoste::getPosteById($poste_id);
+        $p = ModelPoste::select($poste_id);
         $tab_creneau = ModelCreneau::getAllCreneauxByPosteId($poste_id);
 
         if ($p == false) {

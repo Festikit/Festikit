@@ -38,6 +38,39 @@ class Model
     return $rep->fetchAll();
   }
 
+  public static function select($primary) {
+    try {
+        $table_name = static::$object_table;
+        $model_name = static::$object_model;
+        $class_name = 'Model' . ucfirst($model_name);
+        $primary_key = static::$primary;
+        $sql = "SELECT * from $table_name WHERE $primary_key=:primary";
+        // Préparation de la requête
+        $req_prep = Model::$pdo->prepare($sql);
+
+        $values = array(
+            "primary" => $primary
+        );
+        // On donne les valeurs et on exécute la requête	 
+        $req_prep->execute($values);
+
+        // On récupère les résultats comme précédemment
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, $class_name);
+        $tab_results = $req_prep->fetchAll();
+        // Attention, si il n'y a pas de résultats, on renvoie false
+        if (empty($tab_results))
+            return false;
+        return $tab_results[0];
+    } catch (PDOException $e) {
+        if (Conf::getDebug()) {
+            echo $e->getMessage(); // affiche un message d'erreur
+        } else {
+            echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+        }
+        die();
+    }
+}
+
 
   public static function save($data)
   {

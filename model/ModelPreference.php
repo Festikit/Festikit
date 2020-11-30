@@ -57,6 +57,7 @@ class ModelPreference extends Model
     $this->rang = $rang2;
   }
 
+  /*
   public static function getAllPreference()
   {
     try {
@@ -73,4 +74,5 @@ class ModelPreference extends Model
       die();
     }
   }
+  */
 }

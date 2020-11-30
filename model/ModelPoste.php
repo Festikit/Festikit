@@ -83,11 +83,10 @@ class ModelPoste extends Model
       die();
     }
   }
-<<<<<<< HEAD
-  
-======= */
+ */
 
-   public static function getPosteById($poste_id)
+  /*
+  public static function getPosteById($poste_id)
   {
     try {
       $sql = "SELECT * from poste WHERE poste_id=:nom_tag";
@@ -111,6 +110,7 @@ class ModelPoste extends Model
       die();
     }
   }
+  */
 
 
   public function update($data)

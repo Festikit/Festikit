@@ -5,7 +5,7 @@ require_once File::build_path(array("model","ModelLieu.php"));
 class ControllerLieu {
 
     public static function readAll() {
-        $tab_l = ModelLieu::getAllLieu();
+        $tab_l = ModelLieu::selectAll();
 
         $pagetitle = 'Liste des lieux';
         $controller = 'lieu';

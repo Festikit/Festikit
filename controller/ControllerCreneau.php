@@ -19,7 +19,7 @@ class ControllerCreneau
     {
 
         $creneau_id = $_GET['creneau_id'];
-        $c = ModelCreneau::getCreneauById($creneau_id);
+        $c = ModelCreneau::select($creneau_id);
 
         if ($c == false) {
             $pagetitle = 'Erreur action read';
