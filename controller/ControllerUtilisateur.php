@@ -46,7 +46,7 @@ class ControllerUtilisateur {
         $pagetitle = 'supprimons ceci';
         $view = 'deleted';
         $user_id = $_GET['user_id'];
-        ModelUtilisateur::deleteById($user_id);
+        ModelUtilisateur::delete($user_id);
         $tab_u = ModelUtilisateur::selectAll();
         require File::build_path(array("view","view.php"));
     }

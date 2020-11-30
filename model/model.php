@@ -69,6 +69,29 @@ class Model
         }
         die();
     }
+  }
+
+  public static function delete($primary) {
+    try {
+        $table_name = static::$object_table;
+        $primary_key = static::$primary;
+        $sql = "DELETE FROM $table_name WHERE $primary_key=:primary;";
+        // Préparation de la requête
+        $req_prep = Model::$pdo->prepare($sql);
+
+        $values = array(
+            "primary" => $primary
+        );
+        // On donne les valeurs et on exécute la requête	 
+        return $req_prep->execute($values);
+    } catch (PDOException $e) {
+        if (Conf::getDebug()) {
+            echo $e->getMessage(); // affiche un message d'erreur
+        } else {
+            echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+        }
+        die();
+    }
 }
 
 

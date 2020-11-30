@@ -39,7 +39,7 @@ class ControllerPoste {
         $pagetitle='modification du poste';
         $log_p  = $_GET['poste_id'];
         $tab_creneau = ModelCreneau::getAllCreneauxByPosteId($log_p);
-        $tab_p = ModelPoste::getPosteById($log_p);
+        $tab_p = ModelPoste::select($log_p);
         require (File::build_path(array("view","view.php")));
     }
 

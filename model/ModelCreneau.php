@@ -176,6 +176,8 @@ class ModelCreneau extends Model
     }
   }
 
+  
+  /*
   public static function deleteById($id)
   {
     try {
@@ -192,4 +194,5 @@ class ModelCreneau extends Model
       die();
     }
   }
+  */
 }

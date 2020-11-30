@@ -95,7 +95,7 @@ class ControllerFestival
     public static function accepterUtilisateur()
     {
         $festival_id = $_GET['festival_id'];
-        $f = ModelFestival::getFestivalsById($festival_id);
+        $f = ModelFestival::select($festival_id);
         $f->accepterUtilisateur($_GET['user_id']);
 
         $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
@@ -120,7 +120,7 @@ class ControllerFestival
     public static function refuserUtilisateur()
     {
         $festival_id = $_GET['festival_id'];
-        $f = ModelFestival::getFestivalsById($festival_id);
+        $f = ModelFestival::select($festival_id);
         $f->refuserUtilisateur($_GET['user_id']);
 
         $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
@@ -144,7 +144,7 @@ class ControllerFestival
 
     public static function ajouterResponsable(){
         $festival_id = $_GET['festival_id'];
-        $f = ModelFestival::getFestivalsById($festival_id);
+        $f = ModelFestival::select($festival_id);
         $f->ajouterResponsable($_GET['user_id'], $festival_id);
         $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
 

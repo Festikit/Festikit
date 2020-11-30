@@ -196,6 +196,7 @@ class ModelUtilisateur extends Model
     }
   }
 
+  /*
   public static function deleteById($id)
   {
     try {
@@ -212,6 +213,7 @@ class ModelUtilisateur extends Model
       die();
     }
   }
+  */
 
 
 

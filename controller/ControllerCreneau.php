@@ -41,9 +41,9 @@ class ControllerCreneau
         $view = 'update';
         $pagetitle = 'modification du creneau';
         $log_c  = $_GET['creneau_id'];
-        $tab_c = ModelCreneau::getCreneauById($log_c);
-        $nom_poste = ModelPoste::getPosteById($tab_c->getPosteId())->getPosteName();
-        $nom_festival = ModelFestival::getFestivalsById($tab_c->getFestivalId())->getFestivalName();
+        $tab_c = ModelCreneau::select($log_c);
+        $nom_poste = ModelPoste::select($tab_c->getPosteId())->getPosteName();
+        $nom_festival = ModelFestival::select($tab_c->getFestivalId())->getFestivalName();
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -82,9 +82,9 @@ class ControllerCreneau
         $creneau_id = $_GET['creneau_id'];
         $log_p  = $_GET['poste_id'];
 
-        ModelCreneau::deleteById($creneau_id);
+        ModelCreneau::delete($creneau_id);
         $tab_creneau = ModelCreneau::getAllCreneauxByPosteId($log_p);
-        $tab_p = ModelPoste::getPosteById($log_p);
+        $tab_p = ModelPoste::select($log_p);
 
         require(File::build_path(array("view", "view.php")));
     }
@@ -98,8 +98,8 @@ class ControllerCreneau
         $festival_id = $_GET['festival_id'];
         $poste_id = $_GET['poste_id'];
 
-        $nom_festival = ModelFestival::getFestivalsById($festival_id)->getFestivalName();
-        $nom_poste = ModelPoste::getPosteById($poste_id)->getPosteName();
+        $nom_festival = ModelFestival::select($festival_id)->getFestivalName();
+        $nom_poste = ModelPoste::select($poste_id)->getPosteName();
 
         require(File::build_path(array("view", "view.php")));
     }
@@ -124,7 +124,7 @@ class ControllerCreneau
 
         $log_p  = $poste_id;
         $tab_creneau = ModelCreneau::getAllCreneauxByPosteId($log_p);
-        $tab_p = ModelPoste::getPosteById($log_p);
+        $tab_p = ModelPoste::select($log_p);
         if (is_bool(ModelCreneau::save($dataCreneau))) {
             $controller = 'creneau';
             $view = 'error';
