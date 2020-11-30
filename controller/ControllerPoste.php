@@ -59,7 +59,7 @@ class ControllerPoste {
             "poste_description" => $poste_description,
         );
         $postemod = new ModelPoste();
-        $postemod->update($tab_pmod);
+        $postemod->update($tab_pmod); //gen
         $tab_p = ModelPoste::selectAll();
         require (File::build_path(array("view","view.php")));
     }

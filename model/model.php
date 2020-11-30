@@ -92,6 +92,31 @@ class Model
         }
         die();
     }
+  }
+
+  public static function update($data) {
+    try {
+        $table_name = static::$object_table;
+        $primary_key = static::$primary;
+        $set_parts = array();
+        foreach ($data as $key => $value) {
+            $set_parts[] = "$key=:$key";
+        }
+        $set_string = join(',', $set_parts);
+        $sql = "UPDATE $table_name SET $set_string WHERE $primary_key=:$primary_key";
+        // Préparation de la requête
+        $req_prep = Model::$pdo->prepare($sql);
+
+        // On donne les valeurs et on exécute la requête	 
+        return $req_prep->execute($data);
+    } catch (PDOException $e) {
+        if (Conf::getDebug()) {
+            echo $e->getMessage(); // affiche un message d'erreur
+        } else {
+            echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+        }
+        die();
+    }
 }
 
 

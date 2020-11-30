@@ -216,7 +216,7 @@ class ModelUtilisateur extends Model
   */
 
 
-
+  /*
   public function update($data)
   {
     try {
@@ -247,6 +247,7 @@ class ModelUtilisateur extends Model
       die();
     }
   }
+  */
 
   // postuler_accepted = 1 dans la table "postuler"
   public static function getFestivalWhereAccepted($user_id)

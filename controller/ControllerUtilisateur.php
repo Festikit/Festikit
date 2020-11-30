@@ -84,7 +84,7 @@ class ControllerUtilisateur {
             "user_birthdate" => $user_birthdate
         );
         $utilisateurmod = new ModelUtilisateur();
-        $utilisateurmod->update($tab_umod);
+        $utilisateurmod->update($tab_umod); //gen
         $tab_u = ModelUtilisateur::selectAll();
         require (File::build_path(array("view","view.php")));
     }

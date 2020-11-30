@@ -113,6 +113,7 @@ class ModelPoste extends Model
   */
 
 
+  /*
   public function update($data)
   {
     try {
@@ -138,6 +139,7 @@ class ModelPoste extends Model
       die();
     }
   }
+  */
 
 //>>>>>>> 1211c2969b661d33b0047d0e4f0921ac8612e8b2
 }

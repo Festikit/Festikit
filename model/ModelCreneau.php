@@ -147,7 +147,7 @@ class ModelCreneau extends Model
   }
   */
 
-  public function update($data)
+  /*public function update($data)
   {
     try {
       $sql = "UPDATE creneau SET creneau_startdate = :creneau_startdate, creneau_enddate = :creneau_enddate,
@@ -175,6 +175,7 @@ class ModelCreneau extends Model
       die();
     }
   }
+  */
 
   
   /*
