@@ -5,7 +5,7 @@ require_once File::build_path(array("model","ModelPostuler.php"));
 class ControllerPostuler {
 
     public static function readAll() {
-        $tab_p = ModelPoste::getAllPostuler();
+        $tab_p = ModelPoste::selectAll();
 
         $pagetitle = 'Liste postuler';
         $controller = 'postuler';
