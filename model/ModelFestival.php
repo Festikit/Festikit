@@ -429,7 +429,7 @@ class ModelFestival extends Model
   public static function getCreneauxIdByDateHeure($festival_id, $creneau_startdate, $creneau_enddate)
   {
     try {
-      $sql = "SELECT creneau_id FROM creneau WHERE festival_id=:id_tag AND creneau_startdate:=creneau_startdate AND creneau_enddate:=creneau_enddate";
+      $sql = "SELECT creneau_id FROM creneau WHERE festival_id=:id_tag AND creneau_startdate=:creneau_startdate AND creneau_enddate=:creneau_enddate";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
         "id_tag" => $festival_id,

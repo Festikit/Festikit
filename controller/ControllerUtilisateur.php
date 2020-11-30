@@ -255,18 +255,35 @@ class ControllerUtilisateur {
                         //$CreneauEnd = date('Y-m-d H:i:s', strtotime("$date $heureEnd"));
                         //$CreneauStart = new DateTime($date->format('Y-m-d') .' ' .$heureStart->format('H:i:s'));
                         //$CreneauEnd = new DateTime($date->format('Y-m-d') .' ' .$heureEnd->format('H:i:s'));
-                        $CreneauStart = DateTime::createFromFormat('Y-m-d H:i:s', "$date" . " " . "$heureStart");
-                        echo $CreneauStart->format('Y-m-d H:i:s');
-                        $CreneauStart = ob_get_contents();
-                        $CreneauEnd = DateTime::createFromFormat('Y-m-d H:i:s', "$date" . " " . "$heureStart");
-                        echo $CreneauStart->format('Y-m-d H:i:s');
-                        $CreneauEnd = ob_get_contents();
-                        //echo "Disponible: " . $post . "<br>" . $CreneauStart ."   ". $CreneauEnd . "<br><br>";
+                        //$CreneauStart = DateTime::createFromFormat('Y-m-d H:i:s', "$date" . " " . "$heureStart");
+                        //echo $CreneauStart->format('Y-m-d H:i:s') . "<br>";
+                        //$CreneauEnd = DateTime::createFromFormat('Y-m-d H:i:s', "$date" . " " . "$heureEnd");
+                        //echo $CreneauEnd->format('Y-m-d H:i:s') . "<br>";
+                        $CreneauStart = $date . " " . $heureStart;
+                        $CreneauEnd = $date . " " . $heureEnd;
+                        echo "Disponible: " . $post . "<br>" . $CreneauStart ."   ". $CreneauEnd . "<br><br>";
 
                         //echo $merge->format('Y-m-d H:i:s'); // Outputs '2017-03-14 13:37:42'
 
-                        $creneau_id = ModelFestival::getCreneauxIdByDateHeure($festivalGenerique, $CreneauStart, $CreneauEnd);
-                        echo $creneau_id;
+                        $creneau_id = ModelFestival::getCreneauxIdByDateHeure($festivalGenerique, $CreneauStart/*->format('Y-m-d H:i:s')*/, $CreneauEnd/*->format('Y-m-d H:i:s')*/);
+                        $creneau_id = $creneau_id->getCreneauId();
+                        if(isset($creneau_id)) {
+                            echo $creneau_id;
+                            $dataDisponible = array(
+                                'user_id' => $user_id, 
+                                'creneau_id' => $creneau_id, 
+                            );
+
+                            // Insertion dans disponible + test d'insertion
+                            if(is_bool(ModelDisponible::save($dataDisponible))) {
+                                $controller = 'utilisateur';
+                                $view = 'error';
+                                $message = 'Erreur: Insertion des données dans la table preference';
+                                $pagetitle = 'erreur';
+                            } else {
+                                echo "Insertion disponible réussi";
+                            }
+                        }
                     }
                 }
             }   
