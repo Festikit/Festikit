@@ -144,7 +144,7 @@ class ControllerUtilisateur {
                 } else {
                     $controller = 'utilisateur';
                     $view = 'error';
-                    $message = 'Erreur: L\'image est trop volumineuse' . "( > $taille_max)";
+                    $message = 'Erreur: L\'image est trop volumineuse' . "( > " . $_POST['MAX_FILE_SIZE'] .")";
                     $pagetitle = 'erreur';                    
                 }
             } else {
