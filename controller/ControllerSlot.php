@@ -5,7 +5,7 @@ require_once File::build_path(array("model","ModelSlot.php"));
 class ControllerSlot {
 
     public static function readAll() {
-        $tab_s = ModelSlot::getAllSlot();
+        $tab_s = ModelSlot::selectAll();
 
         $pagetitle = 'Liste slots';
         $controller = 'slot';

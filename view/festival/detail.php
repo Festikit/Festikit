@@ -10,6 +10,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
             <div class="input-field col s12">
                 <?php
                 $festival_description = $f->getFestivalDescription();
+                $festival_id = htmlspecialchars($f->getFestivalId());
                 echo "<textarea name=\"festival_description\" id=\"festival_description\" class=\"materialize-textarea\" readonly>$festival_description</textarea>" ?>
                 <label for="festival_description">Description</label>
             </div>
@@ -35,7 +36,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
 
     <ul class="collection">
         <li class="collection-header">
-            <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=read&controller=poste&poste_id=$poste_id"> Ajouter un poste</a>
+            <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=create&controller=poste&festival_id=<?php echo $festival_id ?>"> Ajouter un poste</a>
             <h4 class="center">Liste des postes</h4>
         </li>
         <?php

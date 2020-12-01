@@ -145,7 +145,7 @@ class ModelUtilisateur extends Model
   */
   
 
-  public static function getUtilisateurById($user_id)
+  /*public static function getUtilisateurById($user_id)
   {
     try {
       $sql = "SELECT * from user WHERE user_id=:nom_tag";
@@ -169,6 +169,7 @@ class ModelUtilisateur extends Model
       die();
     }
   }
+  */
 
   public static function getIdByMail($user_mail)
   {
@@ -195,6 +196,7 @@ class ModelUtilisateur extends Model
     }
   }
 
+  /*
   public static function deleteById($id)
   {
     try {
@@ -211,9 +213,10 @@ class ModelUtilisateur extends Model
       die();
     }
   }
+  */
 
 
-
+  /*
   public function update($data)
   {
     try {
@@ -244,6 +247,7 @@ class ModelUtilisateur extends Model
       die();
     }
   }
+  */
 
   // postuler_accepted = 1 dans la table "postuler"
   public static function getFestivalWhereAccepted($user_id)

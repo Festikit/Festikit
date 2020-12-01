@@ -34,7 +34,7 @@ class ModelSlot extends Model
     $this->slot_id = $slot_id2;
   }
 
-  public static function getAllSlot()
+  /*public static function getAllSlot()
   {
     try {
       $sql = "SELECT * from slot";
@@ -50,4 +50,5 @@ class ModelSlot extends Model
       die();
     }
   }
+  */
 }

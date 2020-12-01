@@ -18,7 +18,7 @@ class ModelPreference extends Model
     if (!is_null($id) && !is_null($user_id) && !is_null($poste_id) && !is_null($rang)) {
       $this->lieu_id = $id;
       $this->user_id = $user_id;
-      $this->festival_id = $festival_id;
+      $this->poste_id = $poste_id;
       $this->rang = $rang;
     }
   }
@@ -57,6 +57,7 @@ class ModelPreference extends Model
     $this->rang = $rang2;
   }
 
+  /*
   public static function getAllPreference()
   {
     try {
@@ -73,4 +74,5 @@ class ModelPreference extends Model
       die();
     }
   }
+  */
 }

@@ -120,6 +120,7 @@ class ModelCreneau extends Model
     }
   }
 
+  /*
   public static function getCreneauById($creneau_id)
   {
     try {
@@ -144,8 +145,9 @@ class ModelCreneau extends Model
       die();
     }
   }
+  */
 
-  public function update($data)
+  /*public function update($data)
   {
     try {
       $sql = "UPDATE creneau SET creneau_startdate = :creneau_startdate, creneau_enddate = :creneau_enddate,
@@ -173,7 +175,10 @@ class ModelCreneau extends Model
       die();
     }
   }
+  */
 
+  
+  /*
   public static function deleteById($id)
   {
     try {
@@ -190,4 +195,5 @@ class ModelCreneau extends Model
       die();
     }
   }
+  */
 }

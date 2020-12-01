@@ -101,7 +101,7 @@ class ModelResponsable extends ModelUtilisateur
     }
     */
 
-    public static function getResponsableById($responsable_id)
+    /*public static function getResponsableById($responsable_id)
     {
         try {
             $sql = "SELECT * from responsable WHERE responsable_id=:id_tag";
@@ -125,4 +125,5 @@ class ModelResponsable extends ModelUtilisateur
             die();
         }
     }
+    */
 }

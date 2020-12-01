@@ -5,7 +5,7 @@ require_once File::build_path(array("model","ModelDisponible.php"));
 class ControllerDisponible {
 
     public static function readAll() {
-        $tab_d = ModelDisponible::getAllDisponible();
+        $tab_d = ModelDisponible::selectAll();
 
         $pagetitle = 'Liste des dispo';
         $controller = 'disponible';

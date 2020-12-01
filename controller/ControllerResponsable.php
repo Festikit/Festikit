@@ -17,7 +17,7 @@ class ControllerResponsable {
     public static function read() {
         
         $responsable_id = $_GET['responsable_id'];
-        $r = ModelResponsable::getResponsableById($responsable_id);
+        $r = ModelResponsable::select($responsable_id);
 
 
         if($r == false) {

@@ -93,6 +93,7 @@ class ModelFestival extends Model
   }
   */
 
+  /*
   public static function getFestivalsById($festival_id)
   {
     try {
@@ -116,6 +117,7 @@ class ModelFestival extends Model
       die();
     }
   }
+  */
 
 
   // postuler_accepted = 1 dans la table "postuler"

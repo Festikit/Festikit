@@ -41,6 +41,7 @@ class ModelPostuler extends Model
     $this->postuler_id = $postuler_id2;
   }
 
+  /*
   public static function getAllPostuler()
   {
     try {
@@ -57,4 +58,5 @@ class ModelPostuler extends Model
       die();
     }
   }
+  */
 }

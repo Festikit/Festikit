@@ -23,7 +23,7 @@ class ControllerUtilisateur {
     public static function read() {
         
         $user_id = $_GET['user_id'];
-        $u = ModelUtilisateur::getUtilisateurById($user_id);
+        $u = ModelUtilisateur::select($user_id);
 
         $tab_festivalWhereAccepted = ModelUtilisateur::getFestivalWhereAccepted($user_id);
         $tab_festivalWhereCandidat = ModelUtilisateur::getFestivalWhereCandidat($user_id);
@@ -46,7 +46,7 @@ class ControllerUtilisateur {
         $pagetitle = 'supprimons ceci';
         $view = 'deleted';
         $user_id = $_GET['user_id'];
-        ModelUtilisateur::deleteById($user_id);
+        ModelUtilisateur::delete($user_id);
         $tab_u = ModelUtilisateur::selectAll();
         require File::build_path(array("view","view.php"));
     }
@@ -56,7 +56,7 @@ class ControllerUtilisateur {
         $view='update';
         $pagetitle='modification utilisateur';
         $log_u  = $_GET['user_id'];
-        $tab_u = ModelUtilisateur::getUtilisateurById($log_u);
+        $tab_u = ModelUtilisateur::select($log_u);
         require (File::build_path(array("view","view.php")));
     }
 
@@ -84,7 +84,7 @@ class ControllerUtilisateur {
             "user_birthdate" => $user_birthdate
         );
         $utilisateurmod = new ModelUtilisateur();
-        $utilisateurmod->update($tab_umod);
+        $utilisateurmod->update($tab_umod); //gen
         $tab_u = ModelUtilisateur::selectAll();
         require (File::build_path(array("view","view.php")));
     }

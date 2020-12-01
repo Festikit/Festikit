@@ -31,6 +31,7 @@ class ModelDisponible extends Model
     $this->disponible_id = $disponible_id2;
   }
 
+  /*
   public static function getAllDisponible()
   {
     try {
@@ -47,4 +48,5 @@ class ModelDisponible extends Model
       die();
     }
   }
+  */
 }
