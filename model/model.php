@@ -120,7 +120,9 @@ class Model
 }
 
 
-  public static function save($data)
+  
+
+public static function save($data)
   {
     $table_name = static::$object_table;
     $primary_key = static::$primary;
@@ -153,6 +155,52 @@ class Model
       return false;
     }
   }
+  
+
+  /*public function save() {
+    try {
+        $table_name = static::$object_table;
+        
+        // ReflectionClass ou écrire les attributs en dur // >> La classe ReflectionClass rapporte des informations sur une classe.
+        $reflect = new ReflectionClass($this);
+        $props = $reflect->getProperties(ReflectionProperty::IS_PRIVATE); // >> Récupère les propriétés
+        
+        $attributes = array();
+        $data = array();
+        
+        foreach ($props as $prop) {
+            $attributes[] = $prop->getName();
+            $data[$prop->getName()] = $this->get($prop->getName());
+        }
+        $into_string = '(' . join(',',$attributes) . ')';
+        
+        // Rajoute ":" avant les attributs
+        function my_prepend($s) { 
+            return ":" . $s;                
+        }
+        $values_string = '(' . join(',', array_map("my_prepend",$attributes)) . ')'; // array_map — Applique une fonction sur les éléments d'un tableau           
+        
+        $sql = "INSERT INTO $table_name $into_string VALUES $values_string";
+        
+        // Préparation de la requête
+        $req_prep = Model::$pdo->prepare($sql);
+        
+        // On donne les valeurs et on exécute la requête	 
+        return $req_prep->execute($data);
+    } catch (PDOException $e) {
+        if (Conf::getDebug()) {
+            if ($e->errorInfo[1] == 1062) {
+                // Duplicate entry
+                return false;
+            }
+            echo $e->getMessage(); // affiche un message d'erreur
+        } else {
+            echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+        }
+        die();
+    }
+  }
+  */
 }
 
 Model::Init();
