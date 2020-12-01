@@ -72,11 +72,20 @@ class ControllerPoste {
 
         require(File::build_path(array("view", "view.php")));
     }
+    public static function createAgain()
+    {
+        $controller = 'poste';
+        $view = 'createAgain';
+        $pagetitle = 'ajout d\'un autre poste ?';
+
+        require(File::build_path(array("view", "view.php")));
+    }
+
 
     public static function created()
     {
         $controller = 'poste';
-        $view = 'create';
+        $view = 'createAgain';
         $pagetitle = 'ajout d\'un poste';
 
         $poste_name = $_GET['poste_name'];
