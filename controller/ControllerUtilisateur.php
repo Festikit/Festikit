@@ -121,8 +121,8 @@ class ControllerUtilisateur {
         $autres_dispos = date('Y-m-d H:i:s', strtotime("$autres_dispos_date $autres_dispos_heure"));
         
         $experience = $_POST['experience'];
-
         $festival_id = $_POST['festival_id'];
+
 
         // Test d'upload de la photo
         if (!empty($_FILES['user_picture']) && is_uploaded_file($_FILES['user_picture']['tmp_name'])) {
@@ -161,83 +161,53 @@ class ControllerUtilisateur {
         }
         
     
-        if(isset($user_picture)) {
-            // Test d'initialisation des variables pour user
-            if(isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_driving_license)) {
-
-                // Création du tableau associatif pour l'insertion dans user
-                $dataUser = array(
-                    'user_firstname' => $user_firstname, 
-                    'user_lastname' => $user_lastname, 
-                    'user_mail' => $user_mail,  
-                    'user_phone' => $user_phone, 
-                    'user_birthdate' => $user_birthdate, 
-                    'user_picture' => $user_picture, 
-                    'user_postal_code' => $user_postal_code,
-                    'user_driving_license' => $user_driving_license, 
-                );
-                /*
-                echo "<pre>";
-                print_r($dataUser);
-                echo "</pre>";
-                */
-                // Insertion dans user + test d'insertion
-                if(is_bool(ModelUtilisateur::save($dataUser))) {
-                    $controller = 'utilisateur';
-                    $view = 'error';
-                    $message = 'Erreur: Insertion des données dans la table user';
-                    $pagetitle = 'erreur';
-
-                } else {
-                    $reussiteUser = true;
-                }
+        // Insertion pour user
+        if(isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license)) {
+            $reussiteInit = true;
+            if(self::createdUser($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license)) {
+                $reussiteUser = true;
             } else {
-                $controller = 'utilisateur';
-                $view = 'error';
-                $message = 'Erreur: initialisation des variables nécessaire à la création d\'un utilisateur';
-                $pagetitle = 'erreur';
+                $reussiteUser = false;
+            }
+        } else {
+            $message = 'Erreur: initialisation des variables nécessaire à la création d\'un utilisateur';
+            $reussiteInit = false;
+        }
+
+
+        // L'utilisateur étant créé, on récupère son id à partir de son mail
+        $user_id = ModelUtilisateur::getIdByMail($user_mail);
+        $user_id = $user_id->getId();
+
+
+        // Insertion pour postuler
+        if($reussiteInit && $reussiteUser) {
+            if(self::createdPostuler($user_id, $festival_id, $venir_avec_vehicule, $besoin_hebergement, $peut_heberger, $configuration_couchage, $arrivee_festival, $depart_festival, $autres_dispos, $experience)) {
+                $reussitePostuler = true;
+            } else {
+                $reussitePostuler = false;
             }
         }
 
-        if($reussiteUser) {
-            if(self::createdPostuler($user_mail, $festival_id, $venir_avec_vehicule, $besoin_hebergement, $peut_heberger, $configuration_couchage, $arrivee_festival, $depart_festival, $autres_dispos, $experience)) {
-                // Reussite de toutes les insertions
-                $controller = 'utilisateur';
-                $view = 'created';
-                $pagetitle = 'creation utilisateur';
-            } else {
 
-                /* TODO 
-                Pour afficher les messages d'erreurs des fonctions createdPreference createdPostuler...
-                Lorsqu'on veut lever l'erreur on renvoir false et on initialise la variable message
-                Ensuite on appelle la vue erreur ici dans create
-                */
-
-                $controller = 'utilisateur';
-                $view = 'erreur';
-                $pagetitle = 'creation utilisateur';
-            }
-
-            /* Insertion pour preference */
-
-            $user_id = ModelUtilisateur::getIdByMail($user_mail);
-            $user_id = $user_id->getId();
-
-            // Initialisation des variables pour préférence
+        // Insertion pour préférence
+        if($reussiteInit && $reussiteUser && $reussitePostuler) {
+            $reussitePreference = true;
             foreach (ModelFestival::getPostesByFestival($festival_id) as $post) {
-                $poste_id = $post->getPosteId();
-                $post = "Poste" . $poste_id;
-                //echo $post . "<br>";
-                //echo $_POST[$post] . "<br>";
-                //${'Poste' . $poste_id} = $_POST[$post];
-                //$rang = $_POST[$post];
-                //echo "${'Poste' . $poste_id}";
-                //echo $poste_id;
-                self::createdPreference($user_id, $poste_id, $_POST[$post]);
+                while($reussitePreference) {
+                    $poste_id = $post->getPosteId();
+                    $post = "Poste" . $poste_id;
+                    if(self::createdPreference($user_id, $poste_id, $_POST[$post])) {
+                        $reussitePreference = true;
+                    } else {
+                        $reussitePreference = false;
+                    }
+                }       
             }
+        }        
 
-
-            /* Insertion pour disponible */
+        // Insertion pour disponible 
+        if($reussiteInit && $reussiteUser && $reussitePostuler && $reussitePreference) {
             $festivalGenerique = 6;
             foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $h) {
                 $cStart = $h->getCreneauStart();
@@ -261,14 +231,14 @@ class ControllerUtilisateur {
                         //echo $CreneauEnd->format('Y-m-d H:i:s') . "<br>";
                         $CreneauStart = $date . " " . $heureStart;
                         $CreneauEnd = $date . " " . $heureEnd;
-                        echo "Disponible: " . $post . "<br>" . $CreneauStart ."   ". $CreneauEnd . "<br><br>";
+                        //echo "Disponible: " . $post . "<br>" . $CreneauStart ."   ". $CreneauEnd . "<br>";
 
                         //echo $merge->format('Y-m-d H:i:s'); // Outputs '2017-03-14 13:37:42'
 
                         $creneau_id = ModelFestival::getCreneauxIdByDateHeure($festivalGenerique, $CreneauStart/*->format('Y-m-d H:i:s')*/, $CreneauEnd/*->format('Y-m-d H:i:s')*/);
                         $creneau_id = $creneau_id->getCreneauId();
                         if(isset($creneau_id)) {
-                            echo $creneau_id;
+                            //echo $creneau_id . "<br><br>";
                             $dataDisponible = array(
                                 'user_id' => $user_id, 
                                 'creneau_id' => $creneau_id, 
@@ -276,33 +246,52 @@ class ControllerUtilisateur {
 
                             // Insertion dans disponible + test d'insertion
                             if(is_bool(ModelDisponible::save($dataDisponible))) {
-                                $controller = 'utilisateur';
-                                $view = 'error';
-                                $message = 'Erreur: Insertion des données dans la table preference';
-                                $pagetitle = 'erreur';
-                            } else {
-                                echo "Insertion disponible réussi";
+                                $message = 'Erreur: Insertion des données dans la table disponible';
                             }
                         }
                     }
                 }
-            }   
-        }
-
+            } 
+        }  
         $tab_u = ModelUtilisateur::selectAll();
 
+        // Vérification d'une éventuelle erreur
+        if(isset($message)) {
+            $controller = 'utilisateur';
+            $view = 'error';
+            $pagetitle = 'erreur';
+        } else {
+            $controller = 'utilisateur';
+            $view = 'created';
+            $pagetitle = 'creation utilisateur';
+        }
         require (File::build_path(array("view","view.php")));
     }
 
 
-    public static function createdPostuler($user_mail, $festival_id, $venir_avec_vehicule, $besoin_hebergement, $peut_heberger, $configuration_couchage, $arrivee_festival, $depart_festival, $autres_dispos, $experience) {
-        
-        // Initialisation des variables pour postuler
-        $user_id = ModelUtilisateur::getIdByMail($user_mail);
-        $user_id = $user_id->getId();
-        $postuler_accepted = 0;
+    public static function createdUser($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license) {
+        // Création du tableau associatif pour l'insertion dans user
+        $dataUser = array(
+            'user_firstname' => $user_firstname, 
+            'user_lastname' => $user_lastname, 
+            'user_mail' => $user_mail,  
+            'user_phone' => $user_phone, 
+            'user_birthdate' => $user_birthdate, 
+            'user_picture' => $user_picture, 
+            'user_postal_code' => $user_postal_code,
+            'user_driving_license' => $user_driving_license, 
+        );
 
-        //echo $festival_id;
+        // Insertion dans user + test d'insertion
+        if(is_bool(ModelUtilisateur::save($dataUser))) {
+            $message = 'Erreur: Insertion des données dans la table user';
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public static function createdPostuler($user_id, $festival_id, $venir_avec_vehicule, $besoin_hebergement, $peut_heberger, $configuration_couchage, $arrivee_festival, $depart_festival, $autres_dispos, $experience) {
 
         // Test d'initialisation des variables pour postuler
         if(isset($user_id, $festival_id, $postuler_accepted)) {
@@ -311,7 +300,7 @@ class ControllerUtilisateur {
             $dataPostuler = array(
                 'user_id' => $user_id, 
                 'festival_id' => $festival_id, 
-                'postuler_accepted' => $postuler_accepted,
+                'postuler_accepted' => 0,
                 'venir_avec_vehicule' => $venir_avec_vehicule,
                 'besoin_hebergement' => $besoin_hebergement,
                 'peut_heberger' => $peut_heberger,
@@ -321,30 +310,23 @@ class ControllerUtilisateur {
                 'autres_dispos' => $autres_dispos,
                 'experience' => $experience,   
             );
-            /*
-            echo "<pre>";
-            print_r($dataPostuler);
-            echo "</pre>";
-            */
 
             // Insertion dans postuler + test d'insertion
             if(is_bool(ModelPostuler::save($dataPostuler))) {
-                $controller = 'utilisateur';
-                $view = 'error';
                 $message = 'Erreur: Insertion des données dans la table postuler';
-                $pagetitle = 'erreur';
+                return false;
             } else {
                 return true;
             }
         } else {
-            $controller = 'utilisateur';
-            $view = 'error';
             $message = 'Erreur: initialisation des variables nécessaire à la création d\'une instance de postuler';
-            $pagetitle = 'erreur';
+            return false;
         }
     }
 
     public static function createdPreference($user_id, $poste_id, $rang) {
+        
+        // Création du tableau associatif pour l'insertion dans preference
         $dataPreference = array(
             'user_id' => $user_id, 
             'poste_id' => $poste_id, 
@@ -353,10 +335,8 @@ class ControllerUtilisateur {
 
         // Insertion dans preference + test d'insertion
         if(is_bool(ModelPreference::save($dataPreference))) {
-            $controller = 'utilisateur';
-            $view = 'error';
             $message = 'Erreur: Insertion des données dans la table preference';
-            $pagetitle = 'erreur';
+            return false;
         } else {
             return true;
         }
