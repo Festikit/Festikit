@@ -163,51 +163,66 @@ class ControllerUtilisateur {
     
         // Insertion pour user
         if(isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license)) {
-            $reussiteInit = true;
-            if(self::createdUser($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license)) {
-                $reussiteUser = true;
-            } else {
-                $reussiteUser = false;
+            $reussiteInitUser = true;
+            if($reussiteInitUser) {
+                if(self::createdUser($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license)) {
+                    $reussiteUser = true;
+                } else {
+                    $message = "Erreur: createdUser";
+                    $reussiteUser = false;
+                }
             }
         } else {
             $message = 'Erreur: initialisation des variables nécessaire à la création d\'un utilisateur';
-            $reussiteInit = false;
+            $reussiteInitUser = false;
         }
 
 
         // L'utilisateur étant créé, on récupère son id à partir de son mail
         $user_id = ModelUtilisateur::getIdByMail($user_mail);
         $user_id = $user_id->getId();
-
-
-        // Insertion pour postuler
-        if($reussiteInit && $reussiteUser) {
-            if(self::createdPostuler($user_id, $festival_id, $venir_avec_vehicule, $besoin_hebergement, $peut_heberger, $configuration_couchage, $arrivee_festival, $depart_festival, $autres_dispos, $experience)) {
-                $reussitePostuler = true;
-            } else {
-                $reussitePostuler = false;
-            }
+        if(!empty($user_id)) {
+            $reussiteId = true;
+        } else {
+            $message = 'Erreur: Récupération de l\'id utilisateur';
+            $reussiteId = false;
         }
 
 
+        // Insertion pour postuler
+        if(isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license)) {
+            $reussiteInitPostuler = true;
+            if($reussiteInitUser && $reussiteUser && $reussiteId && $reussiteInitPostuler) {
+                if(self::createdPostuler($user_id, $festival_id, $venir_avec_vehicule, $besoin_hebergement, $peut_heberger, $configuration_couchage, $arrivee_festival, $depart_festival, $autres_dispos, $experience)) {
+                    $reussitePostuler = true;
+                } else {
+                    $message = "Erreur: createdPostuler";
+                    $reussitePostuler = false;
+                }
+            }
+        } else {
+            $message = 'Erreur: initialisation des variables nécessaire à la création d\'une instance de postuler';
+            $reussiteInitPostuler = false;
+        }
+
         // Insertion pour préférence
-        if($reussiteInit && $reussiteUser && $reussitePostuler) {
+        if($reussiteInitUser && $reussiteUser && $reussiteId && $reussiteInitPostuler && $reussitePostuler) {
             $reussitePreference = true;
             foreach (ModelFestival::getPostesByFestival($festival_id) as $post) {
-                while($reussitePreference) {
-                    $poste_id = $post->getPosteId();
-                    $post = "Poste" . $poste_id;
-                    if(self::createdPreference($user_id, $poste_id, $_POST[$post])) {
-                        $reussitePreference = true;
-                    } else {
-                        $reussitePreference = false;
-                    }
-                }       
+                $poste_id = $post->getPosteId();
+                $post = "Poste" . $poste_id;
+                if(self::createdPreference($user_id, $poste_id, $_POST[$post])) {
+                    $reussitePreference = true;
+                } else {
+                    $reussitePreference = false;
+                    $message = "Erreur: createdPreference";
+                    break;
+                }
             }
         }        
 
         // Insertion pour disponible 
-        if($reussiteInit && $reussiteUser && $reussitePostuler && $reussitePreference) {
+        if($reussiteInitUser && $reussiteUser && $reussiteId && $reussiteInitPostuler && $reussitePostuler && $reussitePreference) {
             $festivalGenerique = 6;
             foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $h) {
                 $cStart = $h->getCreneauStart();
@@ -281,10 +296,8 @@ class ControllerUtilisateur {
             'user_postal_code' => $user_postal_code,
             'user_driving_license' => $user_driving_license, 
         );
-
         // Insertion dans user + test d'insertion
         if(is_bool(ModelUtilisateur::save($dataUser))) {
-            $message = 'Erreur: Insertion des données dans la table user';
             return false;
         } else {
             return true;
@@ -293,34 +306,26 @@ class ControllerUtilisateur {
 
     public static function createdPostuler($user_id, $festival_id, $venir_avec_vehicule, $besoin_hebergement, $peut_heberger, $configuration_couchage, $arrivee_festival, $depart_festival, $autres_dispos, $experience) {
 
-        // Test d'initialisation des variables pour postuler
-        if(isset($user_id, $festival_id, $postuler_accepted)) {
-            
-            // Création du tableau associatif pour l'insertion dans postuler
-            $dataPostuler = array(
-                'user_id' => $user_id, 
-                'festival_id' => $festival_id, 
-                'postuler_accepted' => 0,
-                'venir_avec_vehicule' => $venir_avec_vehicule,
-                'besoin_hebergement' => $besoin_hebergement,
-                'peut_heberger' => $peut_heberger,
-                'configuration_couchage' => $configuration_couchage,
-                'arrivee_festival' => $arrivee_festival,
-                'depart_festival' => $depart_festival,
-                'autres_dispos' => $autres_dispos,
-                'experience' => $experience,   
-            );
+        // Création du tableau associatif pour l'insertion dans postuler
+        $dataPostuler = array(
+            'user_id' => $user_id, 
+            'festival_id' => $festival_id, 
+            'postuler_accepted' => 0,
+            'venir_avec_vehicule' => $venir_avec_vehicule,
+            'besoin_hebergement' => $besoin_hebergement,
+            'peut_heberger' => $peut_heberger,
+            'configuration_couchage' => $configuration_couchage,
+            'arrivee_festival' => $arrivee_festival,
+            'depart_festival' => $depart_festival,
+            'autres_dispos' => $autres_dispos,
+            'experience' => $experience,   
+        );
 
-            // Insertion dans postuler + test d'insertion
-            if(is_bool(ModelPostuler::save($dataPostuler))) {
-                $message = 'Erreur: Insertion des données dans la table postuler';
-                return false;
-            } else {
-                return true;
-            }
-        } else {
-            $message = 'Erreur: initialisation des variables nécessaire à la création d\'une instance de postuler';
+        // Insertion dans postuler + test d'insertion
+        if(is_bool(ModelPostuler::save($dataPostuler))) {
             return false;
+        } else {
+            return true;
         }
     }
 
