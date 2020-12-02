@@ -68,11 +68,15 @@ class ModelResponsable extends ModelUtilisateur
     public static function getNomResponsable()
     {
         try {
-            $sql = "SELECT u.user_firstname, u.user_lastname, r.responsable_id from user u
-            JOIN responsable r ON  u.user_id = r.user_id";
-            $rep = Model::$pdo->query($sql);
-            $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelResponsable');
-            return $rep->fetchAll();
+            $sql = "SELECT u.user_firstname, r.responsable_id from user u JOIN responsable r ON  u.user_id = r.user_id";
+            $req_prep = Model::$pdo->prepare($sql);
+            $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelResponsable');
+            $tab_responsable = $req_prep->fetchAll();
+
+            if (empty($tab_responsable))
+                return false;
+            return $tab_responsable;
+
         } catch (PDOException $e) {
             if (Conf::getDebug()) {
                 echo $e->getMessage();
