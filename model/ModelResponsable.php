@@ -25,11 +25,11 @@ class ModelResponsable extends ModelUtilisateur
     }
 
     // Getter et Setter: responsable_id
-    public function getId()
+    public function getResponsableId()
     {
         return $this->responsable_id;
     }
-    public function setId($id2)
+    public function setResponsableId($id2)
     {
         $this->responsable_id = $id2;
     }
@@ -49,27 +49,29 @@ class ModelResponsable extends ModelUtilisateur
     {
         return $this->festival_id;
     }
-    public function setLastname($festivalId2)
+    public function setFestivalId($festivalId2)
     {
         $this->festival_id = $festivalId2;
     }
 
-    public function getUserFirstName(){
+    public function getUserFirstname(){
         return $this->user_firstname;
-      }
-    
-      public function getUserLastName(){
+    }
+
+    public function getUserLastname(){
         return $this->user_lastname;
-      }  
+    }
+
+      
 
 
     public static function getNomResponsable()
     {
         try {
-            $sql = "SELECT u.user_firstname, r.responsable_id from user u
+            $sql = "SELECT u.user_firstname, u.user_lastname, r.responsable_id from user u
             JOIN responsable r ON  u.user_id = r.user_id";
             $rep = Model::$pdo->query($sql);
-            $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+            $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelResponsable');
             return $rep->fetchAll();
         } catch (PDOException $e) {
             if (Conf::getDebug()) {
@@ -81,7 +83,25 @@ class ModelResponsable extends ModelUtilisateur
         }
     }
 
-
+    /* public function desassignerResponsable($id){
+        try{
+          $sql = "DELETE FROM responsable WHERE responsable_id =:nom_tag";
+          $req_prep = Model::$pdo->prepare($sql);
+          $values = array(
+            "nom_tag" => $id,
+          );
+          $req_prep->execute($values);
+        }
+        catch (PDOException $e) {
+          if (Conf::getDebug()) {
+            echo $e->getMessage(); // affiche un message d'erreur
+          } else {
+            echo 'Une erreur est survenue lors de la suppression du responsable';
+          }
+          die();
+        }
+      } */
+    
 
     /*public static function getAllResponsables()
     {

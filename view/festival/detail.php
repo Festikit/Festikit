@@ -168,7 +168,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
             foreach ($tab_responsable as $r) {
                 $festival_id = rawurlencode($f->getFestivalId());
                 $user_id = rawurlencode($r->getId());  
-                $user_firstname = rawurlencode($r->getUserFirstName());
+                $user_firstname = rawurlencode($r->getUserFirstname());
                 $user_lastname = rawurlencode($r->getUserLastName());
                 echo "<li class=\"collection-item avatar\">
                 <div class=\"circle green\">
@@ -176,6 +176,9 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
                 <span class=\"title\">$user_firstname</span>
                 <p>$user_lastname
                 </p>
+                <div class=\"secondary-content\">
+                    <a title=\"supprimer\" href=\"index.php?action=desassignerResponsable&controller=responsable&user_id=$user_id&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
+                </div>
                 
             </li>";
                 $i++;
