@@ -178,7 +178,7 @@
                         foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $h) {
                             $cStart = $h->getCreneauStart();
                             $cEnd = $h->getCreneauEnd();
-                            echo "<th id=\"\"><label for=\"dispo_heure$compteurCreneauxHeure\">" . $cStart . " " . $cEnd . "</label></th>"; 
+                            echo "<th id=\"\"><label for=\"dispo_heure$compteurCreneauxHeure\">" . $cStart . " " . $cEnd . "</label></th>";
 
                             $compteurCreneauxHeure++;
                         }
@@ -186,24 +186,24 @@
 
                     </tr>
 
-                        <?php
-                        // Affichage dynamique des jours de festival (Les dates des créneaux génériques sans doublons)
-                        $numCreneauHeure=1;
-                        foreach (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique) as $d) {
-                            $CreneauDate = $d->getCreneauStart();
-                            echo "
+                    <?php
+                    // Affichage dynamique des jours de festival (Les dates des créneaux génériques sans doublons)
+                    $numCreneauHeure = 1;
+                    foreach (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique) as $d) {
+                        $CreneauDate = $d->getCreneauStart();
+                        echo "
                                   <tr>
                                   <td class=\"firstColumn\"><label for=\"date_$numCreneauHeure\">$CreneauDate</label></td>
                                   ";
-                            $compteur = 1;
-                            foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $h) {
-                                $cStart = $h->getCreneauStart();
-                                $cEnd = $h->getCreneauEnd();
-                                echo "<td><label><input type=\"checkbox\" name=\"dispo_heure$cStart" . "_$cEnd"  . "date_$CreneauDate\" id=\"dispo_heure$compteur" . "date_$CreneauDate\" value=\"1\" /><span> </span></label></td>";
-                            }
-                            echo "</tr>";
+                        $compteur = 1;
+                        foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $h) {
+                            $cStart = $h->getCreneauStart();
+                            $cEnd = $h->getCreneauEnd();
+                            echo "<td><label><input type=\"checkbox\" name=\"dispo_heure$cStart" . "_$cEnd"  . "date_$CreneauDate\" id=\"dispo_heure$compteur" . "date_$CreneauDate\" value=\"1\" /><span> </span></label></td>";
                         }
-                        ?>
+                        echo "</tr>";
+                    }
+                    ?>
 
                 </table>
 
@@ -224,21 +224,24 @@
 
             <div class="card-panel grey lighten-4">
                 <h5>Vos préférences</h5>
-                <table>
-                    <tr>
-                        <th id="poste"><label for="interet1">Poste</label></th>
-                        <th id="interet1"><label for="interet1">1</label></th>
-                        <th id="interet2"><label for="interet2">2</label></th>
-                        <th id="interet3"><label for="interet3">3</label></th>
-                        <th id="toute_semaine"><label for="toute_semaine">Je suis prêt à ne faire que cette mission
-                                toute la semaine</label></th>
-                    </tr>
-                    <?php
-                    foreach (ModelFestival::getPostesByFestival($_GET['festival_id']) as $post) {
-                        $nomPoste = $post->getPosteName();
-                        $descriptionPoste = $post->getPosteDescription();
-                        $idPoste = $post->getPosteId();
-                        echo "
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th id="poste"><label for="interet1">Poste</label></th>
+                            <th id="interet1"><label for="interet1">1</label></th>
+                            <th id="interet2"><label for="interet2">2</label></th>
+                            <th id="interet3"><label for="interet3">3</label></th>
+                            <th id="toute_semaine"><label for="toute_semaine">Je suis prêt à ne faire que cette mission
+                                    toute la semaine</label></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach (ModelFestival::getPostesByFestival($_GET['festival_id']) as $post) {
+                            $nomPoste = $post->getPosteName();
+                            $descriptionPoste = $post->getPosteDescription();
+                            $idPoste = $post->getPosteId();
+                            echo "
                         <tr>
                         <td><label for=\"$idPoste\">$nomPoste<br>$descriptionPoste</label></td>
                         <td><label><input type=\"radio\" name=\"" . "Poste" . $idPoste . "\" id=\"$idPoste\" value=\"1\" /><span> </span></label></td>
@@ -247,8 +250,9 @@
                         <td><label><input type=\"radio\" name=\"" . "Poste" . $idPoste . "\" id=\"$idPoste\" value=\"4\" /><span> </span></label></td>
                         </tr>
                         ";
-                    }
-                    ?>
+                        }
+                        ?>
+                    </tbody>
                 </table>
 
                 <div class="row">
