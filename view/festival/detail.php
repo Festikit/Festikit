@@ -40,20 +40,24 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
             <h4 class="center">Liste des postes</h4>
         </li>
         <?php
-        
-        foreach ($tab_poste as $p) {
-            $poste_name = htmlspecialchars($p->getPosteName());
-            $poste_description = htmlspecialchars($p->getPosteDescription());
-            $poste_id = $p->getPosteId();
-            echo "<li class=\"collection-item avatar\">
-            <span class=\"title\"> <a href=\"index.php?action=read&controller=poste&poste_id=$poste_id\"> $poste_name</a> </span>
-            <p> $poste_description </p>
-    		<div class=\"secondary-content\">
-                <a title=\"en savoir plus\" href=\"index.php?action=read&controller=poste&poste_id=$poste_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
-                <a title=\"modifier\" href=\"index.php?action=update&controller=poste&poste_id=$poste_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
-    		</div>
-    	</li>";
-           
+        if (empty($tab_creneau)) {
+            echo "Il n'y a pas encore de postes pour ce festival.</br>";
+        } else {
+            $i = 1;
+            foreach ($tab_poste as $p) {
+                $poste_name = htmlspecialchars($p->getPosteName());
+                $poste_description = htmlspecialchars($p->getPosteDescription());
+                $poste_id = $p->getPosteId();
+                echo "<li class=\"collection-item avatar\">
+                <span class=\"title\"> <a href=\"index.php?action=read&controller=poste&poste_id=$poste_id\"> $poste_name</a> </span>
+                <p> $poste_description </p>
+                <div class=\"secondary-content\">
+                    <a title=\"en savoir plus\" href=\"index.php?action=read&controller=poste&poste_id=$poste_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
+                    <a title=\"modifier\" href=\"index.php?action=update&controller=poste&poste_id=$poste_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
+                </div>
+                </li>";
+                $i++;
+            }
         }
         ?>
     </ul>
@@ -64,26 +68,25 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
             <h4 class="center">Liste des creneaux</h4>
         </li>
         <?php
-        $i = 1;
-        foreach ($tab_creneau_gen as $c) {
-            echo $c . '</br>';
-            
-            $creneau_gen = ModelCreneau::select($c);
-            
-            $creneau_id = htmlspecialchars($creneau_gen->getCreneauId());
-            $creneau_startdate = htmlspecialchars($creneau_gen->getCreneauStart());
-            $creneau_enddate = $creneau_gen->getCreneauEnd();
-            echo "<li class=\"collection-item avatar\">
-            <span class=\"title\"> <a href=\"index.php?action=read&controller=creneau&creneau_id=$creneau_id\">Créneau $creneau_id</a> </span>
-            <p>Début: $creneau_startdate</p>
-            <p>Fin: $creneau_enddate</p>
-    		<div class=\"secondary-content\">
-                <a title=\"en savoir plus\" href=\"index.php?action=read&controller=creneau&creneau_id=$creneau_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
-                <a title=\"modifier\" href=\"index.php?action=update&controller=creneau&creneau_id=$creneau_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
-    		</div>
-        </li>";
-        
+        if (empty($tab_creneau)) {
+            echo "Il n'y a pas encore de créneaux génériques pour ce festival.</br>";
+        } else {
+            $i = 1;
+            foreach ($tab_creneau as $c) {
+                $creneau_id = htmlspecialchars($c->getCreneauId());
+                $creneau_startdate = htmlspecialchars($c->getCreneauStart());
+                $creneau_enddate = $c->getCreneauEnd();
+                echo "<li class=\"collection-item avatar\">
+                <span class=\"title\"> <a href=\"index.php?action=read&controller=creneau&creneau_id=$creneau_id\">Créneau $creneau_id</a> </span>
+                <p>Début: $creneau_startdate</p>
+                <p>Fin: $creneau_enddate</p>
+                <div class=\"secondary-content\">
+                    <a title=\"en savoir plus\" href=\"index.php?action=read&controller=creneau&creneau_id=$creneau_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
+                    <a title=\"modifier\" href=\"index.php?action=update&controller=creneau&creneau_id=$creneau_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
+                </div>
+            </li>";
             $i++;
+            }
         }
         ?>
     </ul>
@@ -148,7 +151,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
                     <a title=\"supprimer\" href=\"index.php?action=delete&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
                     <a title=\"accepter\" href=\"index.php?action=accepterUtilisateur&controller=festival&user_id=$user_id&festival_id=$festival_id\" class=\"btn\">Accepter</a>
                 </div>
-            </li>";
+                </li>";
                 $i++;
             }
         }
@@ -167,13 +170,10 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
             echo "Il n'y a pas encore de responsable pour ce festival.</br>";
         } else {
             $i = 1;
-            echo "<pre>";
-            print_r($tab_responsable);
-            echo "</pre>";
             foreach ($tab_responsable as $r) {
                 $festival_id = rawurlencode($f->getFestivalId());
                 $user_id = rawurlencode($r->getId());  
-                $user_firstname = rawurlencode($r->getUserFirstName());
+                $user_firstname = rawurlencode($r->getUserFirstname());
                 $user_lastname = rawurlencode($r->getUserLastName());
                 echo "<li class=\"collection-item avatar\">
                 <div class=\"circle green\">
@@ -181,6 +181,10 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
                 <span class=\"title\">$user_firstname</span>
                 <p>$user_lastname
                 </p>
+                <div class=\"secondary-content\">
+                    <a title=\"en savoir plus\" href=\"index.php?action=read&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
+                    <a title=\"Désassigner\" href=\"index.php?action=desassignerResponsable&controller=festival&user_id=$user_id&festival_id=$festival_id\" class=\"btn\">Désassigner</a>
+                </div>
                 
             </li>";
                 $i++;

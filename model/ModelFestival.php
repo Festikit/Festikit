@@ -209,26 +209,9 @@ class ModelFestival extends Model
     }
   }
 
-  /* public function desassignerResponsable($id){
-    try{
-      $sql = "DELETE FROM responsable WHERE responsable_id=:nom_tag";
-      $req_prep = Model::$pdo->prepare($sql);
-      $values = array(
-        "nom_tag" => $id,
-      );
+  
 
-      $req_prep->execute($values);
-    }
-    catch (PDOException $e) {
-      if (Conf::getDebug()) {
-        echo $e->getMessage(); // affiche un message d'erreur
-      } else {
-        echo 'Une erreur est survenue lors de la suppression du responsable';
-      }
-      die();
-    }
-  } */
-
+  
 
   // postuler_accepted = 0 dans la table "postuler"
   public static function getCandidatsByFestival($festival_id)
