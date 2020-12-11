@@ -1,5 +1,6 @@
 <ul class="collection">
 	<li class="collection-header">
+	<a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=create&controller=festival"> Ajouter un festival</a>
 		<h4>Liste de tous les festivals</h4>
 	</li>
 	<?php

@@ -170,9 +170,6 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
             echo "Il n'y a pas encore de responsable pour ce festival.</br>";
         } else {
             $i = 1;
-            echo "<pre>";
-            print_r($tab_responsable);
-            echo "</pre>";
             foreach ($tab_responsable as $r) {
                 $festival_id = rawurlencode($f->getFestivalId());
                 $user_id = rawurlencode($r->getId());  
@@ -185,7 +182,8 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
                 <p>$user_lastname
                 </p>
                 <div class=\"secondary-content\">
-                    <a title=\"supprimer\" href=\"index.php?action=desassignerResponsable&controller=responsable&user_id=$user_id&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
+                    <a title=\"en savoir plus\" href=\"index.php?action=read&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
+                    <a title=\"Désassigner\" href=\"index.php?action=desassignerResponsable&controller=festival&user_id=$user_id&festival_id=$festival_id\" class=\"btn\">Désassigner</a>
                 </div>
                 
             </li>";

@@ -71,17 +71,12 @@ class ControllerFestival
 
             $f = new ModelFestival($dataUser);
             $f->save($dataUser);
-            if ($f == false) {
-                $pagetitle = 'Erreur action read';
-                $controller = 'festival';
-                $view = 'error';
-                $message = 'erreur de la fonction ajouterResponsable dans le controller festival';
-            } else {
-                $pagetitle = 'Détail du festival';
-                $controller = 'festival';
-                $view = 'detail';
-            }
-            require File::build_path(array("view", "view.php"));
+            
+            $tab_f = ModelFestival::selectAll();
+
+            $pagetitle = 'Liste des festivals';
+            $controller = 'festival';
+            $view = 'list';
             
         } else {
             $controller = 'utilisateur';
@@ -89,6 +84,7 @@ class ControllerFestival
             $message = 'Erreur: initialisation des variables nécessaire à la création d\'un utilisateur';
             $pagetitle = 'erreur';
         }
+        require File::build_path(array("view","view.php"));
     }
     
 
