@@ -40,7 +40,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
             <h4 class="center">Liste des postes</h4>
         </li>
         <?php
-        $i = 1;
+        
         foreach ($tab_poste as $p) {
             $poste_name = htmlspecialchars($p->getPosteName());
             $poste_description = htmlspecialchars($p->getPosteDescription());
@@ -53,7 +53,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
                 <a title=\"modifier\" href=\"index.php?action=update&controller=poste&poste_id=$poste_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
     		</div>
     	</li>";
-            $i++;
+           
         }
         ?>
     </ul>
@@ -65,10 +65,14 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
         </li>
         <?php
         $i = 1;
-        foreach ($tab_creneau as $c) {
-            $creneau_id = htmlspecialchars($c->getCreneauId());
-            $creneau_startdate = htmlspecialchars($c->getCreneauStart());
-            $creneau_enddate = $c->getCreneauEnd();
+        foreach ($tab_creneau_gen as $c) {
+            echo $c . '</br>';
+            
+            $creneau_gen = ModelCreneau::select($c);
+            
+            $creneau_id = htmlspecialchars($creneau_gen->getCreneauId());
+            $creneau_startdate = htmlspecialchars($creneau_gen->getCreneauStart());
+            $creneau_enddate = $creneau_gen->getCreneauEnd();
             echo "<li class=\"collection-item avatar\">
             <span class=\"title\"> <a href=\"index.php?action=read&controller=creneau&creneau_id=$creneau_id\">Créneau $creneau_id</a> </span>
             <p>Début: $creneau_startdate</p>
@@ -77,7 +81,8 @@ echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFesti
                 <a title=\"en savoir plus\" href=\"index.php?action=read&controller=creneau&creneau_id=$creneau_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
                 <a title=\"modifier\" href=\"index.php?action=update&controller=creneau&creneau_id=$creneau_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
     		</div>
-    	</li>";
+        </li>";
+        
             $i++;
         }
         ?>
