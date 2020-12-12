@@ -49,8 +49,9 @@ class ControllerFestival
                             
 
                             $creneau_id = ModelFestival::getCreneauxIdByDateHeure($festival_id, $CreneauStart, $CreneauEnd);
+                            if ($creneau_id){
                             $creneau_id = $creneau_id->getCreneauId();
-                            array_push($tab_creneau_gen,"$creneau_id");
+                            array_push($tab_creneau_gen,"$creneau_id");}
                             
 
                         
