@@ -61,7 +61,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
             <h4 class="center">Liste des postes</h4>
         </li>
         <?php
-        if (empty($tab_creneau)) {
+        if (empty($tab_poste)) {
             echo "Il n'y a pas encore de postes pour ce festival.</br>";
         } else {
             $i = 1;
