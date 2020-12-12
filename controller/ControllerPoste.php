@@ -72,20 +72,13 @@ class ControllerPoste {
 
         require(File::build_path(array("view", "view.php")));
     }
-    public static function createAgain()
-    {
-        $controller = 'poste';
-        $view = 'createAgain';
-        $pagetitle = 'ajout d\'un autre poste ?';
-
-        require(File::build_path(array("view", "view.php")));
-    }
+   
 
 
     public static function created()
     {
         $controller = 'poste';
-        $view = 'createAgain';
+        $view = 'created';
         $pagetitle = 'ajout d\'un poste';
 
         $poste_name = $_GET['poste_name'];
@@ -105,6 +98,14 @@ class ControllerPoste {
             $message = 'Erreur: Insertion des données dans la table poste';
             $pagetitle = 'erreur';
         }
+        $f = ModelFestival::select($festival_id);
+        $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
+        $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
+        $tab_poste = ModelFestival::getPostesByFestival($festival_id);
+        $tab_date = ModelFestival::getJoursByFestival($festival_id);
+        $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+        $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
+        $tab_creneau_gen = array();
         require(File::build_path(array("view", "view.php")));
     }
 
