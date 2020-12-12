@@ -173,7 +173,7 @@ class ModelUtilisateur extends Model
 
   public static function getUserByMail($user_mail) {
     try {
-        $sql = "SELECT user_id from user WHERE user_mail=:nom_tag";
+        $sql = "SELECT * from user WHERE user_mail=:nom_tag";
         $req_prep = Model::$pdo->prepare($sql);
         $values = array(
             "nom_tag" => $user_mail,

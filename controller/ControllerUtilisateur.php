@@ -407,7 +407,7 @@ class ControllerUtilisateur {
     public static function deconnect() {
         session_unset();
         session_destroy();
-        // page d'accueil
-        /* TODO */
+        /* Redirection page d'accueil */
+        self::readAll();
     }
 }
