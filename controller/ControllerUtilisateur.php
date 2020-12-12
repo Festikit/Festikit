@@ -1,6 +1,8 @@
 <?php
 
 require_once File::build_path(array("model","ModelUtilisateur.php"));
+require_once File::build_path(array('lib', 'Security.php'));
+require_once File::build_path(array('lib', 'Session.php'));
 
 class ControllerUtilisateur {
 
@@ -345,5 +347,12 @@ class ControllerUtilisateur {
         } else {
             return true;
         }
+    }
+
+    public static function connect() {
+        $controller = "utilisateur";
+        $view = "connect";
+        $pagetitle = "Connexion";
+        require File::build_path(array("view", "view.php"));
     }
 }
