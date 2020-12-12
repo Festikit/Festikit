@@ -280,6 +280,7 @@ class ControllerUtilisateur {
             $view = 'error';
             $pagetitle = 'erreur';
         } else {
+            $festival = ModelFestival::select($_GET['festival_id']);
             $controller = 'utilisateur';
             $view = 'created';
             $pagetitle = 'creation utilisateur';
