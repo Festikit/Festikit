@@ -89,11 +89,12 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
             <h4 class="center">Liste des creneaux</h4>
         </li>
         <?php
-        if (empty($tab_creneau)) {
+        if (empty($tab_creneau_gen)) {
             echo "Il n'y a pas encore de créneaux génériques pour ce festival.</br>";
         } else {
             $i = 1;
-            foreach ($tab_creneau as $c) {
+            foreach ($tab_creneau_gen as $cg) {
+                $c = ModelCreneau::select($cg);
                 $creneau_id = htmlspecialchars($c->getCreneauId());
                 $creneau_startdate = htmlspecialchars($c->getCreneauStart());
                 $creneau_enddate = $c->getCreneauEnd();
@@ -108,10 +109,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
             </li>";
             $i++;
             }
-            foreach ($tab_creneau_gen as $c) {
-                echo $c;
-                echo '</br>';
-            }
+            
         }
         ?>
     </ul>
@@ -223,3 +221,4 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
 
 
 echo "<p> Retour: <a href=\"index.php?action=readAll&controller=festival\">Cliquez ici </a> </p>";
+?>
