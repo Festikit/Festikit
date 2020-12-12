@@ -1,6 +1,5 @@
 <?php
 	// Détail les informations d'un utilisateur
-	
     $user_id = htmlspecialchars($u->getId());
     $user_firstname = htmlspecialchars($u->getFirstname());
     $user_lastname =  htmlspecialchars($u->getLastname());
