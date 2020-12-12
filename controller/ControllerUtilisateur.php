@@ -368,4 +368,46 @@ class ControllerUtilisateur {
         $pagetitle = "Connexion";
         require File::build_path(array("view", "view.php"));
     }
+
+    public static function connected() {
+
+        if (isset($_POST['user_mail']) && isset($_POST['user_password'])) {
+            $mot_de_passe_chiffre = Security::hacher($_POST['user_password']);
+            if(ModelUtilisateur::checkPassword($_POST['user_mail'], $mot_de_passe_chiffre)) {
+                $u = ModelUtilisateur::getUserByMail($_POST['user_mail']);
+                $user_id = $u->getId();
+                $_SESSION['login'] = $user_id;
+                
+                // TODO : Verif responsable/createur pour ajouter en session
+                /*
+                if(ModelUtilisateur::getResponsableByLogin($_SESSION['login'])) { 
+                    $_SESSION['admin'] = true;
+                } else {
+                    $_SESSION['admin'] = false;
+                }*/
+                $view = 'detail';
+                $controller = 'utilisateur';
+                $pagetitle = 'Profil';
+            } else {
+                $mail = $_POST['user_mail'];
+                $controller = 'utilisateur';
+                $message = "Les identifiants ne correspondent pas";
+                $view = "errorLogIn";
+                $pagetitle = "Erreur";
+            }
+        } else {
+            $controller = 'utilisateur';
+            $message = "Erreur Champs non remplies";
+            $view = "error";
+            $pagetitle = "Erreur";
+        }
+        require File::build_path(array("view", "view.php"));
+    }
+
+    public static function deconnect() {
+        session_unset();
+        session_destroy();
+        // page d'accueil
+        /* TODO */
+    }
 }

@@ -171,6 +171,53 @@ class ModelUtilisateur extends Model
   }
   */
 
+  public static function getUserByMail($user_mail) {
+    try {
+        $sql = "SELECT user_id from user WHERE user_mail=:nom_tag";
+        $req_prep = Model::$pdo->prepare($sql);
+        $values = array(
+            "nom_tag" => $user_mail,
+        );
+        $req_prep->execute($values);
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+        $tab_user = $req_prep->fetchAll();
+
+        if (empty($tab_user))
+            return false;
+        return $tab_user[0];
+
+    } catch (PDOException $e) {
+        if (Conf::getDebug()) {
+            echo $e->getMessage();
+        } else {
+            echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+        }
+        die();
+    }
+  }
+
+  public static function checkPassword($user_mail, $mot_de_passe_chiffre)
+    {
+        try {
+            $sql= "SELECT user_mail,user_password FROM user WHERE user_mail=:user_mail AND user_password=:mot_de_passe_chiffre";
+            $req_prep = Model::$pdo->prepare($sql);
+            $values = array(
+                "user_mail" => $user_mail, 
+                "mot_de_passe_chiffre" => $mot_de_passe_chiffre);
+            $req_prep->execute($values);
+            $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+            $tab_utilisateur = $req_prep->fetchAll();
+
+            if (!empty($tab_utilisateur)) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
   public static function getIdByMail($user_mail)
   {
     try {
