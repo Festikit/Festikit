@@ -108,6 +108,10 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
             </li>";
             $i++;
             }
+            foreach ($tab_creneau_gen as $c) {
+                echo $c;
+                echo '</br>';
+            }
         }
         ?>
     </ul>
