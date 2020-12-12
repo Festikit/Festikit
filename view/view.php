@@ -72,9 +72,28 @@
 				<a href="#" class="brand-logo">🎈</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li><a href="index.php?action=readAll">Accueil Utilisateur</a></li>
-					<!-- ou: <li><a href="index.php?action=readAll&controller=utilisateur">Accueil Utilisateurs</a></li>-->
 					<li><a href="index.php?action=readAll&controller=festival">Accueil Festival</a></li>
 					<li><a href="index.php?action=readAll&controller=responsable">Accueil Responsable</a></li>
+					<?php
+					if (empty($_SESSION['login'])) {
+                    echo '
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?action=connect">Connexion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Inscription</a>
+                    </li>
+                    ';
+					} else {
+						echo '
+						<li class="nav-item">
+							<a class="nav-link" href="index.php?action=read&user_id=' . $_SESSION['login'] . '">Votre Compte</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="index.php?action=deconnect">Déconnexion</a>
+						</li>';
+					}
+                ?>
 				</ul>
 			</div>
 		</nav>
