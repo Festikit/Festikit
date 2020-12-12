@@ -103,6 +103,8 @@ class ControllerUtilisateur {
         $user_birthdate = $_POST['user_birthdate'];
         $user_postal_code = $_POST['user_postal_code'];
         $user_driving_license = $_POST['user_driving_license'];
+        $user_password1 = $_POST['user_password1'];
+        $user_password2 = $_POST['user_password2'];
 
         // Initialisation des variables pour postuler
         $venir_avec_vehicule = $_POST['vehicule'];
@@ -164,15 +166,13 @@ class ControllerUtilisateur {
         
     
         // Insertion pour user
-        if(isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license)) {
+        if(isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license, $user_password1, $user_password2)) {
             $reussiteInitUser = true;
-            if($reussiteInitUser) {
-                if(self::createdUser($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license)) {
-                    $reussiteUser = true;
-                } else {
-                    $message = "Erreur: createdUser";
-                    $reussiteUser = false;
-                }
+            if(self::createdUser($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license, $user_password1, $user_password2)) {
+                $reussiteUser = true;
+            } else {
+                $message = "Erreur: createdUser";
+                $reussiteUser = false;
             }
         } else {
             $message = 'Erreur: initialisation des variables nécessaire à la création d\'un utilisateur';
@@ -286,7 +286,16 @@ class ControllerUtilisateur {
     }
 
 
-    public static function createdUser($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license) {
+    public static function createdUser($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license, $user_password1, $user_password2) {
+        
+        // Gestion du mot de passe
+        if(strcmp($user_password1, $user_password2)== 0) {
+            $mot_passe_en_clair = $user_password1;
+            $mot_passe_hache = Security::hacher($mot_passe_en_clair);
+        } else {
+            return false;
+        }
+
         // Création du tableau associatif pour l'insertion dans user
         $dataUser = array(
             'user_firstname' => $user_firstname, 
@@ -297,6 +306,7 @@ class ControllerUtilisateur {
             'user_picture' => $user_picture, 
             'user_postal_code' => $user_postal_code,
             'user_driving_license' => $user_driving_license, 
+            'user_password' => $mot_passe_hache,
         );
         // Insertion dans user + test d'insertion
         if(is_bool(ModelUtilisateur::save($dataUser))) {

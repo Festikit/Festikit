@@ -32,6 +32,17 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">lock</i>
+                        <input name="user_password1" id="user_password1" type="password" class="validate" required>
+                        <label for="user_password1">Mot de passe<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input name="user_password2" id="user_password2" type="password" class="validate" required>
+                        <label for="user_password2">Retapez le mot de passe<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="input-field col s6">
@@ -43,7 +54,6 @@
                         <div class="btn">
                             <i class="material-icons">file_download</i>
                             <span>Photo de profil</span>
-                            <button></button>
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">
