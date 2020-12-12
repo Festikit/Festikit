@@ -55,21 +55,21 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
     </form>
 </div>
 
-<ul class="collection">
-    <li class="collection-header">
-        <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=create&controller=poste&festival_id=<?php echo $festival_id ?>"> Ajouter un poste</a>
-        <h4 class="center">Liste des postes</h4>
-    </li>
-    <?php
-    if (empty($tab_creneau)) {
-        echo "Il n'y a pas encore de postes pour ce festival.</br>";
-    } else {
-        $i = 1;
-        foreach ($tab_poste as $p) {
-            $poste_name = htmlspecialchars($p->getPosteName());
-            $poste_description = htmlspecialchars($p->getPosteDescription());
-            $poste_id = $p->getPosteId();
-            echo "<li class=\"collection-item avatar\">
+    <ul class="collection">
+        <li class="collection-header">
+            <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=create&controller=poste&festival_id=<?php echo $festival_id ?>"> Ajouter un poste</a>
+            <h4 class="center">Liste des postes</h4>
+        </li>
+        <?php
+        if (empty($tab_poste)) {
+            echo "Il n'y a pas encore de postes pour ce festival.</br>";
+        } else {
+            $i = 1;
+            foreach ($tab_poste as $p) {
+                $poste_name = htmlspecialchars($p->getPosteName());
+                $poste_description = htmlspecialchars($p->getPosteDescription());
+                $poste_id = $p->getPosteId();
+                echo "<li class=\"collection-item avatar\">
                 <span class=\"title\"> <a href=\"index.php?action=read&controller=poste&poste_id=$poste_id\"> $poste_name</a> </span>
                 <p> $poste_description </p>
                 <div class=\"secondary-content\">
