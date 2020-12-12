@@ -1,9 +1,30 @@
 <?php
 
+//---------- recupération des infos ----------//
+ // HTML
+ $festival_idHTML = htmlspecialchars($f->get("festival_id"));
+ $nameHTML = htmlspecialchars($f->get("festival_name"));
+ $startdateHTML = htmlspecialchars($f->get("festival_startdate"));
+ $enddateHTML = htmlspecialchars($f->get("festival_enddate"));
+ $descriptionHTML = htmlspecialchars($f->get("festival_description"));
+ $cityHTML = htmlspecialchars($f->get("city"));
+ // URL
+ $festival_idURL = rawurldecode($f->get("festival_id"));
+ $nameURL = rawurldecode($f->get("festival_name"));
+ $startdateURL = rawurldecode($f->get("festival_startdate"));
+ $enddateURL = rawurldecode($f->get("festival_enddate"));
+ $descriptionURL = rawurldecode($f->get("festival_description"));
+ $cityURL = rawurldecode($f->get("city"));
+
+
 // Détail les informations d'un festival
 
-echo "<h2 class=\"flow-text center\"> Festival " . htmlspecialchars($f->getFestivalName()) . "</h2>";
+echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
 ?>
+<a class="btn-large waves-effect waves-light secondary-content" href="<?php echo "index.php?action=update&controller=festival&festival_id=$festival_idURL&festival_name=$nameURL&festival_startdate=$startdateURL
+&festival_enddate=$enddateURL&festival_description=$descriptionURL&city=$cityURL" ?>"> Modifier ce festival</a>
+
+    
 <div class="row">
     <form class="col s12">
         <div class="row">

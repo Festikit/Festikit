@@ -75,11 +75,76 @@ class ControllerFestival
         require File::build_path(array("view", "view.php"));
     }
 
-    public static function create() {
-        $pagetitle = 'Formulaire d\'enregistrement';
-        $controller = 'festival';
-        $view = 'create';
-        require File::build_path(array("view","view.php"));
+
+    public static function create()
+    {
+
+            $nameHTML = "";
+            $startdateHTML = "";
+            $enddateHTML = "";
+            $descriptionHTML = "";
+            $cityHTML = "";
+
+            $pagetitle = 'Formulaire d\'enregistrement';
+            $controller = 'festival';
+            $view = 'update';
+            $next_action = "created";
+            $primary_property = "required";
+        
+        require File::build_path(array("view", "view.php"));
+    }
+
+    public static function update()
+    {
+        
+            $controller = 'festival';
+            $view = 'update';
+            $pagetitle = 'modification festival';
+            
+            $festival_id = rawurldecode($_GET['festival_id']);
+
+            if (isset($_GET['festival_name'], $_GET['festival_startdate'], $_GET['festival_enddate'], $_GET['festival_description'], $_GET['city'])) {
+                $nameHTML = htmlspecialchars($_GET['festival_name']);
+                $startdateHTML = htmlspecialchars($_GET['festival_startdate']);
+                $enddateHTML = htmlspecialchars($_GET['festival_enddate']);
+                $descriptionHTML = htmlspecialchars($_GET['festival_description']);
+                $cityHTML = htmlspecialchars($_GET['city']);
+                
+
+                $next_action = "updated";
+                $primary_property = "readonly";
+            } else {
+                $pagetitle = 'Erreur action';
+                $controller = 'festival';
+                $view = 'error';
+                $message = "Erreur: Le controller n'a pas pu récupérer les éléments du formulaire update";
+            }
+        
+        require File::build_path(array("view", "view.php"));
+    }
+
+    public static function updated()
+    {
+        
+            if (isset($_POST['festival_name'], $_POST['festival_startdate'], $_POST['festival_enddate'], $_POST['festival_description'], $_POST['city'], $_GET['festival_id'])) {
+                $data = array(
+                    'festival_id' => $_GET['festival_id'],
+                    'festival_name' => $_POST['festival_name'],
+                    'festival_startdate' => $_POST['festival_startdate'],
+                    'festival_enddate' => $_POST['festival_enddate'],
+                    'festival_description' => $_POST['festival_description'],
+                    'city' => $_POST['city'],
+                );
+
+                ModelFestival::update($data);
+                $controller = 'festival';
+                $view = 'updated';
+                $pagetitle = 'modification festival';
+
+            }
+        
+        $tab_f = ModelFestival::selectAll();
+        require(File::build_path(array("view", "view.php")));
     }
 
 
