@@ -24,9 +24,41 @@ class ControllerFestival
         $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
         $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
         $tab_poste = ModelFestival::getPostesByFestival($festival_id);
-        $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
         $tab_date = ModelFestival::getJoursByFestival($festival_id);
         $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+        $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
+        $tab_creneau_gen = array();
+        
+        //------------------------------------ Tableau de Créneaux génériques ------------------------------------//
+        
+            foreach (ModelFestival::getCreneauxGeneriquesHeure($festival_id) as $h) {
+                $cStart = $h->getCreneauStart();
+                $cEnd = $h->getCreneauEnd();
+                foreach (ModelFestival::getCreneauxGeneriquesDate($festival_id) as $d) {
+                    $CreneauDate = $d->getCreneauStart();
+                    $post = "dispo_heure$cStart" . "_$cEnd" . "date_$CreneauDate";
+
+                    
+                        $heureStart = substr($post,11,8); // Je récupère 8 caractères à partir du 11ème (inclus)
+                        $heureEnd = substr($post,20,8);
+                        $date = substr($post,-10); // Je récupère les 10 derniers caractères
+
+                        
+                        $CreneauStart = $date . " " . $heureStart;
+                        $CreneauEnd = $date . " " . $heureEnd;
+                        
+
+                        $creneau_id = ModelFestival::getCreneauxIdByDateHeure($festival_id, $CreneauStart, $CreneauEnd);
+                        $creneau_id = $creneau_id->getCreneauId();
+                        array_push($tab_creneau_gen,"$creneau_id");
+                        
+
+                    
+                }
+            }
+
+            // ------------------------------------   FIN    ------------------------------------
+
 
         if ($f == false) {
             $pagetitle = 'Erreur action read';
