@@ -181,13 +181,15 @@ class ControllerUtilisateur {
 
 
         // L'utilisateur étant créé, on récupère son id à partir de son mail
-        $user_id = ModelUtilisateur::getIdByMail($user_mail);
-        $user_id = $user_id->getId();
-        if(!empty($user_id)) {
-            $reussiteId = true;
-        } else {
-            $message = 'Erreur: Récupération de l\'id utilisateur';
-            $reussiteId = false;
+        if($reussiteUser) {
+            $user_id = ModelUtilisateur::getIdByMail($user_mail);
+            $user_id = $user_id->getId();
+            if(!empty($user_id)) {
+                $reussiteId = true;
+            } else {
+                $message = 'Erreur: Récupération de l\'id utilisateur';
+                $reussiteId = false;
+            }
         }
 
 
