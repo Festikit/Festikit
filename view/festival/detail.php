@@ -1,20 +1,20 @@
 <?php
 
 //---------- recupération des infos ----------//
- // HTML
- $festival_idHTML = htmlspecialchars($f->get("festival_id"));
- $nameHTML = htmlspecialchars($f->get("festival_name"));
- $startdateHTML = htmlspecialchars($f->get("festival_startdate"));
- $enddateHTML = htmlspecialchars($f->get("festival_enddate"));
- $descriptionHTML = htmlspecialchars($f->get("festival_description"));
- $cityHTML = htmlspecialchars($f->get("city"));
- // URL
- $festival_idURL = rawurldecode($f->get("festival_id"));
- $nameURL = rawurldecode($f->get("festival_name"));
- $startdateURL = rawurldecode($f->get("festival_startdate"));
- $enddateURL = rawurldecode($f->get("festival_enddate"));
- $descriptionURL = rawurldecode($f->get("festival_description"));
- $cityURL = rawurldecode($f->get("city"));
+// HTML
+$festival_idHTML = htmlspecialchars($f->get("festival_id"));
+$nameHTML = htmlspecialchars($f->get("festival_name"));
+$startdateHTML = htmlspecialchars($f->get("festival_startdate"));
+$enddateHTML = htmlspecialchars($f->get("festival_enddate"));
+$descriptionHTML = htmlspecialchars($f->get("festival_description"));
+$cityHTML = htmlspecialchars($f->get("city"));
+// URL
+$festival_idURL = rawurldecode($f->get("festival_id"));
+$nameURL = rawurldecode($f->get("festival_name"));
+$startdateURL = rawurldecode($f->get("festival_startdate"));
+$enddateURL = rawurldecode($f->get("festival_enddate"));
+$descriptionURL = rawurldecode($f->get("festival_description"));
+$cityURL = rawurldecode($f->get("city"));
 
 
 // Détail les informations d'un festival
@@ -24,7 +24,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
 <a class="btn-large waves-effect waves-light secondary-content" href="<?php echo "index.php?action=update&controller=festival&festival_id=$festival_idURL&festival_name=$nameURL&festival_startdate=$startdateURL
 &festival_enddate=$enddateURL&festival_description=$descriptionURL&city=$cityURL" ?>"> Modifier ce festival</a>
 
-    
+
 <div class="row">
     <form class="col s12">
         <div class="row">
@@ -55,21 +55,21 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
     </form>
 </div>
 
-    <ul class="collection">
-        <li class="collection-header">
-            <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=create&controller=poste&festival_id=<?php echo $festival_id ?>"> Ajouter un poste</a>
-            <h4 class="center">Liste des postes</h4>
-        </li>
-        <?php
-        if (empty($tab_creneau)) {
-            echo "Il n'y a pas encore de postes pour ce festival.</br>";
-        } else {
-            $i = 1;
-            foreach ($tab_poste as $p) {
-                $poste_name = htmlspecialchars($p->getPosteName());
-                $poste_description = htmlspecialchars($p->getPosteDescription());
-                $poste_id = $p->getPosteId();
-                echo "<li class=\"collection-item avatar\">
+<ul class="collection">
+    <li class="collection-header">
+        <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=create&controller=poste&festival_id=<?php echo $festival_id ?>"> Ajouter un poste</a>
+        <h4 class="center">Liste des postes</h4>
+    </li>
+    <?php
+    if (empty($tab_creneau)) {
+        echo "Il n'y a pas encore de postes pour ce festival.</br>";
+    } else {
+        $i = 1;
+        foreach ($tab_poste as $p) {
+            $poste_name = htmlspecialchars($p->getPosteName());
+            $poste_description = htmlspecialchars($p->getPosteDescription());
+            $poste_id = $p->getPosteId();
+            echo "<li class=\"collection-item avatar\">
                 <span class=\"title\"> <a href=\"index.php?action=read&controller=poste&poste_id=$poste_id\"> $poste_name</a> </span>
                 <p> $poste_description </p>
                 <div class=\"secondary-content\">
@@ -77,28 +77,71 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                     <a title=\"modifier\" href=\"index.php?action=update&controller=poste&poste_id=$poste_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
                 </div>
                 </li>";
-                $i++;
+            $i++;
+        }
+    }
+    ?>
+</ul>
+
+<ul>
+    <h6>Vos disponibilités</h6>
+    <table>
+        <tr>
+            <th id=""><label for="dispo_date1">jour</label></th>
+
+            <?php
+            // Affichage dynamique des heures correspondant aux créneaux génériques
+            $festivalGenerique = 6;
+            $compteurCreneauxHeure = 0;
+            
+            foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $h) {
+                $cStart = $h->getCreneauStart();
+                $cEnd = $h->getCreneauEnd();
+                echo "<th id=\"\"><label for=\"dispo_heure$compteurCreneauxHeure\">" . $cStart . " " . $cEnd . "</label></th>";
+
+                $compteurCreneauxHeure++;
             }
+            ?>
+
+        </tr>
+
+        <?php
+        // Affichage dynamique des jours de festival (Les dates des créneaux génériques sans doublons)
+        $numCreneauHeure = 1;
+        foreach (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique) as $d) {
+            $CreneauDate = $d->getCreneauStart();
+            echo "
+                                  <tr>
+                                  <td class=\"firstColumn\"><label for=\"date_$numCreneauHeure\">$CreneauDate</label></td>
+                                  ";
+            $compteur = 1;
+            foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $h) {
+                $cStart = $h->getCreneauStart();
+                $cEnd = $h->getCreneauEnd();
+                echo "<td><label><input type=\"checkbox\" name=\"dispo_heure$cStart" . "_$cEnd"  . "date_$CreneauDate\" id=\"dispo_heure$compteur" . "date_$CreneauDate\" value=\"1\" /><span> </span></label></td>";
+            }
+            echo "</tr>";
         }
         ?>
-    </ul>
+    </table>
+</ul>
 
-    <ul class="collection">
-        <li class="collection-header">
-            <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=read&controller=creneau&creneau_id=$creneau_id"> Ajouter un creneau</a>
-            <h4 class="center">Liste des creneaux</h4>
-        </li>
-        <?php
-        if (empty($tab_creneau_gen)) {
-            echo "Il n'y a pas encore de créneaux génériques pour ce festival.</br>";
-        } else {
-            $i = 1;
-            foreach ($tab_creneau_gen as $cg) {
-                $c = ModelCreneau::select($cg);
-                $creneau_id = htmlspecialchars($c->getCreneauId());
-                $creneau_startdate = htmlspecialchars($c->getCreneauStart());
-                $creneau_enddate = $c->getCreneauEnd();
-                echo "<li class=\"collection-item avatar\">
+<ul class="collection">
+    <li class="collection-header">
+        <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=read&controller=creneau&creneau_id=$creneau_id"> Ajouter un creneau</a>
+        <h4 class="center">Liste des creneaux</h4>
+    </li>
+    <?php
+    if (empty($tab_creneau_gen)) {
+        echo "Il n'y a pas encore de créneaux génériques pour ce festival.</br>";
+    } else {
+        $i = 1;
+        foreach ($tab_creneau_gen as $cg) {
+            $c = ModelCreneau::select($cg);
+            $creneau_id = htmlspecialchars($c->getCreneauId());
+            $creneau_startdate = htmlspecialchars($c->getCreneauStart());
+            $creneau_enddate = $c->getCreneauEnd();
+            echo "<li class=\"collection-item avatar\">
                 <span class=\"title\"> <a href=\"index.php?action=read&controller=creneau&creneau_id=$creneau_id\">Créneau $creneau_id</a> </span>
                 <p>Début: $creneau_startdate</p>
                 <p>Fin: $creneau_enddate</p>
@@ -108,11 +151,10 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                 </div>
             </li>";
             $i++;
-            }
-            
         }
-        ?>
-    </ul>
+    }
+    ?>
+</ul>
 
 
 
@@ -195,7 +237,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
             $i = 1;
             foreach ($tab_responsable as $r) {
                 $festival_id = rawurlencode($f->getFestivalId());
-                $user_id = rawurlencode($r->getId());  
+                $user_id = rawurlencode($r->getId());
                 $user_firstname = rawurlencode($r->getUserFirstname());
                 $user_lastname = rawurlencode($r->getUserLastName());
                 echo "<li class=\"collection-item avatar\">
