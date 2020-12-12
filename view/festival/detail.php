@@ -128,7 +128,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
 
     <ul class="collection">
     <li class="collection-header">
-        <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=read&controller=creneau&creneau_id=$creneau_id"> Ajouter un creneau</a>
+        <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=createGen&controller=creneau&festival_id=<?php echo $festival_id;?>"> Ajouter un creneau</a>
         <h4 class="center">Liste des creneaux</h4>
     </li>
     <?php

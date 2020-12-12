@@ -133,4 +133,52 @@ class ControllerCreneau
         }
         require(File::build_path(array("view", "view.php")));
     }
+
+    public static function createGen()
+    {
+        $controller = 'creneau';
+        $view = 'createGen';
+        $pagetitle = 'ajout d\'un créneau générique';
+
+        $festival_id = $_GET['festival_id'];
+        $poste_id = 37;
+
+        require(File::build_path(array("view", "view.php")));
+    }
+
+    public static function createdGen()
+    {
+        $controller = 'creneau';
+        $view = 'createdGen';
+        $pagetitle = 'ajout d\'un créneau';
+
+        $creneau_startdate = $_GET['creneau_startdate'];
+        $creneau_enddate = $_GET['creneau_enddate'];
+        $festival_id = $_GET['festival_id'];
+        $poste_id = $_GET['poste_id'];
+
+        $dataCreneau = array(
+            "creneau_startdate" => $creneau_startdate,
+            "creneau_enddate" => $creneau_enddate,
+            "festival_id" => $festival_id,
+            "poste_id" => $poste_id
+        );
+        
+
+        $f = ModelFestival::select($festival_id);
+        $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
+        $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
+        $tab_poste = ModelFestival::getPostesByFestival($festival_id);
+        $tab_date = ModelFestival::getJoursByFestival($festival_id);
+        $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+        $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
+        $tab_creneau_gen = ModelCreneau::getCreneauxGen($festival_id);
+        if (is_bool(ModelCreneau::save($dataCreneau))) {
+            $controller = 'creneau';
+            $view = 'error';
+            $message = 'Erreur: Insertion des données dans la table poste';
+            $pagetitle = 'erreur';
+        }
+        require(File::build_path(array("view", "view.php")));
+    }
 }

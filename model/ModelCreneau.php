@@ -120,6 +120,40 @@ class ModelCreneau extends Model
     }
   }
 
+  public static function getCreneauxGen($festival_id)
+  {
+    $tab_creneau_gen = array();
+
+
+    if (ModelFestival::getCreneauxGeneriquesHeure($festival_id) && ModelFestival::getCreneauxGeneriquesDate($festival_id)) {
+      foreach (ModelFestival::getCreneauxGeneriquesHeure($festival_id) as $h) {
+        $cStart = $h->getCreneauStart();
+        $cEnd = $h->getCreneauEnd();
+        foreach (ModelFestival::getCreneauxGeneriquesDate($festival_id) as $d) {
+          $CreneauDate = $d->getCreneauStart();
+          $post = "dispo_heure$cStart" . "_$cEnd" . "date_$CreneauDate";
+
+
+          $heureStart = substr($post, 11, 8); // Je récupère 8 caractères à partir du 11ème (inclus)
+          $heureEnd = substr($post, 20, 8);
+          $date = substr($post, -10); // Je récupère les 10 derniers caractères
+
+
+          $CreneauStart = $date . " " . $heureStart;
+          $CreneauEnd = $date . " " . $heureEnd;
+
+
+          $creneau_id = ModelFestival::getCreneauxIdByDateHeure($festival_id, $CreneauStart, $CreneauEnd);
+          if ($creneau_id) {
+            $creneau_id = $creneau_id->getCreneauId();
+            array_push($tab_creneau_gen, "$creneau_id");
+          }
+        }
+      }
+    }
+    return $tab_creneau_gen;
+  }
+
   /*
   public static function getCreneauById($creneau_id)
   {
@@ -177,7 +211,7 @@ class ModelCreneau extends Model
   }
   */
 
-  
+
   /*
   public static function deleteById($id)
   {
