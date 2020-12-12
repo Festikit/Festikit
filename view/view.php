@@ -16,6 +16,51 @@
 		$(document).ready(function() {
 			$('select').material_select();
 		});
+
+		/* Vérification Mot de passe */
+		function checkPasswordOnSubmit() {
+			var user_password1 = $("#user_password1").val();
+			var user_password2 = $("#user_password2").val();
+			if(user_password1.length<6) { 
+				alert("Le mot de passe doit contenir au moins 6 caractères"); 
+				return false;
+			} else if(user_password1 != user_password2) {
+				alert("Les mots de passe ne correpondent pas."); 
+				return false;
+			} else {
+				return true;
+			}
+		}  
+		
+		function checkPasswordLength() {
+			var user_password1 = $("#user_password1").val();
+			var user_password2 = $("#user_password2").val();
+
+			if(user_password1.length<6) { 
+				$("#checkPasswordLength").html("Le mot de passe doit contenir au moins 6 caractères");
+			} else {
+				$("#checkPasswordLength").html("Mot de passe de bonne taille");
+			}
+		}
+
+		$(document).ready(function () {
+			$("#user_password1").keyup(checkPasswordLength);
+		});
+
+		function checkPasswordMatch() {
+			var user_password1 = $("#user_password1").val();
+			var user_password2 = $("#user_password2").val();
+
+			if(user_password1 != user_password2)
+				$("#checkPasswordMatch").html("Les mots de passe de correspondent pas !");
+			else
+				$("#checkPasswordMatch").html("Mots de passe identiques");
+		}
+
+		$(document).ready(function () {
+			$("#user_password2").keyup(checkPasswordMatch);
+		});
+
 	</script>
 </head>
 
