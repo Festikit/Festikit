@@ -143,6 +143,7 @@ class ControllerUtilisateur
         $user_driving_license = $_POST['user_driving_license'];
         $user_password1 = $_POST['user_password1'];
         $user_password2 = $_POST['user_password2'];
+        $admin = 0;
 
         // Initialisation des variables pour postuler
         $venir_avec_vehicule = $_POST['vehicule'];
@@ -204,9 +205,9 @@ class ControllerUtilisateur
 
 
         // Insertion pour user
-        if (isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license, $user_password1, $user_password2)) {
+        if (isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license, $user_password1, $user_password2, $admin)) {
             $reussiteInitUser = true;
-            if (self::createdUser($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license, $user_password1, $user_password2)) {
+            if (self::createdUser($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license, $user_password1, $user_password2, $admin)) {
                 $reussiteUser = true;
             } else {
                 $message = "Erreur: createdUser";
@@ -434,7 +435,7 @@ class ControllerUtilisateur
                     $_SESSION['createur'] = false;
                 }
                 */
-                
+
                 $view = 'detail';
                 $controller = 'utilisateur';
                 $pagetitle = 'Profil';

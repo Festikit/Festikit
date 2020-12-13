@@ -18,11 +18,13 @@ class ModelUtilisateur extends Model
   private $user_picture;
   private $user_postal_code;
   private $user_driving_license;
+  private $user_password;
+  private $admin;
   
 
-  public function __construct($id = NULL, $firstname = NULL, $lastname = NULL, $mail = NULL, $phone = NULL, $birthdate = NULL, $picture = NULL, $postal_code = NULL, $driving_license = NULL)
+  public function __construct($id = NULL, $firstname = NULL, $lastname = NULL, $mail = NULL, $phone = NULL, $birthdate = NULL, $picture = NULL, $postal_code = NULL, $driving_license = NULL, $password = NULL, $admin = NULL)
   {
-    if (!is_null($id) && !is_null($firstname) && !is_null($lastname) && !is_null($mail) && !is_null($phone) && !is_null($birthdate) && !is_null($picture) && !is_null($postal_code) && !is_null($picture)) {
+    if (!is_null($id) && !is_null($firstname) && !is_null($lastname) && !is_null($mail) && !is_null($phone) && !is_null($birthdate) && !is_null($picture) && !is_null($postal_code) && !is_null($driving_license) && !is_null($password) && !is_null($admin)) {
       $this->user_id = $id;
       $this->user_firstname = $firstname;
       $this->user_lastname = $lastname;
@@ -32,6 +34,8 @@ class ModelUtilisateur extends Model
       $this->user_picture = $picture;
       $this->user_postal_code = $postal_code;
       $this->user_driving_license = $driving_license;
+      $this->user_password = $password;
+      $this->admin = $admin;
     }
   }
 
