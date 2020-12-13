@@ -17,11 +17,18 @@ class ControllerUtilisateur
 
     public static function readAll()
     {
-        $tab_u = ModelUtilisateur::selectAll();
+        if(Session::is_admin()) {
+            $tab_u = ModelUtilisateur::selectAll();
 
-        $pagetitle = 'Liste des utilisateurs';
-        $controller = 'utilisateur';
-        $view = 'list';
+            $pagetitle = 'Liste des utilisateurs';
+            $controller = 'utilisateur';
+            $view = 'list';
+        } else {
+            $pagetitle = 'Erreur';
+            $controller = 'utilisateur';
+            $message = "Vous n'avez pas l'autorisation !";
+            $view = 'errorAccess';
+        }       
         require File::build_path(array("view", "view.php"));
     }
 
@@ -40,6 +47,7 @@ class ControllerUtilisateur
             $view = 'error';
             $message = "erreur de la fonction read dans le controller utilisateur";
         } else {
+            
             $boolUser = 0;
             if (isset($_SESSION['login'])) {
                 $session_id = $_SESSION['login'];
@@ -63,44 +71,48 @@ class ControllerUtilisateur
 
 
 
-    public static function delete()
-    {
-        $controller = 'utilisateur';
-        $pagetitle = 'supprimons ceci';
-        $view = 'deleted';
-        $user_id = $_GET['user_id'];
-        ModelUtilisateur::delete($user_id);
-        $tab_u = ModelUtilisateur::selectAll();
+    public static function delete() {
+        if(Session::is_admin()) {
+            $controller = 'utilisateur';
+            $pagetitle = 'supprimons ceci';
+            $view = 'deleted';
+            $user_id = $_GET['user_id'];
+            ModelUtilisateur::delete($user_id);
+            $tab_u = ModelUtilisateur::selectAll();
+        } else {
+            $pagetitle = 'Erreur';
+            $controller = 'utilisateur';
+            $message = "Vous n'avez pas l'autorisation !";
+            $view = 'errorAccess';
+        }
         require File::build_path(array("view", "view.php"));
     }
 
-    public static function update()
-    {
+    public static function update() {
         $log_u  = $_GET['user_id'];
         $tab_u = ModelUtilisateur::select($log_u);
         $boolUser = 0;
-            if (isset($_SESSION['login'])) {
-                $session_id = $_SESSION['login'];
-                if ($log_u == $session_id) {
-                    $boolUser = Session::is_user($_SESSION['login']);
-                }
+        if (isset($_SESSION['login'])) {
+            $session_id = $_SESSION['login'];
+            if ($log_u == $session_id) {
+                $boolUser = Session::is_user($_SESSION['login']);
             }
-            if ($boolUser == 0) {
-                $pagetitle = 'Détail de l\'utilisateur';
-                $controller = 'utilisateur';
-                $view = 'errorAccess';
-                $message = 'Ce n\'est pas votre compte';
-            } else {
-                $controller = 'utilisateur';
-                $view = 'update';
-                $pagetitle = 'modification utilisateur';
-            }
+        }
+        if ($boolUser == 0) {
+            $pagetitle = 'Détail de l\'utilisateur';
+            $controller = 'utilisateur';
+            $view = 'errorAccess';
+            $message = 'Ce n\'est pas votre compte';
+        } else {
+            $controller = 'utilisateur';
+            $view = 'update';
+            $pagetitle = 'modification utilisateur';
+        }
         require(File::build_path(array("view", "view.php")));
     }
 
     public static function updated()
     {
-
         $controller = 'utilisateur';
         $view = 'updated';
         $pagetitle = 'modification utilisateur';
@@ -414,7 +426,6 @@ class ControllerUtilisateur
 
     public static function connected()
     {
-
         if (isset($_POST['user_mail']) && isset($_POST['user_password'])) {
             $mot_de_passe_chiffre = Security::hacher($_POST['user_password']);
             if (ModelUtilisateur::checkPassword($_POST['user_mail'], $mot_de_passe_chiffre)) {
