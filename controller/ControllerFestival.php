@@ -239,8 +239,11 @@ class ControllerFestival
     {
         if(Session::is_admin()) {
             $festival_id = $_GET['festival_id'];
+            $user_id = $_GET['user_id'];
             $f = ModelFestival::select($festival_id);
-            $f->refuserUtilisateur($_GET['user_id']);
+            $r = ModelUtilisateur::estResponsable($user_id, $festival_id);
+            if ($r == false) {
+                $f->refuserUtilisateur($_GET['user_id']);
 
             $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
             $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
@@ -254,9 +257,17 @@ class ControllerFestival
                 $view = 'error';
                 $message = 'erreur de la fonction refuserUtilisateur dans le controller festival';
             } else {
+                $pagetitle = 'Erreur';
+                $controller = 'utilisateur';
+                $message = "Vous n'avez pas l'autorisation !";
+                $view = 'errorAccess';
+            }
+            }
+            else {
                 $pagetitle = 'Détail du festival';
                 $controller = 'festival';
-                $view = 'detail';
+                $view = 'error';
+                $message = 'Vous ne pouvez pas désassigner un responsable';
             }
         } else {
             $pagetitle = 'Erreur';
@@ -264,7 +275,6 @@ class ControllerFestival
             $message = "Vous n'avez pas l'autorisation !";
             $view = 'errorAccess';
         }
-
         require File::build_path(array("view", "view.php"));
     }
 
