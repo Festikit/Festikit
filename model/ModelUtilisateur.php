@@ -129,6 +129,11 @@ class ModelUtilisateur extends Model
     $this->user_driving_license = $driving_license2;
   }
 
+  public function getAdmin()
+  {
+    return $this->admin;
+  }
+
   /*
   public static function getAllUtilisateurs()
   {
@@ -247,6 +252,30 @@ class ModelUtilisateur extends Model
     }
   }
 
+  public static function boolAdminByUserId($user_id) {
+    try {
+        $sql = "SELECT admin from user WHERE user_id=:nom_tag";
+        $req_prep = Model::$pdo->prepare($sql);
+        $values = array(
+            "nom_tag" => $user_id,
+        );
+        $req_prep->execute($values);
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+        $tab_user = $req_prep->fetchAll();
+
+        if(empty($tab_user))
+            return false;
+        return $tab_user[0];
+
+    } catch (PDOException $e) {
+        if (Conf::getDebug()) {
+            echo $e->getMessage();
+        } else {
+            echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+        }
+        die();
+    }
+  }
 
   /*
   public static function deleteById($id)

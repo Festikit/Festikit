@@ -422,19 +422,17 @@ class ControllerUtilisateur
                 $user_id = $u->getId();
                 $_SESSION['login'] = $user_id;
 
-                if(ModelResponsable::boolResponsableByUserId($_SESSION['login'])) { 
+                if(ModelResponsable::boolResponsableByUserId($_SESSION['login'])) { // return true or false
                     $_SESSION['responsable'] = true;
                 } else {
                     $_SESSION['responsable'] = false;
                 }
 
-                /*
-                if(ModelUtilisateur::boolCreateurByUserId($_SESSION['login'])) { 
-                    $_SESSION['createur'] = true;
+                if(ModelUtilisateur::boolAdminByUserId($_SESSION['login'])->getAdmin()) { // return 1 or 0
+                    $_SESSION['admin'] = true;
                 } else {
-                    $_SESSION['createur'] = false;
+                    $_SESSION['admin'] = false;
                 }
-                */
 
                 $view = 'detail';
                 $controller = 'utilisateur';
