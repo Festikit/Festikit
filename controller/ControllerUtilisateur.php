@@ -76,11 +76,25 @@ class ControllerUtilisateur
 
     public static function update()
     {
-        $controller = 'utilisateur';
-        $view = 'update';
-        $pagetitle = 'modification utilisateur';
         $log_u  = $_GET['user_id'];
         $tab_u = ModelUtilisateur::select($log_u);
+        $boolUser = 0;
+            if (isset($_SESSION['login'])) {
+                $session_id = $_SESSION['login'];
+                if ($log_u == $session_id) {
+                    $boolUser = Session::is_user($_SESSION['login']);
+                }
+            }
+            if ($boolUser == 0) {
+                $pagetitle = 'Détail de l\'utilisateur';
+                $controller = 'utilisateur';
+                $view = 'errorAccess';
+                $message = 'Ce n\'est pas votre compte';
+            } else {
+                $controller = 'utilisateur';
+                $view = 'update';
+                $pagetitle = 'modification utilisateur';
+            }
         require(File::build_path(array("view", "view.php")));
     }
 
