@@ -55,6 +55,7 @@
             <div class="row">
                 <div class="col s12 m4 l4"></div>
                 <input type="hidden" name="action" value="<?php echo $next_action; ?>">
+                <input type="hidden" name="user_id" value=<?php echo "\"" . $_SESSION['login'] . "\"" ?>>
                 <input class="btn col s12 m4 l4" type="submit" value="Envoyer" />
             </div>
         </fieldset>

@@ -49,18 +49,24 @@ class ControllerFestival
 
     public static function create()
     {
-
             $nameHTML = "";
             $startdateHTML = "";
             $enddateHTML = "";
             $descriptionHTML = "";
             $cityHTML = "";
-
-            $pagetitle = 'Formulaire d\'enregistrement';
-            $controller = 'festival';
-            $view = 'update';
-            $next_action = "created";
-            $primary_property = "required";
+            if (!isset($_SESSION['login'])) {
+                $pagetitle = 'Création festival';
+                $controller = 'festival';
+                $view = 'errorAccess';
+                $message = 'Vous ne pouvez pas créer de festival sans être connecté';
+            } else {
+                $pagetitle = 'Formulaire d\'enregistrement';
+                $controller = 'festival';
+                $view = 'update';
+                $next_action = "created";
+                $primary_property = "required";
+            }
+            
         
         require File::build_path(array("view", "view.php"));
     }
@@ -125,7 +131,7 @@ class ControllerFestival
         $festival_startdate = $_POST['festival_startdate'];
         $festival_enddate = $_POST['festival_enddate'];
         $festival_description = $_POST['festival_description'];
-        $user_id = 4;
+        $user_id = $_POST['user_id'];
         $city = $_POST['city'];
 
         if(isset($festival_name, $festival_startdate, $festival_enddate, $festival_description, $user_id, $city)) {
@@ -143,9 +149,9 @@ class ControllerFestival
             
             $tab_f = ModelFestival::selectAll();
 
-            $pagetitle = 'Liste des festivals';
+            $pagetitle = 'Festival créé';
             $controller = 'festival';
-            $view = 'list';
+            $view = 'created';
             
         } else {
             $controller = 'utilisateur';
