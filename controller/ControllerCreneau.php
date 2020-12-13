@@ -157,9 +157,16 @@ class ControllerCreneau
         $festival_id = $_GET['festival_id'];
         $poste_id = $_GET['poste_id'];
 
+        $creneau_startdate = $creneau_startdate."";
+        $rest = substr($creneau_startdate, 4);
+        $creneau_startdate_gen = 2000 . "$rest";
+        $creneau_enddate = $creneau_enddate."";
+        $rest = substr($creneau_enddate, 4);
+        $creneau_enddate_gen = 2000 . "$rest";
+
         $dataCreneau = array(
-            "creneau_startdate" => $creneau_startdate,
-            "creneau_enddate" => $creneau_enddate,
+            "creneau_startdate" => $creneau_startdate_gen,
+            "creneau_enddate" => $creneau_enddate_gen,
             "festival_id" => $festival_id,
             "poste_id" => $poste_id
         );
@@ -173,6 +180,8 @@ class ControllerCreneau
         $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
         $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
         $tab_creneau_gen = ModelCreneau::getCreneauxGen($festival_id);
+
+
         if (is_bool(ModelCreneau::save($dataCreneau))) {
             $controller = 'creneau';
             $view = 'error';

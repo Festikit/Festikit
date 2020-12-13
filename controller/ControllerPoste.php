@@ -105,7 +105,7 @@ class ControllerPoste {
         $tab_date = ModelFestival::getJoursByFestival($festival_id);
         $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
         $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
-        $tab_creneau_gen = array();
+        $tab_creneau_gen = ModelCreneau::getCreneauxGen($festival_id);
         require(File::build_path(array("view", "view.php")));
     }
 
