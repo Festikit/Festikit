@@ -6,7 +6,7 @@ class ModelFestival extends Model
 
   protected static $object_table = 'festival';
   protected static $object_model = 'festival';
-  protected static $primary= 'festival_id';
+  protected static $primary = 'festival_id';
 
 
   private $festival_id;
@@ -17,7 +17,7 @@ class ModelFestival extends Model
   private $city;
   private $user_id;
 
-  
+
 
   public function __construct($id = NULL, $name = NULL, $startdate = NULL, $enddate = NULL, $description = NULL, $city = NULL)
   {
@@ -74,19 +74,21 @@ class ModelFestival extends Model
   }
 
   // Getter générique
-  public function get($nom_attribut) {
+  public function get($nom_attribut)
+  {
     if (property_exists($this, $nom_attribut))
-        return $this->$nom_attribut;
+      return $this->$nom_attribut;
     return false;
-} 
+  }
   // Setter générique
-  public function set($nom_attribut, $valeur) {
+  public function set($nom_attribut, $valeur)
+  {
     if (property_exists($this, $nom_attribut))
-        $this->$nom_attribut = $valeur;
+      $this->$nom_attribut = $valeur;
     return false;
-}
+  }
 
-  
+
 
   /*public static function getAllFestivals()
   {
@@ -182,27 +184,29 @@ class ModelFestival extends Model
 
   public function refuserUtilisateur($user_id)
   {
-    try {
-      $sql = "UPDATE postuler SET postuler_accepted = 0 WHERE user_id = :user_id AND festival_id = :festival_id";
-      $req_prep = Model::$pdo->prepare($sql);
-      $values = array(
-        "user_id" => $user_id,
-        "festival_id" => $this->festival_id
-      );
+    $festival_id = $_GET['festival_id'];    
+      try {
+        $sql = "UPDATE postuler SET postuler_accepted = 0 WHERE user_id = :user_id AND festival_id = :festival_id";
+        $req_prep = Model::$pdo->prepare($sql);
+        $values = array(
+          "user_id" => $user_id,
+          "festival_id" => $this->festival_id
+        );
 
-      $req_prep->execute($values);
-    } catch (PDOException $e) {
-      if (Conf::getDebug()) {
-        echo $e->getMessage(); // affiche un message d'erreur
-      } else {
-        echo 'Une erreur est survenue lors de l\'acceptation de l\'utilisateur';
+        $req_prep->execute($values);
+      } catch (PDOException $e) {
+        if (Conf::getDebug()) {
+          echo $e->getMessage(); // affiche un message d'erreur
+        } else {
+          echo 'Une erreur est survenue lors du refus de l\'utilisateur';
+        }
+        die();
       }
-      die();
-    }
   }
 
-  public function ajouterResponsable($user_id, $festival_id){
-    try{
+  public function ajouterResponsable($user_id, $festival_id)
+  {
+    try {
       $sql = "INSERT INTO responsable(user_id,festival_id) VALUES ('$user_id','$festival_id')";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
@@ -211,8 +215,7 @@ class ModelFestival extends Model
       );
 
       $req_prep->execute($values);
-    }
-    catch (PDOException $e) {
+    } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage(); // affiche un message d'erreur
       } else {
@@ -222,9 +225,9 @@ class ModelFestival extends Model
     }
   }
 
-  
 
-  
+
+
 
   // postuler_accepted = 0 dans la table "postuler"
   public static function getCandidatsByFestival($festival_id)
@@ -319,19 +322,19 @@ class ModelFestival extends Model
       $tab_date = $req_prep->fetchAll();
 
       if (empty($tab_date)) return false;
-      
-      //foreach ($tab_date as $date) {
-        //$date = date_format($date,'l j F');
-        //$date = DateTime::createFromFormat('Y-m-d', $date);
-        //$date = date_create_from_format('j-M-Y',$date);
-        //$date = date_format($date, 'd-m-Y');
-        //$date = $date->format('d-m-Y');
-       // }
 
-       //$dateTime = DateTime::createFromFormat('Y-m-d', $date);
-       //$dateTime = new DateTime($date);
-       //$date = $dateTime->format('d-m-Y');
-      
+      //foreach ($tab_date as $date) {
+      //$date = date_format($date,'l j F');
+      //$date = DateTime::createFromFormat('Y-m-d', $date);
+      //$date = date_create_from_format('j-M-Y',$date);
+      //$date = date_format($date, 'd-m-Y');
+      //$date = $date->format('d-m-Y');
+      // }
+
+      //$dateTime = DateTime::createFromFormat('Y-m-d', $date);
+      //$dateTime = new DateTime($date);
+      //$date = $dateTime->format('d-m-Y');
+
 
       return $tab_date;
     } catch (PDOException $e) {
@@ -345,7 +348,8 @@ class ModelFestival extends Model
   }
 
 
-  public static function getResponsableByFestival($festival_id){
+  public static function getResponsableByFestival($festival_id)
+  {
     try {
       $sql = "SELECT r.responsable_id, r.festival_id, u.user_id, u.user_firstname, u.user_lastname FROM responsable r JOIN user u ON u.user_id=r.user_id WHERE festival_id=:id_tag";
       $req_prep = Model::$pdo->prepare($sql);
@@ -384,7 +388,7 @@ class ModelFestival extends Model
       if (empty($tab_creneaux_generique_heure)) return false;
 
       return $tab_creneaux_generique_heure;
-      } catch (PDOException $e) {
+    } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage();
       } else {
@@ -450,6 +454,4 @@ class ModelFestival extends Model
       die();
     }
   }
-
-
 }

@@ -6,7 +6,7 @@ class ModelUtilisateur extends Model
 
   protected static $object_table = 'user';
   protected static $object_model = 'Utilisateur';
-  protected static $primary= 'user_id';
+  protected static $primary = 'user_id';
 
 
   private $user_id;
@@ -18,7 +18,7 @@ class ModelUtilisateur extends Model
   private $user_picture;
   private $user_postal_code;
   private $user_driving_license;
-  
+
 
   public function __construct($id = NULL, $firstname = NULL, $lastname = NULL, $mail = NULL, $phone = NULL, $birthdate = NULL, $picture = NULL, $postal_code = NULL, $driving_license = NULL)
   {
@@ -143,7 +143,7 @@ class ModelUtilisateur extends Model
     }
   }
   */
-  
+
 
   /*public static function getUtilisateurById($user_id)
   {
@@ -171,52 +171,53 @@ class ModelUtilisateur extends Model
   }
   */
 
-  public static function getUserByMail($user_mail) {
+  public static function getUserByMail($user_mail)
+  {
     try {
-        $sql = "SELECT * from user WHERE user_mail=:nom_tag";
-        $req_prep = Model::$pdo->prepare($sql);
-        $values = array(
-            "nom_tag" => $user_mail,
-        );
-        $req_prep->execute($values);
-        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
-        $tab_user = $req_prep->fetchAll();
+      $sql = "SELECT * from user WHERE user_mail=:nom_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "nom_tag" => $user_mail,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+      $tab_user = $req_prep->fetchAll();
 
-        if (empty($tab_user))
-            return false;
-        return $tab_user[0];
-
+      if (empty($tab_user))
+        return false;
+      return $tab_user[0];
     } catch (PDOException $e) {
-        if (Conf::getDebug()) {
-            echo $e->getMessage();
-        } else {
-            echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-        }
-        die();
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
     }
   }
 
   public static function checkPassword($user_mail, $mot_de_passe_chiffre)
-    {
-        try {
-            $sql= "SELECT user_mail,user_password FROM user WHERE user_mail=:user_mail AND user_password=:mot_de_passe_chiffre";
-            $req_prep = Model::$pdo->prepare($sql);
-            $values = array(
-                "user_mail" => $user_mail, 
-                "mot_de_passe_chiffre" => $mot_de_passe_chiffre);
-            $req_prep->execute($values);
-            $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
-            $tab_utilisateur = $req_prep->fetchAll();
+  {
+    try {
+      $sql = "SELECT user_mail,user_password FROM user WHERE user_mail=:user_mail AND user_password=:mot_de_passe_chiffre";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "user_mail" => $user_mail,
+        "mot_de_passe_chiffre" => $mot_de_passe_chiffre
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+      $tab_utilisateur = $req_prep->fetchAll();
 
-            if (!empty($tab_utilisateur)) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (PDOException $e) {
-            return false;
-        }
+      if (!empty($tab_utilisateur)) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (PDOException $e) {
+      return false;
     }
+  }
 
   public static function getIdByMail($user_mail)
   {
@@ -363,7 +364,6 @@ class ModelUtilisateur extends Model
 
       if (empty($tab_picture)) return false;
       return $tab_picture[0];
-
     } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage();
@@ -374,7 +374,30 @@ class ModelUtilisateur extends Model
     }
   }
 
-  
-
-
+  public static function estResponsable($user_id, $festival_id)
+  {
+    try {
+      $sql = "SELECT r.user_id  FROM responsable r WHERE r.user_id=:id_tag AND r.festival_id=:festival_id_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $user_id,
+        "festival_id_tag" => $festival_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelResponsable');
+      $estResponsable = $req_prep->fetchAll();
+      if (empty($estResponsable)) {
+        return false;
+      } else {
+        return true;
+      }
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
 }
