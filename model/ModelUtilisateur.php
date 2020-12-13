@@ -243,6 +243,7 @@ class ModelUtilisateur extends Model
     }
   }
 
+
   /*
   public static function deleteById($id)
   {

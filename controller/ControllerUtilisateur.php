@@ -421,13 +421,20 @@ class ControllerUtilisateur
                 $user_id = $u->getId();
                 $_SESSION['login'] = $user_id;
 
-                // TODO : Verif responsable/createur pour ajouter en session
-                /*
-                if(ModelUtilisateur::getResponsableByLogin($_SESSION['login'])) { 
-                    $_SESSION['admin'] = true;
+                if(ModelResponsable::boolResponsableByUserId($_SESSION['login'])) { 
+                    $_SESSION['responsable'] = true;
                 } else {
-                    $_SESSION['admin'] = false;
-                }*/
+                    $_SESSION['responsable'] = false;
+                }
+
+                /*
+                if(ModelUtilisateur::boolCreateurByUserId($_SESSION['login'])) { 
+                    $_SESSION['createur'] = true;
+                } else {
+                    $_SESSION['createur'] = false;
+                }
+                */
+                
                 $view = 'detail';
                 $controller = 'utilisateur';
                 $pagetitle = 'Profil';
