@@ -7,41 +7,53 @@ class ControllerFestival
 
     public static function readAll()
     {
-        $tab_f = ModelFestival::selectAll();
+        if(Session::is_admin()) {
+            $tab_f = ModelFestival::selectAll();
 
-        $pagetitle = 'Liste des festivals';
-        $controller = 'festival';
-        $view = 'list';
+            $pagetitle = 'Liste des festivals';
+            $controller = 'festival';
+            $view = 'list';
+        } else {
+            $pagetitle = 'Erreur';
+            $controller = 'utilisateur';
+            $message = "Vous n'avez pas l'autorisation !";
+            $view = 'errorAccess';
+        }
         require File::build_path(array("view", "view.php"));
     }
 
     public static function read()
     {
+        if(Session::is_admin()) {
+            $festival_id = $_GET['festival_id'];
+            $f = ModelFestival::select($festival_id);
 
-        $festival_id = $_GET['festival_id'];
-        $f = ModelFestival::select($festival_id);
+            $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
+            $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
+            $tab_poste = ModelFestival::getPostesByFestival($festival_id);
+            $tab_date = ModelFestival::getJoursByFestival($festival_id);
+            $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+        
+            $tab_creneau_gen = ModelCreneau::getCreneauxGen($festival_id);
 
-        $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
-        $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
-        $tab_poste = ModelFestival::getPostesByFestival($festival_id);
-        $tab_date = ModelFestival::getJoursByFestival($festival_id);
-        $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
-       
-        $tab_creneau_gen = ModelCreneau::getCreneauxGen($festival_id);
-
-           
-
-
-        if ($f == false) {
-            $pagetitle = 'Erreur action read';
-            $controller = 'festival';
-            $view = 'error';
-            $message = 'erreur de la fonction read dans le controller festival';
+            if ($f == false) {
+                $pagetitle = 'Erreur action read';
+                $controller = 'festival';
+                $view = 'error';
+                $message = 'erreur de la fonction read dans le controller festival';
+            } else {
+                $pagetitle = 'Détail du festival';
+                $controller = 'festival';
+                $view = 'detail';
+            }
         } else {
-            $pagetitle = 'Détail du festival';
-            $controller = 'festival';
-            $view = 'detail';
+            $pagetitle = 'Erreur';
+            $controller = 'utilisateur';
+            $message = "Vous n'avez pas l'autorisation !";
+            $view = 'errorAccess';
         }
+
+        
 
         require File::build_path(array("view", "view.php"));
     }
@@ -49,6 +61,7 @@ class ControllerFestival
 
     public static function create()
     {
+        if(Session::is_admin()) {
             $nameHTML = "";
             $startdateHTML = "";
             $enddateHTML = "";
@@ -66,14 +79,19 @@ class ControllerFestival
                 $next_action = "created";
                 $primary_property = "required";
             }
-            
-        
+        } else {
+            $pagetitle = 'Erreur';
+            $controller = 'utilisateur';
+            $message = "Vous n'avez pas l'autorisation !";
+            $view = 'errorAccess';
+        }
+      
         require File::build_path(array("view", "view.php"));
     }
 
     public static function update()
     {
-        
+        if(Session::is_admin()) {
             $controller = 'festival';
             $view = 'update';
             $pagetitle = 'modification festival';
@@ -96,13 +114,19 @@ class ControllerFestival
                 $view = 'error';
                 $message = "Erreur: Le controller n'a pas pu récupérer les éléments du formulaire update";
             }
+        } else {
+            $pagetitle = 'Erreur';
+            $controller = 'utilisateur';
+            $message = "Vous n'avez pas l'autorisation !";
+            $view = 'errorAccess';
+        }
         
         require File::build_path(array("view", "view.php"));
     }
 
     public static function updated()
     {
-        
+        if(Session::is_admin()) {
             if (isset($_POST['festival_name'], $_POST['festival_startdate'], $_POST['festival_enddate'], $_POST['festival_description'], $_POST['city'], $_GET['festival_id'])) {
                 $data = array(
                     'festival_id' => $_GET['festival_id'],
@@ -112,129 +136,168 @@ class ControllerFestival
                     'festival_description' => $_POST['festival_description'],
                     'city' => $_POST['city'],
                 );
-
+    
                 ModelFestival::update($data);
                 $controller = 'festival';
                 $view = 'updated';
                 $pagetitle = 'modification festival';
-
+    
             }
-        
-        $tab_f = ModelFestival::selectAll();
+            
+            $tab_f = ModelFestival::selectAll();
+        } else {
+            $pagetitle = 'Erreur';
+            $controller = 'utilisateur';
+            $message = "Vous n'avez pas l'autorisation !";
+            $view = 'errorAccess';
+        }
+ 
         require(File::build_path(array("view", "view.php")));
     }
 
 
 
     public static function created(){
-        $festival_name = $_POST['festival_name'];
-        $festival_startdate = $_POST['festival_startdate'];
-        $festival_enddate = $_POST['festival_enddate'];
-        $festival_description = $_POST['festival_description'];
-        $user_id = $_POST['user_id'];
-        $city = $_POST['city'];
+        if(Session::is_admin()) {
+            $festival_name = $_POST['festival_name'];
+            $festival_startdate = $_POST['festival_startdate'];
+            $festival_enddate = $_POST['festival_enddate'];
+            $festival_description = $_POST['festival_description'];
+            $user_id = $_POST['user_id'];
+            $city = $_POST['city'];
 
-        if(isset($festival_name, $festival_startdate, $festival_enddate, $festival_description, $user_id, $city)) {
-            $dataUser = array(
-                'festival_name' => $festival_name, 
-                'festival_startdate' => $festival_startdate, 
-                'festival_enddate' => $festival_enddate,  
-                'festival_description' => $festival_description, 
-                'user_id' => $user_id,
-                'city' => $city, 
-                );
+            if(isset($festival_name, $festival_startdate, $festival_enddate, $festival_description, $user_id, $city)) {
+                $dataUser = array(
+                    'festival_name' => $festival_name, 
+                    'festival_startdate' => $festival_startdate, 
+                    'festival_enddate' => $festival_enddate,  
+                    'festival_description' => $festival_description, 
+                    'user_id' => $user_id,
+                    'city' => $city, 
+                    );
 
-            $f = new ModelFestival($dataUser);
-            $f->save($dataUser);
-            
-            $tab_f = ModelFestival::selectAll();
+                $f = new ModelFestival($dataUser);
+                $f->save($dataUser);
+                
+                $tab_f = ModelFestival::selectAll();
 
-            $pagetitle = 'Festival créé';
-            $controller = 'festival';
-            $view = 'created';
-            
+                $pagetitle = 'Festival créé';
+                $controller = 'festival';
+                $view = 'created';
+                
+            } else {
+                $controller = 'utilisateur';
+                $view = 'error';
+                $message = 'Erreur: initialisation des variables nécessaire à la création d\'un utilisateur';
+                $pagetitle = 'erreur';
+            }
         } else {
+            $pagetitle = 'Erreur';
             $controller = 'utilisateur';
-            $view = 'error';
-            $message = 'Erreur: initialisation des variables nécessaire à la création d\'un utilisateur';
-            $pagetitle = 'erreur';
+            $message = "Vous n'avez pas l'autorisation !";
+            $view = 'errorAccess';
         }
+
         require File::build_path(array("view","view.php"));
     }
     
 
     public static function accepterUtilisateur()
     {
-        $festival_id = $_GET['festival_id'];
-        $f = ModelFestival::select($festival_id);
-        $f->accepterUtilisateur($_GET['user_id']);
+        if(Session::is_admin()) {
+            $festival_id = $_GET['festival_id'];
+            $f = ModelFestival::select($festival_id);
+            $f->accepterUtilisateur($_GET['user_id']);
 
-        $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
-        $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
-        $tab_poste = ModelFestival::getPostesByFestival($festival_id);
-        $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
-        $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+            $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
+            $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
+            $tab_poste = ModelFestival::getPostesByFestival($festival_id);
+            $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
+            $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
 
-        if ($f == false) {
-            $pagetitle = 'Erreur action read';
-            $controller = 'festival';
-            $view = 'error';
-            $message = 'erreur de la fonction accepterUtilisateur dans le controller festival';
+            if ($f == false) {
+                $pagetitle = 'Erreur action read';
+                $controller = 'festival';
+                $view = 'error';
+                $message = 'erreur de la fonction accepterUtilisateur dans le controller festival';
+            } else {
+                $pagetitle = 'Détail du festival';
+                $controller = 'festival';
+                $view = 'detail';
+            }
         } else {
-            $pagetitle = 'Détail du festival';
-            $controller = 'festival';
-            $view = 'detail';
+            $pagetitle = 'Erreur';
+            $controller = 'utilisateur';
+            $message = "Vous n'avez pas l'autorisation !";
+            $view = 'errorAccess';
         }
+
         require File::build_path(array("view", "view.php"));
     }
 
     public static function refuserUtilisateur()
     {
-        $festival_id = $_GET['festival_id'];
-        $f = ModelFestival::select($festival_id);
-        $f->refuserUtilisateur($_GET['user_id']);
+        if(Session::is_admin()) {
+            $festival_id = $_GET['festival_id'];
+            $f = ModelFestival::select($festival_id);
+            $f->refuserUtilisateur($_GET['user_id']);
 
-        $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
-        $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
-        $tab_poste = ModelFestival::getPostesByFestival($festival_id);
-        $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
-        $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+            $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
+            $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
+            $tab_poste = ModelFestival::getPostesByFestival($festival_id);
+            $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
+            $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
 
-        if ($f == false) {
-            $pagetitle = 'Erreur action read';
-            $controller = 'festival';
-            $view = 'error';
-            $message = 'erreur de la fonction refuserUtilisateur dans le controller festival';
+            if ($f == false) {
+                $pagetitle = 'Erreur action read';
+                $controller = 'festival';
+                $view = 'error';
+                $message = 'erreur de la fonction refuserUtilisateur dans le controller festival';
+            } else {
+                $pagetitle = 'Détail du festival';
+                $controller = 'festival';
+                $view = 'detail';
+            }
         } else {
-            $pagetitle = 'Détail du festival';
-            $controller = 'festival';
-            $view = 'detail';
+            $pagetitle = 'Erreur';
+            $controller = 'utilisateur';
+            $message = "Vous n'avez pas l'autorisation !";
+            $view = 'errorAccess';
         }
+
         require File::build_path(array("view", "view.php"));
     }
 
     public static function ajouterResponsable(){
-        $festival_id = $_GET['festival_id'];
-        $f = ModelFestival::select($festival_id);
-        $f->ajouterResponsable($_GET['user_id'], $festival_id);
-        $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+        if(Session::is_admin()) {
+            $festival_id = $_GET['festival_id'];
+            $f = ModelFestival::select($festival_id);
+            $f->ajouterResponsable($_GET['user_id'], $festival_id);
+            $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
 
-        $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
-        $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
-        $tab_poste = ModelFestival::getPostesByFestival($festival_id);
-        $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
-        $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+            $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
+            $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
+            $tab_poste = ModelFestival::getPostesByFestival($festival_id);
+            $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
+            $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
 
-        if ($f == false) {
-            $pagetitle = 'Erreur action read';
-            $controller = 'festival';
-            $view = 'error';
-            $message = 'erreur de la fonction ajouterResponsable dans le controller festival';
+            if ($f == false) {
+                $pagetitle = 'Erreur action read';
+                $controller = 'festival';
+                $view = 'error';
+                $message = 'erreur de la fonction ajouterResponsable dans le controller festival';
+            } else {
+                $pagetitle = 'Détail du festival';
+                $controller = 'festival';
+                $view = 'detail';
+            }
         } else {
-            $pagetitle = 'Détail du festival';
-            $controller = 'festival';
-            $view = 'detail';
+            $pagetitle = 'Erreur';
+            $controller = 'utilisateur';
+            $message = "Vous n'avez pas l'autorisation !";
+            $view = 'errorAccess';
         }
+
         require File::build_path(array("view", "view.php"));
     }
 
