@@ -34,6 +34,11 @@ class ControllerUtilisateur
 
     public static function read()
     {
+        if(Session::is_admin()) {
+            $boolAdmin = 1;
+        } else {
+            $boolAdmin = 0;
+        }       
 
         $user_id = $_GET['user_id'];
         $u = ModelUtilisateur::select($user_id);

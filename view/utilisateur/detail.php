@@ -14,7 +14,12 @@
     }
     $user_picture = $u->getPicture();
 
-    echo "<h5> $user_firstname $user_lastname</h5>
+    echo "<h5> $user_firstname $user_lastname ";
+    if($boolAdmin) {
+        echo "(Administrateur)";
+    } 
+
+    echo " </h5>
     <p>Adresse mail: $user_mail </br>
     Téléphone: $user_phone </br>
     Date de naissance: $user_birthdate </br>
