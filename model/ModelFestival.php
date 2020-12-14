@@ -454,4 +454,29 @@ class ModelFestival extends Model
       die();
     }
   }
+
+  public static function getFestivalByResponsable($responsable_id)
+  {
+    try {
+      $sql = "SELECT * FROM festival WHERE responsable_id=:id_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $responsable_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFestival');
+      $tab_festival = $req_prep->fetchAll();
+
+      if (empty($tab_festival)) return false;
+      return $tab_festival;
+
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
 }
