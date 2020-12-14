@@ -157,13 +157,17 @@ class ControllerCreneau
         $festival_id = $_GET['festival_id'];
         $poste_id = $_GET['poste_id'];
 
+        //cr début
         $creneau_startdate = $creneau_startdate."";
         $rest = substr($creneau_startdate, 4);
-        $creneau_startdate_gen = 2000 . "$rest";
+        $creneau_startdate_modif = 2000 . "$rest";
+        $creneau_startdate_gen = date('Y-m-d H:i:s', strtotime("$creneau_startdate_modif"));
+        //cr fin
         $creneau_enddate = $creneau_enddate."";
         $rest = substr($creneau_enddate, 4);
-        $creneau_enddate_gen = 2000 . "$rest";
-
+        $creneau_enddate_modif = 2000 . "$rest";
+        $creneau_enddate_gen = date('Y-m-d H:i:s', strtotime("$creneau_enddate_modif"));
+        
         $dataCreneau = array(
             "creneau_startdate" => $creneau_startdate_gen,
             "creneau_enddate" => $creneau_enddate_gen,
