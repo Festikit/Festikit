@@ -28,7 +28,7 @@ class ControllerFestival
 
     public static function read()
     {
-        if(Session::is_admin()) {
+        if(Session::is_admin() || Session::is_responsable()) {
             $festival_id = $_GET['festival_id'];
             $f = ModelFestival::select($festival_id);
 
@@ -208,7 +208,7 @@ class ControllerFestival
 
     public static function accepterUtilisateur()
     {
-        if(Session::is_admin()) {
+        if(Session::is_admin() || Session::is_responsable()) {
             $festival_id = $_GET['festival_id'];
             $f = ModelFestival::select($festival_id);
             $f->accepterUtilisateur($_GET['user_id']);
@@ -241,7 +241,7 @@ class ControllerFestival
 
     public static function refuserUtilisateur()
     {
-        if(Session::is_admin()) {
+        if(Session::is_admin() || Session::is_responsable()) {
             $festival_id = $_GET['festival_id'];
             $user_id = $_GET['user_id'];
             $f = ModelFestival::select($festival_id);
