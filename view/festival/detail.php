@@ -55,21 +55,21 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
     </form>
 </div>
 
-    <ul class="collection">
-        <li class="collection-header">
-            <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=create&controller=poste&festival_id=<?php echo $festival_id ?>"> Ajouter un poste</a>
-            <h4 class="center">Liste des postes</h4>
-        </li>
-        <?php
-        if (empty($tab_poste)) {
-            echo "Il n'y a pas encore de postes pour ce festival.</br>";
-        } else {
-            $i = 1;
-            foreach ($tab_poste as $p) {
-                $poste_name = htmlspecialchars($p->getPosteName());
-                $poste_description = htmlspecialchars($p->getPosteDescription());
-                $poste_id = $p->getPosteId();
-                echo "<li class=\"collection-item avatar\">
+<ul class="collection">
+    <li class="collection-header">
+        <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=create&controller=poste&festival_id=<?php echo $festival_id ?>"> Ajouter un poste</a>
+        <h4 class="center">Liste des postes</h4>
+    </li>
+    <?php
+    if (empty($tab_poste)) {
+        echo "Il n'y a pas encore de postes pour ce festival.</br>";
+    } else {
+        $i = 1;
+        foreach ($tab_poste as $p) {
+            $poste_name = htmlspecialchars($p->getPosteName());
+            $poste_description = htmlspecialchars($p->getPosteDescription());
+            $poste_id = $p->getPosteId();
+            echo "<li class=\"collection-item avatar\">
                 <span class=\"title\"> <a href=\"index.php?action=read&controller=poste&poste_id=$poste_id\"> $poste_name</a> </span>
                 <p> $poste_description </p>
                 <div class=\"secondary-content\">
@@ -83,52 +83,66 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
     ?>
 </ul>
 
-<ul>
-    <h6>Vos disponibilités</h6>
-    <table>
-        <tr>
-            <th id=""><label for="dispo_date1">jour</label></th>
+<ul class="collection">
+    <li class="collection-header">
+        <h4 class="center">Créneaux génériques du festival</h4>
+    </li>
+    <?php
+    $festivalGenerique = 6;
+    $compteur = 1;
+    if (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique)) {
+        foreach (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique) as $creneau_de_date_courant) { ?>
+            <table>
+                <tr>
+                    <th id=""><label for="dispo_date1">jour n°<?php echo $compteur ?></label></th>
 
-            <?php
-            // Affichage dynamique des heures correspondant aux créneaux génériques
-            $festivalGenerique = 6;
-            $compteurCreneauxHeure = 0;
-            
-            foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $h) {
-                $cStart = $h->getCreneauStart();
-                $cEnd = $h->getCreneauEnd();
-                echo "<th id=\"\"><label for=\"dispo_heure$compteurCreneauxHeure\">" . $cStart . " " . $cEnd . "</label></th>";
+                    <?php
+                    // Affichage dynamique des heures correspondant aux créneaux génériques
+                    $festivalGenerique = 6;
+                    $compteurCreneauxHeure = 0;
+                    $date_depart_creneau_courant = $creneau_de_date_courant->getCreneauStart();
 
-                $compteurCreneauxHeure++;
-            }
-            ?>
+                    if (ModelFestival::getCreneauxGeneriquesHeureByJour($festivalGenerique, $date_depart_creneau_courant)) {
+                        foreach (ModelFestival::getCreneauxGeneriquesHeureByJour($festivalGenerique, $date_depart_creneau_courant) as $h) {
+                            $cStart = $h->getCreneauStart();
+                            $cEnd = $h->getCreneauEnd();
+                            echo "<th id=\"\"><label for=\"dispo_heure$compteurCreneauxHeure\">" . $cStart . " " . $cEnd . "</label></th>";
 
-        </tr>
+                            $compteurCreneauxHeure++;
+                        }
+                    } else echo "<th><i> Le festival n'a pas encore de créneaux </i></th>";
+                    ?>
+                </tr>
 
         <?php
-        // Affichage dynamique des jours de festival (Les dates des créneaux génériques sans doublons)
-        $numCreneauHeure = 1;
-        foreach (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique) as $d) {
-            $CreneauDate = $d->getCreneauStart();
+            // Affichage dynamique des jours de festival (Les dates des créneaux génériques sans doublons)
+            $numCreneauHeure = 1;
+
             echo "
-                                  <tr>
-                                  <td class=\"firstColumn\"><label for=\"date_$numCreneauHeure\">$CreneauDate</label></td>
-                                  ";
-            $compteur = 1;
-            foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $h) {
-                $cStart = $h->getCreneauStart();
-                $cEnd = $h->getCreneauEnd();
-                echo "<td><label><input type=\"checkbox\" name=\"dispo_heure$cStart" . "_$cEnd"  . "date_$CreneauDate\" id=\"dispo_heure$compteur" . "date_$CreneauDate\" value=\"1\" /><span> </span></label></td>";
-            }
+            <tr>
+            <td class=\"firstColumn\"><label for=\"date_$numCreneauHeure\">$date_depart_creneau_courant</label></td>
+            ";
+
+            if (ModelFestival::getCreneauxGeneriquesHeureByJour($festivalGenerique, $date_depart_creneau_courant)) {
+                foreach (ModelFestival::getCreneauxGeneriquesHeureByJour($festivalGenerique, $date_depart_creneau_courant) as $h) {
+                    $cStart = $h->getCreneauStart();
+                    $cEnd = $h->getCreneauEnd();
+                    echo "<td><label><i class=\"material-icons\" name=\"dispo_heure$cStart" . "_$cEnd"  . "date_$date_depart_creneau_courant\" 
+                    id=\"dispo_heure$compteur" . "date_$date_depart_creneau_courant\"  >check</i><span> </span></label></td>";
+                }
+            } else echo "<td><i> Il n'y a donc rien à afficher ici.. </i></td>";
             echo "</tr>";
+            echo "</br>";
+            $compteur++;
         }
+    }else echo "<td><i> Vous n'avez encore ajouté aucun jour à votre festival.. </i></td>";
         ?>
-    </table>
+            </table>
 </ul>
 
-    <ul class="collection">
+<ul class="collection">
     <li class="collection-header">
-        <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=createGen&controller=creneau&festival_id=<?php echo $festival_id;?>"> Ajouter un creneau</a>
+        <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=createGen&controller=creneau&festival_id=<?php echo $festival_id; ?>"> Ajouter un creneau</a>
         <h4 class="center">Liste des creneaux</h4>
     </li>
     <?php
@@ -152,7 +166,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
             </li>";
             $i++;
         }
-        
+
         /*
         $creneau = ModelCreneau::select($tab_creneau_gen[0]);
         $deb = $creneau->getCreneauStart();

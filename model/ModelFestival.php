@@ -398,6 +398,32 @@ class ModelFestival extends Model
     }
   }
 
+  //pour un tableau affichant chaques creneaux par jour
+  public static function getCreneauxGeneriquesHeureByJour($festival_id,$jour)
+  {
+    try {
+      $sql = "SELECT DISTINCT CAST(creneau_startdate AS TIME) AS creneau_startdate , CAST(creneau_enddate AS TIME) AS creneau_enddate 
+      FROM creneau WHERE festival_id=:id_tag AND CAST(creneau_startdate AS DATE) = DATE '$jour'";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $festival_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelCreneau');
+      $tab_creneaux_generique_heure = $req_prep->fetchAll();
+
+      if (empty($tab_creneaux_generique_heure)) return false;
+
+      return $tab_creneaux_generique_heure;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
 
   // Pour générer le formulaire dynamiquement (disponible)
   public static function getCreneauxGeneriquesDate($festival_id)
