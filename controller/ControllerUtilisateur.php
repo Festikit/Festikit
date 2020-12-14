@@ -1,9 +1,6 @@
 <?php
 
 require_once File::build_path(array("model", "ModelUtilisateur.php"));
-require_once File::build_path(array('lib', 'Security.php'));
-require_once File::build_path(array('lib', 'Session.php'));
-
 class ControllerUtilisateur
 {
 
@@ -473,7 +470,12 @@ class ControllerUtilisateur
     {
         session_unset();
         session_destroy();
-        /* Redirection page d'accueil */
-        self::readAll();
+        
+        $controller = 'utilisateur';
+        $message = "Vous êtes déconnecté !";
+        $view = "deconnected";
+        $pagetitle = "Déconnnexion";
+
+        require File::build_path(array("view", "view.php"));
     }
 }
