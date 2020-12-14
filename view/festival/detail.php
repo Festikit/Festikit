@@ -152,6 +152,20 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
             </li>";
             $i++;
         }
+        
+        /*
+        $creneau = ModelCreneau::select($tab_creneau_gen[0]);
+        $deb = $creneau->getCreneauStart();
+        $fin = $creneau->getCreneauEnd();
+        
+        
+        $deb = $deb."";
+        $modif = substr($deb, 4);
+        $deb_gen = 2020 . "$modif";
+        
+        $date_debut = date('Y-m-d H:i:s', strtotime("$deb_gen"));
+        echo "$date_debut"; 
+        */
     }
     ?>
 </ul>
