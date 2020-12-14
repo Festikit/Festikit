@@ -1,5 +1,5 @@
 <?php
-if (!($log_u == "" && $user_firstname == "" && $user_lastname == "" && $user_mail == "" && $user_phone == "" && $user_birthdate == "")) {
+//if (!($log_u == "" && $user_firstname == "" && $user_lastname == "" && $user_mail == "" && $user_phone == "" && $user_birthdate == "")) {
     $log_u = htmlspecialchars($tab_u->getId());
     $user_firstname = htmlspecialchars($tab_u->getFirstname());
     $user_lastname = htmlspecialchars($tab_u->getLastname());
@@ -7,7 +7,7 @@ if (!($log_u == "" && $user_firstname == "" && $user_lastname == "" && $user_mai
     $user_phone = htmlspecialchars($tab_u->getPhone());
     $user_postal_code = htmlspecialchars($tab_u->getPostalCode());
     $user_birthdate = htmlspecialchars($tab_u->getBirthdate());
-}
+//}
 ?>
 
 <form method="get" action="index.php?action=updated">
