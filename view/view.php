@@ -71,10 +71,19 @@
 			<div class="nav-wrapper grey">
 				<a href="#" class="brand-logo">🎈</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
-					<li><a href="index.php?action=readAll">Accueil Utilisateur</a></li>
-					<li><a href="index.php?action=readAll&controller=festival">Accueil Festival</a></li>
-					<li><a href="index.php?action=readAll&controller=responsable">Accueil Responsable</a></li>
 					<?php
+					if(Session::is_admin()) {
+						echo '
+						<li><a href="index.php?action=readAll">Accueil Utilisateur</a></li>
+						<li><a href="index.php?action=readAll&controller=festival">Accueil Festival</a></li>
+						<li><a href="index.php?action=readAll&controller=responsable">Accueil Responsable</a></li>
+						';	
+					}
+					if(Session::is_responsable()) {
+						echo '
+						<li><a href="index.php?action=readAll&controller=festival">Accueil Festival</a></li>
+						';	
+					}
 					if (empty($_SESSION['login'])) {
                     echo '
                     <li class="nav-item">

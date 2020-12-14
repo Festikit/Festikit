@@ -1,9 +1,6 @@
 <?php
 
 require_once File::build_path(array("model", "ModelUtilisateur.php"));
-require_once File::build_path(array('lib', 'Security.php'));
-require_once File::build_path(array('lib', 'Session.php'));
-
 class ControllerUtilisateur
 {
 
@@ -34,54 +31,41 @@ class ControllerUtilisateur
 
     public static function read()
     {
-        if(Session::is_admin()) {
-            $boolAdmin = 1;
-        } else {
-            $boolAdmin = 0;
-        }       
-
         $user_id = $_GET['user_id'];
-        $u = ModelUtilisateur::select($user_id);
+        if(Session::is_user($user_id) || Session::is_admin()) {
+            $u = ModelUtilisateur::select($user_id);
 
-        $tab_festivalWhereAccepted = ModelUtilisateur::getFestivalWhereAccepted($user_id);
-        $tab_festivalWhereCandidat = ModelUtilisateur::getFestivalWhereCandidat($user_id);
+            $tab_festivalWhereAccepted = ModelUtilisateur::getFestivalWhereAccepted($user_id);
+            $tab_festivalWhereCandidat = ModelUtilisateur::getFestivalWhereCandidat($user_id);
 
-        if ($u == false) {
-            $pagetitle = 'Erreur action';
-            $controller = 'utilisateur';
-            $view = 'error';
-            $message = "erreur de la fonction read dans le controller utilisateur";
-        } else {
-            
-            $boolUser = 0;
-            if (isset($_SESSION['login'])) {
-                $session_id = $_SESSION['login'];
-                if ($user_id == $session_id) {
-                    $boolUser = Session::is_user($_SESSION['login']);
-                }
-            }
-            if ($boolUser == 0) {
-                $pagetitle = 'Détail de l\'utilisateur';
+            if ($u == false) {
+                $pagetitle = 'Erreur action';
                 $controller = 'utilisateur';
-                $view = 'errorAccess';
-                $message = 'Ce n\'est pas votre compte';
+                $view = 'error';
+                $message = "erreur de la fonction read dans le controller utilisateur";
             } else {
                 $pagetitle = 'Détail de l\'utilisateur';
                 $controller = 'utilisateur';
                 $view = 'detail';
             }
-        }
+        } else {
+            $pagetitle = 'Erreur';
+            $controller = 'utilisateur';
+            $message = "Vous n'avez pas l'autorisation !";
+            $view = 'errorAccess';
+        }       
+
         require File::build_path(array("view", "view.php"));
     }
 
 
 
     public static function delete() {
-        if(Session::is_admin()) {
+        $user_id = $_GET['user_id'];
+        if(Session::is_user($user_id) || Session::is_admin()) {
             $controller = 'utilisateur';
             $pagetitle = 'supprimons ceci';
             $view = 'deleted';
-            $user_id = $_GET['user_id'];
             ModelUtilisateur::delete($user_id);
             $tab_u = ModelUtilisateur::selectAll();
         } else {
@@ -94,54 +78,55 @@ class ControllerUtilisateur
     }
 
     public static function update() {
-        $log_u  = $_GET['user_id'];
-        $tab_u = ModelUtilisateur::select($log_u);
-        $boolUser = 0;
-        if (isset($_SESSION['login'])) {
-            $session_id = $_SESSION['login'];
-            if ($log_u == $session_id) {
-                $boolUser = Session::is_user($_SESSION['login']);
-            }
-        }
-        if ($boolUser == 0) {
-            $pagetitle = 'Détail de l\'utilisateur';
-            $controller = 'utilisateur';
-            $view = 'errorAccess';
-            $message = 'Ce n\'est pas votre compte';
-        } else {
+        $user_id  = $_GET['user_id'];
+        if(Session::is_user($user_id) || Session::is_admin()) {
+            $tab_u = ModelUtilisateur::select($user_id);
             $controller = 'utilisateur';
             $view = 'update';
             $pagetitle = 'modification utilisateur';
+        } else {
+            $pagetitle = 'Erreur';
+            $controller = 'utilisateur';
+            $message = "Vous n'avez pas l'autorisation !";
+            $view = 'errorAccess';
         }
         require(File::build_path(array("view", "view.php")));
     }
 
-    public static function updated()
-    {
-        $controller = 'utilisateur';
-        $view = 'updated';
-        $pagetitle = 'modification utilisateur';
+    public static function updated() {
+        $user_id = $_GET['user_id'];
+        if(Session::is_user($user_id) || Session::is_admin()) {
+            $controller = 'utilisateur';
+            $view = 'updated';
+            $pagetitle = 'modification utilisateur';
 
-        $log_u = $_GET['user_id'];
-        $user_firstname = $_GET['user_firstname'];
-        $user_lastname = $_GET['user_lastname'];
-        $user_mail = $_GET['user_mail'];
-        $user_phone = $_GET['user_phone'];
-        $user_postal_code = $_GET['user_postal_code'];
-        $user_birthdate = $_GET['user_birthdate'];
+            $user_id = $_GET['user_id'];
+            $user_firstname = $_GET['user_firstname'];
+            $user_lastname = $_GET['user_lastname'];
+            $user_mail = $_GET['user_mail'];
+            $user_phone = $_GET['user_phone'];
+            $user_postal_code = $_GET['user_postal_code'];
+            $user_birthdate = $_GET['user_birthdate'];
 
-        $tab_umod = array(
-            "user_id" => $log_u,
-            "user_firstname" => $user_firstname,
-            "user_lastname" => $user_lastname,
-            "user_mail" => $user_mail,
-            "user_phone" => $user_phone,
-            "user_postal_code" => $user_postal_code,
-            "user_birthdate" => $user_birthdate
-        );
-        $utilisateurmod = new ModelUtilisateur();
-        $utilisateurmod->update($tab_umod); //gen
-        $tab_u = ModelUtilisateur::selectAll();
+            $tab_umod = array(
+                "user_id" => $user_id,
+                "user_firstname" => $user_firstname,
+                "user_lastname" => $user_lastname,
+                "user_mail" => $user_mail,
+                "user_phone" => $user_phone,
+                "user_postal_code" => $user_postal_code,
+                "user_birthdate" => $user_birthdate
+            );
+            $utilisateurmod = new ModelUtilisateur();
+            $utilisateurmod->update($tab_umod); //gen
+            $tab_u = ModelUtilisateur::selectAll();
+
+        } else {
+            $pagetitle = 'Erreur';
+            $controller = 'utilisateur';
+            $message = "Vous n'avez pas l'autorisation !";
+            $view = 'errorAccess';
+        }
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -446,8 +431,10 @@ class ControllerUtilisateur
 
                 if(ModelUtilisateur::boolAdminByUserId($_SESSION['login'])->getAdmin()) { // return 1 or 0
                     $_SESSION['admin'] = true;
+                    $boolAdmin = 1; // pour vue détail
                 } else {
                     $_SESSION['admin'] = false;
+                    $boolAdmin = 0;
                 }
 
                 $view = 'detail';
@@ -473,7 +460,12 @@ class ControllerUtilisateur
     {
         session_unset();
         session_destroy();
-        /* Redirection page d'accueil */
-        self::readAll();
+        
+        $controller = 'utilisateur';
+        $message = "Vous êtes déconnecté !";
+        $view = "deconnected";
+        $pagetitle = "Déconnnexion";
+
+        require File::build_path(array("view", "view.php"));
     }
 }
