@@ -11,9 +11,8 @@ class ControllerFestival
             $tab_f = ModelFestival::selectAll();
         }
         if(Session::is_responsable()) {
-            $tab_f = ModelFestival::getFestivalByResponsable($_SESSION['responsable']);
+            $tab_f = ModelFestival::getFestivalByResponsable($_SESSION['login']);
         }
-
         if(Session::is_admin() || Session::is_responsable()) {
             $pagetitle = 'Liste des festivals';
             $controller = 'festival';

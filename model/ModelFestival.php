@@ -455,13 +455,13 @@ class ModelFestival extends Model
     }
   }
 
-  public static function getFestivalByResponsable($responsable_id)
+  public static function getFestivalByResponsable($user_id)
   {
     try {
-      $sql = "SELECT * FROM festival WHERE responsable_id=:id_tag";
+      $sql = "SELECT * FROM festival f JOIN responsable r ON f.festival_id = r.festival_id WHERE r.user_id=:id_tag";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
-        "id_tag" => $responsable_id,
+        "id_tag" => $user_id,
       );
       $req_prep->execute($values);
       $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFestival');

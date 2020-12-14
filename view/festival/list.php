@@ -4,7 +4,6 @@
 		<h4>Liste de tous les festivals</h4>
 	</li>
 	<?php
-	// Liste tous les utilisateurs de la base de donnée: bénévoles (postulé accepté: oui et non) et les responsables
 	$i = 1;
 	foreach ($tab_f as $f) {
 		$festival_name = htmlspecialchars($f->getFestivalName());
