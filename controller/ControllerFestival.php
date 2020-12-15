@@ -26,6 +26,24 @@ class ControllerFestival
         require File::build_path(array("view", "view.php"));
     }
 
+    public static function readForUser()
+    {
+            $festival_id = $_GET['festival_id'];
+            $f = ModelFestival::select($festival_id);
+
+            if ($f == false) {
+                $pagetitle = 'Erreur action read';
+                $controller = 'festival';
+                $view = 'error';
+                $message = 'erreur de la fonction read dans le controller festival';
+            } else {
+                $pagetitle = 'Détail du festival';
+                $controller = 'festival';
+                $view = 'detailForUser';
+            }
+        require File::build_path(array("view", "view.php"));
+    }
+
     public static function read()
     {
         if (Session::is_admin() || Session::is_responsable()) {
@@ -56,9 +74,6 @@ class ControllerFestival
             $message = "Vous n'avez pas l'autorisation !";
             $view = 'errorAccess';
         }
-
-
-
         require File::build_path(array("view", "view.php"));
     }
 

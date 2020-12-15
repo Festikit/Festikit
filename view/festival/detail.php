@@ -287,9 +287,3 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
         ?>
     </ul>
 </div>
-
-<?php
-
-
-echo "<p> Retour: <a href=\"index.php?action=readAll&controller=festival\">Cliquez ici </a> </p>";
-?>
