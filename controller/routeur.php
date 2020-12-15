@@ -44,7 +44,7 @@ if(isset($_GET['action'])) {
         require File::build_path(array("view","view.php"));
 	}
 } else {
-	$action = 'readAll';
+	$action = 'connect';
 	ControllerUtilisateur::$action(); 
 }
 ?>
