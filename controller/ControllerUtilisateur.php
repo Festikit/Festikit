@@ -437,6 +437,9 @@ class ControllerUtilisateur
                     $boolAdmin = 0;
                 }
 
+                $tab_festivalWhereAccepted = ModelUtilisateur::getFestivalWhereAccepted($user_id);
+                $tab_festivalWhereCandidat = ModelUtilisateur::getFestivalWhereCandidat($user_id);
+
                 $view = 'detail';
                 $controller = 'utilisateur';
                 $pagetitle = 'Profil';
