@@ -8,6 +8,7 @@ $startdateHTML = htmlspecialchars($f->get("festival_startdate"));
 $enddateHTML = htmlspecialchars($f->get("festival_enddate"));
 $descriptionHTML = htmlspecialchars($f->get("festival_description"));
 $cityHTML = htmlspecialchars($f->get("city"));
+$creatorHTML = htmlspecialchars($f->get("user_id"));
 // URL
 $festival_idURL = rawurldecode($f->get("festival_id"));
 $nameURL = rawurldecode($f->get("festival_name"));
@@ -15,6 +16,7 @@ $startdateURL = rawurldecode($f->get("festival_startdate"));
 $enddateURL = rawurldecode($f->get("festival_enddate"));
 $descriptionURL = rawurldecode($f->get("festival_description"));
 $cityURL = rawurldecode($f->get("city"));
+$creatorURL = rawurldecode($f->get("user_id"));
 
 
 // Détail les informations d'un festival
@@ -50,6 +52,13 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                 $festival_enddate = rawurlencode($f->getFestivalEndDate());
                 echo "<input id=\"festival_enddate\" value=\"$festival_enddate\" type=\"date\" class=\"validate\" readonly>" ?>
                 <label for="festival_enddate" class="active">Fin du festival</label>
+            </div>
+            <div class="input-field col s6">
+                <?php
+                $festival_creator = rawurlencode($f->getCreatorId());
+                $tab_creator = ModelFestival::getCreatorByFestival($festival_creator);
+                echo "Créateur du festival : " . $festival_creator;
+                ?>
             </div>
         </div>
     </form>
@@ -135,7 +144,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
             echo "</br>";
             $compteur++;
         }
-    }else echo "<td><i> Vous n'avez encore ajouté aucun jour à votre festival.. </i></td>";
+    } else echo "<td><i> Vous n'avez encore ajouté aucun jour à votre festival.. </i></td>";
         ?>
             </table>
 </ul>

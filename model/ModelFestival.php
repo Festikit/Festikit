@@ -19,15 +19,16 @@ class ModelFestival extends Model
 
 
 
-  public function __construct($id = NULL, $name = NULL, $startdate = NULL, $enddate = NULL, $description = NULL, $city = NULL)
+  public function __construct($id = NULL, $name = NULL, $startdate = NULL, $enddate = NULL, $description = NULL, $city = NULL, $user_id = NULL)
   {
-    if (!is_null($id) && !is_null($name) && !is_null($startdate) && !is_null($enddate) && !is_null($description) && !is_null($city)) {
+    if (!is_null($id) && !is_null($name) && !is_null($startdate) && !is_null($enddate) && !is_null($description) && !is_null($city) && !is_null($user_id)) {
       $this->festival_id = $id;
       $this->festival_name = $name;
       $this->festival_startdate = $startdate;
       $this->festival_enddate = $enddate;
       $this->festival_description = $description;
       $this->city = $city;
+      $this->user_id = $user_id;
     }
   }
 
@@ -71,6 +72,11 @@ class ModelFestival extends Model
   public function setFestivalCity($city2)
   {
     $this->city = $city2;
+  }
+
+  //Getter user_id
+  public function getCreatorId(){
+    return $this->user_id;
   }
 
   // Getter générique
@@ -485,6 +491,31 @@ class ModelFestival extends Model
   {
     try {
       $sql = "SELECT * FROM festival f JOIN responsable r ON f.festival_id = r.festival_id WHERE r.user_id=:id_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $user_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFestival');
+      $tab_festival = $req_prep->fetchAll();
+
+      if (empty($tab_festival)) return false;
+      return $tab_festival;
+
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
+  public static function getCreatorByFestival($user_id)
+  {
+    try {
+      $sql = "SELECT * FROM user u JOIN festival f ON u.user_id = f.user_id WHERE f.user_id=:id_tag";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
         "id_tag" => $user_id,
