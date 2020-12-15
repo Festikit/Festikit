@@ -33,6 +33,10 @@ class ControllerResponsable {
         require File::build_path(array("view","view.php"));
     }
 
+
+    
+
+
     /*public static function desassignerResponsable(){
         $responsable_id = $_GET['responsable_id'];
         $festival_id = $_GET['festival_id'];
