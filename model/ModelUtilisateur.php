@@ -1,8 +1,8 @@
 <?php
 require_once File::build_path(array("model", "Model.php"));
-require 'vendor/autoload.php';
+//require 'vendor/autoload.php';
 
-use Mailgun\Mailgun;
+//use Mailgun\Mailgun;
 
 class ModelUtilisateur extends Model
 {
@@ -183,6 +183,7 @@ class ModelUtilisateur extends Model
   }
   */
 
+  /*
   public static function envoyerEmailVerfification($user_mail)
   {
     $mgClient = Mailgun::create('f0fe14b78df21c891f0c59e428d56dfc-e5da0167-a189ce96', 'https://api.eu.mailgun.net');
@@ -197,7 +198,7 @@ class ModelUtilisateur extends Model
 
     $mgClient->messages()->send($domain, $params);
   }
-
+  */
 
   public static function getUserByMail($user_mail)
   {
@@ -393,30 +394,6 @@ class ModelUtilisateur extends Model
 
       if (empty($tab_festivalWhereCandidat)) return false;
       return $tab_festivalWhereCandidat;
-    } catch (PDOException $e) {
-      if (Conf::getDebug()) {
-        echo $e->getMessage();
-      } else {
-        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-      }
-      die();
-    }
-  }
-
-  public static function generatorPicture($user_id)
-  {
-    try {
-      $sql = "SELECT user_picture FROM user WHERE user_id=:id_tag";
-      $req_prep = Model::$pdo->prepare($sql);
-      $values = array(
-        "id_tag" => $user_id,
-      );
-      $req_prep->execute($values);
-      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
-      $tab_picture = $req_prep->fetchAll();
-
-      if (empty($tab_picture)) return false;
-      return $tab_picture[0];
     } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage();

@@ -28,8 +28,7 @@
 
         <div class="col s6">
             <?php
-            $picture = ModelUtilisateur::generatorPicture($user_id);
-            echo '<img src="data:image/jpg;base64,' . base64_encode($picture->getPicture()) . '" width="200px"/>';
+            echo '<img src="data:image/jpg;base64,' . base64_encode($user_picture) . '" width="200px"/>';
             ?>
         </div>
         
