@@ -170,6 +170,7 @@ class ControllerUtilisateur
 
 
         // Test d'upload de la photo
+        $reussitePicture = false;
         if (!empty($_FILES['user_picture']) && is_uploaded_file($_FILES['user_picture']['tmp_name'])) {
 
             // Vérification de l'extension
@@ -181,48 +182,40 @@ class ControllerUtilisateur
                 if ($_FILES['user_picture']['size'] < $_POST['MAX_FILE_SIZE']) {
                     $user_picture = addslashes(file_get_contents($_FILES['user_picture']['tmp_name']));
                     if ($user_picture == false) {
-                        $controller = 'utilisateur';
-                        $view = 'error';
                         $message = 'Erreur: Initialisation de $user_picture';
-                        $pagetitle = 'erreur';
+                    } else {
+                        $reussitePicture = true;
                     }
                 } else {
-                    $controller = 'utilisateur';
-                    $view = 'error';
                     $message = 'Erreur: L\'image est trop volumineuse' . "( > " . $_POST['MAX_FILE_SIZE'] . ")";
-                    $pagetitle = 'erreur';
                 }
             } else {
-                $controller = 'utilisateur';
-                $view = 'error';
                 $message = 'Erreur: Le format de l\'image n\'est pas autorisé (!= png jpg ou jpeg)';
-                $pagetitle = 'erreur';
             }
         } else {
-            $controller = 'utilisateur';
-            $view = 'error';
             $message = 'Erreur: Image non upload';
-            $pagetitle = 'erreur';
         }
 
 
         // Insertion pour user
-        if (isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license, $user_password1, $user_password2, $admin)) {
-            $reussiteInitUser = true;
-            if (self::createdUser($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license, $user_password1, $user_password2, $admin)) {
-                $reussiteUser = true;
+        if($reussitePicture) {
+            if (isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license, $user_password1, $user_password2, $admin)) {
+                $reussiteInitUser = true;
+                if (self::createdUser($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license, $user_password1, $user_password2, $admin)) {
+                    $reussiteUser = true;
+                } else {
+                    $message = "Erreur: createdUser";
+                    $reussiteUser = false;
+                }
             } else {
-                $message = "Erreur: createdUser";
-                $reussiteUser = false;
+                $message = 'Erreur: initialisation des variables nécessaire à la création d\'un utilisateur';
+                $reussiteInitUser = false;
             }
-        } else {
-            $message = 'Erreur: initialisation des variables nécessaire à la création d\'un utilisateur';
-            $reussiteInitUser = false;
         }
 
 
         // L'utilisateur étant créé, on récupère son id à partir de son mail
-        if ($reussiteUser) {
+        if ($reussitePicture && $reussiteInitUser && $reussiteUser) {
             $user_id = ModelUtilisateur::getIdByMail($user_mail);
             $user_id = $user_id->getId();
             if (!empty($user_id)) {
@@ -235,23 +228,23 @@ class ControllerUtilisateur
 
 
         // Insertion pour postuler
-        if (isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license)) {
-            $reussiteInitPostuler = true;
-            if ($reussiteInitUser && $reussiteUser && $reussiteId && $reussiteInitPostuler) {
+        $reussiteInitPostuler = true;
+        if ($reussitePicture && $reussiteInitUser && $reussiteUser && $reussiteId && $reussiteInitPostuler) {
+            if (isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license)) {
                 if (self::createdPostuler($user_id, $festival_id, $venir_avec_vehicule, $besoin_hebergement, $peut_heberger, $configuration_couchage, $arrivee_festival, $depart_festival, $autres_dispos, $experience)) {
                     $reussitePostuler = true;
                 } else {
                     $message = "Erreur: createdPostuler";
                     $reussitePostuler = false;
                 }
+            } else {
+                $message = 'Erreur: initialisation des variables nécessaire à la création d\'une instance de postuler';
+                $reussiteInitPostuler = false;
             }
-        } else {
-            $message = 'Erreur: initialisation des variables nécessaire à la création d\'une instance de postuler';
-            $reussiteInitPostuler = false;
         }
 
         // Insertion pour préférence
-        if ($reussiteInitUser && $reussiteUser && $reussiteId && $reussiteInitPostuler && $reussitePostuler) {
+        if ($reussitePicture && $reussiteInitUser && $reussiteUser && $reussiteId && $reussiteInitPostuler && $reussitePostuler) {
             $reussitePreference = true;
             foreach (ModelFestival::getPostesByFestival($festival_id) as $post) {
                 $poste_id = $post->getPosteId();
@@ -267,7 +260,7 @@ class ControllerUtilisateur
         }
 
         // Insertion pour disponible 
-        if ($reussiteInitUser && $reussiteUser && $reussiteId && $reussiteInitPostuler && $reussitePostuler && $reussitePreference) {
+        if ($reussitePicture && $reussiteInitUser && $reussiteUser && $reussiteId && $reussiteInitPostuler && $reussitePostuler && $reussitePreference) {
             $festivalGenerique = 6;
             foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $h) {
                 $cStart = $h->getCreneauStart();
