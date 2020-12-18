@@ -4,7 +4,10 @@
     "keywords": [],
     "type": "app-web",
     "require": {
-        "php": "~7"
+        "php": "~7",
+        "mailgun/mailgun-php": "^3.2",
+        "php-http/guzzle6-adapter": "^2.0",
+        "php-http/message": "^1.10"
     },
     "require-dev": {
         "phpunit/phpunit": "9.4.1"
