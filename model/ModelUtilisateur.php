@@ -1,5 +1,8 @@
 <?php
 require_once File::build_path(array("model", "Model.php"));
+require 'vendor/autoload.php';
+
+use Mailgun\Mailgun;
 
 class ModelUtilisateur extends Model
 {
@@ -20,7 +23,7 @@ class ModelUtilisateur extends Model
   private $user_driving_license;
   private $user_password;
   private $admin;
-  
+
 
   public function __construct($id = NULL, $firstname = NULL, $lastname = NULL, $mail = NULL, $phone = NULL, $birthdate = NULL, $picture = NULL, $postal_code = NULL, $driving_license = NULL, $password = NULL, $admin = NULL)
   {
@@ -180,6 +183,22 @@ class ModelUtilisateur extends Model
   }
   */
 
+  public static function envoyerEmailVerfification($user_mail)
+  {
+    $mgClient = Mailgun::create('f0fe14b78df21c891f0c59e428d56dfc-e5da0167-a189ce96', 'https://api.eu.mailgun.net');
+    // TODO Mettre le nom de domaine du serveur
+    $domain = "YOUR_DOMAIN_NAME";
+    $params = array(
+      'from'    => 'test <Mathieu.Soysal@etu.umontpellier.fr>',
+      'to'      => $user_mail,
+      'subject' => 'Hello',
+      'text'    => 'Testing some Mailgun awesomness!'
+    );
+
+    $mgClient->messages()->send($domain, $params);
+  }
+
+
   public static function getUserByMail($user_mail)
   {
     try {
@@ -253,28 +272,28 @@ class ModelUtilisateur extends Model
     }
   }
 
-  public static function boolAdminByUserId($user_id) {
+  public static function boolAdminByUserId($user_id)
+  {
     try {
-        $sql = "SELECT admin from user WHERE user_id=:nom_tag";
-        $req_prep = Model::$pdo->prepare($sql);
-        $values = array(
-            "nom_tag" => $user_id,
-        );
-        $req_prep->execute($values);
-        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
-        $tab_user = $req_prep->fetchAll();
+      $sql = "SELECT admin from user WHERE user_id=:nom_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "nom_tag" => $user_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+      $tab_user = $req_prep->fetchAll();
 
-        if(empty($tab_user))
-            return false;
-        return $tab_user[0];
-
+      if (empty($tab_user))
+        return false;
+      return $tab_user[0];
     } catch (PDOException $e) {
-        if (Conf::getDebug()) {
-            echo $e->getMessage();
-        } else {
-            echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-        }
-        die();
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
     }
   }
 
