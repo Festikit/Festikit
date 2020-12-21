@@ -100,7 +100,7 @@ class Model
         $primary_key = static::$primary;
         $set_parts = array();
         foreach ($data as $key => $value) {
-            $set_parts[] = "$key=:$key";
+          $set_parts[] = "$key=:$key";
         }
         $set_string = join(',', $set_parts);
         $sql = "UPDATE $table_name SET $set_string WHERE $primary_key=:$primary_key";
