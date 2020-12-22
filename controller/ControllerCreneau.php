@@ -40,7 +40,8 @@ class ControllerCreneau
         $controller = 'creneau';
         $view = 'update';
         $pagetitle = 'modification du creneau';
-        $type = $_GET['type'];
+        if(isset($_GET['type'])){$type = $_GET['type'];}
+        else $type = 'normal';
         $log_c  = $_GET['creneau_id'];
         $tab_c = ModelCreneau::select($log_c);
         $nom_poste = ModelPoste::select($tab_c->getPosteId())->getPosteName();
