@@ -38,6 +38,11 @@ class ControllerUtilisateur
             $tab_festivalWhereAccepted = ModelUtilisateur::getFestivalWhereAccepted($user_id);
             $tab_festivalWhereCandidat = ModelUtilisateur::getFestivalWhereCandidat($user_id);
 
+            $boolResponsable = 0;
+            if (Session::is_responsable()) {
+                $tab_festivalWhereResponsable = ModelFestival::getFestivalByResponsable($user_id);
+                $boolResponsable = 1;
+            }
             if ($u == false) {
                 $pagetitle = 'Erreur action';
                 $controller = 'utilisateur';
@@ -432,6 +437,12 @@ class ControllerUtilisateur
 
                 $tab_festivalWhereAccepted = ModelUtilisateur::getFestivalWhereAccepted($user_id);
                 $tab_festivalWhereCandidat = ModelUtilisateur::getFestivalWhereCandidat($user_id);
+                
+                $boolResponsable = 0;
+                if (Session::is_responsable()) {
+                    $tab_festivalWhereResponsable = ModelFestival::getFestivalByResponsable($user_id);
+                    $boolResponsable = 1;
+                }
 
                 $view = 'detail';
                 $controller = 'utilisateur';
