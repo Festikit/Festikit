@@ -40,10 +40,20 @@ class ControllerCreneau
         $controller = 'creneau';
         $view = 'update';
         $pagetitle = 'modification du creneau';
+        $type = $_GET['type'];
         $log_c  = $_GET['creneau_id'];
         $tab_c = ModelCreneau::select($log_c);
         $nom_poste = ModelPoste::select($tab_c->getPosteId())->getPosteName();
         $nom_festival = ModelFestival::select($tab_c->getFestivalId())->getFestivalName();
+        require(File::build_path(array("view", "view.php")));
+    }
+    
+    public static function updateGen()
+    {
+        $controller = 'creneau';
+        $view = 'updateGen';
+        $pagetitle = 'modification des creneaux génériques';
+                
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -70,6 +80,43 @@ class ControllerCreneau
         $creneaumod = new ModelCreneau();
         $creneaumod->update($tab_cmod);
         $tab_c = ModelCreneau::selectAll();
+        require(File::build_path(array("view", "view.php")));
+    }
+    
+    public static function updatedGen()
+    {
+
+        $controller = 'creneau';
+        $view = 'updateGen';
+        $pagetitle = 'modification du creneau';
+
+        $log_c = $_GET['creneau_id'];
+        $creneau_startdate = $_GET['creneau_startdate'];
+        $creneau_enddate = $_GET['creneau_enddate'];
+        $festival_id = $_GET['festival_id'];
+        $poste_id = $_GET['poste_id'];
+
+        //cr début
+        $creneau_startdate = $creneau_startdate."";
+        $rest = substr($creneau_startdate, 4);
+        $creneau_startdate_modif = 2000 . "$rest";
+        $creneau_startdate_gen = date('Y-m-d H:i:s', strtotime("$creneau_startdate_modif"));
+        //cr fin
+        $creneau_enddate = $creneau_enddate."";
+        $rest = substr($creneau_enddate, 4);
+        $creneau_enddate_modif = 2000 . "$rest";
+        $creneau_enddate_gen = date('Y-m-d H:i:s', strtotime("$creneau_enddate_modif"));
+
+        $tab_cmod = array(
+            "creneau_id" => $log_c,
+            "creneau_startdate" => $creneau_startdate_gen,
+            "creneau_enddate" => $creneau_enddate_gen,
+            "festival_id" => $festival_id,
+            "poste_id" => $poste_id,
+        );
+        $creneaumod = new ModelCreneau();
+        $creneaumod->update($tab_cmod);
+        
         require(File::build_path(array("view", "view.php")));
     }
 

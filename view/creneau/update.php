@@ -45,7 +45,7 @@ if (!($log_c == "" && $creneau_startdate == "" && $creneau_enddate == "" && $fes
                 <?php echo " <input type=\"hidden\" name=\"creneau_id\" value=\"$log_c\">"; ?>
                 <?php echo " <input type=\"hidden\" name=\"poste_id\" value=\"$poste_id\">"; ?>
                 <?php echo " <input type=\"hidden\" name=\"festival_id\" value=\"$festival_id\">"; ?>
-                <input type="hidden" name="action" value="updated">
+                <input type="hidden" name="action" value=<?php if($type === 'gen'){echo "updatedGen";} else {echo "updated";}?>>
                 <input type="hidden" name="controller" value="creneau">
                 <input class="btn col s12 m4 l4" type="submit" value="Modifier" />
             </div>
