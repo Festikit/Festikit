@@ -136,6 +136,18 @@ class ControllerCreneau
 
         require(File::build_path(array("view", "view.php")));
     }
+    
+    public static function deleteGen()
+    {
+        $controller = 'creneau';
+        $view = 'deletedGen';
+        $pagetitle = 'suppression du creneau';
+        $festival_id = $_GET['festival_id'];
+        $creneau_id = $_GET['creneau_id'];
+        ModelCreneau::delete($creneau_id);
+
+        require(File::build_path(array("view", "view.php")));
+    }
 
     public static function create()
     {

@@ -1,6 +1,7 @@
 <h4 class="center">Modification des créneaux génériques</h4>
-<?php $festival_id = $_GET['festival_id']?>
+<?php if(isset($_GET['festival_id'])){$festival_id = $_GET['festival_id'];}?>
 <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=read&controller=festival&festival_id=<?php echo $festival_id?>"> Retour au festival</a>
+<a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=createGen&controller=creneau&festival_id=<?php echo $festival_id; ?>"> Ajouter un creneau</a>
 </br>
 </br>
 <?php
@@ -52,7 +53,8 @@
                     $creneau_courant_id = $h->getCreneauId();
                     //echo "<td><label><i class=\"material-icons\" name=\"dispo_heure$cStart" . "_$cEnd"  . "date_$date_depart_creneau_courant\" 
                     //id=\"dispo_heure$compteur" . "date_$date_depart_creneau_courant\"  >check</i></label></td>";
-                    echo "<td><a title=\"modifier\" href=\"index.php?action=update&controller=creneau&creneau_id=$creneau_courant_id&type=gen\" class=\"btn\"><i class=\"material-icons\">edit</i></a></td>";
+                    echo "<td><a title=\"modifier\" href=\"index.php?action=update&controller=creneau&creneau_id=$creneau_courant_id&type=gen\" class=\"btn\"><i class=\"material-icons\">edit</i></a>";
+                    echo "<a title=\"modifier\" href=\"index.php?action=deleteGen&controller=creneau&creneau_id=$creneau_courant_id&type=gen&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">delete</i></a></td>";
                     
                 }
             } else echo "<td><i> Il n'y a donc rien à afficher ici.. </i></td>";
@@ -63,3 +65,5 @@
     } else echo "<td><i> Vous n'avez encore ajouté aucun jour à votre festival.. </i></td>";
         ?>
             </table>
+
+
