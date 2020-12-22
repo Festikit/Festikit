@@ -87,7 +87,7 @@ class ControllerCreneau
     {
 
         $controller = 'creneau';
-        $view = 'updateGen';
+        $view = 'updatedGen';
         $pagetitle = 'modification du creneau';
 
         $log_c = $_GET['creneau_id'];
