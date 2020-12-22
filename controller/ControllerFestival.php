@@ -43,20 +43,27 @@ class ControllerFestival
             }
         require File::build_path(array("view", "view.php"));
     }
-
+    
     public static function read()
-    {
-        if (Session::is_admin() || Session::is_responsable()) {
-            $festival_id = $_GET['festival_id'];
+    {   
+        $festival_id = $_GET['festival_id'];
+        // Si l'utilisateur est un admin ou un responsable de ce festival
+
+        if (Session::is_admin() || (Session::is_responsable() && (ModelFestival::getResponsableByFestivalAndUser($festival_id, $_SESSION['login']) ))) {
             $f = ModelFestival::select($festival_id);
 
             $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
             $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
             $tab_poste = ModelFestival::getPostesByFestival($festival_id);
             $tab_date = ModelFestival::getJoursByFestival($festival_id);
-            $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
-
             $tab_creneau_gen = ModelCreneau::getCreneauxGen($festival_id);
+
+            if(Session::is_responsable()) {
+                $boolResponsable = 1;
+            } else {
+                $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+                $boolResponsable = 0;
+            }
 
             if ($f == false) {
                 $pagetitle = 'Erreur action read';
