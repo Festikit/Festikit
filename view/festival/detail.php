@@ -95,11 +95,12 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
 <ul class="collection">
     <li class="collection-header">
     <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=createGen&controller=creneau&festival_id=<?php echo $festival_id; ?>"> Ajouter un creneau</a>
+    <?php // Soit dans le modif soit dans le lobby?>
     <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=updateGen&controller=creneau&festival_id=<?php echo $festival_id; ?>"> Modifier ces creneaux</a>
         <h4 class="center">Créneaux génériques du festival</h4>
     </li>
     <?php
-    $festivalGenerique = 6;
+    $festivalGenerique = $_GET['festival_id'];
     $compteur = 1;
     if (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique)) {
         foreach (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique) as $creneau_de_date_courant) { ?>
@@ -146,7 +147,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                     $cStart = $h->getCreneauStart();
                     $cEnd = $h->getCreneauEnd();
                     echo "<td><label><i class=\"material-icons\" name=\"dispo_heure$cStart" . "_$cEnd"  . "date_$date_depart_creneau_courant\" 
-                    id=\"dispo_heure$compteur" . "date_$date_depart_creneau_courant\"  >check</i><span> </span></label></td>";
+                    id=\"dispo_heure$compteur" . "date_$date_depart_creneau_courant\">check</i><span> </span></label></td>";
                 }
             } else echo "<td><i> Il n'y a donc rien à afficher ici.. </i></td>";
             echo "</tr>";
