@@ -1,6 +1,6 @@
 <?php
 class Conf {
-   
+   //test
   static private $debug = true;
 
   static private $databases = array(
