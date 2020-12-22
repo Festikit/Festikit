@@ -263,7 +263,9 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
         ?>
     </ul>
 </div>
-
+<?php
+if(!$boolResponsable) {
+?>
 <div class="row">
     <ul class="collection col s12 m12 l6">
         <li class="collection-header">
@@ -299,3 +301,5 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
         ?>
     </ul>
 </div>
+<?php
+}

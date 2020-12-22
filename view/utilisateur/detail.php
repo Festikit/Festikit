@@ -40,11 +40,38 @@
         </div>        
     </div>
 </div>
+    
+    <!-- Affichage des festivals où l'utilisateur est responsable (s'il l'est) -->
+    <?php
+    if($boolResponsable) {
+    ?>
+    <ul class="collection">
+        <li class="collection-header">
+            <h4>Liste des festivals en tant que responsable</h4>
+        </li>
+    <?php
+
+    if(empty($tab_festivalWhereResponsable)) {
+        echo "Vous n'êtes responsable d'aucun festival.";
+    } else {
+        foreach ($tab_festivalWhereResponsable as $f) {
+            echo "
+            <li class=\"collection-item avatar\">
+                <a href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\">" . htmlspecialchars($f->getFestivalName()) . "</a>
+                <div class=\"secondary-content\">
+                    <a title=\"en savoir plus\" href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">more</i></a>
+                </div>
+            </li>";
+        }
+    }
+    echo "</ul>";
+    }
+    ?>
 
     <!-- Affichage des festivals où l'utilisateur est bénévole -->
     <ul class="collection">
         <li class="collection-header">
-            <h4>Liste des festivales en tant que bénévole:</h4>
+            <h4>Liste des festivals en tant que bénévole</h4>
         </li>
     <?php
 
@@ -67,7 +94,7 @@
     <!-- Affichage des festivals où l'utilisateur est candidat -->
     <ul class="collection">
         <li class="collection-header">
-            <h4>Liste des festivales en tant que candidature:</h4>
+            <h4>Liste des festivals en tant que candidature</h4>
         </li>
     <?php
     if(empty($tab_festivalWhereCandidat)) {
