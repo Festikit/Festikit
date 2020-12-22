@@ -9,9 +9,11 @@ class ControllerFestival
     {
         if (Session::is_admin()) {
             $tab_f = ModelFestival::selectAll();
+            $boolResponsable = 0;
         }
         if (Session::is_responsable()) {
             $tab_f = ModelFestival::getFestivalByResponsable($_SESSION['login']);
+            $boolResponsable = 1;
         }
         if (Session::is_admin() || Session::is_responsable()) {
             $pagetitle = 'Liste des festivals';
