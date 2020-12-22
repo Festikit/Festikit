@@ -94,7 +94,7 @@
     <!-- Affichage des festivals où l'utilisateur est candidat -->
     <ul class="collection">
         <li class="collection-header">
-            <h4>Liste des festivals en tant que candidature</h4>
+            <h4>Liste des festivals en tant que candidat</h4>
         </li>
     <?php
     if(empty($tab_festivalWhereCandidat)) {
