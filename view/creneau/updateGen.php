@@ -1,4 +1,6 @@
 <h4 class="center">Modification des créneaux génériques</h4>
+<?php $festival_id = $_GET['festival_id']?>
+<a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=read&controller=festival&festival_id=<?php echo $festival_id?>"> Retour au festival</a>
 </br>
 </br>
 <?php
@@ -20,7 +22,14 @@
                         foreach (ModelFestival::getCreneauxGeneriquesHeureByJour($festivalGenerique, $date_depart_creneau_courant) as $h) {
                             $cStart = $h->getCreneauStart();
                             $cEnd = $h->getCreneauEnd();
-                            echo "<th id=\"\"><label for=\"dispo_heure$compteurCreneauxHeure\">" . $cStart . " " . $cEnd . "</label></th>";
+                            //cr début
+                            $cStart = $cStart."";
+                            $cStartmod = substr($cStart, 0, -3);
+                            //cr fin
+                            $cEnd = $cEnd."";
+                            $cEndmod = substr($cEnd, 0, -3);                         
+
+                            echo "<th id=\"\"><label for=\"dispo_heure$compteurCreneauxHeure\">" . $cStartmod . " " . $cEndmod . "</label></th>";
 
                             $compteurCreneauxHeure++;
                         }

@@ -117,7 +117,14 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                         foreach (ModelFestival::getCreneauxGeneriquesHeureByJour($festivalGenerique, $date_depart_creneau_courant) as $h) {
                             $cStart = $h->getCreneauStart();
                             $cEnd = $h->getCreneauEnd();
-                            echo "<th id=\"\"><label for=\"dispo_heure$compteurCreneauxHeure\">" . $cStart . " " . $cEnd . "</label></th>";
+                            //cr début
+                            $cStart = $cStart."";
+                            $cStartmod = substr($cStart, 0, -3);
+                            //cr fin
+                            $cEnd = $cEnd."";
+                            $cEndmod = substr($cEnd, 0, -3);                         
+
+                            echo "<th id=\"\"><label for=\"dispo_heure$compteurCreneauxHeure\">" . $cStartmod . " " . $cEndmod . "</label></th>";
 
                             $compteurCreneauxHeure++;
                         }
