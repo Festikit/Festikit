@@ -24,6 +24,11 @@ class ControllerPoste {
         $poste_id = $_GET['poste_id'];
         $p = ModelPoste::select($poste_id);
         $festival_id = $p->getFestivalId();
+
+        $boolResponsable = 0;
+        if(Session::is_responsable()) {
+            $boolResponsable = 1;
+        }
         if (Session::is_admin() || (Session::is_responsable() && (ModelFestival::getResponsableByFestivalAndUser($festival_id, $_SESSION['login']) ))) {
             $tab_creneau = ModelCreneau::getAllCreneauxByPosteId($poste_id);
             if ($p == false) {
