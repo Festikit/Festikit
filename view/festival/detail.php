@@ -55,7 +55,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
             </div>
             <div class="input-field col s6">
                 <?php
-                $festival_creator = rawurlencode($f->getCreatorId());
+                $festival_creator = rawurlencode($f->get('user_id'));
                 $tab_creator = ModelFestival::getCreatorByFestival($festival_creator);
                 echo "Créateur du festival : " . $festival_creator;
                 ?>
