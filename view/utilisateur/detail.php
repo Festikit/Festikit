@@ -81,9 +81,9 @@
         foreach ($tab_festivalWhereAccepted as $f) {
             echo "
             <li class=\"collection-item avatar\">
-                <a href=\"index.php?action=readForUser&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\">" . htmlspecialchars($f->getFestivalName()) . "</a>
+                <a href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\">" . htmlspecialchars($f->getFestivalName()) . "</a>
                 <div class=\"secondary-content\">
-                    <a title=\"en savoir plus\" href=\"index.php?action=readForUser&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">more</i></a>
+                    <a title=\"en savoir plus\" href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">more</i></a>
                 </div>
             </li>";
         }
@@ -103,9 +103,9 @@
         foreach ($tab_festivalWhereCandidat as $c) {
             echo "
             <li class=\"collection-item avatar\">
-            <a href=\"index.php?action=readForUser&controller=festival&festival_id=" . rawurlencode($c->getFestivalId()) . "\">" . htmlspecialchars($c->getFestivalName()) . "</a>
+            <a href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($c->getFestivalId()) . "\">" . htmlspecialchars($c->getFestivalName()) . "</a>
                 <div class=\"secondary-content\">
-                    <a title=\"en savoir plus\" href=\"index.php?action=readForUser&controller=festival&festival_id=" . rawurlencode($c->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">more</i></a>
+                    <a title=\"en savoir plus\" href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($c->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">more</i></a>
                     <a title=\"supprimer\" href=\"index.php?action=delete&controller=postuler&user_id=" . rawurlencode($user_id) . "\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
                 </div>
             </li>";

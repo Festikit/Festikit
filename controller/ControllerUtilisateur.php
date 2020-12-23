@@ -32,6 +32,8 @@ class ControllerUtilisateur
     public static function read()
     {
         $user_id = $_GET['user_id'];
+        $boolAdmin = 0;
+
         if(Session::is_user($user_id) || Session::is_admin()) {
             $u = ModelUtilisateur::select($user_id);
 
@@ -49,9 +51,15 @@ class ControllerUtilisateur
                 $view = 'error';
                 $message = "erreur de la fonction read dans le controller utilisateur";
             } else {
-                $pagetitle = 'Détail de l\'utilisateur';
-                $controller = 'utilisateur';
-                $view = 'detail';
+                if (Session::is_responsable() || Session::is_admin()) {
+                    $pagetitle = 'Détail de l\'utilisateur';
+                    $controller = 'utilisateur';
+                    $view = 'detail';
+                } else {
+                    $pagetitle = 'Détail de l\'utilisateur';
+                    $controller = 'utilisateur';
+                    $view = 'detailForUser';
+                }
             }
         } else {
             $pagetitle = 'Erreur';
@@ -431,9 +439,15 @@ class ControllerUtilisateur
                     $boolResponsable = 1;
                 }
 
-                $view = 'detail';
-                $controller = 'utilisateur';
-                $pagetitle = 'Profil';
+                if (Session::is_responsable() || Session::is_admin()) {
+                    $pagetitle = 'Détail de l\'utilisateur';
+                    $controller = 'utilisateur';
+                    $view = 'detail';
+                } else {
+                    $pagetitle = 'Détail de l\'utilisateur';
+                    $controller = 'utilisateur';
+                    $view = 'detailForUser';
+                }
             } else {
                 $mail = $_POST['user_mail'];
                 $controller = 'utilisateur';
