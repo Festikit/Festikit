@@ -50,7 +50,6 @@ class ControllerFestival
     {   
         $festival_id = $_GET['festival_id'];
         // Si l'utilisateur est un admin ou un responsable de ce festival
-
         if (Session::is_admin() || (Session::is_responsable() && (ModelFestival::getResponsableByFestivalAndUser($festival_id, $_SESSION['login']) ))) {
             $f = ModelFestival::select($festival_id);
 

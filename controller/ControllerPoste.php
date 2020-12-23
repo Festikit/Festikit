@@ -21,11 +21,11 @@ class ControllerPoste {
     }
 
     public static function read() {
-        if (Session::is_admin()) {
-            $poste_id = $_GET['poste_id'];
-            $p = ModelPoste::select($poste_id);
+        $poste_id = $_GET['poste_id'];
+        $p = ModelPoste::select($poste_id);
+        $festival_id = $p->getFestivalId();
+        if (Session::is_admin() || (Session::is_responsable() && (ModelFestival::getResponsableByFestivalAndUser($festival_id, $_SESSION['login']) ))) {
             $tab_creneau = ModelCreneau::getAllCreneauxByPosteId($poste_id);
-
             if ($p == false) {
                 $pagetitle = 'Erreur action read';
                 $controller = 'poste';
@@ -139,6 +139,12 @@ class ControllerPoste {
             $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
             $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
             $tab_creneau_gen = ModelCreneau::getCreneauxGen($festival_id);
+            if(Session::is_responsable()) {
+                $boolResponsable = 1;
+            } else {
+                $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+                $boolResponsable = 0;
+            }
         } else {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
