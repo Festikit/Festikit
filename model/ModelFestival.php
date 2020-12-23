@@ -75,8 +75,19 @@ class ModelFestival extends ModelUtilisateur
   }
 
   //Getter user_id
-  public function getCreatorId(){
+  public function getCreatorId()
+  {
     return $this->user_id;
+  }
+
+  public function getUserFirstname()
+  {
+    return $this->user_firstname;
+  }
+
+  public function getUserLastname()
+  {
+    return $this->user_lastname;
   }
 
   // Getter générique
@@ -190,24 +201,24 @@ class ModelFestival extends ModelUtilisateur
 
   public function refuserUtilisateur($user_id)
   {
-    $festival_id = $_GET['festival_id'];    
-      try {
-        $sql = "UPDATE postuler SET postuler_accepted = 0 WHERE user_id = :user_id AND festival_id = :festival_id";
-        $req_prep = Model::$pdo->prepare($sql);
-        $values = array(
-          "user_id" => $user_id,
-          "festival_id" => $this->festival_id
-        );
+    $festival_id = $_GET['festival_id'];
+    try {
+      $sql = "UPDATE postuler SET postuler_accepted = 0 WHERE user_id = :user_id AND festival_id = :festival_id";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "user_id" => $user_id,
+        "festival_id" => $this->festival_id
+      );
 
-        $req_prep->execute($values);
-      } catch (PDOException $e) {
-        if (Conf::getDebug()) {
-          echo $e->getMessage(); // affiche un message d'erreur
-        } else {
-          echo 'Une erreur est survenue lors du refus de l\'utilisateur';
-        }
-        die();
+      $req_prep->execute($values);
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage(); // affiche un message d'erreur
+      } else {
+        echo 'Une erreur est survenue lors du refus de l\'utilisateur';
       }
+      die();
+    }
   }
 
   public function ajouterResponsable($user_id, $festival_id)
@@ -430,7 +441,7 @@ class ModelFestival extends ModelUtilisateur
   }
 
   //pour un tableau affichant chaques creneaux par jour
-  public static function getCreneauxGeneriquesHeureByJour($festival_id,$jour)
+  public static function getCreneauxGeneriquesHeureByJour($festival_id, $jour)
   {
     try {
       $sql = "SELECT DISTINCT CAST(creneau_startdate AS TIME) AS creneau_startdate , CAST(creneau_enddate AS TIME) AS creneau_enddate, creneau_id 
@@ -526,7 +537,6 @@ class ModelFestival extends ModelUtilisateur
 
       if (empty($tab_festival)) return false;
       return $tab_festival;
-
     } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage();
@@ -551,7 +561,6 @@ class ModelFestival extends ModelUtilisateur
 
       if (empty($tab_festival)) return false;
       return $tab_festival;
-
     } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage();
@@ -561,4 +570,22 @@ class ModelFestival extends ModelUtilisateur
       die();
     }
   }
+
+  public static function getNomCreateur()
+    {
+        try {
+            $sql = "SELECT u.user_firstname, u.user_lastname, f.user_id from user u
+            JOIN festival f ON  u.user_id = f.user_id";
+            $rep = Model::$pdo->query($sql);
+            $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelFestival');
+            return $rep->fetchAll();
+        } catch (PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage();
+            } else {
+                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
 }

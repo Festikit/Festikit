@@ -57,7 +57,16 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                 <?php
                 $festival_creator = rawurlencode($f->get('user_id'));
                 $tab_creator = ModelFestival::getCreatorByFestival($festival_creator);
-                echo "Créateur du festival : " . $festival_creator;
+                foreach ($tab_nomCreateur as $f) {
+                    $user_id = rawurlencode($f->getCreatorId());
+                    $user_firstname = htmlspecialchars($f->getUserFirstname());
+                    $user_lastname = htmlspecialchars($f->getUserLastname());
+                    if ($festival_creator == $user_id){
+                        echo "Créateur du festival : " . $user_firstname . " " . $user_lastname;
+                        break; 
+                    }
+                }
+                
                 ?>
             </div>
         </div>
@@ -94,9 +103,10 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
 
 <ul class="collection">
     <li class="collection-header">
-    <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=createGen&controller=creneau&festival_id=<?php echo $festival_id; ?>"> Ajouter un creneau</a>
-    <?php // Soit dans le modif soit dans le lobby?>
-    <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=updateGen&controller=creneau&festival_id=<?php echo $festival_id; ?>"> Modifier ces creneaux</a>
+        <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=createGen&controller=creneau&festival_id=<?php echo $festival_id; ?>"> Ajouter un creneau</a>
+        <?php // Soit dans le modif soit dans le lobby
+        ?>
+        <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=updateGen&controller=creneau&festival_id=<?php echo $festival_id; ?>"> Modifier ces creneaux</a>
         <h4 class="center">Créneaux génériques du festival</h4>
     </li>
     <?php
@@ -119,11 +129,11 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                             $cStart = $h->getCreneauStart();
                             $cEnd = $h->getCreneauEnd();
                             //cr début
-                            $cStart = $cStart."";
+                            $cStart = $cStart . "";
                             $cStartmod = substr($cStart, 0, -3);
                             //cr fin
-                            $cEnd = $cEnd."";
-                            $cEndmod = substr($cEnd, 0, -3);                         
+                            $cEnd = $cEnd . "";
+                            $cEndmod = substr($cEnd, 0, -3);
 
                             echo "<th id=\"\"><label for=\"dispo_heure$compteurCreneauxHeure\">" . $cStartmod . " " . $cEndmod . "</label></th>";
 
@@ -202,7 +212,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
         
     }
     ?>
-</ul>*/?>
+</ul>*/ ?>
 
 
 
@@ -272,26 +282,26 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
     </ul>
 </div>
 <?php
-if(!$boolResponsable) {
+if (!$boolResponsable) {
 ?>
-<div class="row">
-    <ul class="collection col s12 m12 l6">
-        <li class="collection-header">
-            <h4>Liste des responsables</h4>
-        </li>
-        <?php
+    <div class="row">
+        <ul class="collection col s12 m12 l6">
+            <li class="collection-header">
+                <h4>Liste des responsables</h4>
+            </li>
+            <?php
 
-        if (empty($tab_responsable)) {
-            echo "Il n'y a pas encore de responsable pour ce festival.</br>";
-        } else {
-            $i = 1;
-            foreach ($tab_responsable as $r) {
-                $festival_id = rawurlencode($f->getFestivalId());
-                $user_id = rawurlencode($r->getResponsableId());
-                $user_firstname = rawurlencode($r->getUserFirstname());
-                $user_lastname = rawurlencode($r->getUserLastName());
-                echo $user_id;
-                echo "<li class=\"collection-item avatar\">
+            if (empty($tab_responsable)) {
+                echo "Il n'y a pas encore de responsable pour ce festival.</br>";
+            } else {
+                $i = 1;
+                foreach ($tab_responsable as $r) {
+                    $festival_id = rawurlencode($f->getFestivalId());
+                    $user_id = rawurlencode($r->getResponsableId());
+                    $user_firstname = rawurlencode($r->getUserFirstname());
+                    $user_lastname = rawurlencode($r->getUserLastName());
+                    echo $user_id;
+                    echo "<li class=\"collection-item avatar\">
                 <div class=\"circle green\">
                 </div>
                 <span class=\"title\">$user_firstname</span>
@@ -303,11 +313,11 @@ if(!$boolResponsable) {
                 </div>
                 
             </li>";
-                $i++;
+                    $i++;
+                }
             }
-        }
-        ?>
-    </ul>
-</div>
+            ?>
+        </ul>
+    </div>
 <?php
 }
