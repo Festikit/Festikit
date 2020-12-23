@@ -1,7 +1,7 @@
 <?php
 require_once File::build_path(array("model", "Model.php"));
 
-class ModelFestival extends Model
+class ModelFestival extends ModelUtilisateur
 {
 
   protected static $object_table = 'festival';
