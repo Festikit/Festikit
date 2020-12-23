@@ -279,24 +279,11 @@ class ControllerUtilisateur
                         $heureEnd = substr($post, 20, 8);
                         $date = substr($post, -10); // Je récupère les 10 derniers caractères
 
-                        //$CreneauStart = date('Y-m-d H:i:s', strtotime("$date $heureStart"));
-                        //$CreneauEnd = date('Y-m-d H:i:s', strtotime("$date $heureEnd"));
-                        //$CreneauStart = new DateTime($date->format('Y-m-d') .' ' .$heureStart->format('H:i:s'));
-                        //$CreneauEnd = new DateTime($date->format('Y-m-d') .' ' .$heureEnd->format('H:i:s'));
-                        //$CreneauStart = DateTime::createFromFormat('Y-m-d H:i:s', "$date" . " " . "$heureStart");
-                        //echo $CreneauStart->format('Y-m-d H:i:s') . "<br>";
-                        //$CreneauEnd = DateTime::createFromFormat('Y-m-d H:i:s', "$date" . " " . "$heureEnd");
-                        //echo $CreneauEnd->format('Y-m-d H:i:s') . "<br>";
                         $CreneauStart = $date . " " . $heureStart;
                         $CreneauEnd = $date . " " . $heureEnd;
-                        //echo "Disponible: " . $post . "<br>" . $CreneauStart ."   ". $CreneauEnd . "<br>";
-
-                        //echo $merge->format('Y-m-d H:i:s'); // Outputs '2017-03-14 13:37:42'
-
-                        $creneau_id = ModelFestival::getCreneauxIdByDateHeure($festivalGenerique, $CreneauStart/*->format('Y-m-d H:i:s')*/, $CreneauEnd/*->format('Y-m-d H:i:s')*/);
+                        $creneau_id = ModelFestival::getCreneauxIdByDateHeure($festivalGenerique, $CreneauStart, $CreneauEnd);
                         $creneau_id = $creneau_id->getCreneauId();
                         if (isset($creneau_id)) {
-                            //echo $creneau_id . "<br><br>";
                             $dataDisponible = array(
                                 'user_id' => $user_id,
                                 'creneau_id' => $creneau_id,
