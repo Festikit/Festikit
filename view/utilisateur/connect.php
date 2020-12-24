@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">email</i>
-                        <input name="user_mail" id="user_mail" type="email" class="validate" value='<?php if(isset($_GET['mail'])){echo $_GET['mail'];}?>' required>
+                        <input name="user_mail" autocomplete="email" id="user_mail" type="email" class="validate" value='<?php if(isset($_GET['mail'])){echo $_GET['mail'];}?>' required>
                         <label for="user_mail">Email<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
                     </div>
                 </div>
@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">lock</i>
-                        <input name="user_password" id="user_password" type="password" class="validate" required>
+                        <input name="user_password" id="user_password" type="password" autocomplete="current-password" class="validate" required>
                         <label for="user_password">Mot de passe<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
                     </div>
                 </div>
