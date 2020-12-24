@@ -21,29 +21,29 @@
 		function checkPasswordOnSubmit() {
 			var user_password1 = $("#user_password1").val();
 			var user_password2 = $("#user_password2").val();
-			if(user_password1.length<6) { 
-				alert("Le mot de passe doit contenir au moins 6 caractères"); 
+			if (user_password1.length < 6) {
+				alert("Le mot de passe doit contenir au moins 6 caractères");
 				return false;
-			} else if(user_password1 != user_password2) {
-				alert("Les mots de passe ne correpondent pas."); 
+			} else if (user_password1 != user_password2) {
+				alert("Les mots de passe ne correpondent pas.");
 				return false;
 			} else {
 				return true;
 			}
-		}  
-		
+		}
+
 		function checkPasswordLength() {
 			var user_password1 = $("#user_password1").val();
 			var user_password2 = $("#user_password2").val();
 
-			if(user_password1.length<6) { 
+			if (user_password1.length < 6) {
 				$("#checkPasswordLength").html("Le mot de passe doit contenir au moins 6 caractères");
 			} else {
 				$("#checkPasswordLength").html("Mot de passe de bonne taille");
 			}
 		}
 
-		$(document).ready(function () {
+		$(document).ready(function() {
 			$("#user_password1").keyup(checkPasswordLength);
 		});
 
@@ -51,17 +51,25 @@
 			var user_password1 = $("#user_password1").val();
 			var user_password2 = $("#user_password2").val();
 
-			if(user_password1 != user_password2)
+			if (user_password1 != user_password2)
 				$("#checkPasswordMatch").html("Les mots de passe de correspondent pas !");
 			else
 				$("#checkPasswordMatch").html("Mots de passe identiques");
 		}
 
-		$(document).ready(function () {
+		$(document).ready(function() {
 			$("#user_password2").keyup(checkPasswordMatch);
 		});
-
 	</script>
+	<style>
+		main {
+			padding-top: 10vh;
+			padding-bottom: 10vh;
+			min-height: 60vh;
+			place-content: center;
+			gap: 1ch;
+		}
+	</style>
 </head>
 
 <body>
@@ -72,20 +80,20 @@
 				<a href="#" class="brand-logo">🎈</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<?php
-					if(Session::is_admin()) {
+					if (Session::is_admin()) {
 						echo '
 						<li><a href="index.php?action=readAll">Accueil Utilisateur</a></li>
 						<li><a href="index.php?action=readAll&controller=festival">Accueil Festival</a></li>
 						<li><a href="index.php?action=readAll&controller=responsable">Accueil Responsable</a></li>
-						';	
+						';
 					}
-					if(Session::is_responsable()) {
+					if (Session::is_responsable()) {
 						echo '
 						<li><a href="index.php?action=readAll&controller=festival">Accueil Festival</a></li>
-						';	
+						';
 					}
 					if (empty($_SESSION['login'])) {
-                    echo '
+						echo '
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?action=connect">Connexion</a>
                     </li>
@@ -102,18 +110,19 @@
 							<a class="nav-link" href="index.php?action=deconnect">Déconnexion</a>
 						</li>';
 					}
-                ?>
+					?>
 				</ul>
 			</div>
 		</nav>
 	</header>
 
-
-	<!-- BODY -->
-	<?php
-	$filepath = File::build_path(array("view", $controller, "$view.php"));
-	require $filepath;
-	?>
+	<main>
+		<!-- BODY -->
+		<?php
+		$filepath = File::build_path(array("view", $controller, "$view.php"));
+		require $filepath;
+		?>
+	</main>
 
 	<footer class="page-footer grey">
 		<div class="container">
