@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col s12 m9 offset-m1 l8 offset-l2">
+    <div class="col s12 m10 offset-m1 l8 offset-l2">
         <?php
         /*
             echo "<form method=\"post\" action=\"index.php?action=created&festival_id=" . $_GET['festival_id'] . "\" enctype=\"multipart/form-data" . " class=\"col s12\">";
