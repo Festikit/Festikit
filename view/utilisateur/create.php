@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col s12 m9 offset-m1 l8 offset-l2">
+    <div class="col s12 m10 offset-m1 l8 offset-l2">
         <?php
         /*
             echo "<form method=\"post\" action=\"index.php?action=created&festival_id=" . $_GET['festival_id'] . "\" enctype=\"multipart/form-data" . " class=\"col s12\">";
@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="input-field col s4">
                         <i class="material-icons prefix">lock</i>
-                        <input name="user_password1" id="user_password1" type="password" class="validate" onChange="checkPasswordLength();" required>
+                        <input name="user_password1" id="user_password1" type="password" autocomplete="new-password" class="validate" onChange="checkPasswordLength();" required>
                         <label for="user_password1">Mot de passe<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
                     </div>
                     <div class="input-field col s4">
@@ -335,10 +335,9 @@
             </div>
 
             <div class="row">
-                <div class="col s12 m4 l4"></div>
                 <input type="hidden" name="action" value="created">
                 <input type="hidden" name="festival_id" value=<?php echo "\"" . $_GET['festival_id'] . "\"" ?>>
-                <input class="btn col s12 m4 l4" id="ButtonSignIn" type="submit" value="Envoyer" />
+                <input class="btn col s12 m4 offset-m4 l4 offset-l4" id="ButtonSignIn" type="submit" value="Envoyer" />
             </div>
         </form>
     </div>
