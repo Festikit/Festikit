@@ -1,7 +1,5 @@
 <div class="row">
-    <div class="col s12 m4 l2">
-    </div>
-    <div class="col s12 m4 l8">
+    <div class="col s12 m10 offset-m1 l8 offset-l2">
         <?php
         if (!($log_p == "" && $poste_name == "" && $poste_description == "")) {
             $log_p = htmlspecialchars($tab_p->getPosteId());
@@ -30,11 +28,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12 m4 l4"></div>
                     <?php echo " <input type=\"hidden\" name=\"poste_id\" value=\"$log_p\">"; ?>
                     <input type="hidden" name="action" value="updated">
                     <input type="hidden" name="controller" value="poste">
-                    <input class="btn col s12 m4 l4" type="submit" value="Modifier" />
+                    <input class="btn col s12 m4 offset-m4 l4 offset-l4" type="submit" value="Modifier" />
                 </div>
         </div>
     </div>

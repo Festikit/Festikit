@@ -1,11 +1,8 @@
 <div class="row">
-    <div class="col s12 m4 l2">
-    </div>
-    <div class="card-panel col s12 m12 l8 grey lighten-4">
+    <div class="card-panel col s12 m10 offset-m1 l8 offset-l2 grey lighten-4">
         <form method="get" action="index.php?action=updated&controller=poste">
             <h5 class="center-align">Ajouter un poste</h5>
-            
-            
+
             <div class="row">
                 <div class="input-field col s6">
                     <i class="material-icons prefix">insert_invitation</i>
@@ -21,11 +18,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col s8 m4 l4"></div>
                 <input type="hidden" name="action" value="created">
                 <input type="hidden" name="controller" value="poste">
                 <input type="hidden" name="festival_id" value=<?php echo "\"" . $_GET['festival_id'] . "\"" ?>>
-                <input class="btn col s12 m4 l4" type="submit" value="Ajouter le poste" />
+                <input class="btn col s12 m4 offset-m4 l4 offset-l4" type="submit" value="Ajouter le poste" />
             </div>
         </form>
     </div>

@@ -1,7 +1,5 @@
 <div class="row">
-    <div class="col s12 m4 l2">
-    </div>
-    <div class="card-panel col s12 m12 l8 grey lighten-4">
+    <div class="card-panel col s12 m10 offset-m1 l8 offset-l2 grey lighten-4">
         <form method="get" action="index.php?action=updated&controller=creneau">
             <h5 class="center-align">Ajouter un creneau</h5>
             <div class="row">
@@ -32,12 +30,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col s8 m4 l4"></div>
                 <?php echo " <input type=\"hidden\" name=\"poste_id\" value=\"$poste_id\">"; ?>
                 <?php echo " <input type=\"hidden\" name=\"festival_id\" value=\"$festival_id\">"; ?>
                 <input type="hidden" name="action" value="created">
                 <input type="hidden" name="controller" value="creneau">
-                <input class="btn col s12 m4 l4" type="submit" value="Ajouter le creneau" />
+                <input class="btn col s12 m4 offset-m4 l4 offset-l4" type="submit" value="Ajouter le creneau" />
             </div>
         </form>
     </div>

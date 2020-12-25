@@ -335,10 +335,9 @@
             </div>
 
             <div class="row">
-                <div class="col s12 m4 l4"></div>
                 <input type="hidden" name="action" value="created">
                 <input type="hidden" name="festival_id" value=<?php echo "\"" . $_GET['festival_id'] . "\"" ?>>
-                <input class="btn col s12 m4 l4" id="ButtonSignIn" type="submit" value="Envoyer" />
+                <input class="btn col s12 m4 offset-m4 l4 offset-l4" id="ButtonSignIn" type="submit" value="Envoyer" />
             </div>
         </form>
     </div>
