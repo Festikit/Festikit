@@ -70,7 +70,7 @@ class ModelPostuler extends Model
         "festival_id" => $festival_id,
       );
       $req_prep->execute($values);
-      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFestival');
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelPostuler');
       $tab_postuler = $req_prep->fetchAll();
 
       if (empty($tab_postuler)) return false;

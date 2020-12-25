@@ -75,4 +75,29 @@ class ModelPreference extends Model
     }
   }
   */
+
+  public static function getPreferenceByUserAndFestival($user_id, $festival_id)
+  {
+    try {
+      $sql = "SELECT * from preference p JOIN poste po ON p.poste_id=po.poste_id WHERE user_id=:user_id  AND festival_id=:festival_id";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "user_id" => $user_id,
+        "festival_id" => $festival_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelPreference');
+      $tab_preference = $req_prep->fetchAll();
+
+      if (empty($tab_preference)) return false;
+      return $tab_preference;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
 }
