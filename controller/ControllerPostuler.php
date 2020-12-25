@@ -15,6 +15,7 @@ class ControllerPostuler {
 
     /* Supprime la candidature d'un bénévole */
     public static function delete() {
+        $festival_id = $_GET['festival_id'];
         $user_id = $_GET['user_id'];
         if(Session::is_user($user_id)){
             $boolUser = 1;
@@ -27,13 +28,24 @@ class ControllerPostuler {
             $boolAdmin = 0;
         }
         if(Session::is_user($user_id) || Session::is_admin()) {
-            $controller = 'postuler';
-            $pagetitle = 'Suppression de candidature';
-            $view = 'deleted';
-            ModelPostuler::delete($user_id);
-            ModelDisponible::delete($user_id);
-            ModelPreference::delete($user_id);
-            $tab_u = ModelUtilisateur::selectAll();
+            $postuler_id = ModelPostuler::getPostulerByUserAndFestival($user_id, $festival_id);
+            print_r($postuler_id);
+            $disponible_id = ModelDisponible::getDisponibleByUserAndFestival($user_id, $festival_id)->getDisponibleId();
+            $preference_id = ModelPreference::getPreferenceByUserAndFestival($user_id, $festival_id)->getPreferenceId();
+            ModelPostuler::delete($postuler_id);
+            ModelDisponible::delete($disponible_id);
+            ModelPreference::delete($preference_id);
+            if(is_bool(ModelPostuler::delete($postuler_id)) && is_bool(ModelDisponible::delete($disponible_id)) && is_bool(ModelPreference::delete($preference_id))) {
+                $pagetitle = 'Erreur';
+                $controller = 'utilisateur';
+                $message = "Erreur: Suppression de la candidature.";
+                $view = 'error';
+            } else {
+                $controller = 'postuler';
+                $pagetitle = 'Suppression de candidature';
+                $view = 'deleted';
+                $tab_u = ModelUtilisateur::selectAll();
+            }
         } else {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
