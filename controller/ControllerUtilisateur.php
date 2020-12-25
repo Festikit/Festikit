@@ -274,11 +274,10 @@ class ControllerUtilisateur
 
         // Insertion pour disponible 
         if ($reussitePicture && $reussiteInitUser && $reussiteUser && $reussiteId && $reussiteInitPostuler && $reussitePostuler && $reussitePreference) {
-            $festivalGenerique = 6;
-            foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $h) {
+            foreach (ModelFestival::getCreneauxGeneriquesHeure($festival_id) as $h) {
                 $cStart = $h->getCreneauStart();
                 $cEnd = $h->getCreneauEnd();
-                foreach (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique) as $d) {
+                foreach (ModelFestival::getCreneauxGeneriquesDate($festival_id) as $d) {
                     $CreneauDate = $d->getCreneauStart();
                     $post = "dispo_heure$cStart" . "_$cEnd" . "date_$CreneauDate";
 
@@ -289,7 +288,7 @@ class ControllerUtilisateur
 
                         $CreneauStart = $date . " " . $heureStart;
                         $CreneauEnd = $date . " " . $heureEnd;
-                        $creneau_id = ModelFestival::getCreneauxIdByDateHeure($festivalGenerique, $CreneauStart, $CreneauEnd);
+                        $creneau_id = ModelFestival::getCreneauxIdByDateHeure($festival_id, $CreneauStart, $CreneauEnd);
                         $creneau_id = $creneau_id->getCreneauId();
                         if (isset($creneau_id)) {
                             $dataDisponible = array(
