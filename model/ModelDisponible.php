@@ -49,4 +49,29 @@ class ModelDisponible extends Model
     }
   }
   */
+
+  public static function getDisponibleByUserAndFestival($user_id, $festival_id)
+  {
+    try {
+      $sql = "SELECT * from disponible d JOIN creneau c ON d.creneau_id=c.creneau_id WHERE user_id=:user_id  AND festival_id=:festival_id";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "user_id" => $user_id,
+        "festival_id" => $festival_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelDisponible');
+      $tab_disponible = $req_prep->fetchAll();
+
+      if (empty($tab_disponible)) return false;
+      return $tab_disponible;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
 }
