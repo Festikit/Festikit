@@ -61,12 +61,12 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                     $user_id = rawurlencode($f->getCreatorId());
                     $user_firstname = htmlspecialchars($f->getUserFirstname());
                     $user_lastname = htmlspecialchars($f->getUserLastname());
-                    if ($festival_creator == $user_id){
+                    if ($festival_creator == $user_id) {
                         echo "Créateur du festival : " . $user_firstname . " " . $user_lastname;
-                        break; 
+                        break;
                     }
                 }
-                
+
                 ?>
             </div>
         </div>
@@ -231,10 +231,10 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                 $user_id = rawurlencode($b->getId());
                 $user_firstname = htmlspecialchars($b->getFirstname());
                 $user_lastname = htmlspecialchars($b->getLastname());
-                echo "<li class=\"collection-item avatar\">
-                <div class=\"circle green\">
-                </div>
-                <span class=\"title\">$user_firstname</span>
+                $user_picture = $b->getPicture();
+                echo '<li class="collection-item avatar">
+        <img src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="70px"/>';
+                echo "<span class=\"title\">$user_firstname</span>
                 <p>$user_lastname
                 </p>
                 <div class=\"secondary-content\">
@@ -263,10 +263,10 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                 $user_id = rawurlencode($c->getId());
                 $user_firstname = htmlspecialchars($c->getFirstname());
                 $user_lastname = htmlspecialchars($c->getLastname());
-                echo "<li class=\"collection-item avatar\">
-                <div class=\"circle green\">
-                </div>
-                <span class=\"title\">$user_firstname</span>
+                $user_picture = $c->getPicture();
+                echo '<li class="collection-item avatar">
+        <img src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="70px"/>';
+                echo "<span class=\"title\">$user_firstname</span>
                 <p>$user_lastname
                 </p>
                 <div class=\"secondary-content\">
@@ -300,11 +300,10 @@ if (!$boolResponsable) {
                     $user_id = rawurlencode($r->getResponsableId());
                     $user_firstname = rawurlencode($r->getUserFirstname());
                     $user_lastname = rawurlencode($r->getUserLastName());
-                    echo $user_id;
-                    echo "<li class=\"collection-item avatar\">
-                <div class=\"circle green\">
-                </div>
-                <span class=\"title\">$user_firstname</span>
+                    $user_picture = $r->getPicture();
+                    echo '<li class="collection-item avatar">
+        <img src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="70px"/>';
+                    echo "<span class=\"title\">$user_firstname</span>
                 <p>$user_lastname
                 </p>
                 <div class=\"secondary-content\">
