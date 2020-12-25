@@ -17,16 +17,7 @@ class ControllerPostuler {
     public static function delete() {
         $festival_id = $_GET['festival_id'];
         $user_id = $_GET['user_id'];
-        if(Session::is_user($user_id)){
-            $boolUser = 1;
-        } else {
-            $boolUser = 0;
-        }
-        if(Session::is_admin()){
-            $boolAdmin = 1;
-        } else {
-            $boolAdmin = 0;
-        }
+
         if(Session::is_user($user_id) || Session::is_admin()) {
             
             $tab_postuler = ModelPostuler::getPostulerByUserAndFestival($user_id, $festival_id);
@@ -71,22 +62,21 @@ class ControllerPostuler {
                 }
             }
             
-            if($reussitePostuler && $reussiteDisponible && $reussitePreference) {
-                $controller = 'postuler';
+            if($reussitePostuler && $reussiteDisponible && $reussitePreference) { // ou if(!isset(&message))
+                /*
+                controller = 'postuler';
                 $pagetitle = 'Suppression de candidature';
                 $view = 'deleted';
+                */
+                $message = "Candidature supprimée !";
             } else {
-                $pagetitle = 'Erreur';
-                $controller = 'utilisateur';
-                $message = "Erreur: Suppression de la candidature.";
-                $view = 'error';
+                $message = "Erreur: Suppression de candidature.";
             }
         } else {
-            $pagetitle = 'Erreur';
-            $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
         }
+        $controller = 'utilisateur';
+        $pagetitle = 'Suppression de candidature';
         require File::build_path(array("view", "view.php"));
     }
 }
