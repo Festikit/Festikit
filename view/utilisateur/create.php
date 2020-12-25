@@ -55,7 +55,7 @@
                             <i class="material-icons">file_download</i>
                             <span>Photo de profil</span>
                             <input type="hidden" name="MAX_FILE_SIZE" value="250000" />
-                            <input name="user_picture" id="user_picture" type="file" accept="image/png, image/jpeg, image/jpg">
+                            <input name="user_picture" id="user_picture" type="file" accept="image/png, image/jpeg, image/jpg" required>
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">
@@ -210,7 +210,7 @@
                         foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $h) {
                             $cStart = $h->getCreneauStart();
                             $cEnd = $h->getCreneauEnd();
-                            echo "<td><label><input type=\"checkbox\" name=\"dispo_heure$cStart" . "_$cEnd"  . "date_$CreneauDate\" id=\"dispo_heure$compteur" . "date_$CreneauDate\" value=\"1\" /><span> </span></label></td>";
+                            echo "<td><label><input type=\"checkbox\" name=\"dispo_heure$cStart" . "_$cEnd"  . "date_$CreneauDate\" id=\"dispo_heure$compteur" . "date_$CreneauDate\" value=\"1\" required /><span> </span></label></td>";
                         }
                         echo "</tr>";
                     }
@@ -255,69 +255,16 @@
                             echo "
                         <tr>
                         <td><label for=\"$idPoste\">$nomPoste<br>$descriptionPoste</label></td>
-                        <td><label><input type=\"radio\" name=\"" . "Poste" . $idPoste . "\" id=\"$idPoste\" value=\"1\" /><span> </span></label></td>
-                        <td><label><input type=\"radio\" name=\"" . "Poste" . $idPoste . "\" id=\"$idPoste\" value=\"2\" /><span> </span></label></td>
-                        <td><label><input type=\"radio\" name=\"" . "Poste" . $idPoste . "\" id=\"$idPoste\" value=\"3\" /><span> </span></label></td>
-                        <td><label><input type=\"radio\" name=\"" . "Poste" . $idPoste . "\" id=\"$idPoste\" value=\"4\" /><span> </span></label></td>
+                        <td><label><input type=\"radio\" name=\"" . "Poste" . $idPoste . "\" id=\"$idPoste\" value=\"1\" required /><span> </span></label></td>
+                        <td><label><input type=\"radio\" name=\"" . "Poste" . $idPoste . "\" id=\"$idPoste\" value=\"2\" required /><span> </span></label></td>
+                        <td><label><input type=\"radio\" name=\"" . "Poste" . $idPoste . "\" id=\"$idPoste\" value=\"3\" required /><span> </span></label></td>
+                        <td><label><input type=\"radio\" name=\"" . "Poste" . $idPoste . "\" id=\"$idPoste\" value=\"4\" required /><span> </span></label></td>
                         </tr>
                         ";
                         }
                         ?>
                     </tbody>
                 </table>
-
-                <div class="row">
-                    <h5>Concerts</h5>
-                    <div class="col s12">
-                        <div class="row">
-                            <label for="choisirconcert_id">Choisissez un concert auquel vous souhaiteriez
-                                assister</label>
-                            <select name="choisirconcert_id" id="choisirconcert_id">
-                                <!-- TODO : l'affichage de cette partie doit être automatisé avec le php -->
-                                <option value="" disabled selected>Sélectionner</option>
-
-                                <option value="concert1">13/04 - Cinéma Le Molière - film Daniel Darc - lecture
-                                    Dimoné
-                                </option>
-                                <option value="concert2">14/04 -Théâtre Historique - 20h30- Estelle Meyer + Wally Le
-                                    Projet
-                                    Derli</option>
-                                <option value="concert3">15/04 - Théâtre Historique - 14h30 - Presque Oui Icibalao
-                                    (Jeune
-                                    Public)</option>
-                                <option value="concert4">15/04 - Théâtre Historique - 19h - Jerrycan</option>
-                                <option value="concert5">15/04 - Foyer des Campagnes - 21h - La Pieta + Soirée Girls
-                                    Gang
-                                </option>
-                                <option value="concert6">16/04 - Pl. Gambetta - 12h - Création Canada/Occitanie
-                                </option>
-                                <option value="concert7">16/04 - Théâtre Historique - 19h - programmation en cours
-                                </option>
-                                <option value="concert8">16/04 - Foyer des Campagnes - 21h - Natasha Kanapé + Diane
-                                    Tell
-                                </option>
-                                <option value="concert9">17/04 - Pl. Gambetta - 12h - François Bijou</option>
-                                <option value="concert11">17/04 - Th. Historique - 14h - Remise des coups de Cœur
-                                    Chanson de
-                                    l'Académie Ch. Cros</option>
-                                <option value="concert12">17/04 - Th. Historique - 19h - Clara Ysé</option>
-                                <option value="concert13">17/04 - Foyer des Campagnes - 21h - Nemir</option>
-                                <option value="concert14">18/04 - Pl. Gambetta - 12h - Sugar & Tiger</option>
-                                <option value="concert15">18/04 - Th. Historique - 15h - Plateaux découvertes -
-                                    L'Affaire
-                                    Sirven
-                                    / Orly / Murielle Holtz</option>
-                                <option value="concert16">18/04 - Foyer des Campagnes - 19h - Melba</option>
-                                <option value="concert17">18/04 - Foyer des Campagnes - 21H - Batlik + Dimoné &
-                                    Kursed
-                                </option>
-                            </select>
-
-
-                        </div>
-                    </div>
-                </div>
-
 
                 <div class="row">
                     <div class="col s12">
