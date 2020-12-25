@@ -28,23 +28,58 @@ class ControllerPostuler {
             $boolAdmin = 0;
         }
         if(Session::is_user($user_id) || Session::is_admin()) {
-            $postuler_id = ModelPostuler::getPostulerByUserAndFestival($user_id, $festival_id);
-            print_r($postuler_id);
-            $disponible_id = ModelDisponible::getDisponibleByUserAndFestival($user_id, $festival_id)->getDisponibleId();
-            $preference_id = ModelPreference::getPreferenceByUserAndFestival($user_id, $festival_id)->getPreferenceId();
-            ModelPostuler::delete($postuler_id);
-            ModelDisponible::delete($disponible_id);
-            ModelPreference::delete($preference_id);
-            if(is_bool(ModelPostuler::delete($postuler_id)) && is_bool(ModelDisponible::delete($disponible_id)) && is_bool(ModelPreference::delete($preference_id))) {
+            
+            $tab_postuler = ModelPostuler::getPostulerByUserAndFestival($user_id, $festival_id);
+            // Suppression de toutes les candidatures de ce candidat pour ce festival
+            // Si jamais le candidat c'est inscrit plusieurs fois au festival (normalement impossible)
+            foreach($tab_postuler as $postuler) {
+                $postuler_id = $postuler->getPostulerId();
+                ModelPostuler::delete($postuler_id);
+                $reussitePostuler = 1;
+                if(!is_bool(ModelPostuler::delete($postuler_id))){
+                    $message = "Erreur : Suppression pour la table Postuler";
+                    $reussitePostuler = 0;
+                    break;
+                }
+            }
+
+            if($reussitePostuler) {
+                $tab_disponible = ModelDisponible::getDisponibleByUserAndFestival($user_id, $festival_id);
+                // Suppression de toutes les disponibilités de ce candidat pour ce festival
+                foreach($tab_disponible as $disponible) {
+                    $disponible_id = $disponible->getDisponibleId();
+                    $reussiteDisponible = 1;
+                    if(!is_bool(ModelDisponible::delete($disponible_id))){
+                        $message = "Erreur : Suppression pour la table Disponible";
+                        $reussitePostuler = 0;
+                        break;
+                    }
+                }
+            }
+
+            if($reussitePostuler && $reussiteDisponible) {
+                $tab_preference = ModelPreference::getPreferenceByUserAndFestival($user_id, $festival_id);
+                // Suppression de toutes les préférences de ce candidat pour ce festival
+                foreach($tab_preference as $preference) {
+                    $preference_id = $preference->getPreferenceId();
+                    $reussitePreference = 1;
+                    if(!is_bool(ModelPreference::delete($preference_id))){
+                        $message = "Erreur : Suppression pour la table Preference";
+                        $reussitePreference = 0;
+                        break;
+                    }
+                }
+            }
+            
+            if($reussitePostuler && $reussiteDisponible && $reussitePreference) {
+                $controller = 'postuler';
+                $pagetitle = 'Suppression de candidature';
+                $view = 'deleted';
+            } else {
                 $pagetitle = 'Erreur';
                 $controller = 'utilisateur';
                 $message = "Erreur: Suppression de la candidature.";
                 $view = 'error';
-            } else {
-                $controller = 'postuler';
-                $pagetitle = 'Suppression de candidature';
-                $view = 'deleted';
-                $tab_u = ModelUtilisateur::selectAll();
             }
         } else {
             $pagetitle = 'Erreur';
