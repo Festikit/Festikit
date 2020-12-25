@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="input-field col s4">
                         <i class="material-icons prefix">lock</i>
-                        <input name="user_password1" id="user_password1" type="password" class="validate" onChange="checkPasswordLength();" required>
+                        <input name="user_password1" id="user_password1" type="password" autocomplete="new-password" class="validate" onChange="checkPasswordLength();" required>
                         <label for="user_password1">Mot de passe<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
                     </div>
                     <div class="input-field col s4">
