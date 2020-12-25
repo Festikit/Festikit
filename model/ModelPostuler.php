@@ -59,4 +59,29 @@ class ModelPostuler extends Model
     }
   }
   */
+
+  public static function getPostulerByUserAndFestival($user_id, $festival_id)
+  {
+    try {
+      $sql = "SELECT * from postuler WHERE user_id=:user_id  AND festival_id=:festival_id";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "user_id" => $user_id,
+        "festival_id" => $festival_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFestival');
+      $tab_postuler = $req_prep->fetchAll();
+
+      if (empty($tab_postuler)) return false;
+      return $tab_postuler;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
 }
