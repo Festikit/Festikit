@@ -614,35 +614,5 @@ class ModelFestival extends ModelUtilisateur
     }
   }
 
-  public static function festivalExiste($festival_name)
-  {
-    try {
-      // Vérification de l'email
-    $sql = "SELECT festival_name FROM festival WHERE festival_name=:nom_tag";
-    $req_prep = Model::$pdo->prepare($sql);
-    $values = array(
-        'nom_tag' => $festival_name,
-    );
-    $req_prep->execute($values);
-    $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFestival');
-    $tab_user = $req_prep->fetchAll();
-    $num_rows = $req_prep->fetchColumn();
-
-    if ($num_rows != 0) {
-        return true;
-    }
-
-    if ($num_rows == 0) {
-        return false;
-    }
-    } catch (PDOException $e) {
-      if (Conf::getDebug()) {
-        echo $e->getMessage();
-      } else {
-        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-      }
-      die();
-    }
-    
-  }
+  
 }
