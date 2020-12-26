@@ -200,6 +200,7 @@ class ControllerFestival
             $poste_description = $_POST['poste_description'];
 
             // Insertion pour festival
+            $reussite_festival = false;
             if (isset($festival_name, $festival_startdate, $festival_enddate, $festival_description, $user_id, $city)) {
                 $dataUser = array(
                     'festival_name' => $festival_name,
@@ -210,10 +211,22 @@ class ControllerFestival
                     'city' => $city,
                 );
 
-                $f = new ModelFestival($dataUser);
-                $f->save($dataUser);
+                if (!ModelFestival::festivalExiste($festival_name))
+                {
+                    $f = new ModelFestival($dataUser);
+                    $f->save($dataUser);
 
-                $tab_f = ModelFestival::selectAll();
+                    $tab_f = ModelFestival::selectAll();
+                    $reussite_festival = true;
+                }
+                else{
+                    $reussite_festival = false;
+                    $controller = 'utilisateur';
+                    $view = 'error';
+                    $message = 'Ce festival existe deja';
+                    $pagetitle = 'erreur';
+                }
+                
 
             } else {
                 $controller = 'utilisateur';
@@ -223,45 +236,51 @@ class ControllerFestival
             }
 
             //On recupere l'id du festival
-            $festival_id = ModelFestival::getIdByNomFestival($festival_name);
-            $festival_id = $festival_id->getFestivalId();
-            if (!empty($festival_id)) {
-                $reussiteId = true;
-            } else {
-                $message = 'Erreur: Récupération de l\'id festival';
-                $controller = 'utilisateur';
-                $view = 'error';
-                $pagetitle = 'erreur';
-                $reussiteId = false;
-            }
-
-            // Insertion pour poste
-            if (isset($poste_name, $poste_description, $festival_id)) {
-                $dataPoste = array(
-                    'poste_name' => $poste_name,
-                    'poste_description' => $poste_description,
-                    'festival_id' => $festival_id,
-                );
-
-                if (is_bool(ModelPoste::save($dataPoste))) {
-                    $controller = 'creneau';
+            if($reussite_festival)
+            {
+                $festival_id = ModelFestival::getIdByNomFestival($festival_name);
+                $festival_id = $festival_id->getFestivalId();
+                if (!empty($festival_id)) {
+                    $reussiteId = true;
+                } else {
+                    $message = 'Erreur: Récupération de l\'id festival';
+                    $controller = 'utilisateur';
                     $view = 'error';
-                    $message = 'Erreur: Insertion des données dans la table poste';
                     $pagetitle = 'erreur';
+                    $reussiteId = false;
                 }
-
-                $tab_p = ModelPoste::selectAll();
-
-                $pagetitle = 'Festival créé';
-                $controller = 'festival';
-                $view = 'created';
-            } else {
-                $controller = 'utilisateur';
-                $view = 'error';
-                $message = 'Erreur: initialisation des variables nécessaire à la création d\'un poste';
-                $pagetitle = 'erreur';
+    
+                // Insertion pour poste
+                if ($reussiteId){
+                    if (isset($poste_name, $poste_description, $festival_id)) {
+                        $dataPoste = array(
+                            'poste_name' => $poste_name,
+                            'poste_description' => $poste_description,
+                            'festival_id' => $festival_id,
+                        );
+        
+                        if (is_bool(ModelPoste::save($dataPoste))) {
+                            $controller = 'creneau';
+                            $view = 'error';
+                            $message = 'Erreur: Insertion des données dans la table poste';
+                            $pagetitle = 'erreur';
+                        }
+        
+                        $tab_p = ModelPoste::selectAll();
+        
+                        $pagetitle = 'Festival créé';
+                        $controller = 'festival';
+                        $view = 'created';
+                    } else {
+                        $controller = 'utilisateur';
+                        $view = 'error';
+                        $message = 'Erreur: initialisation des variables nécessaire à la création d\'un poste';
+                        $pagetitle = 'erreur';
+                    }
+                }
             }
-
+            
+            
         } else {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
