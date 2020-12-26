@@ -120,7 +120,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
 
                     <?php
                     // Affichage dynamique des heures correspondant aux créneaux génériques
-                    $festivalGenerique = 6;
+                    
                     $compteurCreneauxHeure = 0;
                     $date_depart_creneau_courant = $creneau_de_date_courant->getCreneauStart();
 
