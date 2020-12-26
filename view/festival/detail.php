@@ -103,9 +103,6 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
 
 <ul class="collection">
     <li class="collection-header">
-        <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=createGen&controller=creneau&festival_id=<?php echo $festival_id; ?>"> Ajouter un creneau</a>
-        <?php // Soit dans le modif soit dans le lobby
-        ?>
         <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=updateGen&controller=creneau&festival_id=<?php echo $festival_id; ?>"> Modifier ces creneaux</a>
         <h4 class="center">Créneaux génériques du festival</h4>
     </li>

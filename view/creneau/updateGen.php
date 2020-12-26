@@ -1,6 +1,5 @@
 <h4 class="center">Modification des créneaux génériques</h4>
 <?php if(isset($_GET['festival_id'])){$festival_id = $_GET['festival_id'];}?>
-<a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=read&controller=festival&festival_id=<?php echo $festival_id?>"> Retour au festival</a>
 <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=createGen&controller=creneau&festival_id=<?php echo $festival_id; ?>"> Ajouter un creneau</a>
 </br>
 </br>
@@ -64,5 +63,7 @@
     } else echo "<td><i> Vous n'avez encore ajouté aucun jour à votre festival.. </i></td>";
         ?>
             </table>
-
-
+</br>
+</br>
+</br>
+<a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=read&controller=festival&festival_id=<?php echo $festival_id?>"> Retour au festival</a>
