@@ -5,7 +5,7 @@
 </br>
 </br>
 <?php
-    $festivalGenerique = 6;
+    $festivalGenerique = $_GET['festival_id'];
     $compteur = 1;
     if (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique)) {
         foreach (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique) as $creneau_de_date_courant) { ?>
@@ -15,7 +15,7 @@
 
                     <?php
                     // Affichage dynamique des heures correspondant aux créneaux génériques
-                    $festivalGenerique = 6;
+                    
                     $compteurCreneauxHeure = 0;
                     $date_depart_creneau_courant = $creneau_de_date_courant->getCreneauStart();
 
