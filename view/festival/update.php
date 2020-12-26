@@ -50,6 +50,8 @@
 
         <div class="row">
             <input type="hidden" name="action" value="<?php echo $next_action; ?>">
+            <input type="hidden" name="poste_name" id="poste_name" value="Generique">
+            <input type="hidden" name="poste_description" id="poste_description" value="Poste générique pour l'insertion de créneaux génériques">
             <input type="hidden" name="user_id" value=<?php echo "\"" . $_SESSION['login'] . "\"" ?>>
             <input class="btn col s12 m4 offset-m4 l4 offset-l4" type="submit" value="Envoyer" />
         </div>

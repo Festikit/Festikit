@@ -588,4 +588,29 @@ class ModelFestival extends ModelUtilisateur
             die();
         }
     }
+
+    public static function getIdByNomFestival($festival_name)
+  {
+    try {
+      $sql = "SELECT festival_id from festival WHERE festival_name=:nom_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "nom_tag" => $festival_name,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFestival');
+      $tab_festival_id = $req_prep->fetchAll();
+
+      if (empty($tab_festival_id))
+        return false;
+      return $tab_festival_id[0];
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
 }
