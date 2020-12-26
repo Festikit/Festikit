@@ -223,7 +223,7 @@ class ControllerFestival
                     $reussite_festival = false;
                     $controller = 'utilisateur';
                     $view = 'error';
-                    $message = 'Ce festival existe deja';
+                    $message = 'Un festival existe déjà avec ce nom';
                     $pagetitle = 'erreur';
                 }
                 
