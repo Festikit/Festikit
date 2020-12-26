@@ -42,8 +42,72 @@
         <?php echo "<a class=\"btn-large waves-effect waves-light secondary-content\" href=\"index.php?action=create&controller=creneau&poste_id=$log_p&festival_id=$festival_id\"> Ajouter un creneau</a>"; ?>
         <h4 class="center">Liste des creneaux</h4>
     </li>
+   
     <?php
-    if (!$tab_creneau) {
+    $posteCour = $_GET['poste_id'];
+    $compteur = 1;
+    if (ModelCreneau::getCreneauxDateByPosteId($posteCour)) {
+        foreach (ModelCreneau::getCreneauxDateByPosteId($posteCour) as $creneau_de_date_courant) { ?>
+            <table>
+                <tr>
+                    <th id=""><label for="dispo_date1">jour n°<?php echo $compteur ?></label></th>
+
+                    <?php
+                    // Affichage dynamique des heures correspondant aux créneaux génériques
+                    
+                    $compteurCreneauxHeure = 0;
+                    $date_depart_creneau_courant = $creneau_de_date_courant->getCreneauStart();
+
+                    if (ModelCreneau::getCreneauxHeureByJour($posteCour, $date_depart_creneau_courant)) {
+                        foreach (ModelCreneau::getCreneauxHeureByJour($posteCour, $date_depart_creneau_courant) as $h) {
+                            $cStart = $h->getCreneauStart();
+                            $cEnd = $h->getCreneauEnd();
+                            //cr début
+                            $cStart = $cStart . "";
+                            $cStartmod = substr($cStart, 0, -3);
+                            //cr fin
+                            $cEnd = $cEnd . "";
+                            $cEndmod = substr($cEnd, 0, -3);
+
+                            echo "<th id=\"\"><label for=\"dispo_heure$compteurCreneauxHeure\">" . $cStartmod . " " . $cEndmod . "</label></th>";
+
+                            $compteurCreneauxHeure++;
+                        }
+                    } else echo "<th><i> Le festival n'a pas encore de créneaux </i></th>";
+                    ?>
+                </tr>
+
+        <?php
+            // Affichage dynamique des jours de festival (Les dates des créneaux génériques sans doublons)
+            $numCreneauHeure = 1;
+
+            echo "
+            <tr>
+            <td class=\"firstColumn\"><label for=\"date_$numCreneauHeure\">$date_depart_creneau_courant</label></td>
+            ";
+
+            if (ModelCreneau::getCreneauxHeureByJour($posteCour, $date_depart_creneau_courant)) {
+                foreach (ModelCreneau::getCreneauxHeureByJour($posteCour, $date_depart_creneau_courant) as $h) {
+                    $cStart = $h->getCreneauStart();
+                    $cEnd = $h->getCreneauEnd();
+                    echo "<td><label><i class=\"material-icons\" name=\"dispo_heure$cStart" . "_$cEnd"  . "date_$date_depart_creneau_courant\" 
+                    id=\"dispo_heure$compteur" . "date_$date_depart_creneau_courant\">check</i><span> </span></label></td>";
+                }
+            } else echo "<td><i> Il n'y a donc rien à afficher ici.. </i></td>";
+            echo "</tr>";
+            echo "</br>";
+            $compteur++;
+        }
+    } else echo "<td><i> Vous n'avez encore ajouté aucun jour à votre festival.. </i></td>";
+        ?>
+            </table>
+    
+    
+    
+    
+    
+    <?php
+    /*if (!$tab_creneau) {
         echo "<li> <span class=\"title\"> Le poste n'a aucun créneau </span> </li>";
     } else {
         foreach ($tab_creneau as $creaneau) {
@@ -61,6 +125,6 @@
     		</div>
     	</li>";
         }
-    }
+    }*/
     ?>
 </ul>

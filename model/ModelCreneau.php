@@ -110,10 +110,10 @@ class ModelCreneau extends Model
   }
   */
 
-  public static function getAllCreneauxByPosteId($poste_id)
+  public static function getCreneauxDateByPosteId($poste_id)
   {
     try {
-      $sql = "SELECT * from creneau WHERE poste_id=:poste_id";
+      $sql = "SELECT DISTINCT CAST(creneau_startdate AS DATE) AS creneau_startdate from creneau WHERE poste_id=:poste_id";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
         "poste_id" => $poste_id,
@@ -134,6 +134,34 @@ class ModelCreneau extends Model
       die();
     }
   }
+
+  public static function getCreneauxHeureByJour($poste_id, $jour)
+  {
+    try {
+      $sql = "SELECT DISTINCT CAST(creneau_startdate AS TIME) AS creneau_startdate , CAST(creneau_enddate AS TIME) AS creneau_enddate, creneau_id 
+      FROM creneau WHERE poste_id=:id_tag AND CAST(creneau_startdate AS DATE) = DATE '$jour'";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $poste_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelCreneau');
+      $tab_creneaux_generique_heure = $req_prep->fetchAll();
+
+      if (empty($tab_creneaux_generique_heure)) return false;
+
+      return $tab_creneaux_generique_heure;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
+
 
   public static function getCreneauxGen($festival_id)
   {

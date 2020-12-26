@@ -131,7 +131,7 @@ class ControllerCreneau
         $log_p  = $_GET['poste_id'];
 
         ModelCreneau::delete($creneau_id);
-        $tab_creneau = ModelCreneau::getAllCreneauxByPosteId($log_p);
+        $tab_creneau = ModelCreneau::getCreneauxDateByPosteId($log_p);
         $tab_p = ModelPoste::select($log_p);
 
         require(File::build_path(array("view", "view.php")));
@@ -183,7 +183,7 @@ class ControllerCreneau
         );
 
         $log_p  = $poste_id;
-        $tab_creneau = ModelCreneau::getAllCreneauxByPosteId($log_p);
+        $tab_creneau = ModelCreneau::getCreneauxDateByPosteId($log_p);
         $tab_p = ModelPoste::select($log_p);
         if (is_bool(ModelCreneau::save($dataCreneau))) {
             $controller = 'creneau';

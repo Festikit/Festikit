@@ -30,7 +30,6 @@ class ControllerPoste {
             $boolResponsable = 1;
         }
         if (Session::is_admin() || (Session::is_responsable() && (ModelFestival::getResponsableByFestivalAndUser($festival_id, $_SESSION['login']) ))) {
-            $tab_creneau = ModelCreneau::getAllCreneauxByPosteId($poste_id);
             if ($p == false) {
                 $pagetitle = 'Erreur action read';
                 $controller = 'poste';
@@ -56,7 +55,6 @@ class ControllerPoste {
             $view='update';
             $pagetitle='modification du poste';
             $log_p  = $_GET['poste_id'];
-            $tab_creneau = ModelCreneau::getAllCreneauxByPosteId($log_p);
             $tab_p = ModelPoste::select($log_p);
         } else {
             $pagetitle = 'Erreur';
@@ -142,7 +140,7 @@ class ControllerPoste {
             $tab_poste = ModelFestival::getPostesByFestival($festival_id);
             $tab_date = ModelFestival::getJoursByFestival($festival_id);
             $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
-            $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
+            
             $tab_creneau_gen = ModelCreneau::getCreneauxGen($festival_id);
             if(Session::is_responsable()) {
                 $boolResponsable = 1;
