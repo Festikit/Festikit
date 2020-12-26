@@ -73,7 +73,7 @@
 
                             $compteurCreneauxHeure++;
                         }
-                    } else echo "<th><i> Le festival n'a pas encore de créneaux </i></th>";
+                    } else echo "<th><i> Le poste n'a pas encore de créneaux </i></th>";
                     ?>
                 </tr>
 
@@ -98,7 +98,7 @@
             echo "</br>";
             $compteur++;
         }
-    } else echo "<td><i> Vous n'avez encore ajouté aucun jour à votre festival.. </i></td>";
+    } else echo "<td><i> Vous n'avez encore ajouté aucun créneaux à votre poste.. </i></td>";
         ?>
             </table>
     
