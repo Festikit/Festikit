@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col s12 m10 offset-m1 l8 offset-l2">
 
-        <form method="post" action="index.php?action=created&festival_id=1" enctype="multipart/form-data" class="col s12" onsubmit="return checkPasswordOnSubmit();">
+        <form method="post" action="index.php?action=created" enctype="multipart/form-data" class="col s12" onsubmit="return checkPasswordOnSubmit();">
         
         <?php
         if(!$boolUser) {
         ?>
-        
+
             <div class="card-panel grey lighten-4">
                 <h5>À propos de moi</h5>
                 <div class="row">
