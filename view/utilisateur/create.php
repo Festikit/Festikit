@@ -4,6 +4,8 @@
         <form method="post" action="index.php?action=created" enctype="multipart/form-data" class="col s12" onsubmit="return checkPasswordOnSubmit();">
         
         <?php
+        $festivalNameHtml = htmlspecialchars($f->getFestivalName()); 
+        echo "<h3>Inscription : $festivalNameHtml</h3>";
         if(!$boolUser) {
         ?>
 
@@ -286,7 +288,7 @@
 
             <div class="row">
                 <input type="hidden" name="action" value="created">
-                <input type="hidden" name="festival_id" value=<?php echo "\"" . $_GET['festival_id'] . "\"" ?>>
+                <input type="hidden" name="festival_id" value=<?php echo "\"$festival_id\"" ?>>
                 <input class="btn col s12 m4 offset-m4 l4 offset-l4" id="ButtonSignIn" type="submit" value="Envoyer" />
             </div>
         </form>

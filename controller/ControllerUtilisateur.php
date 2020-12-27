@@ -12,6 +12,9 @@ class ControllerUtilisateur
             $boolUser = 0;
         }
 
+        $festival_id = $_GET['festival_id'];
+        $f = ModelFestival::select($festival_id);
+
         $pagetitle = 'Formulaire d\'enregistrement';
         $controller = 'utilisateur';
         $view = 'create';
