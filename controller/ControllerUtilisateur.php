@@ -156,18 +156,20 @@ class ControllerUtilisateur
     public static function created()
     {
         $reussiteUser = false;
-
-        // Initialisation des variables pour user
-        $user_firstname = $_POST['user_firstname'];
-        $user_lastname = $_POST['user_lastname'];
-        $user_mail = $_POST['user_mail'];
-        $user_phone = $_POST['user_phone'];
-        $user_birthdate = $_POST['user_birthdate'];
-        $user_postal_code = $_POST['user_postal_code'];
-        $user_driving_license = $_POST['user_driving_license'];
-        $user_password1 = $_POST['user_password1'];
-        $user_password2 = $_POST['user_password2'];
-        $admin = 0;
+        
+        if(!isset($_SESSION['login'])) {
+            // Initialisation des variables pour user
+            $user_firstname = $_POST['user_firstname'];
+            $user_lastname = $_POST['user_lastname'];
+            $user_mail = $_POST['user_mail'];
+            $user_phone = $_POST['user_phone'];
+            $user_birthdate = $_POST['user_birthdate'];
+            $user_postal_code = $_POST['user_postal_code'];
+            $user_driving_license = $_POST['user_driving_license'];
+            $user_password1 = $_POST['user_password1'];
+            $user_password2 = $_POST['user_password2'];
+            $admin = 0;
+        }
 
         // Initialisation des variables pour postuler
         $venir_avec_vehicule = $_POST['vehicule'];
@@ -191,68 +193,75 @@ class ControllerUtilisateur
         $festival_id = $_POST['festival_id'];
 
 
-        // Test d'upload de la photo
-        $reussitePicture = false;
-        if (!empty($_FILES['user_picture']) && is_uploaded_file($_FILES['user_picture']['tmp_name'])) {
+        // On vérifie que l'utilisateur est connecté
+        // Si c'est le cas on ne veut pas faire d'insertions dans la table user
+        if(!isset($_SESSION['login'])) {
 
-            // Vérification de l'extension
-            $listeExtensions = array('/png', '/jpg', '/jpeg');
-            $extension = strrchr($_FILES['user_picture']['type'], '/');
-            if (in_array($extension, $listeExtensions)) {
+            // Test d'upload de la photo
+            $reussitePicture = false;
+            if (!empty($_FILES['user_picture']) && is_uploaded_file($_FILES['user_picture']['tmp_name'])) {
 
-                // Vérification de la taille
-                if ($_FILES['user_picture']['size'] < $_POST['MAX_FILE_SIZE']) {
-                    $user_picture = addslashes(file_get_contents($_FILES['user_picture']['tmp_name']));
-                    if ($user_picture == false) {
-                        $message = 'Erreur: Initialisation de $user_picture';
+                // Vérification de l'extension
+                $listeExtensions = array('/png', '/jpg', '/jpeg');
+                $extension = strrchr($_FILES['user_picture']['type'], '/');
+                if (in_array($extension, $listeExtensions)) {
+
+                    // Vérification de la taille
+                    if ($_FILES['user_picture']['size'] < $_POST['MAX_FILE_SIZE']) {
+                        $user_picture = addslashes(file_get_contents($_FILES['user_picture']['tmp_name']));
+                        if ($user_picture == false) {
+                            $message = 'Erreur: Initialisation de $user_picture';
+                        } else {
+                            $reussitePicture = true;
+                        }
                     } else {
-                        $reussitePicture = true;
+                        $message = 'Erreur: L\'image est trop volumineuse' . "( > " . $_POST['MAX_FILE_SIZE'] . ")";
                     }
                 } else {
-                    $message = 'Erreur: L\'image est trop volumineuse' . "( > " . $_POST['MAX_FILE_SIZE'] . ")";
+                    $message = 'Erreur: Le format de l\'image n\'est pas autorisé (!= png jpg ou jpeg)';
                 }
             } else {
-                $message = 'Erreur: Le format de l\'image n\'est pas autorisé (!= png jpg ou jpeg)';
+                $message = 'Erreur: Image non upload';
+            }
+
+
+            // Insertion pour user
+            if($reussitePicture) {
+                if (isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license, $user_password1, $user_password2, $admin)) {
+                    $reussiteInitUser = true;
+                    if (self::createdUser($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license, $user_password1, $user_password2, $admin)) {
+                        $reussiteUser = true;
+                    } else {
+                        $message = "Erreur: createdUser";
+                        $reussiteUser = false;
+                    }
+                } else {
+                    $message = 'Erreur: initialisation des variables nécessaire à la création d\'un utilisateur';
+                    $reussiteInitUser = false;
+                }
+            }
+
+
+            // L'utilisateur étant créé, on récupère son id à partir de son mail
+            if ($reussitePicture && $reussiteInitUser && $reussiteUser) {
+                $user_id = ModelUtilisateur::getIdByMail($user_mail);
+                $user_id = $user_id->getId();
+                if (!empty($user_id)) {
+                    $reussiteId = true;
+                } else {
+                    $message = 'Erreur: Récupération de l\'id utilisateur';
+                    $reussiteId = false;
+                }
             }
         } else {
-            $message = 'Erreur: Image non upload';
+            // On est ici si l'utilisateur à déjà un compte 
+            $user_id = $_SESSION['login'];
         }
-
-
-        // Insertion pour user
-        if($reussitePicture) {
-            if (isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license, $user_password1, $user_password2, $admin)) {
-                $reussiteInitUser = true;
-                if (self::createdUser($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license, $user_password1, $user_password2, $admin)) {
-                    $reussiteUser = true;
-                } else {
-                    $message = "Erreur: createdUser";
-                    $reussiteUser = false;
-                }
-            } else {
-                $message = 'Erreur: initialisation des variables nécessaire à la création d\'un utilisateur';
-                $reussiteInitUser = false;
-            }
-        }
-
-
-        // L'utilisateur étant créé, on récupère son id à partir de son mail
-        if ($reussitePicture && $reussiteInitUser && $reussiteUser) {
-            $user_id = ModelUtilisateur::getIdByMail($user_mail);
-            $user_id = $user_id->getId();
-            if (!empty($user_id)) {
-                $reussiteId = true;
-            } else {
-                $message = 'Erreur: Récupération de l\'id utilisateur';
-                $reussiteId = false;
-            }
-        }
-
 
         // Insertion pour postuler
         $reussiteInitPostuler = true;
         if ($reussitePicture && $reussiteInitUser && $reussiteUser && $reussiteId && $reussiteInitPostuler) {
-            if (isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license)) {
+            if (isset($user_id, $festival_id, $venir_avec_vehicule, $besoin_hebergement, $peut_heberger, $configuration_couchage, $arrivee_festival, $depart_festival, $autres_dispos, $experience)) {
                 if (self::createdPostuler($user_id, $festival_id, $venir_avec_vehicule, $besoin_hebergement, $peut_heberger, $configuration_couchage, $arrivee_festival, $depart_festival, $autres_dispos, $experience)) {
                     $reussitePostuler = true;
                 } else {
