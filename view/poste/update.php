@@ -40,9 +40,9 @@
 <ul class="collection">
     <li class="collection-header">
         <?php echo "<a class=\"btn-large waves-effect waves-light secondary-content\" href=\"index.php?action=create&controller=creneau&poste_id=$log_p&festival_id=$festival_id\"> Ajouter un creneau</a>"; ?>
-        <h4 class="center">Liste des creneaux</h4>
+        <h4 class="center">Modification des creneaux du poste</h4>
     </li>
-   
+
     <?php
     $posteCour = $_GET['poste_id'];
     $compteur = 1;
@@ -63,17 +63,17 @@
                             $cStart = $h->getCreneauStart();
                             $cEnd = $h->getCreneauEnd();
                             //cr début
-                            $cStart = $cStart . "";
+                            $cStart = $cStart."";
                             $cStartmod = substr($cStart, 0, -3);
                             //cr fin
-                            $cEnd = $cEnd . "";
-                            $cEndmod = substr($cEnd, 0, -3);
+                            $cEnd = $cEnd."";
+                            $cEndmod = substr($cEnd, 0, -3);                         
 
                             echo "<th id=\"\"><label for=\"dispo_heure$compteurCreneauxHeure\">" . $cStartmod . " " . $cEndmod . "</label></th>";
 
                             $compteurCreneauxHeure++;
                         }
-                    } else echo "<th><i> Le poste n'a pas encore de créneaux </i></th>";
+                    } else echo "<th><i> Le festival n'a pas encore de créneaux </i></th>";
                     ?>
                 </tr>
 
@@ -88,43 +88,29 @@
 
             if (ModelCreneau::getCreneauxHeureByJour($posteCour, $date_depart_creneau_courant)) {
                 foreach (ModelCreneau::getCreneauxHeureByJour($posteCour, $date_depart_creneau_courant) as $h) {
-                    $cStart = $h->getCreneauStart();
-                    $cEnd = $h->getCreneauEnd();
-                    echo "<td><label><i class=\"material-icons\" name=\"dispo_heure$cStart" . "_$cEnd"  . "date_$date_depart_creneau_courant\" 
-                    id=\"dispo_heure$compteur" . "date_$date_depart_creneau_courant\">check</i><span> </span></label></td>";
+                    
+                    $creneau_courant_id = $h->getCreneauId();
+                    
+                    echo "<td><a title=\"modifier\" href=\"index.php?action=update&controller=creneau&creneau_id=$creneau_courant_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>";
+                    echo "<a title=\"modifier\" href=\"index.php?action=deleteGen&controller=creneau&creneau_id=$creneau_courant_id&type=gen&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">delete</i></a></td>";
+                    
                 }
             } else echo "<td><i> Il n'y a donc rien à afficher ici.. </i></td>";
             echo "</tr>";
             echo "</br>";
             $compteur++;
         }
-    } else echo "<td><i> Vous n'avez encore ajouté aucun créneaux à votre poste.. </i></td>";
+    } else echo "<td><i> Vous n'avez encore ajouté aucun jour à votre festival.. </i></td>";
         ?>
             </table>
+</br>
+</br>
+</br>
+<a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=read&controller=festival&festival_id=<?php echo $festival_id?>"> Retour au festival</a>
     
     
     
     
     
-    <?php
-    /*if (!$tab_creneau) {
-        echo "<li> <span class=\"title\"> Le poste n'a aucun créneau </span> </li>";
-    } else {
-        foreach ($tab_creneau as $creaneau) {
-            $creneau_id = htmlspecialchars($creaneau->getCreneauId());
-            $creneau_startdate = htmlspecialchars($creaneau->getCreneauStart());
-            $creneau_enddate = $creaneau->getCreneauEnd();
-            echo "<li class=\"collection-item avatar\">
-            <span class=\"title\"> <a href=\"index.php?action=read&controller=creneau&creneau_id=$creneau_id\">Créneau $creneau_id</a> </span>
-            <p>Début: $creneau_startdate</p>
-            <p>Fin: $creneau_enddate</p>
-    		<div class=\"secondary-content\">
-                <a title=\"en savoir plus\" href=\"index.php?action=read&controller=creneau&creneau_id=$creneau_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
-                <a title=\"supprimer\" href=\"index.php?action=deleteInPoste&controller=creneau&creneau_id=$creneau_id&poste_id=$log_p\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
-                <a title=\"modifier\" href=\"index.php?action=update&controller=creneau&creneau_id=$creneau_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
-    		</div>
-    	</li>";
-        }
-    }*/
-    ?>
+    
 </ul>
