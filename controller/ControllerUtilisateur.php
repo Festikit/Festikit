@@ -5,7 +5,13 @@ class ControllerUtilisateur
 {
 
     public static function create()
-    {
+    {   
+        if(isset($_SESSION['login'])) {
+            $boolUser = 1;
+        } else {
+            $boolUser = 0;
+        }
+
         $pagetitle = 'Formulaire d\'enregistrement';
         $controller = 'utilisateur';
         $view = 'create';

@@ -1,13 +1,12 @@
 <div class="row">
     <div class="col s12 m10 offset-m1 l8 offset-l2">
-        <?php
-        /*
-            echo "<form method=\"post\" action=\"index.php?action=created&festival_id=" . $_GET['festival_id'] . "\" enctype=\"multipart/form-data" . " class=\"col s12\">";
-        */
-        ?>
 
         <form method="post" action="index.php?action=created&festival_id=1" enctype="multipart/form-data" class="col s12" onsubmit="return checkPasswordOnSubmit();">
-
+        
+        <?php
+        if(!$boolUser) {
+        ?>
+        
             <div class="card-panel grey lighten-4">
                 <h5>À propos de moi</h5>
                 <div class="row">
@@ -76,9 +75,13 @@
                     </div>
                 </div>
             </div>
+
+            <?php
+            }
+            ?>
+
             <div class="card-panel grey lighten-4">
                 <h5>Mobilité</h5>
-                <!-- TODO: Corrigé le h5 degeu -->
                 <div class="row">
                     <div class="col s12">
                         <label for="user_driving_license"></label> Permis de conduire<span class="flow-text red-text" title="Ce champ est obligatoire">*</span> :
