@@ -1,4 +1,3 @@
-
 <div class="container mb-2">
     <?php
     echo "<p> $message </p>";
