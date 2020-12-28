@@ -12,6 +12,7 @@
         <div class="card-panel col s12 grey lighten-4">
             <form method="get" action="index.php?action=updated&controller=poste">
                 <h5 class="center-align">Modifier ce poste</h5>
+                <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=read&controller=festival&festival_id=<?php echo $festival_id ?>"> Retour au festival</a>
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">Nom</i>
@@ -54,7 +55,7 @@
 
                     <?php
                     // Affichage dynamique des heures correspondant aux créneaux génériques
-                    
+
                     $compteurCreneauxHeure = 0;
                     $date_depart_creneau_courant = $creneau_de_date_courant->getCreneauStart();
 
@@ -63,11 +64,11 @@
                             $cStart = $h->getCreneauStart();
                             $cEnd = $h->getCreneauEnd();
                             //cr début
-                            $cStart = $cStart."";
+                            $cStart = $cStart . "";
                             $cStartmod = substr($cStart, 0, -3);
                             //cr fin
-                            $cEnd = $cEnd."";
-                            $cEndmod = substr($cEnd, 0, -3);                         
+                            $cEnd = $cEnd . "";
+                            $cEndmod = substr($cEnd, 0, -3);
 
                             echo "<th id=\"\"><label for=\"dispo_heure$compteurCreneauxHeure\">" . $cStartmod . " " . $cEndmod . "</label></th>";
 
@@ -88,13 +89,12 @@
 
             if (ModelCreneau::getCreneauxHeureByJour($posteCour, $date_depart_creneau_courant)) {
                 foreach (ModelCreneau::getCreneauxHeureByJour($posteCour, $date_depart_creneau_courant) as $h) {
-                    
+
                     $creneau_courant_id = $h->getCreneauId();
                     $creneau_courant_poste_id = $h->getPosteId();
-                    
-                    echo "<td><a title=\"modifier\" href=\"index.php?action=update&controller=creneau&creneau_id=$creneau_courant_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>";
+
+                    echo "<td><a title=\"modifier\" href=\"index.php?action=update&controller=creneau&creneau_id=$creneau_courant_id&poste_id=$creneau_courant_poste_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>";
                     echo "<a title=\"supprimer\" href=\"index.php?action=deleteInPoste&controller=creneau&creneau_id=$creneau_courant_id&poste_id=$creneau_courant_poste_id\" class=\"btn\"><i class=\"material-icons\">delete</i></a></td>";
-                    
                 }
             } else echo "<td><i> Il n'y a donc rien à afficher ici.. </i></td>";
             echo "</tr>";
@@ -104,14 +104,14 @@
     } else echo "<td><i> Vous n'avez encore ajouté aucun jour à votre festival.. </i></td>";
         ?>
             </table>
-</br>
-</br>
-</br>
-<a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=read&controller=festival&festival_id=<?php echo $festival_id?>"> Retour au festival</a>
-    
-    
-    
-    
-    
-    
+            </br>
+            </br>
+            </br>
+
+
+
+
+
+
+
 </ul>

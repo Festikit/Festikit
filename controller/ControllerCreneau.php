@@ -46,6 +46,7 @@ class ControllerCreneau
         $tab_c = ModelCreneau::select($log_c);
         $nom_poste = ModelPoste::select($tab_c->getPosteId())->getPosteName();
         $nom_festival = ModelFestival::select($tab_c->getFestivalId())->getFestivalName();
+    
         require(File::build_path(array("view", "view.php")));
     }
     
@@ -78,9 +79,12 @@ class ControllerCreneau
             "festival_id" => $festival_id,
             "poste_id" => $poste_id,
         );
+        
         $creneaumod = new ModelCreneau();
         $creneaumod->update($tab_cmod);
         $tab_c = ModelCreneau::selectAll();
+        $log_p = $poste_id; 
+        $tab_p = ModelPoste::select($poste_id);
         require(File::build_path(array("view", "view.php")));
     }
     

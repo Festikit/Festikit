@@ -82,7 +82,9 @@ class ControllerPoste {
             );
             $postemod = new ModelPoste();
             $postemod->update($tab_pmod); //gen
-            $tab_p = ModelPoste::selectAll();
+            
+            $tab_p = ModelPoste::select($log_p);
+            $tab_creneau = ModelCreneau::getCreneauxDateByPosteId($log_p);
         } else {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
