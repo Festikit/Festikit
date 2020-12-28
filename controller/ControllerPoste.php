@@ -142,7 +142,6 @@ class ControllerPoste {
             $tab_poste = ModelFestival::getPostesByFestival($festival_id);
             $tab_date = ModelFestival::getJoursByFestival($festival_id);
             $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
-            $tab_nomCreateur = ModelFestival::getNomCreateur();
             
             $tab_creneau_gen = ModelCreneau::getCreneauxGen($festival_id);
             if(Session::is_responsable()) {

@@ -23,7 +23,7 @@ class ControllerCreneau
 
         if ($c == false) {
             $pagetitle = 'Erreur action read';
-            $controller = 'creneau';
+            $controller = 'utilisateur';
             $view = 'messageRetour';
             $message = 'erreur de la fonction read dans le controller Creneau';
         } else {
@@ -191,7 +191,7 @@ class ControllerCreneau
         $tab_creneau = ModelCreneau::getCreneauxDateByPosteId($log_p);
         $tab_p = ModelPoste::select($log_p);
         if (is_bool(ModelCreneau::save($dataCreneau))) {
-            $controller = 'creneau';
+            $controller = 'utilisateur';
             $view = 'messageRetour';
             $message = 'Erreur: Insertion des données dans la table poste';
             $pagetitle = 'erreur';
@@ -245,7 +245,7 @@ class ControllerCreneau
 
 
         if (is_bool(ModelCreneau::save($dataCreneau))) {
-            $controller = 'creneau';
+            $controller = 'utilisateur';
             $view = 'messageRetour';
             $message = 'Erreur: Insertion des données dans la table poste';
             $pagetitle = 'erreur';

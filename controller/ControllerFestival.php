@@ -35,8 +35,8 @@ class ControllerFestival
 
             if ($f == false) {
                 $pagetitle = 'Erreur action read';
-                $controller = 'festival';
-                $view = 'error';
+                $controller = 'utilisateur';
+                $view = 'messageRetour';
                 $message = 'erreur de la fonction read dans le controller festival';
             } else {
                 $pagetitle = 'Détail du festival';
@@ -69,8 +69,8 @@ class ControllerFestival
 
             if ($f == false) {
                 $pagetitle = 'Erreur action read';
-                $controller = 'festival';
-                $view = 'error';
+                $controller = 'utilisateur';
+                $view = 'messageRetour';
                 $message = 'erreur de la fonction read dans le controller festival';
             } else {
                 $pagetitle = 'Détail du festival';
@@ -97,7 +97,7 @@ class ControllerFestival
             $cityHTML = "";
             if (!isset($_SESSION['login'])) {
                 $pagetitle = 'Création festival';
-                $controller = 'festival';
+                $controller = 'utilisateur';
                 $view = 'messageRetour';
                 $message = 'Vous ne pouvez pas créer de festival sans être connecté';
             } else {
@@ -138,8 +138,8 @@ class ControllerFestival
                 $primary_property = "readonly";
             } else {
                 $pagetitle = 'Erreur action';
-                $controller = 'festival';
-                $view = 'error';
+                $controller = 'utilisateur';
+                $view = 'messageRetour';
                 $message = "Erreur: Le controller n'a pas pu récupérer les éléments du formulaire update";
             }
         } else {
@@ -222,7 +222,7 @@ class ControllerFestival
                 else{
                     $reussite_festival = false;
                     $controller = 'utilisateur';
-                    $view = 'error';
+                    $view = 'messageRetour';
                     $message = 'Un festival existe déjà avec ce nom';
                     $pagetitle = 'erreur';
                 }
@@ -230,7 +230,7 @@ class ControllerFestival
 
             } else {
                 $controller = 'utilisateur';
-                $view = 'error';
+                $view = 'messageRetour';
                 $message = 'Erreur: initialisation des variables nécessaire à la création d\'un utilisateur';
                 $pagetitle = 'erreur';
             }
@@ -245,7 +245,7 @@ class ControllerFestival
                 } else {
                     $message = 'Erreur: Récupération de l\'id festival';
                     $controller = 'utilisateur';
-                    $view = 'error';
+                    $view = 'messageRetour';
                     $pagetitle = 'erreur';
                     $reussiteId = false;
                 }
@@ -260,8 +260,8 @@ class ControllerFestival
                         );
         
                         if (is_bool(ModelPoste::save($dataPoste))) {
-                            $controller = 'creneau';
-                            $view = 'error';
+                            $controller = 'utilisateur';
+                            $view = 'messageRetour';
                             $message = 'Erreur: Insertion des données dans la table poste';
                             $pagetitle = 'erreur';
                         }
@@ -273,7 +273,7 @@ class ControllerFestival
                         $view = 'created';
                     } else {
                         $controller = 'utilisateur';
-                        $view = 'error';
+                        $view = 'messageRetour';
                         $message = 'Erreur: initialisation des variables nécessaire à la création d\'un poste';
                         $pagetitle = 'erreur';
                     }
@@ -307,8 +307,8 @@ class ControllerFestival
 
             if ($f == false) {
                 $pagetitle = 'Erreur action read';
-                $controller = 'festival';
-                $view = 'error';
+                $controller = 'utilisateur';
+                $view = 'messageRetour';
                 $message = 'erreur de la fonction accepterUtilisateur dans le controller festival';
             } else {
                 $pagetitle = 'Détail du festival';
@@ -343,8 +343,8 @@ class ControllerFestival
 
                 if ($f == false) {
                     $pagetitle = 'Erreur action read';
-                    $controller = 'festival';
-                    $view = 'error';
+                    $controller = 'utilisateur';
+                    $view = 'messageRetour';
                     $message = 'erreur de la fonction refuserUtilisateur dans le controller festival';
                 } else {
                     $pagetitle = 'Erreur';
@@ -354,8 +354,8 @@ class ControllerFestival
                 }
             } else {
                 $pagetitle = 'Détail du festival';
-                $controller = 'festival';
-                $view = 'error';
+                $controller = 'utilisateur';
+                $view = 'messageRetour';
                 $message = 'Vous ne pouvez pas désassigner un responsable';
             }
         } else {
@@ -386,8 +386,8 @@ class ControllerFestival
 
                 if ($f == false) {
                     $pagetitle = 'Erreur action read';
-                    $controller = 'festival';
-                    $view = 'error';
+                    $controller = 'utilisateur';
+                    $view = 'messageRetour';
                     $message = 'erreur de la fonction ajouterResponsable dans le controller festival';
                 } else {
                     $pagetitle = 'Détail du festival';
@@ -397,8 +397,8 @@ class ControllerFestival
             }
             else{
                 $pagetitle = 'Détail du festival';
-                $controller = 'festival';
-                $view = 'error';
+                $controller = 'utilisateur';
+                $view = 'messageRetour';
                 $message = 'Ce bénévole est déjà responsable dans ce festival';
             }
         } else {
