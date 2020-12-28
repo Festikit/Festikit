@@ -90,9 +90,10 @@
                 foreach (ModelCreneau::getCreneauxHeureByJour($posteCour, $date_depart_creneau_courant) as $h) {
                     
                     $creneau_courant_id = $h->getCreneauId();
+                    $creneau_courant_poste_id = $h->getPosteId();
                     
                     echo "<td><a title=\"modifier\" href=\"index.php?action=update&controller=creneau&creneau_id=$creneau_courant_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>";
-                    echo "<a title=\"modifier\" href=\"index.php?action=deleteGen&controller=creneau&creneau_id=$creneau_courant_id&type=gen&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">delete</i></a></td>";
+                    echo "<a title=\"supprimer\" href=\"index.php?action=deleteInPoste&controller=creneau&creneau_id=$creneau_courant_id&poste_id=$creneau_courant_poste_id\" class=\"btn\"><i class=\"material-icons\">delete</i></a></td>";
                     
                 }
             } else echo "<td><i> Il n'y a donc rien à afficher ici.. </i></td>";

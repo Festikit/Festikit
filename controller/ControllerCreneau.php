@@ -133,6 +133,7 @@ class ControllerCreneau
         ModelCreneau::delete($creneau_id);
         $tab_creneau = ModelCreneau::getCreneauxDateByPosteId($log_p);
         $tab_p = ModelPoste::select($log_p);
+        
 
         require(File::build_path(array("view", "view.php")));
     }

@@ -138,7 +138,7 @@ class ModelCreneau extends Model
   public static function getCreneauxHeureByJour($poste_id, $jour)
   {
     try {
-      $sql = "SELECT DISTINCT CAST(creneau_startdate AS TIME) AS creneau_startdate , CAST(creneau_enddate AS TIME) AS creneau_enddate, creneau_id 
+      $sql = "SELECT DISTINCT CAST(creneau_startdate AS TIME) AS creneau_startdate , CAST(creneau_enddate AS TIME) AS creneau_enddate, creneau_id, poste_id 
       FROM creneau WHERE poste_id=:id_tag AND CAST(creneau_startdate AS DATE) = DATE '$jour'";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
