@@ -62,7 +62,7 @@ class ControllerPostuler {
                 }
             }
             
-            if($reussitePostuler && $reussiteDisponible && $reussitePreference) { // ou if(!isset(&message))
+            if($reussitePostuler && $reussiteDisponible && $reussitePreference) { // ou if(!isset($message))
                 /*
                 controller = 'postuler';
                 $pagetitle = 'Suppression de candidature';

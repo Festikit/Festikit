@@ -23,7 +23,7 @@ class ControllerFestival
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
         require File::build_path(array("view", "view.php"));
     }
@@ -81,7 +81,7 @@ class ControllerFestival
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
         require File::build_path(array("view", "view.php"));
     }
@@ -98,7 +98,7 @@ class ControllerFestival
             if (!isset($_SESSION['login'])) {
                 $pagetitle = 'Création festival';
                 $controller = 'festival';
-                $view = 'errorAccess';
+                $view = 'messageRetour';
                 $message = 'Vous ne pouvez pas créer de festival sans être connecté';
             } else {
                 $pagetitle = 'Formulaire d\'enregistrement';
@@ -111,7 +111,7 @@ class ControllerFestival
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
 
         require File::build_path(array("view", "view.php"));
@@ -146,7 +146,7 @@ class ControllerFestival
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
 
         require File::build_path(array("view", "view.php"));
@@ -176,7 +176,7 @@ class ControllerFestival
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
 
         require(File::build_path(array("view", "view.php")));
@@ -285,7 +285,7 @@ class ControllerFestival
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
 
         require File::build_path(array("view", "view.php"));
@@ -319,7 +319,7 @@ class ControllerFestival
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
 
         require File::build_path(array("view", "view.php"));
@@ -350,7 +350,7 @@ class ControllerFestival
                     $pagetitle = 'Erreur';
                     $controller = 'utilisateur';
                     $message = "Vous n'avez pas l'autorisation !";
-                    $view = 'errorAccess';
+                    $view = 'messageRetour';
                 }
             } else {
                 $pagetitle = 'Détail du festival';
@@ -362,7 +362,7 @@ class ControllerFestival
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
         require File::build_path(array("view", "view.php"));
     }
@@ -405,7 +405,7 @@ class ControllerFestival
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
 
         require File::build_path(array("view", "view.php"));

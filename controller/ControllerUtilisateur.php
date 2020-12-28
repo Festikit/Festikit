@@ -33,7 +33,7 @@ class ControllerUtilisateur
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }       
         require File::build_path(array("view", "view.php"));
     }
@@ -74,7 +74,7 @@ class ControllerUtilisateur
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }       
 
         require File::build_path(array("view", "view.php"));
@@ -94,7 +94,7 @@ class ControllerUtilisateur
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
         require File::build_path(array("view", "view.php"));
     }
@@ -110,7 +110,7 @@ class ControllerUtilisateur
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
         require(File::build_path(array("view", "view.php")));
     }
@@ -147,7 +147,7 @@ class ControllerUtilisateur
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
         require(File::build_path(array("view", "view.php")));
     }
