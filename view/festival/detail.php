@@ -55,18 +55,9 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
             </div>
             <div class="input-field col s6">
                 <?php
-                $festival_creator = rawurlencode($f->get('user_id'));
-                $tab_creator = ModelFestival::getCreatorByFestival($festival_creator);
-                foreach ($tab_nomCreateur as $f) {
-                    $user_id = rawurlencode($f->getCreatorId());
-                    $user_firstname = htmlspecialchars($f->getUserFirstname());
-                    $user_lastname = htmlspecialchars($f->getUserLastname());
-                    if ($festival_creator == $user_id) {
-                        echo "Créateur du festival : " . $user_firstname . " " . $user_lastname;
-                        break;
-                    }
-                }
-
+                $user_firstname = htmlspecialchars($createur->getFirstname());
+                $user_lastname = htmlspecialchars($createur->getLastname());
+                echo "Créateur du festival : " . $user_firstname . " " . $user_lastname;
                 ?>
             </div>
         </div>

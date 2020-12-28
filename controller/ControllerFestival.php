@@ -58,7 +58,7 @@ class ControllerFestival
             $tab_poste = ModelFestival::getPostesByFestival($festival_id);
             $tab_date = ModelFestival::getJoursByFestival($festival_id);
             $tab_creneau_gen = ModelCreneau::getCreneauxGen($festival_id);
-            $tab_nomCreateur = ModelFestival::getNomCreateur();
+            $createur = ModelFestival::getNomCreateur($festival_id);
 
             if(Session::is_responsable()) {
                 $boolResponsable = 1;
