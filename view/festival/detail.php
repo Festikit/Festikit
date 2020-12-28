@@ -32,6 +32,16 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
         <div class="row">
             <div class="input-field col s12">
                 <?php
+                $user_firstname = htmlspecialchars($createur->getFirstname());
+                $user_lastname = htmlspecialchars($createur->getLastname());
+                echo "<textarea name=\"festival_createur\" id=\"festival_createur\" class=\"materialize-textarea\" readonly>$user_firstname $user_lastname</textarea>" 
+                ?>
+                <label for="festival_createur">Créateur</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <?php
                 $festival_description = $f->getFestivalDescription();
                 $festival_id = htmlspecialchars($f->getFestivalId());
                 echo "<textarea name=\"festival_description\" id=\"festival_description\" class=\"materialize-textarea\" readonly>$festival_description</textarea>" ?>
@@ -52,13 +62,6 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                 $festival_enddate = rawurlencode($f->getFestivalEndDate());
                 echo "<input id=\"festival_enddate\" value=\"$festival_enddate\" type=\"date\" class=\"validate\" readonly>" ?>
                 <label for="festival_enddate" class="active">Fin du festival</label>
-            </div>
-            <div class="input-field col s6">
-                <?php
-                $user_firstname = htmlspecialchars($createur->getFirstname());
-                $user_lastname = htmlspecialchars($createur->getLastname());
-                echo "Créateur du festival : " . $user_firstname . " " . $user_lastname;
-                ?>
             </div>
         </div>
     </form>
