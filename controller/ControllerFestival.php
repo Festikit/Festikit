@@ -9,14 +9,17 @@ class ControllerFestival
     {
         if (Session::is_admin()) {
             $tab_f = ModelFestival::selectAll();
+            $tab_r = ModelFestival::getFestivalByResponsable($_SESSION['login']);
             $boolResponsable = 0;
         }
         if (Session::is_responsable()) {
-            $tab_f = ModelFestival::getFestivalByResponsable($_SESSION['login']);
+            $tab_r = ModelFestival::getFestivalByResponsable($_SESSION['login']);
+            $tab_f = ModelFestival::selectAll();
             $boolResponsable = 1;
         }
         if (Session::is_admin() || Session::is_responsable()) {
-            $pagetitle = 'Liste des festivals';
+            $user_id = $_SESSION['login'];
+            $pagetitle = 'Liste des festivals admin res';
             $controller = 'festival';
             $view = 'list';
         } 
@@ -24,7 +27,7 @@ class ControllerFestival
         {
             $user_id = $_SESSION['login'];
             $tab_f = ModelFestival::selectAll();
-            $pagetitle = 'Liste des festivals';
+            $pagetitle = 'Liste des festivals user';
             $controller = 'festival';
             $view = 'listUser';
         }

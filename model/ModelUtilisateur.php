@@ -458,4 +458,32 @@ class ModelUtilisateur extends Model
       die();
     }
   }
+
+  public static function estAccepte($user_id, $festival_id)
+  {
+    try {
+      $sql = "SELECT p.user_id  FROM postuler p JOIN festival f ON p.festival_id=f.festival_id WHERE p.user_id=:id_tag AND postuler_accepted=:accepted_tag AND f.festival_id=:festival_id_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "id_tag" => $user_id,
+        "accepted_tag" => 1,
+        "festival_id_tag" => $festival_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelPostuler');
+      $estAccepte = $req_prep->fetchAll();
+      if (empty($estAccepte)) {
+        return false;
+      } else {
+        return true;
+      }
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
 }
