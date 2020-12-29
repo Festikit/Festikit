@@ -20,18 +20,19 @@ class ControllerFestival
             $controller = 'festival';
             $view = 'list';
         } 
+        if (!Session::is_admin() && !Session::is_responsable())
+        {
+            $user_id = $_SESSION['login'];
+            $tab_f = ModelFestival::selectAll();
+            $pagetitle = 'Liste des festivals';
+            $controller = 'festival';
+            $view = 'listUser';
+        }
         if (empty($_SESSION['login'])) {
             $tab_f = ModelFestival::selectAll();
             $pagetitle = 'Liste des festivals';
             $controller = 'festival';
             $view = 'listVisiteur';
-        }
-        else {
-            $tab_f = ModelFestival::selectAll();
-            $pagetitle = 'Liste des festivals';
-            $controller = 'festival';
-            $view = 'listUser';
-            $boolResponsable = 0;
         }
         require File::build_path(array("view", "view.php"));
     }
