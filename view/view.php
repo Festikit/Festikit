@@ -94,6 +94,7 @@
 					}
 					if (empty($_SESSION['login'])) {
 						echo '
+						<li><a href="index.php?action=readAll&controller=festival">Accueil Festival</a></li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?action=connect">Connexion</a>
                     </li>
@@ -103,6 +104,7 @@
                     ';
 					} else {
 						echo '
+						<li><a href="index.php?action=readAll&controller=festival">Accueil Festival</a></li>
 						<li class="nav-item">
 							<a class="nav-link" href="index.php?action=read&user_id=' . $_SESSION['login'] . '">Votre Compte</a>
 						</li>

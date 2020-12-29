@@ -19,11 +19,19 @@ class ControllerFestival
             $pagetitle = 'Liste des festivals';
             $controller = 'festival';
             $view = 'list';
-        } else {
-            $pagetitle = 'Erreur';
-            $controller = 'utilisateur';
-            $message = "Vous n'avez pas l'autorisation !";
-            $view = 'messageRetour';
+        } 
+        if (empty($_SESSION['login'])) {
+            $tab_f = ModelFestival::selectAll();
+            $pagetitle = 'Liste des festivals';
+            $controller = 'festival';
+            $view = 'listVisiteur';
+        }
+        else {
+            $tab_f = ModelFestival::selectAll();
+            $pagetitle = 'Liste des festivals';
+            $controller = 'festival';
+            $view = 'listUser';
+            $boolResponsable = 0;
         }
         require File::build_path(array("view", "view.php"));
     }
