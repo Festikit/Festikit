@@ -5,7 +5,7 @@ class ControllerUtilisateur
 {
 
     public static function create()
-    {   
+    {
         if(isset($_SESSION['login'])) {
             $boolUser = 1;
         } else {
@@ -85,11 +85,26 @@ class ControllerUtilisateur
     public static function delete() {
         $user_id = $_GET['user_id'];
         if(Session::is_user($user_id) || Session::is_admin()) {
-            $controller = 'utilisateur';
-            $pagetitle = 'supprimons ceci';
-            $view = 'deleted';
+            $user_lastname = htmlspecialchars(ModelUtilisateur::select($user_id)->getLastname());
+            $user_firstname = htmlspecialchars(ModelUtilisateur::select($user_id)->getFirstname());
+            
             ModelUtilisateur::delete($user_id);
-            $tab_u = ModelUtilisateur::selectAll();
+
+            if(Session::is_admin()) {
+                $tab_u = ModelUtilisateur::selectAll();
+
+                $pagetitle = 'Compte supprimé';
+                $controller = 'utilisateur';
+                $view = 'messageSuite';
+                $path = "action=readAll";
+                $message = "L'utilisateur $user_lastname $user_firstname a été supprimé avec succès.";
+            } else {
+                $pagetitle = 'Compte supprimé';
+                $controller = 'utilisateur';
+                $view = 'messageSuite';
+                $path = "action=connect";
+                $message = "Vous avez supprimé votre compte avec succès";
+            }  
         } else {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
@@ -118,9 +133,6 @@ class ControllerUtilisateur
     public static function updated() {
         $user_id = $_GET['user_id'];
         if(Session::is_user($user_id) || Session::is_admin()) {
-            $controller = 'utilisateur';
-            $view = 'updated';
-            $pagetitle = 'modification utilisateur';
 
             $user_id = $_GET['user_id'];
             $user_firstname = $_GET['user_firstname'];
@@ -140,8 +152,16 @@ class ControllerUtilisateur
                 "user_birthdate" => $user_birthdate
             );
             $utilisateurmod = new ModelUtilisateur();
-            $utilisateurmod->update($tab_umod); //gen
-            $tab_u = ModelUtilisateur::selectAll();
+            $utilisateurmod->update($tab_umod);
+
+            $user_lastname = htmlspecialchars(ModelUtilisateur::select($user_id)->getLastname());
+            $user_firstname = htmlspecialchars(ModelUtilisateur::select($user_id)->getFirstname());
+
+            $controller = 'utilisateur';
+            $view = 'messageSuite';
+            $path = "action=read&user_id=3";
+            $message = "L'utilisateur $user_lastname $user_firstname a été modifié avec succès.";
+            $pagetitle = 'modification utilisateur';
 
         } else {
             $pagetitle = 'Erreur';
