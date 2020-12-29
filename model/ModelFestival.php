@@ -74,22 +74,6 @@ class ModelFestival extends Model
     $this->city = $city2;
   }
 
-  //Getter user_id
-  public function getCreatorId()
-  {
-    return $this->user_id;
-  }
-
-  public function getUserFirstname()
-  {
-    return $this->user_firstname;
-  }
-
-  public function getUserLastname()
-  {
-    return $this->user_lastname;
-  }
-
   // Getter générique
   public function get($nom_attribut)
   {
