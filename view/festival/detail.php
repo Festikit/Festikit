@@ -81,7 +81,11 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
             $poste_name = htmlspecialchars($p->getPosteName());
             $poste_description = htmlspecialchars($p->getPosteDescription());
             $poste_id = $p->getPosteId();
-            echo "<li class=\"collection-item avatar\">
+            if($poste_name == 'Generique'){
+                echo "";
+            }
+            else {
+                echo "<li class=\"collection-item avatar\">
                 <span class=\"title\"> <a href=\"index.php?action=read&controller=poste&poste_id=$poste_id\"> $poste_name</a> </span>
                 <p> $poste_description </p>
                 <div class=\"secondary-content\">
@@ -89,6 +93,8 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                     <a title=\"modifier\" href=\"index.php?action=update&controller=poste&poste_id=$poste_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
                 </div>
                 </li>";
+            }
+            
             $i++;
         }
     }
