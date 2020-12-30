@@ -41,88 +41,126 @@
     </div>
 </div>
     
-    <!-- Affichage des festivals où l'utilisateur est responsable (s'il l'est) -->
-    <?php
-    if($boolResponsable) {
-    ?>
-    <ul class="collection">
-        <li class="collection-header">
-            <h4>Liste des festivals en tant que responsable</h4>
-        </li>
-    <?php
+    <!-- Affichage des festivals où l'utilisateur est le créateur -->
+    <?php if($boolAdmin) { ?>
+        <ul class="collection">
+            <li class="collection-header">
+                <h4>Liste des festivals en tant que créateur</h4>
+            </li>
+        <?php
 
-    if(empty($tab_festivalWhereResponsable)) {
-        echo "Vous n'êtes responsable d'aucun festival.";
-    } else {
-        foreach ($tab_festivalWhereResponsable as $f) {
-            echo "
-            <li class=\"collection-item avatar\">
-                <a href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\">" . htmlspecialchars($f->getFestivalName()) . "</a>
-                <div class=\"secondary-content\">
-                    <a title=\"en savoir plus\" href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">more</i></a>
-                </div>
-            </li>";
-        }
-    }
-    echo "</ul>";
-    }
-    ?>
-
-    <!-- Affichage des festivals où l'utilisateur est bénévole -->
-    <ul class="collection">
-        <li class="collection-header">
-            <h4>Liste des festivals en tant que bénévole</h4>
-        </li>
-    <?php
-
-    if(empty($tab_festivalWhereAccepted)) {
-        echo "Il n'y a pas encore de festival.";
-    } else {
-        foreach ($tab_festivalWhereAccepted as $f) {
-            echo "
-            <li class=\"collection-item avatar\">
-                <a href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\">" . htmlspecialchars($f->getFestivalName()) . "</a>
-                <div class=\"secondary-content\">
-                    <a title=\"en savoir plus\" href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">more</i></a>
-                </div>
-            </li>";
-        }
-    }
-    ?>
-    </ul>
-
-    <!-- Affichage des festivals où l'utilisateur est candidat -->
-    <ul class="collection">
-        <li class="collection-header">
-            <h4>Liste des festivals en tant que candidat</h4>
-        </li>
-    <?php
-    if(empty($tab_festivalWhereCandidat)) {
-        echo "Il n'y a pas de candidature.</br>";
-    } else {
-        foreach ($tab_festivalWhereCandidat as $c) {
-            if($boolResponsable || $boolAdmin) {
+        if(empty($tab_festivalWhereCreateur)) {
+            echo "Vous n'êtes créateur d'aucun festival.";
+        } else {
+            foreach ($tab_festivalWhereCreateur as $f) {
                 echo "
                 <li class=\"collection-item avatar\">
-                <a href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($c->getFestivalId()) . "\">" . htmlspecialchars($c->getFestivalName()) . "</a>
+                    <a href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\">" . htmlspecialchars($f->getFestivalName()) . "</a>
                     <div class=\"secondary-content\">
-                        <a title=\"en savoir plus\" href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($c->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">more</i></a>
-                        <a title=\"supprimer\" href=\"index.php?action=delete&controller=postuler&user_id=" . rawurlencode($user_id) . "&festival_id=" . rawurlencode($c->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
-                    </div>
-                </li>";
-            } else {
-                echo "
-                <li class=\"collection-item avatar\">
-                <a href=\"index.php?action=readForUser&controller=festival&festival_id=" . rawurlencode($c->getFestivalId()) . "\">" . htmlspecialchars($c->getFestivalName()) . "</a>
-                    <div class=\"secondary-content\">
-                        <a title=\"en savoir plus\" href=\"index.php?action=readForUser&controller=festival&festival_id=" . rawurlencode($c->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">more</i></a>
-                        <a title=\"supprimer\" href=\"index.php?action=delete&controller=postuler&user_id=" . rawurlencode($user_id) . "&festival_id=" . rawurlencode($c->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
-                        </div>
-                        </li>
+                        <a title=\"en savoir plus\" href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">more</i></a>
                     </div>
                 </li>";
             }
         }
+        echo "</ul>";
     }
     ?>
-    </ul>
+
+
+    <!-- Affichage des festivals où l'utilisateur est responsable -->
+    <?php if($boolResponsable) { ?>
+        <ul class="collection">
+            <li class="collection-header">
+                <h4>Liste des festivals en tant que responsable</h4>
+            </li>
+        <?php
+
+        if(empty($tab_festivalWhereResponsable)) {
+            echo "Vous n'êtes responsable d'aucun festival.";
+        } else {
+            foreach ($tab_festivalWhereResponsable as $f) {
+                echo "
+                <li class=\"collection-item avatar\">
+                    <a href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\">" . htmlspecialchars($f->getFestivalName()) . "</a>
+                    <div class=\"secondary-content\">
+                        <a title=\"en savoir plus\" href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">more</i></a>
+                    </div>
+                </li>";
+            }
+        }
+        echo "</ul>";
+    }
+    ?>
+
+    <!-- Affichage des festivals où l'utilisateur est bénévole -->
+    <?php if($boolResponsable || $boolBenevole) { ?>
+        <ul class="collection">
+            <li class="collection-header">
+                <h4>Liste des festivals en tant que bénévole</h4>
+            </li>
+        <?php
+
+        if(empty($tab_festivalWhereAccepted)) {
+            echo "Il n'y a pas encore de festival.";
+        } else {
+            foreach ($tab_festivalWhereAccepted as $f) {
+                if($boolResponsable) {
+                    echo "
+                    <li class=\"collection-item avatar\">
+                        <a href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\">" . htmlspecialchars($f->getFestivalName()) . "</a>
+                        <div class=\"secondary-content\">
+                            <a title=\"en savoir plus\" href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">more</i></a>
+                        </div>
+                    </li>";
+                } 
+                if($boolBenevole) {
+                    echo "
+                    <li class=\"collection-item avatar\">
+                        <a href=\"index.php?action=readForUser&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\">" . htmlspecialchars($f->getFestivalName()) . "</a>
+                        <div class=\"secondary-content\">
+                            <a title=\"en savoir plus\" href=\"index.php?action=readForUser&controller=festival&festival_id=" . rawurlencode($f->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">more</i></a>
+                        </div>
+                    </li>";
+                }
+            }
+        }
+        echo "</ul>";
+    }
+    ?>
+
+    <!-- Affichage des festivals où l'utilisateur est candidat -->
+    <?php if($boolResponsable || $boolBenevole) { ?>
+        <ul class="collection">
+            <li class="collection-header">
+                <h4>Liste des festivals en tant que candidat</h4>
+            </li>
+        <?php
+        if(empty($tab_festivalWhereCandidat)) {
+            echo "Il n'y a pas de candidature.</br>";
+        } else {
+            foreach ($tab_festivalWhereCandidat as $c) {
+                if($boolResponsable) {
+                    echo "
+                    <li class=\"collection-item avatar\">
+                    <a href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($c->getFestivalId()) . "\">" . htmlspecialchars($c->getFestivalName()) . "</a>
+                        <div class=\"secondary-content\">
+                            <a title=\"en savoir plus\" href=\"index.php?action=read&controller=festival&festival_id=" . rawurlencode($c->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">more</i></a>
+                            <a title=\"supprimer\" href=\"index.php?action=delete&controller=postuler&user_id=" . rawurlencode($user_id) . "&festival_id=" . rawurlencode($c->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
+                        </div>
+                    </li>";
+                } 
+                if($boolBenevole) {
+                    echo "
+                    <li class=\"collection-item avatar\">
+                    <a href=\"index.php?action=readForUser&controller=festival&festival_id=" . rawurlencode($c->getFestivalId()) . "\">" . htmlspecialchars($c->getFestivalName()) . "</a>
+                        <div class=\"secondary-content\">
+                            <a title=\"en savoir plus\" href=\"index.php?action=readForUser&controller=festival&festival_id=" . rawurlencode($c->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">more</i></a>
+                            <a title=\"supprimer\" href=\"index.php?action=delete&controller=postuler&user_id=" . rawurlencode($user_id) . "&festival_id=" . rawurlencode($c->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
+                        </div>
+                    </li>";
+                }
+            }
+        }
+        echo "</ul>";
+    }
+    ?>

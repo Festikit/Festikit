@@ -48,14 +48,16 @@ class ControllerUtilisateur
             $tab_festivalWhereAccepted = ModelUtilisateur::getFestivalWhereAccepted($user_id);
             $tab_festivalWhereCandidat = ModelUtilisateur::getFestivalWhereCandidat($user_id);
 
+            $boolBenevole = 0;
+            $boolAdmin = 0;
             $boolResponsable = 0;
             if (Session::is_responsable()) {
                 $tab_festivalWhereResponsable = ModelFestival::getFestivalByResponsable($user_id);
                 $boolResponsable = 1;
-            }
-            $boolAdmin = 0;
-            if (Session::is_admin()) {
+            } else if (Session::is_admin()) {
                 $boolAdmin = 1;
+            } else {
+                $boolBenevole = 1;
             }
 
             if ($u == false) {
