@@ -19,15 +19,15 @@ class ControllerFestival
         }
         if (Session::is_admin() || Session::is_responsable()) {
             $user_id = $_SESSION['login'];
-            $pagetitle = 'Liste des festivals admin res';
+            $pagetitle = 'Liste des festivals';
             $controller = 'festival';
             $view = 'list';
         } 
-        if (!Session::is_admin() && !Session::is_responsable())
+        if (!empty($_SESSION['login']) && !Session::is_admin() && !Session::is_responsable()) // utilisateur est un bénévole
         {
             $user_id = $_SESSION['login'];
             $tab_f = ModelFestival::selectAll();
-            $pagetitle = 'Liste des festivals user';
+            $pagetitle = 'Liste des festivals';
             $controller = 'festival';
             $view = 'listUser';
         }
