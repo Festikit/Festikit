@@ -470,11 +470,18 @@ class ControllerUtilisateur
 
                 $tab_festivalWhereAccepted = ModelUtilisateur::getFestivalWhereAccepted($user_id);
                 $tab_festivalWhereCandidat = ModelUtilisateur::getFestivalWhereCandidat($user_id);
-                
+
+                $boolBenevole = 0;
+                $boolAdmin = 0;
                 $boolResponsable = 0;
                 if (Session::is_responsable()) {
                     $tab_festivalWhereResponsable = ModelFestival::getFestivalByResponsable($user_id);
                     $boolResponsable = 1;
+                } else if (Session::is_admin()) {
+                    $tab_festivalWhereCreateur = ModelFestival::getFestivalByCreateur($user_id);
+                    $boolAdmin = 1;
+                } else {
+                    $boolBenevole = 1;
                 }
 
                 $pagetitle = 'Détail de l\'utilisateur';
