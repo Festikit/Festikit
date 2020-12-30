@@ -41,7 +41,6 @@ class ControllerUtilisateur
     public static function read()
     {
         $user_id = $_GET['user_id'];
-        $boolAdmin = 0;
 
         if(Session::is_user($user_id) || Session::is_admin()) {
             $u = ModelUtilisateur::select($user_id);
@@ -54,21 +53,20 @@ class ControllerUtilisateur
                 $tab_festivalWhereResponsable = ModelFestival::getFestivalByResponsable($user_id);
                 $boolResponsable = 1;
             }
+            $boolAdmin = 0;
+            if (Session::is_admin()) {
+                $boolAdmin = 1;
+            }
+
             if ($u == false) {
                 $pagetitle = 'Erreur action';
                 $controller = 'utilisateur';
                 $view = 'error';
                 $message = "erreur de la fonction read dans le controller utilisateur";
             } else {
-                if (Session::is_responsable() || Session::is_admin()) {
-                    $pagetitle = 'Détail de l\'utilisateur';
-                    $controller = 'utilisateur';
-                    $view = 'detail';
-                } else {
-                    $pagetitle = 'Détail de l\'utilisateur';
-                    $controller = 'utilisateur';
-                    $view = 'detailForUser';
-                }
+                $pagetitle = 'Détail de l\'utilisateur';
+                $controller = 'utilisateur';
+                $view = 'detail';
             }
         } else {
             $pagetitle = 'Erreur';
@@ -476,15 +474,10 @@ class ControllerUtilisateur
                     $boolResponsable = 1;
                 }
 
-                if (Session::is_responsable() || Session::is_admin()) {
-                    $pagetitle = 'Détail de l\'utilisateur';
-                    $controller = 'utilisateur';
-                    $view = 'detail';
-                } else {
-                    $pagetitle = 'Détail de l\'utilisateur';
-                    $controller = 'utilisateur';
-                    $view = 'detailForUser';
-                }
+                $pagetitle = 'Détail de l\'utilisateur';
+                $controller = 'utilisateur';
+                $view = 'detail';
+                
             } else {
                 $mail = $_POST['user_mail'];
                 $controller = 'utilisateur';
