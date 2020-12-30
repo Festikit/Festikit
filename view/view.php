@@ -94,7 +94,7 @@
 					}
 					if (!Session::is_admin() && !Session::is_responsable()) {
 						echo '
-						<li><a href="index.php?action=readAll&controller=festival">Accueil Festival</a></li>
+						<li><a href="index.php?action=readAll&controller=festival">Inscription</a></li>
 						';
 					}
 					if (empty($_SESSION['login'])) {
@@ -102,9 +102,6 @@
 						
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?action=connect">Connexion</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Inscription</a>
                     </li>
                     ';
 					} else {
