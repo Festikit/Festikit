@@ -22,12 +22,10 @@
                     </div>
                 </div>
                 <div class="row center">
-                    <div class="row">
-                        <button class="btn-large waves-effect waves-light" type="submit">Se connecter</button>
-                    </div>
-                    <div class="row">
-                        <a class="waves-effect waves-light" href="index.php?action=readAll&controller=festival">Pas de Compte ? En créer un. </a>
-                    </div>
+                    <button class="btn-large waves-effect waves-light" type="submit">Se connecter</button>
+                </div>
+                <div class="row center">
+                    <a class="waves-effect waves-light" href="index.php?action=readAll&controller=festival">Pas de Compte ? En créer un. </a>
                 </div>
             </div>
         </form>
