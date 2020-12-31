@@ -231,9 +231,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                 $user_picture = $b->getPicture();
                 echo '<li class="collection-item avatar">
         <img src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="70px"/>';
-                echo "<span class=\"title\">$user_firstname</span>
-                <p>$user_lastname
-                </p>
+                echo "<a href=\"index.php?action=read&user_id=$user_id\"> <span class=\"title\">$user_firstname $user_lastname</span></a>
                 <div class=\"secondary-content\">
                     <a title=\"en savoir plus\" href=\"index.php?action=read&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
                     <a title=\"supprimer\" href=\"index.php?action=delete&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
@@ -263,9 +261,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                 $user_picture = $c->getPicture();
                 echo '<li class="collection-item avatar">
         <img src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="70px"/>';
-                echo "<span class=\"title\">$user_firstname</span>
-                <p>$user_lastname
-                </p>
+                echo "<a href=\"index.php?action=read&user_id=$user_id\"> <span class=\"title\">$user_firstname $user_lastname</span></a>
                 <div class=\"secondary-content\">
                     <a title=\"en savoir plus\" href=\"index.php?action=read&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
                     <a title=\"supprimer\" href=\"index.php?action=delete&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
@@ -300,9 +296,7 @@ if (!$boolResponsable) {
                     $user_picture = $r->getPicture();
                     echo '<li class="collection-item avatar">
         <img src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="70px"/>';
-                    echo "<span class=\"title\">$user_firstname</span>
-                <p>$user_lastname
-                </p>
+                    echo "<a href=\"index.php?action=read&user_id=$user_id\"> <span class=\"title\">$user_firstname $user_lastname</span></a>
                 <div class=\"secondary-content\">
                     <a title=\"en savoir plus\" href=\"index.php?action=read&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
                     <a title=\"Désassigner\" href=\"index.php?action=desassignerResponsable&controller=festival&user_id=$user_id&festival_id=$festival_id\" class=\"btn\">Désassigner</a>
