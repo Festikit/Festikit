@@ -407,11 +407,11 @@ class ModelUtilisateur extends Model
   public static function estResponsable($user_id, $festival_id)
   {
     try {
-      $sql = "SELECT r.user_id  FROM responsable r WHERE r.user_id=:id_tag AND r.festival_id=:festival_id_tag";
+      $sql = "SELECT * FROM responsable WHERE user_id=:user_id AND festival_id=:festival_id";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
-        "id_tag" => $user_id,
-        "festival_id_tag" => $festival_id,
+        "user_id" => $user_id,
+        "festival_id" => $festival_id,
       );
       $req_prep->execute($values);
       $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelResponsable');

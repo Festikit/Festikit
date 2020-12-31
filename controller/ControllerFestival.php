@@ -316,6 +316,13 @@ class ControllerFestival
             $tab_poste = ModelFestival::getPostesByFestival($festival_id);
             $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
             $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+            $createur = ModelFestival::getNomCreateur($festival_id);
+            if(Session::is_responsable()) {
+                $boolResponsable = 1;
+            } else {
+                $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+                $boolResponsable = 0;
+            }
 
             if ($f == false) {
                 $pagetitle = 'Erreur action read';
@@ -352,6 +359,13 @@ class ControllerFestival
                 $tab_poste = ModelFestival::getPostesByFestival($festival_id);
                 $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
                 $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+                $createur = ModelFestival::getNomCreateur($festival_id);
+                if(Session::is_responsable()) {
+                    $boolResponsable = 1;
+                } else {
+                    $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+                    $boolResponsable = 0;
+                }
 
                 if ($f == false) {
                     $pagetitle = 'Erreur action read';
@@ -383,31 +397,40 @@ class ControllerFestival
     {
         if (Session::is_admin()) {
             $festival_id = $_GET['festival_id'];
-            $f = ModelFestival::select($festival_id);
             $user_id = $_GET['user_id'];
-            $r = ModelUtilisateur::estResponsable($user_id, $festival_id);
-            if ($r == false) {
-                $f->ajouterResponsable($_GET['user_id'], $festival_id);
-                $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+            if (!ModelUtilisateur::estResponsable($user_id, $festival_id)) { // Si l'utilisateur n'est pas déjà responsable du festival                
+                $data = array(
+                    'user_id' => $user_id,
+                    'festival_id' => $festival_id,
+                );
+                // Insertion dans responsable + test d'insertion
+                if (!is_bool(ModelResponsable::save($data))) {
+                    // Pour la vue détail
+                    $f = ModelFestival::select($festival_id);
+                    $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+                    $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
+                    $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
+                    $tab_poste = ModelFestival::getPostesByFestival($festival_id);
+                    $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
+                    $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+                    $createur = ModelFestival::getNomCreateur($festival_id);
+                    if(Session::is_responsable()) {
+                        $boolResponsable = 1;
+                    } else {
+                        $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+                        $boolResponsable = 0;
+                    }
 
-                $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
-                $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
-                $tab_poste = ModelFestival::getPostesByFestival($festival_id);
-                $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
-                $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
-
-                if ($f == false) {
+                    $pagetitle = 'Détail du festival';
+                    $controller = 'festival';
+                    $view = 'detail';
+                } else {
                     $pagetitle = 'Erreur action read';
                     $controller = 'utilisateur';
                     $view = 'messageRetour';
                     $message = 'erreur de la fonction ajouterResponsable dans le controller festival';
-                } else {
-                    $pagetitle = 'Détail du festival';
-                    $controller = 'festival';
-                    $view = 'detail';
                 }
-            }
-            else{
+            } else{
                 $pagetitle = 'Détail du festival';
                 $controller = 'utilisateur';
                 $view = 'messageRetour';
