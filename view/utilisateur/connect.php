@@ -7,7 +7,9 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">email</i>
-                        <input name="user_mail" autocomplete="email" id="user_mail" type="email" class="validate" value='<?php if(isset($_GET['mail'])){echo $_GET['mail'];}?>' required>
+                        <input name="user_mail" autocomplete="email" id="user_mail" type="email" class="validate" value='<?php if (isset($_GET['mail'])) {
+                                                                                                                                echo $_GET['mail'];
+                                                                                                                            } ?>' required>
                         <label for="user_mail">Email<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
                     </div>
                 </div>
@@ -19,7 +21,12 @@
                         <label for="user_password">Mot de passe<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
                     </div>
                 </div>
-                <button class="btn waves-effect waves-light" type="submit">Se connecter</button>
+                <div class="row center">
+                    <button class="btn-large waves-effect waves-light" type="submit">Se connecter</button>
+                </div>
+                <div class="row center">
+                    <a class="waves-effect waves-light" href="index.php?action=readAll&controller=festival">Pas de Compte ? En créer un. </a>
+                </div>
             </div>
         </form>
     </div>

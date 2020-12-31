@@ -20,18 +20,6 @@
                     </div>
 
                     <div class="row">
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">person</i>
-                            <input name="user_lastname" id="user_lastname" type="text" class="validate" required>
-                            <label for="user_lastname">Nom<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
-                        </div>
-                        <div class="input-field col s6">
-                            <input name="user_firstname" id="user_firstname" type="text" class="validate" required>
-                            <label for="user_firstname">Prenom<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
-                        </div>
-                    </div>
-
-                    <div class="row">
                         <div class="input-field col s4">
                             <i class="material-icons prefix">lock</i>
                             <input name="user_password1" id="user_password1" type="password" autocomplete="new-password" class="validate" onChange="checkPasswordLength();" required>
@@ -44,6 +32,19 @@
                         <div class="input-field col s4 registrationFormAlert" id="checkPasswordLength"></div>
                         <div class="input-field col s4 registrationFormAlert" id="checkPasswordMatch"></div>
                     </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">person</i>
+                            <input name="user_lastname" id="user_lastname" type="text" class="validate" required>
+                            <label for="user_lastname">Nom<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input name="user_firstname" id="user_firstname" type="text" class="validate" required>
+                            <label for="user_firstname">Prenom<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
+                        </div>
+                    </div>
+
 
                     <div class="row">
                         <div class="input-field col s6">
@@ -215,7 +216,7 @@
                         foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $h) {
                             $cStart = $h->getCreneauStart();
                             $cEnd = $h->getCreneauEnd();
-                            echo "<td><label><input type=\"checkbox\" name=\"dispo_heure$cStart" . "_$cEnd"  . "date_$CreneauDate\" id=\"dispo_heure$compteur" . "date_$CreneauDate\" value=\"1\" required /><span> </span></label></td>";
+                            echo "<td><label><input type=\"checkbox\" name=\"dispo_heure$cStart" . "_$cEnd"  . "date_$CreneauDate\" id=\"dispo_heure$compteur" . "date_$CreneauDate\" value=\"1\" /><span> </span></label></td>";
                         }
                         echo "</tr>";
                     }

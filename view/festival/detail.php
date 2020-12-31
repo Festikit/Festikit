@@ -290,7 +290,8 @@ if (!$boolResponsable) {
                 $i = 1;
                 foreach ($tab_responsable as $r) {
                     $festival_id = rawurlencode($f->getFestivalId());
-                    $user_id = rawurlencode($r->getResponsableId());
+                    $user_id = rawurlencode($r->getUserId());
+                    $responsable_id = rawurlencode($r->getResponsableId());
                     $user_firstname = rawurlencode($r->getUserFirstname());
                     $user_lastname = rawurlencode($r->getUserLastName());
                     $user_picture = $r->getPicture();
@@ -299,7 +300,7 @@ if (!$boolResponsable) {
                     echo "<a href=\"index.php?action=read&user_id=$user_id\"> <span class=\"title\">$user_firstname $user_lastname</span></a>
                 <div class=\"secondary-content\">
                     <a title=\"en savoir plus\" href=\"index.php?action=read&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
-                    <a title=\"Désassigner\" href=\"index.php?action=desassignerResponsable&controller=festival&user_id=$user_id&festival_id=$festival_id\" class=\"btn\">Désassigner</a>
+                    <a title=\"Désassigner\" href=\"index.php?action=desassignerResponsable&controller=festival&responsable_id=$responsable_id&user_id=$user_id&festival_id=$festival_id\" class=\"btn\">Désassigner</a>
                 </div>
                 
             </li>";

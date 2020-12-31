@@ -23,11 +23,12 @@ $user_birthdate = htmlspecialchars($tab_u->getBirthdate());
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col s9">
                         <i class="material-icons prefix">email</i>
                         <?php echo '<input name="user_mail" id="user_mail" type="email" value="' . rawurldecode($user_mail) . '" required>'; ?>
                         <label class="active" for="user_mail">Email</label>
                     </div>
+                    <div class="col s3"></div>
                 </div>
             </div>
 
