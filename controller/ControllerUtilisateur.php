@@ -386,11 +386,12 @@ class ControllerUtilisateur
             'user_driving_license' => $user_driving_license,
             'user_password' => $mot_passe_hache,
         );
-        ModelUtilisateur::envoyerEmailVerfification($user_mail);
         // Insertion dans user + test d'insertion
         if (is_bool(ModelUtilisateur::save($dataUser))) {
             return false;
         } else {
+            // en attente le temps de corriger le problème
+            // ModelUtilisateur::envoyerEmailVerfification($user_mail);
             return true;
         }
     }
