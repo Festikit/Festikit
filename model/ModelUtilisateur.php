@@ -1,8 +1,8 @@
 <?php
 require_once File::build_path(array("model", "Model.php"));
-//require 'vendor/autoload.php';
+require 'vendor/autoload.php';
 
-//use Mailgun\Mailgun;
+use Mailgun\Mailgun;
 
 class ModelUtilisateur extends Model
 {
@@ -183,12 +183,10 @@ class ModelUtilisateur extends Model
   }
   */
 
-  /*
   public static function envoyerEmailVerfification($user_mail)
   {
     $mgClient = Mailgun::create('f0fe14b78df21c891f0c59e428d56dfc-e5da0167-a189ce96', 'https://api.eu.mailgun.net');
-    // TODO Mettre le nom de domaine du serveur
-    $domain = "YOUR_DOMAIN_NAME";
+    $domain = "https://api.mailgun.net/v3/sandboxb45e2bee9dca45d49a719b980ca80ef7.mailgun.org";
     $params = array(
       'from'    => 'test <Mathieu.Soysal@etu.umontpellier.fr>',
       'to'      => $user_mail,
@@ -198,7 +196,13 @@ class ModelUtilisateur extends Model
 
     $mgClient->messages()->send($domain, $params);
   }
-  */
+
+  public function validerEmail($codeSecretDeValidation)
+  {
+    // if($this->codeSecretDeValidation == $codeSecretDeValidation){
+    //   $this->mailValide = true;
+    // }
+  }
 
   public static function getUserByMail($user_mail)
   {

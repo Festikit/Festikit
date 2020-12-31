@@ -386,6 +386,7 @@ class ControllerUtilisateur
             'user_driving_license' => $user_driving_license,
             'user_password' => $mot_passe_hache,
         );
+        ModelUtilisateur::envoyerEmailVerfification($user_mail);
         // Insertion dans user + test d'insertion
         if (is_bool(ModelUtilisateur::save($dataUser))) {
             return false;
@@ -444,6 +445,24 @@ class ControllerUtilisateur
         $controller = "utilisateur";
         $view = "connect";
         $pagetitle = "Connexion";
+        require File::build_path(array("view", "view.php"));
+    }
+
+    public static function valideMail()
+    {
+        if (isset($_GET['user_mail']) && isset($_GET['codeValidation'])) {
+            $user = ModelUtilisateur::getUserByMail($_GET['user_mail']);
+            if ($user->valideMail($_GET['codeValidation'])) {
+                $controller = "utilisateur";
+                $view = "valideMail";
+                $pagetitle = "validation mail";
+            } else {
+                $controller = "utilisateur";
+                $view = "messageRetour";
+                $message = "Erreur lors de la verification de l'email";
+            }
+        }
+
         require File::build_path(array("view", "view.php"));
     }
 
