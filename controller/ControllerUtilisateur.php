@@ -160,7 +160,7 @@ class ControllerUtilisateur
 
             $controller = 'utilisateur';
             $view = 'messageSuite';
-            $path = "action=read&user_id=3";
+            $path = "action=read&user_id=$user_id";
             $message = "L'utilisateur $user_lastname $user_firstname a été modifié avec succès.";
             $pagetitle = 'modification utilisateur';
 
