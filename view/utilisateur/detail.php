@@ -28,7 +28,7 @@
 
         <div class="col s6">
             <?php
-            echo '<img src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="200px"/>';
+            echo '<img alt="photo de profil" src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="200px"/>';
             ?>
         </div>
         

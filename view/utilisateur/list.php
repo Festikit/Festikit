@@ -11,9 +11,9 @@
         $user_lastname = htmlspecialchars($u->getLastname());
         $user_picture = $u->getPicture();
         echo '<li class="collection-item avatar">
-        <img src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="70px"/>';
+        <img class="circle" alt="profil" src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="70px"/>';
         echo "
-        <a href=\"index.php?action=read&user_id=$user_id\"> <span class=\"title\">$user_firstname $user_lastname</span></a>
+        <a href=\"index.php?action=read&user_id=$user_id\"> <span class=\"title\">$user_firstname</span><p> $user_lastname</p></a>
         <div class=\"secondary-content\">
             <a title=\"en savoir plus\" href=\"index.php?action=read&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
             <a title=\"supprimer\" href=\"index.php?action=delete&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
