@@ -19,7 +19,7 @@
                         <label for="user_password">Mot de passe<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
                     </div>
                 </div>
-                <input class="btn waves-effect waves-light" type="submit" value="Se connecter" />
+                <button class="btn waves-effect waves-light" type="submit">Se connecter</button>
             </div>
         </form>
     </div>
