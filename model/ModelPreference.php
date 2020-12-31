@@ -7,11 +7,10 @@ class ModelPreference extends Model
   private $user_id;
   private $poste_id;
   private $rang;
-  
 
   protected static $object_table = 'preference';
   protected static $object_model = 'preference';
-  protected static $primary= 'preference_id';
+  protected static $primary = 'preference_id';
 
   public function __construct($id = NULL, $user_id = NULL, $poste_id = NULL, $rang = NULL)
   {
@@ -38,14 +37,14 @@ class ModelPreference extends Model
   {
     return $this->user_id;
   }
-  
+
 
   // Getter : poste_id
   public function getPosteId()
   {
     return $this->poste_id;
   }
-  
+
 
   // Getter et Setter : rang
   public function getRang()

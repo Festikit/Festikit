@@ -6,14 +6,11 @@ class ModelResponsable extends ModelUtilisateur
 
     protected static $object_table = 'responsable';
     protected static $object_model = 'responsable';
-    protected static $primary= 'responsable_id';
-
+    protected static $primary = 'responsable_id';
 
     private $responsable_id;
     private $user_id;
     private $festival_id;
-
-
 
     public function __construct($responsable = NULL, $user = NULL, $festival = NULL)
     {
@@ -54,15 +51,17 @@ class ModelResponsable extends ModelUtilisateur
         $this->festival_id = $festivalId2;
     }
 
-    public function getUserFirstname(){
+    public function getUserFirstname()
+    {
         return $this->user_firstname;
     }
 
-    public function getUserLastname(){
+    public function getUserLastname()
+    {
         return $this->user_lastname;
     }
 
-      
+
 
 
     public static function getNomResponsable()
@@ -83,7 +82,8 @@ class ModelResponsable extends ModelUtilisateur
         }
     }
 
-    public static function boolResponsableByUserId($user_id) {
+    public static function boolResponsableByUserId($user_id)
+    {
         try {
             $sql = "SELECT * from responsable WHERE user_id=:nom_tag";
             $req_prep = Model::$pdo->prepare($sql);
@@ -93,11 +93,10 @@ class ModelResponsable extends ModelUtilisateur
             $req_prep->execute($values);
             $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelResponsable');
             $tab_responsable = $req_prep->fetchAll();
-    
-            if(empty($tab_responsable))
+
+            if (empty($tab_responsable))
                 return false;
             return true;
-    
         } catch (PDOException $e) {
             if (Conf::getDebug()) {
                 echo $e->getMessage();
@@ -106,7 +105,7 @@ class ModelResponsable extends ModelUtilisateur
             }
             die();
         }
-      }
+    }
 
     /* public function desassignerResponsable($id){
         try{
@@ -126,7 +125,7 @@ class ModelResponsable extends ModelUtilisateur
           die();
         }
       } */
-    
+
 
     /*public static function getAllResponsables()
     {

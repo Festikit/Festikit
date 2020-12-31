@@ -75,7 +75,7 @@ $user_birthdate = htmlspecialchars($tab_u->getBirthdate());
             </div>
             <div class="row">
                 <input type="hidden" name="action" value="updated">
-                <input class="btn col s12 m4 offset-m4 l4 offset-l4" type="submit" value="Modifier" />
+                <button class="btn col s12 m4 offset-m4 l4 offset-l4" type="submit">Modifier</button>
             </div>
     </div>
     </form>

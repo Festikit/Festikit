@@ -32,7 +32,7 @@
                     <?php echo " <input type=\"hidden\" name=\"poste_id\" value=\"$log_p\">"; ?>
                     <input type="hidden" name="action" value="updated">
                     <input type="hidden" name="controller" value="poste">
-                    <input class="btn col s12 m4 offset-m4 l4 offset-l4" type="submit" value="Modifier" />
+                    <button class="btn col s12 m4 offset-m4 l4 offset-l4" type="submit">Modifier</button>
                 </div>
         </div>
     </div>

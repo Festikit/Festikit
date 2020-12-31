@@ -1,8 +1,8 @@
 <ul class="collection">
-	<li class="collection-header">
-		<h4>Liste de tous les utilisateurs</h4>
-	</li>
-	<?php
+    <li class="collection-header">
+        <h4>Liste de tous les utilisateurs</h4>
+    </li>
+    <?php
     // Liste tous les utilisateurs de la base de donnée: bénévoles (postulé accepté: oui et non) et les responsables
     $i = 1;
     foreach ($tab_u as $u) {
@@ -20,7 +20,7 @@
             <a title=\"modifier\" href=\"index.php?action=update&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
         </div>
     </li>";
-            $i++;
+        $i++;
     }
-    ?> 
+    ?>
 </ul>

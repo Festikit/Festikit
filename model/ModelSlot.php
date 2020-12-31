@@ -11,7 +11,7 @@ class ModelSlot extends Model
 
   protected static $object_table = 'slot';
   protected static $object_model = 'slot';
-  protected static $primary= 'slot_id';
+  protected static $primary = 'slot_id';
 
   public function __construct($id = NULL, $slot_capacity = NULL, $poste_id = NULL, $crenau_id = NULL, $lieu_id = NULL)
   {

@@ -3,9 +3,6 @@
         <form method="get" action="index.php?action=updated&controller=creneau">
             <h5 class="center-align">Ajouter un creneau generique</h5>
             <div class="row">
-                
-
-                
             </div>
             <div class="row">
                 <div class="input-field col s6">
@@ -26,7 +23,7 @@
                 <?php echo " <input type=\"hidden\" name=\"festival_id\" value=\"$festival_id\">"; ?>
                 <input type="hidden" name="action" value="createdGen">
                 <input type="hidden" name="controller" value="creneau">
-                <input class="btn col s12 m4 offset-m4 l4 offset-l4" type="submit" value="Ajouter le creneau" />
+                <button class="btn col s12 m4 offset-m4 l4 offset-l4" type="submit">Ajouter le creneau</button>
             </div>
         </form>
     </div>

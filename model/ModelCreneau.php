@@ -167,7 +167,6 @@ class ModelCreneau extends Model
   {
     $tab_creneau_gen = array();
 
-
     if (ModelFestival::getCreneauxGeneriquesHeure($festival_id) && ModelFestival::getCreneauxGeneriquesDate($festival_id)) {
       foreach (ModelFestival::getCreneauxGeneriquesHeure($festival_id) as $h) {
         $cStart = $h->getCreneauStart();

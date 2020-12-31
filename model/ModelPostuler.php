@@ -16,10 +16,9 @@ class ModelPostuler extends Model
   private $autres_dispos;
   private $experience;
 
-
   protected static $object_table = 'postuler';
   protected static $object_model = 'postuler';
-  protected static $primary= 'postuler_id';
+  protected static $primary = 'postuler_id';
 
   public function __construct($id = NULL, $user_id = NULL, $festival_id = NULL, $postuler_accepted = NULL)
   {

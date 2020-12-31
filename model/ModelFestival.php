@@ -8,7 +8,6 @@ class ModelFestival extends Model
   protected static $object_model = 'festival';
   protected static $primary = 'festival_id';
 
-
   private $festival_id;
   private $festival_name;
   private $festival_startdate;
@@ -16,8 +15,6 @@ class ModelFestival extends Model
   private $festival_description;
   private $city;
   private $user_id;
-
-
 
   public function __construct($id = NULL, $name = NULL, $startdate = NULL, $enddate = NULL, $description = NULL, $city = NULL, $user_id = NULL)
   {
@@ -580,30 +577,30 @@ class ModelFestival extends Model
   }
 
   public static function getNomCreateur($festival_id)
-    {
-        try {
-            $sql = "SELECT user_firstname, user_lastname from user u JOIN festival f ON f.user_id=u.user_id WHERE festival_id=:nom_tag";
-            $req_prep = Model::$pdo->prepare($sql);
-            $values = array(
-              "nom_tag" => $festival_id,
-            );
-            $req_prep->execute($values);
-            $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
-            $createur = $req_prep->fetchAll();
-            if (empty($createur))
-              return false;
-            return $createur[0];
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage();
-            } else {
-                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-            }
-            die();
-        }
+  {
+    try {
+      $sql = "SELECT user_firstname, user_lastname from user u JOIN festival f ON f.user_id=u.user_id WHERE festival_id=:nom_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "nom_tag" => $festival_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+      $createur = $req_prep->fetchAll();
+      if (empty($createur))
+        return false;
+      return $createur[0];
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
     }
+  }
 
-    public static function getIdByNomFestival($festival_name)
+  public static function getIdByNomFestival($festival_name)
   {
     try {
       $sql = "SELECT festival_id from festival WHERE festival_name=:nom_tag";
@@ -639,11 +636,10 @@ class ModelFestival extends Model
       $req_prep->execute($values);
       $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFestival');
       $tab_festival_id = $req_prep->fetchAll();
-      if(!empty($tab_festival_id)) //le nom n'existe pas
+      if (!empty($tab_festival_id)) //le nom n'existe pas
       {
         return true;
-      }
-      else //le nom existe deja
+      } else //le nom existe deja
       {
         return false;
       }

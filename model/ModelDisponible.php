@@ -6,11 +6,10 @@ class ModelDisponible extends Model
   private $disponible_id;
   private $user_id;
   private $creneau_id;
-  
 
   protected static $object_table = 'disponible';
   protected static $object_model = 'disponible';
-  protected static $primary= 'disponible_id';
+  protected static $primary = 'disponible_id';
 
   public function __construct($id = NULL, $user_id = NULL, $creneau_id = NULL)
   {

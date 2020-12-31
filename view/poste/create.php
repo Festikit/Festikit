@@ -21,7 +21,7 @@
                 <input type="hidden" name="action" value="created">
                 <input type="hidden" name="controller" value="poste">
                 <input type="hidden" name="festival_id" value=<?php echo "\"" . $_GET['festival_id'] . "\"" ?>>
-                <input class="btn col s12 m4 offset-m4 l4 offset-l4" type="submit" value="Ajouter le poste" />
+                <button class="btn col s12 m4 offset-m4 l4 offset-l4" type="submit">Ajouter le poste</button>
             </div>
         </form>
     </div>

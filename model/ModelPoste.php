@@ -6,7 +6,7 @@ class ModelPoste extends Model
 
   protected static $object_table = 'poste';
   protected static $object_model = 'poste';
-  protected static $primary= 'poste_id';
+  protected static $primary = 'poste_id';
 
 
   private $poste_id;
@@ -14,7 +14,7 @@ class ModelPoste extends Model
   private $poste_description;
   private $festival_id;
 
-  
+
 
   public function __construct($id = NULL, $name = NULL, $description = NULL, $festival_id = NULL)
   {
@@ -141,5 +141,5 @@ class ModelPoste extends Model
   }
   */
 
-//>>>>>>> 1211c2969b661d33b0047d0e4f0921ac8612e8b2
+  //>>>>>>> 1211c2969b661d33b0047d0e4f0921ac8612e8b2
 }

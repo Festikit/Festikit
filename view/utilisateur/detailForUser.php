@@ -10,7 +10,7 @@
             $user_phone = htmlspecialchars($u->getPhone());
             $user_birthdate = htmlspecialchars($u->getBirthdate());
             $user_postal_code = htmlspecialchars($u->getPostalCode());
-            if($u->getDrivingLicense() == 1) {
+            if ($u->getDrivingLicense() == 1) {
                 $user_driving_license = "oui";
             } else {
                 $user_driving_license = "non";
@@ -31,24 +31,24 @@
             echo '<img src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="200px"/>';
             ?>
         </div>
-        
+
         <div class="col s12">
             <?php
             echo '<p><a class="btn waves-effect waves-light" href="index.php?action=delete&user_id=' . rawurlencode($user_id) . '">Supprimer utilisateur</a>  ';
             echo '<a class="btn waves-effect waves-light" href="index.php?action=update&user_id=' . rawurlencode($user_id) . '">Modifier utilisateur</a></p>';
             ?>
-        </div>        
+        </div>
     </div>
 </div>
 
-    <!-- Affichage des festivals où l'utilisateur est bénévole -->
-    <ul class="collection">
-        <li class="collection-header">
-            <h4>Liste des festivals en tant que bénévole</h4>
-        </li>
+<!-- Affichage des festivals où l'utilisateur est bénévole -->
+<ul class="collection">
+    <li class="collection-header">
+        <h4>Liste des festivals en tant que bénévole</h4>
+    </li>
     <?php
 
-    if(empty($tab_festivalWhereAccepted)) {
+    if (empty($tab_festivalWhereAccepted)) {
         echo "Il n'y a pas encore de festival.";
     } else {
         foreach ($tab_festivalWhereAccepted as $f) {
@@ -62,15 +62,15 @@
         }
     }
     ?>
-    </ul>
+</ul>
 
-    <!-- Affichage des festivals où l'utilisateur est candidat -->
-    <ul class="collection">
-        <li class="collection-header">
-            <h4>Liste des festivals en tant que candidat</h4>
-        </li>
+<!-- Affichage des festivals où l'utilisateur est candidat -->
+<ul class="collection">
+    <li class="collection-header">
+        <h4>Liste des festivals en tant que candidat</h4>
+    </li>
     <?php
-    if(empty($tab_festivalWhereCandidat)) {
+    if (empty($tab_festivalWhereCandidat)) {
         echo "Il n'y a pas de candidature.</br>";
     } else {
         foreach ($tab_festivalWhereCandidat as $c) {
@@ -85,4 +85,4 @@
         }
     }
     ?>
-    </ul>
+</ul>

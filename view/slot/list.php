@@ -6,5 +6,3 @@
 		echo "<p>$i : " . htmlspecialchars($s->getSlotId()) . "</p>";
     	$i++;
 	}
-
-?>

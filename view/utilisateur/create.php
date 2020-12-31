@@ -2,81 +2,81 @@
     <div class="col s12 m10 offset-m1 l8 offset-l2">
 
         <form method="post" action="index.php?action=created" enctype="multipart/form-data" class="col s12" onsubmit="return checkPasswordOnSubmit();">
-        
-        <?php
-        $festivalNameHtml = htmlspecialchars($f->getFestivalName()); 
-        echo "<h3>Inscription : $festivalNameHtml</h3>";
-        if(!$boolUser) {
-        ?>
 
-            <div class="card-panel grey lighten-4">
-                <h5>À propos de moi</h5>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">email</i>
-                        <input name="user_mail" id="user_mail" type="email" class="validate" required>
-                        <label for="user_mail">Email<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
-                    </div>
-                </div>
+            <?php
+            $festivalNameHtml = htmlspecialchars($f->getFestivalName());
+            echo "<h3>Inscription : $festivalNameHtml</h3>";
+            if (!$boolUser) {
+            ?>
 
-                <div class="row">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">person</i>
-                        <input name="user_lastname" id="user_lastname" type="text" class="validate" required>
-                        <label for="user_lastname">Nom<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input name="user_firstname" id="user_firstname" type="text" class="validate" required>
-                        <label for="user_firstname">Prenom<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s4">
-                        <i class="material-icons prefix">lock</i>
-                        <input name="user_password1" id="user_password1" type="password" autocomplete="new-password" class="validate" onChange="checkPasswordLength();" required>
-                        <label for="user_password1">Mot de passe<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
-                    </div>
-                    <div class="input-field col s4">
-                        <input name="user_password2" id="user_password2" type="password" class="validate" onChange="checkPasswordMatch();" required>
-                        <label for="user_password2">Retapez le mot de passe<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
-                    </div>
-                    <div class="input-field col s4 registrationFormAlert" id="checkPasswordLength"></div>
-                    <div class="input-field col s4 registrationFormAlert" id="checkPasswordMatch"></div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">insert_invitation</i>
-                        <input name="user_birthdate" id="user_birthdate" placeholder=" " type="date" max="2010-01-01" min="1900-01-01" class="validate" required>
-                        <label for="user_birthdate">Date de naissance<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
-                    </div>
-                    <div class="file-field input-field col s6">
-                        <div class="btn">
-                            <i class="material-icons">file_download</i>
-                            <span>Photo de profil</span>
-                            <input type="hidden" name="MAX_FILE_SIZE" value="250000" />
-                            <input name="user_picture" id="user_picture" type="file" accept="image/png, image/jpeg, image/jpg" required>
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
+                <div class="card-panel grey lighten-4">
+                    <h5>À propos de moi</h5>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">email</i>
+                            <input name="user_mail" id="user_mail" type="email" class="validate" required>
+                            <label for="user_mail">Email<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
                         </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">person_pin</i>
-                        <input name="user_postal_code" id="user_postal_code" type="number" class="validate" required>
-                        <label for="user_postal_code">Code Postal<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">person</i>
+                            <input name="user_lastname" id="user_lastname" type="text" class="validate" required>
+                            <label for="user_lastname">Nom<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input name="user_firstname" id="user_firstname" type="text" class="validate" required>
+                            <label for="user_firstname">Prenom<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
+                        </div>
                     </div>
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">phone</i>
-                        <input name="user_phone" id="user_phone" type="tel" class="validate" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" required>
-                        <label for="user_phone">Numéro de Téléphone<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
+
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <i class="material-icons prefix">lock</i>
+                            <input name="user_password1" id="user_password1" type="password" autocomplete="new-password" class="validate" onChange="checkPasswordLength();" required>
+                            <label for="user_password1">Mot de passe<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input name="user_password2" id="user_password2" type="password" class="validate" onChange="checkPasswordMatch();" required>
+                            <label for="user_password2">Retapez le mot de passe<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
+                        </div>
+                        <div class="input-field col s4 registrationFormAlert" id="checkPasswordLength"></div>
+                        <div class="input-field col s4 registrationFormAlert" id="checkPasswordMatch"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">insert_invitation</i>
+                            <input name="user_birthdate" id="user_birthdate" placeholder=" " type="date" max="2010-01-01" min="1900-01-01" class="validate" required>
+                            <label for="user_birthdate">Date de naissance<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
+                        </div>
+                        <div class="file-field input-field col s6">
+                            <div class="btn">
+                                <i class="material-icons">file_download</i>
+                                <span>Photo de profil</span>
+                                <input type="hidden" name="MAX_FILE_SIZE" value="250000" />
+                                <input name="user_picture" id="user_picture" type="file" accept="image/png, image/jpeg, image/jpg" required>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">person_pin</i>
+                            <input name="user_postal_code" id="user_postal_code" type="number" class="validate" required>
+                            <label for="user_postal_code">Code Postal<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">phone</i>
+                            <input name="user_phone" id="user_phone" type="tel" class="validate" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" required>
+                            <label for="user_phone">Numéro de Téléphone<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
+                        </div>
                     </div>
                 </div>
-            </div>
 
             <?php
             }
@@ -289,7 +289,7 @@
             <div class="row">
                 <input type="hidden" name="action" value="created">
                 <input type="hidden" name="festival_id" value=<?php echo "\"$festival_id\"" ?>>
-                <input class="btn col s12 m4 offset-m4 l4 offset-l4" id="ButtonSignIn" type="submit" value="Envoyer" />
+                <button type="submit" class="btn col s12 m4 offset-m4 l4 offset-l4" id="ButtonSignIn">Envoyer</button>
             </div>
         </form>
     </div>

@@ -6,7 +6,7 @@ class ControllerUtilisateur
 
     public static function create()
     {
-        if(isset($_SESSION['login'])) {
+        if (isset($_SESSION['login'])) {
             $boolUser = 1;
         } else {
             $boolUser = 0;
@@ -23,7 +23,7 @@ class ControllerUtilisateur
 
     public static function readAll()
     {
-        if(Session::is_admin()) {
+        if (Session::is_admin()) {
             $tab_u = ModelUtilisateur::selectAll();
 
             $pagetitle = 'Liste des utilisateurs';
@@ -34,7 +34,7 @@ class ControllerUtilisateur
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
             $view = 'messageRetour';
-        }       
+        }
         require File::build_path(array("view", "view.php"));
     }
 
@@ -42,7 +42,7 @@ class ControllerUtilisateur
     {
         $user_id = $_GET['user_id'];
 
-        if(Session::is_user($user_id) || Session::is_admin()) {
+        if (Session::is_user($user_id) || Session::is_admin()) {
             $u = ModelUtilisateur::select($user_id);
 
             $tab_festivalWhereAccepted = ModelUtilisateur::getFestivalWhereAccepted($user_id);
@@ -76,22 +76,23 @@ class ControllerUtilisateur
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
             $view = 'messageRetour';
-        }       
+        }
 
         require File::build_path(array("view", "view.php"));
     }
 
 
 
-    public static function delete() {
+    public static function delete()
+    {
         $user_id = $_GET['user_id'];
-        if(Session::is_user($user_id) || Session::is_admin()) {
+        if (Session::is_user($user_id) || Session::is_admin()) {
             $user_lastname = htmlspecialchars(ModelUtilisateur::select($user_id)->getLastname());
             $user_firstname = htmlspecialchars(ModelUtilisateur::select($user_id)->getFirstname());
-            
+
             ModelUtilisateur::delete($user_id);
 
-            if(Session::is_admin()) {
+            if (Session::is_admin()) {
                 $tab_u = ModelUtilisateur::selectAll();
 
                 $pagetitle = 'Compte supprimé';
@@ -105,7 +106,7 @@ class ControllerUtilisateur
                 $view = 'messageSuite';
                 $path = "action=connect";
                 $message = "Vous avez supprimé votre compte avec succès";
-            }  
+            }
         } else {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
@@ -115,9 +116,10 @@ class ControllerUtilisateur
         require File::build_path(array("view", "view.php"));
     }
 
-    public static function update() {
+    public static function update()
+    {
         $user_id  = $_GET['user_id'];
-        if(Session::is_user($user_id) || Session::is_admin()) {
+        if (Session::is_user($user_id) || Session::is_admin()) {
             $tab_u = ModelUtilisateur::select($user_id);
             $controller = 'utilisateur';
             $view = 'update';
@@ -131,9 +133,10 @@ class ControllerUtilisateur
         require(File::build_path(array("view", "view.php")));
     }
 
-    public static function updated() {
+    public static function updated()
+    {
         $user_id = $_GET['user_id'];
-        if(Session::is_user($user_id) || Session::is_admin()) {
+        if (Session::is_user($user_id) || Session::is_admin()) {
 
             $user_id = $_GET['user_id'];
             $user_firstname = $_GET['user_firstname'];
@@ -163,7 +166,6 @@ class ControllerUtilisateur
             $path = "action=read&user_id=$user_id";
             $message = "L'utilisateur $user_lastname $user_firstname a été modifié avec succès.";
             $pagetitle = 'modification utilisateur';
-
         } else {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
@@ -177,8 +179,8 @@ class ControllerUtilisateur
     public static function created()
     {
         $reussiteUser = false;
-        
-        if(!isset($_SESSION['login'])) {
+
+        if (!isset($_SESSION['login'])) {
             // Initialisation des variables pour user
             $user_firstname = $_POST['user_firstname'];
             $user_lastname = $_POST['user_lastname'];
@@ -216,7 +218,7 @@ class ControllerUtilisateur
 
         // On vérifie que l'utilisateur est connecté
         // Si c'est le cas on ne veut pas faire d'insertions dans la table user
-        if(!isset($_SESSION['login'])) {
+        if (!isset($_SESSION['login'])) {
 
             // Test d'upload de la photo
             $reussitePicture = false;
@@ -247,7 +249,7 @@ class ControllerUtilisateur
 
 
             // Insertion pour user
-            if($reussitePicture) {
+            if ($reussitePicture) {
                 if (isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license, $user_password1, $user_password2, $admin)) {
                     $reussiteInitUser = true;
                     if (self::createdUser($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license, $user_password1, $user_password2, $admin)) {
@@ -454,13 +456,13 @@ class ControllerUtilisateur
                 $user_id = $u->getId();
                 $_SESSION['login'] = $user_id;
 
-                if(ModelResponsable::boolResponsableByUserId($_SESSION['login'])) { // return true or false
+                if (ModelResponsable::boolResponsableByUserId($_SESSION['login'])) { // return true or false
                     $_SESSION['responsable'] = true;
                 } else {
                     $_SESSION['responsable'] = false;
                 }
 
-                if(ModelUtilisateur::boolAdminByUserId($_SESSION['login'])->getAdmin()) { // return 1 or 0
+                if (ModelUtilisateur::boolAdminByUserId($_SESSION['login'])->getAdmin()) { // return 1 or 0
                     $_SESSION['admin'] = true;
                     $boolAdmin = 1; // pour vue détail
                 } else {
@@ -487,7 +489,6 @@ class ControllerUtilisateur
                 $pagetitle = 'Détail de l\'utilisateur';
                 $controller = 'utilisateur';
                 $view = 'detail';
-                
             } else {
                 $mail = $_POST['user_mail'];
                 $controller = 'utilisateur';
@@ -508,7 +509,7 @@ class ControllerUtilisateur
     {
         session_unset();
         session_destroy();
-        
+
         $controller = 'utilisateur';
         $message = "Vous êtes déconnecté !";
         $view = "deconnected";

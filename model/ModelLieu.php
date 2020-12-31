@@ -6,11 +6,10 @@ class ModelLieu extends Model
   private $lieu_id;
   private $nom_lieu;
   private $festival_id;
-  
 
   protected static $object_table = 'lieu';
   protected static $object_model = 'lieu';
-  protected static $primary= 'lieu_id';
+  protected static $primary = 'lieu_id';
 
   public function __construct($id = NULL, $nom_lieu = NULL, $festival_id = NULL)
   {

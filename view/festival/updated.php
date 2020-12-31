@@ -3,5 +3,5 @@
 </div>
 
 <?php
-require File::build_path(array("view","festival","list.php"));
+require File::build_path(array("view", "festival", "list.php"));
 ?>

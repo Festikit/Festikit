@@ -6,11 +6,11 @@ class ModelAffectation extends Model
   private $affectation_id;
   private $slot_id;
   private $user_id;
-  
+
 
   protected static $object_table = 'affectation';
   protected static $object_model = 'affectation';
-  protected static $primary= 'affectation_id';
+  protected static $primary = 'affectation_id';
 
   public function __construct($id = NULL, $slot_id = NULL, $user_id = NULL)
   {
