@@ -448,19 +448,50 @@ class ControllerFestival
 
     public static function desassignerResponsable()
     {
-        $responsable_id = $_GET['user_id'];
-        $festival_id = $_GET['festival_id'];
-        $f = ModelResponsable::select($festival_id);
-        $controller = 'responsable';
-        $pagetitle = 'supprimons ceci';
-        $view = 'deleted';
-        ModelResponsable::delete($responsable_id);
-        $tab_r = ModelResponsable::selectAll();
-        $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
-        $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
-        $tab_poste = ModelFestival::getPostesByFestival($festival_id);
-        $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
-        $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+        if (Session::is_admin()) {
+            $responsable_id = $_GET['responsable_id'];
+            $festival_id = $_GET['festival_id'];
+            $user_id = $_GET['user_id'];
+            if (ModelUtilisateur::estResponsable($user_id, $festival_id)) { // Si l'utilisateur est bien responsable du festival                
+                // Suppression dans responsable + test de suppression
+                if (is_bool(ModelResponsable::delete($responsable_id))) {
+                    // Pour la vue détail
+                    $f = ModelFestival::select($festival_id);
+                    $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+                    $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
+                    $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
+                    $tab_poste = ModelFestival::getPostesByFestival($festival_id);
+                    $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
+                    $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+                    $createur = ModelFestival::getNomCreateur($festival_id);
+                    if(Session::is_responsable()) {
+                        $boolResponsable = 1;
+                    } else {
+                        $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+                        $boolResponsable = 0;
+                    }
+
+                    $pagetitle = 'Détail du festival';
+                    $controller = 'festival';
+                    $view = 'detail';
+                } else {
+                    $pagetitle = 'Erreur action read';
+                    $controller = 'utilisateur';
+                    $view = 'messageRetour';
+                    $message = 'erreur de la fonction desassignerResponsable dans le controller festival';
+                }
+            } else{
+                $pagetitle = 'Détail du festival';
+                $controller = 'utilisateur';
+                $view = 'messageRetour';
+                $message = 'Ce bénévole n\'est pas responsable dans ce festival';
+            }
+        } else {
+            $pagetitle = 'Erreur';
+            $controller = 'utilisateur';
+            $message = "Vous n'avez pas l'autorisation !";
+            $view = 'messageRetour';
+        }
 
         require File::build_path(array("view", "view.php"));
     }
