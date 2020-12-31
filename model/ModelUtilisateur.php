@@ -188,7 +188,7 @@ class ModelUtilisateur extends Model
     $mgClient = Mailgun::create('f0fe14b78df21c891f0c59e428d56dfc-e5da0167-a189ce96', 'https://api.eu.mailgun.net');
     $domain = "https://api.mailgun.net/v3/sandboxb45e2bee9dca45d49a719b980ca80ef7.mailgun.org";
     $params = array(
-      'from'    => 'test <Mathieu.Soysal@etu.umontpellier.fr>',
+      'from'    => 'postmaster@sandboxb45e2bee9dca45d49a719b980ca80ef7.mailgun.org',
       'to'      => $user_mail,
       'subject' => 'Hello',
       'text'    => 'Testing some Mailgun awesomness!'
