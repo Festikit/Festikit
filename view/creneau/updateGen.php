@@ -54,7 +54,17 @@ if (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique)) {
                 $creneau_courant_id = $h->getCreneauId();
 
                 echo "<td><a title=\"modifier\" href=\"index.php?action=update&controller=creneau&creneau_id=$creneau_courant_id&type=gen\" class=\"btn\"><i class=\"material-icons\">edit</i></a>";
-                echo "<a title=\"modifier\" href=\"index.php?action=deleteGen&controller=creneau&creneau_id=$creneau_courant_id&type=gen&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">delete</i></a></td>";
+                echo "<a title=\"supprimer\" href=\"#confirmation$creneau_courant_id\" class=\"btn modal-trigger\"><i class=\"material-icons\">delete</i></a></td>
+            <div id=\"confirmation$creneau_courant_id\" class=\"modal\">
+                <div class=\"modal-content\">
+                    <h4>Êtes vous sûr de vouloir le supprimer ?</h4>
+                    <p>Cette action serat irréversible.</p>
+                </div>
+                <div class=\"modal-footer\">
+                    <a href=\"#!\" class=\"modal-close waves-effect waves-green btn-flat\">Annuler</a>
+                    <a href=\"index.php?action=deleteGen&controller=creneau&creneau_id=$creneau_courant_id&type=gen&festival_id=$festival_id\" class=\"btn red modal-close waves-effect waves-green btn-flat\">Supprimer</a>
+                </div>
+            </div>";
             }
         } else echo "<td><i> Il n'y a donc rien à afficher ici.. </i></td>";
         echo "</tr>";
