@@ -8,9 +8,38 @@
                 })
                 .then(() => console.log('Successful share'))
                 .catch((error) => console.log('Error sharing', error));
+        } else {
+            var elem = document.querySelector('#partage')
+            var instance = M.Modal.getInstance(elem);
+            instance.open();
         }
     }
 </script>
+
+<script>
+    function copier() {
+        var copyText = document.getElementById("urlPartage");
+
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+
+        document.execCommand("copy");
+
+        alert("L'URL a bien été copié :" + copyText.value);
+    }
+</script>
+
+<div id="partage" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <input class="col s10" type="text" value="https://benevoles.herokuapp.com/index.php?action=create&festival_id=<?php echo $festival_id ?>" id="urlPartage">
+            <button class="btn col s2" onclick="copier()">Copier</button>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
+    </div>
+</div>
 
 <div class="fixed-action-btn">
     <button onclick="share()" class="btn red z-depth-3 waves-effect"> Partager le formulaire
@@ -241,7 +270,7 @@
                     }
                     ?>
 
-                </table> */?>
+                </table> */ ?>
 
                 <?php
                 $festivalGenerique = $_GET['festival_id'];
@@ -295,7 +324,7 @@
                             }
                         } else echo "<td><i> Il n'y a donc rien à afficher ici.. </i></td>";
                         echo "</tr>";
-                        
+
                         $compteur++;
                     }
                 } else echo "<td><i> Il n'y a aucun jour assigné à ce festival.. </i></td>";

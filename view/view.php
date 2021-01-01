@@ -84,10 +84,10 @@
 <body>
 	<!-- HEADER -->
 	<header>
-		<nav height="64px">
+		<nav>
 			<div class="nav-wrapper grey">
 				<a href="#" class=""><img src="rakhi.svg" alt="icone du site" width="57px" height="57px"><span
-						class="brand-logo">Festivanus</span></a>
+						class="brand-logo">Festikit</span></a>
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i
 						class="material-icons">menu</i></a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
