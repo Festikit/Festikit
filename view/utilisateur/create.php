@@ -1,3 +1,21 @@
+<script>
+    function share() {
+        if (navigator.share) {
+            navigator.share({
+                    title: 'Festival : <?php echo $f->getFestivalName() ?>',
+                    text: 'Invitation à devenir bénévole pour le festival <?php echo $f->getFestivalName() ?>',
+                    url: 'https://benevoles.herokuapp.com/index.php?action=create&festival_id=<?php echo $festival_id ?>',
+                })
+                .then(() => console.log('Successful share'))
+                .catch((error) => console.log('Error sharing', error));
+        }
+    }
+</script>
+
+<div class="fixed-action-btn">
+    <button onclick="share()" class="btn red z-depth-3 waves-effect"> Partager le formulaire
+    </button>
+</div>
 <div class="row">
     <div class="col s12 m10 offset-m1 l8 offset-l2">
 
