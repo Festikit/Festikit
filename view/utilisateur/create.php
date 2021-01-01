@@ -202,7 +202,7 @@
                 </div>
 
                 <h6>Vos disponibilités</h6>
-                <table>
+                <?php /*<table>
                     <tr>
                         <th id=""><label for="dispo_date1">jour</label></th>
 
@@ -234,27 +234,88 @@
                         foreach (ModelFestival::getCreneauxGeneriquesHeure($festivalGenerique) as $h) {
                             $cStart = $h->getCreneauStart();
                             $cEnd = $h->getCreneauEnd();
-                            echo "<td><label><input type=\"checkbox\" name=\"dispo_heure$cStart" . "_$cEnd"  . "date_$CreneauDate\" id=\"dispo_heure$compteur" . "date_$CreneauDate\" value=\"1\" /><span> </span></label></td>";
+                            echo "<td><label><input type=\"checkbox\" name=\"dispo_heure$cStart" . "_$cEnd"  . "date_$CreneauDate\" id=\"dispo_heure$compteur"
+                             . "date_$CreneauDate\" value=\"1\" /><span> </span></label></td>";
                         }
                         echo "</tr>";
                     }
                     ?>
 
-                </table>
+                </table> */?>
 
-                <h6>Autres disponibilités</h6>
-                <div class="row">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">insert_invitation</i>
-                        <input name="autres_dispos_date" id="autres_dispos_date" placeholder=" " type="date" class="validate">
-                        <label for="autres_dispos_date">Date de disponibilités</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">access_time</i>
-                        <input name="autres_dispos_heure" id="autres_dispos_heure" placeholder=" " type="time" class="validate">
-                        <label for="autres_dispos_heure">Heure de disponibilités</label>
-                    </div>
-                </div>
+                <?php
+                $festivalGenerique = 6;
+                $compteur = 1;
+                if (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique)) {
+                    foreach (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique) as $creneau_de_date_courant) { ?>
+                        <table>
+                            <tr>
+                                <th id=""><label for="dispo_date1">jour n°<?php echo $compteur ?></label></th>
+
+                                <?php
+                                // Affichage dynamique des heures correspondant aux créneaux génériques
+
+                                $compteurCreneauxHeure = 0;
+                                $date_depart_creneau_courant = $creneau_de_date_courant->getCreneauStart();
+
+                                if (ModelFestival::getCreneauxGeneriquesHeureByJour($festivalGenerique, $date_depart_creneau_courant)) {
+                                    foreach (ModelFestival::getCreneauxGeneriquesHeureByJour($festivalGenerique, $date_depart_creneau_courant) as $h) {
+                                        $cStart = $h->getCreneauStart();
+                                        $cEnd = $h->getCreneauEnd();
+                                        //cr début
+                                        $cStart = $cStart . "";
+                                        $cStartmod = substr($cStart, 0, -3);
+                                        //cr fin
+                                        $cEnd = $cEnd . "";
+                                        $cEndmod = substr($cEnd, 0, -3);
+
+                                        echo "<th id=\"\"><label for=\"dispo_heure$compteurCreneauxHeure\">" . $cStartmod . " " . $cEndmod . "</label></th>";
+
+                                        $compteurCreneauxHeure++;
+                                    }
+                                } else echo "<th><i> Le festival n'a pas encore de créneaux </i></th>";
+                                ?>
+                            </tr>
+
+                    <?php
+                        // Affichage dynamique des jours de festival (Les dates des créneaux génériques sans doublons)
+                        $numCreneauHeure = 1;
+
+                        echo "
+                        <tr>
+                        <td class=\"firstColumn\"><label for=\"date_$numCreneauHeure\">$date_depart_creneau_courant</label></td>
+                        ";
+
+                        if (ModelFestival::getCreneauxGeneriquesHeureByJour($festivalGenerique, $date_depart_creneau_courant)) {
+                            foreach (ModelFestival::getCreneauxGeneriquesHeureByJour($festivalGenerique, $date_depart_creneau_courant) as $h) {
+                                $cStart = $h->getCreneauStart();
+                                $cEnd = $h->getCreneauEnd();
+                                echo "<td><label><input type=\"checkbox\" name=\"dispo_heure$cStart" . "_$cEnd"  . "date_$date_depart_creneau_courant\" 
+                                id=\"dispo_heure$compteur" . "date_$date_depart_creneau_courant\" value=\"1\" /><span> </span></label></td>";
+                            }
+                        } else echo "<td><i> Il n'y a donc rien à afficher ici.. </i></td>";
+                        echo "</tr>";
+                        
+                        $compteur++;
+                    }
+                } else echo "<td><i> Il n'y a aucun jour assigné à ce festival.. </i></td>";
+                    ?>
+                        </table>
+                        </ul>
+
+                        <h6>Autres disponibilités</h6>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">insert_invitation</i>
+                                <input name="autres_dispos_date" id="autres_dispos_date" placeholder=" " type="date" class="validate">
+                                <label for="autres_dispos_date">Date de disponibilités</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">access_time</i>
+                                <input name="autres_dispos_heure" id="autres_dispos_heure" placeholder=" " type="time" class="validate">
+                                <label for="autres_dispos_heure">Heure de disponibilités</label>
+                            </div>
+                        </div>
             </div>
 
             <div class="card-panel grey lighten-4">
