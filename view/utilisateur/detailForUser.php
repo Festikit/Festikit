@@ -86,7 +86,7 @@
                 <div id=\"confirmation$festival_id\" class=\"modal\">
                 <div class=\"modal-content\">
                     <h4>Êtes vous sûr de vouloir le supprimer ?</h4>
-                    <p>Cette action serat irréversible.</p>
+                    <p>Cette action sera irréversible.</p>
                 </div>
                 <div class=\"modal-footer\">
                     <a href=\"#!\" class=\"modal-close waves-effect waves-green btn-flat\">Annuler</a>
