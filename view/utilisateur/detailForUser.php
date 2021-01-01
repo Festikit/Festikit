@@ -74,13 +74,25 @@
         echo "Il n'y a pas de candidature.</br>";
     } else {
         foreach ($tab_festivalWhereCandidat as $c) {
+            $festival_id = rawurlencode($c->getFestivalId());
+            $festival_name = $c->getFestivalName();
             echo "
             <li class=\"collection-item avatar\">
-            <a href=\"index.php?action=readForUser&controller=festival&festival_id=" . rawurlencode($c->getFestivalId()) . "\">" . htmlspecialchars($c->getFestivalName()) . "</a>
+            <a href=\"index.php?action=readForUser&controller=festival&festival_id=\"$festival_id\"\>$festival_name</a>
                 <div class=\"secondary-content\">
-                    <a title=\"en savoir plus\" href=\"index.php?action=readForUser&controller=festival&festival_id=" . rawurlencode($c->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">more</i></a>
-                    <a title=\"supprimer\" href=\"index.php?action=delete&controller=postuler&user_id=" . rawurlencode($user_id) . "&festival_id=" . rawurlencode($c->getFestivalId()) . "\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
+                    <a title=\"en savoir plus\" href=\"index.php?action=readForUser&controller=festival&festival_id=\"$festival_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
+                    <a title=\"annuler la candidature\" href=\"#confirmation$festival_id\" class=\"btn modal-trigger\"><i class=\"material-icons\">delete</i></a>
                 </div>
+                <div id=\"confirmation$festival_id\" class=\"modal\">
+                <div class=\"modal-content\">
+                    <h4>Êtes vous sûr de vouloir le supprimer ?</h4>
+                    <p>Cette action serat irréversible.</p>
+                </div>
+                <div class=\"modal-footer\">
+                    <a href=\"#!\" class=\"modal-close waves-effect waves-green btn-flat\">Annuler</a>
+                    <a href=\"index.php?action=delete&controller=postuler&user_id=\"$user_id\"&festival_id=\"$festival_id\" class=\"btn red modal-close waves-effect waves-green btn-flat\">Supprimer</a>
+                </div>
+            </div>
             </li>";
         }
     }
