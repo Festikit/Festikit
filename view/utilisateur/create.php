@@ -70,7 +70,7 @@
 
     function outFunc() {
         var tooltip = document.getElementById("myTooltip");
-        tooltip.innerHTML = "Copier l'URL";
+        tooltip.innerHTML = "Copier le lien";
     }
 </script>
 
@@ -81,8 +81,8 @@
             <input class="col s9" readonly type="text" value="https://benevoles.herokuapp.com/index.php?action=create&festival_id=<?php echo $festival_id ?>" id="urlPartage">
             <div class="tooltip col s3">
                 <button class="btn" onclick="copier()" onmouseout="outFunc()">
-                    <span class="tooltiptext" id="myTooltip">Copier l'URL</span>
-                    Copier l'URL
+                    <span class="tooltiptext" id="myTooltip">Copier le lien</span>
+                    Copier le lien
                 </button>
             </div>
         </div>
