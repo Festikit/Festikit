@@ -113,7 +113,10 @@ class ModelCreneau extends Model
   public static function getCreneauxDateByPosteId($poste_id)
   {
     try {
-      $sql = "SELECT DISTINCT CAST(creneau_startdate AS DATE) AS creneau_startdate from creneau WHERE poste_id=:poste_id";
+      $sql = "SELECT DISTINCT CAST(creneau_startdate AS DATE) AS creneau_startdate from creneau WHERE poste_id=:poste_id ORDER BY creneau_startdate ASC";
+      //SELECT DISTINCT CAST(creneau_startdate AS DATE) AS creneau_startdate from creneau WHERE poste_id= 9 ORDER BY creneau_startdate ASC (LIMIT 3)
+      //solutionness
+      //SELECT poste_id FROM poste WHERE festival_id = 6 AND poste_name = 'Generique'
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
         "poste_id" => $poste_id,
@@ -139,7 +142,7 @@ class ModelCreneau extends Model
   {
     try {
       $sql = "SELECT DISTINCT CAST(creneau_startdate AS TIME) AS creneau_startdate , CAST(creneau_enddate AS TIME) AS creneau_enddate, creneau_id, poste_id 
-      FROM creneau WHERE poste_id=:id_tag AND CAST(creneau_startdate AS DATE) = DATE '$jour'";
+      FROM creneau WHERE poste_id=:id_tag AND CAST(creneau_startdate AS DATE) = DATE '$jour' ORDER BY creneau_startdate ASC";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
         "id_tag" => $poste_id,
