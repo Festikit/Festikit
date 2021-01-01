@@ -137,18 +137,22 @@
 		<div class="container">
 			<div class="row">
 				<div class="col l6 s12">
-					<h5 class="white-text">Footer Content</h5>
-					<p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
-						content.
+					<h5 class="white-text">Besoin d'aider ? Contactez-nous !</h5>
+					<p class="grey-text text-lighten-4">
+						<h6>
+							mail : <a class="grey-text text-lighten-2" href="mailto:mathieu.soysal+aidefestival@outlook.fr">support@GestionnaireFestival.fr</a>
+						</h6>
+						<h6>
+							tel : <a class="grey-text text-lighten-2" href="tel:+33652600110">065260001</a>
+						</h6>
 					</p>
 				</div>
 				<div class="col l4 offset-l2 s12">
-					<h5 class="white-text">Links</h5>
+					<h5 class="white-text">Partager</h5>
 					<ul>
-						<li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-						<li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-						<li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-						<li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+						<li> <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbenevoles.herokuapp.com" data-rel="popup" rel="nofollow" title="Partager sur Facebook" role="button" aria-label="Partager sur Facebook"><span class="fab fa-facebook-f"></span><span class="grey-text text-lighten-3">Facebook</span></a></li>
+						<li><a href="https://twitter.com/intent/tweet?text=Gestionnaire%20de%20festival%20en%20ligne&amp;url=https%3A%2F%2Fbenevoles.herokuapp.com" data-rel="popup" rel="nofollow" title="Partager sur Twitter" role="button" aria-label="Partager sur Twitter"><span class="fab fa-twitter"></span><span class="grey-text text-lighten-3">Tweeter</span></a></li>
+						<li><a href="https://www.linkedin.com/shareArticle?mini=true&amp;summary=Un%20moyen%20simple%20et%20efficace%20de%20faciliter%20la%20collecte%20des%20informations%20personnelles%2C%20des%20disponibilit%C3%A9s%20et%20des%20pr%C3%A9f%C3%A9rences%20de%20poste%20de%20chacun%20des%20b%C3%A9n%C3%A9voles.&amp;title=Gestionnaire%20de%20festival%20en%20ligne&amp;url=https%3A%2F%2Fbenevoles.herokuapp.com" data-rel="popup" rel="nofollow" title="Partager sur LinkedIn" role="button" aria-label="Partager sur LinkedIn"><span class="fab fa-linkedin-in"></span><span class="grey-text text-lighten-3">LinkedIn</span></a></li>
 					</ul>
 				</div>
 			</div>
