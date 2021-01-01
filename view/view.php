@@ -2,9 +2,7 @@
 <html lang="fr" xml:lang="fr">
 
 <head>
-	<title>
-		<?php echo $pagetitle; ?>
-	</title>
+	<title>Festikit</title>
 	<meta charset="utf-8">
 	<!-- Materialize: Compiled and minified CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">

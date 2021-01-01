@@ -118,17 +118,17 @@
                     </div>
 
                     <div class="row">
-                        <div class="input-field col s4">
+                        <div class="input-field col s6 m4">
                             <i class="material-icons prefix">lock</i>
                             <input name="user_password1" id="user_password1" type="password" autocomplete="new-password" class="validate" onChange="checkPasswordLength();" required>
                             <label for="user_password1">Mot de passe<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
                         </div>
-                        <div class="input-field col s4">
+                        <div class="input-field col s6 m4">
                             <input name="user_password2" id="user_password2" type="password" class="validate" onChange="checkPasswordMatch();" required>
                             <label for="user_password2">Retapez le mot de passe<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
                         </div>
-                        <div class="input-field col s4 registrationFormAlert" id="checkPasswordLength"></div>
-                        <div class="input-field col s4 registrationFormAlert" id="checkPasswordMatch"></div>
+                        <div class="input-field col s12 m4 registrationFormAlert" id="checkPasswordLength"></div>
+                        <div class="input-field col s12 m4 registrationFormAlert" id="checkPasswordMatch"></div>
                     </div>
 
                     <div class="row">
@@ -421,7 +421,7 @@
                             $idPoste = $post->getPosteId();
                             echo "
                         <tr>
-                        <td><label for=\"$idPoste\">$nomPoste<br>$descriptionPoste</label></td>
+                        <td><label for=\"$idPoste\"> <span class=\"black-text\" >$nomPoste</span><br>$descriptionPoste</label></td>
                         <td><label><input type=\"radio\" name=\"" . "Poste" . $idPoste . "\" id=\"$idPoste\" value=\"1\" required /><span> </span></label></td>
                         <td><label><input type=\"radio\" name=\"" . "Poste" . $idPoste . "\" id=\"$idPoste\" value=\"2\" required /><span> </span></label></td>
                         <td><label><input type=\"radio\" name=\"" . "Poste" . $idPoste . "\" id=\"$idPoste\" value=\"3\" required /><span> </span></label></td>
