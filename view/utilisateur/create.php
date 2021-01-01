@@ -1,3 +1,42 @@
+<style>
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    }
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 140px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 150%;
+        left: 50%;
+        margin-left: -75px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .tooltip .tooltiptext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
 <script>
     function share() {
         if (navigator.share) {
@@ -25,15 +64,27 @@
 
         document.execCommand("copy");
 
-        alert("L'URL a bien été copié :" + copyText.value);
+        var tooltip = document.getElementById("myTooltip");
+        tooltip.innerHTML = "Copié !";
+    }
+
+    function outFunc() {
+        var tooltip = document.getElementById("myTooltip");
+        tooltip.innerHTML = "Copier l'URL";
     }
 </script>
 
 <div id="partage" class="modal">
     <div class="modal-content">
+        <h4>Partager le formulaire</h4>
         <div class="row">
-            <input class="col s10" type="text" value="https://benevoles.herokuapp.com/index.php?action=create&festival_id=<?php echo $festival_id ?>" id="urlPartage">
-            <button class="btn col s2" onclick="copier()">Copier</button>
+            <input class="col s9" type="text" value="https://benevoles.herokuapp.com/index.php?action=create&festival_id=<?php echo $festival_id ?>" id="urlPartage">
+            <div class="tooltip col s3">
+                <button class="btn" onclick="copier()" onmouseout="outFunc()">
+                    <span class="tooltiptext" id="myTooltip">Copier l'URL</span>
+                    Copier l'URL
+                </button>
+            </div>
         </div>
     </div>
     <div class="modal-footer">
