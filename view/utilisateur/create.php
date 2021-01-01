@@ -244,7 +244,7 @@
                 </table> */?>
 
                 <?php
-                $festivalGenerique = 6;
+                $festivalGenerique = $_GET['festival_id'];
                 $compteur = 1;
                 if (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique)) {
                     foreach (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique) as $creneau_de_date_courant) { ?>
@@ -302,6 +302,8 @@
                     ?>
                         </table>
                         </ul>
+                        </br>
+                        </br>
 
                         <h6>Autres disponibilités</h6>
                         <div class="row">
