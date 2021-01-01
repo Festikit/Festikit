@@ -9,30 +9,52 @@
 			foreach ($tab_f as $f) {
 				$festival_name = htmlspecialchars($f->getFestivalName());
 				$festival_id = $f->getFestivalId();
-				echo "<li class=\"collection-item\">
-			<a href=\"index.php?action=read&controller=festival&festival_id=$festival_id\"> <span class=\"title\">$festival_name</span></a>
-			<div class=\"secondary-content\">
-				<a title=\"en savoir plus\" href=\"index.php?action=read&controller=festival&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
-				<a title=\"voir le formulaire\" href=\"index.php?action=create&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">assignment</i></a>
-			</div>
-		</li>";
+				echo "
+				<li class=\"collection-item\">
+					<a href=\"index.php?action=read&controller=festival&festival_id=$festival_id\"> <span class=\"title\">$festival_name</span></a>
+					<div class=\"secondary-content\">
+						<a title=\"en savoir plus\" href=\"index.php?action=read&controller=festival&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
+						<a title=\"voir le formulaire\" href=\"index.php?action=create&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">assignment</i></a>
+					</div>
+				</li>";
 				$i++;
 			}
-		} else {
+		}
+
+
+		if ($boolResponsable) {
 			echo '<h4>Liste des festivals en tant que responsable</h4>';
 			$i = 1;
 			foreach ($tab_r as $r) {
 				$festival_name = htmlspecialchars($r->getFestivalName());
 				$festival_id = $r->getFestivalId();
 				echo "<li class=\"collection-item\">
-			<a href=\"index.php?action=read&controller=festival&festival_id=$festival_id\"> <span class=\"title\">$festival_name</span></a>
-			<div class=\"secondary-content\">
-				<a title=\"en savoir plus\" href=\"index.php?action=read&controller=festival&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
-				<a title=\"voir le formulaire\" href=\"index.php?action=create&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">assignment</i></a>
-			</div>
-		</li>";
+		<a href=\"index.php?action=read&controller=festival&festival_id=$festival_id\"> <span class=\"title\">$festival_name</span></a>
+		<div class=\"secondary-content\">
+			<a title=\"en savoir plus\" href=\"index.php?action=read&controller=festival&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
+			<a title=\"voir le formulaire\" href=\"index.php?action=create&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">assignment</i></a>
+		</div>
+	</li>";
+				$i++;
+			}
+			echo '<h4>Liste des festivals</h4>';
+			$i = 1;
+			foreach ($tab_f as $f) {
+				$festival_name = htmlspecialchars($f->getFestivalName());
+				$festival_id = $f->getFestivalId();
+				if (!ModelUtilisateur::estResponsable($user_id, $festival_id)) {
+					echo "<li class=\"collection-item\">
+            <a href=\"index.php?action=readForUser&controller=festival&festival_id=$festival_id\"> <span class=\"title\">$festival_name</span></a>
+            <div class=\"secondary-content\">
+                <a title=\"en savoir plus\" href=\"index.php?action=readForUser&controller=festival&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
+                <a title=\"voir le formulaire\" href=\"index.php?action=create&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">assignment</i></a>
+            </div>";
+				}
+
+				echo "</li>";
 				$i++;
 			}
 		}
+
 		?>
 </ul>
