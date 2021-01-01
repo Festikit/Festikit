@@ -234,9 +234,19 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                 echo "<a href=\"index.php?action=read&user_id=$user_id\"> <span class=\"title\">$user_firstname $user_lastname</span></a>
                 <div class=\"secondary-content\">
                     <a title=\"en savoir plus\" href=\"index.php?action=read&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
-                    <a title=\"supprimer\" href=\"index.php?action=delete&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
+                    <a title=\"supprimer\" href=\"#confirmation$user_id\" class=\"btn modal-trigger\"><i class=\"material-icons\">delete</i></a>
                     <a title=\"refuser\" href=\"index.php?action=refuserUtilisateur&controller=festival&user_id=$user_id&festival_id=$festival_id\" class=\"btn\">Refuser</a>
                     <a title=\"Assigner en tant que responsable\" href=\"index.php?action=ajouterResponsable&controller=festival&user_id=$user_id&festival_id=$festival_id\" class=\"btn\">assigner</a>
+                </div>
+                <div id=\"confirmation$user_id\" class=\"modal\">
+                    <div class=\"modal-content\">
+                        <h4>Êtes vous sûr de vouloir le supprimer ?</h4>
+                        <p>Cette action serat irréversible.</p>
+                    </div>
+                    <div class=\"modal-footer\">
+                        <a href=\"#!\" class=\"modal-close waves-effect waves-green btn-flat\">Annuler</a>
+                        <a href=\"index.php?action=delete&user_id=$user_id\" class=\"btn red modal-close waves-effect waves-green btn-flat\">Supprimer</a>
+                    </div>
                 </div>
             </li>";
                 $i++;
@@ -264,8 +274,18 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                 echo "<a href=\"index.php?action=read&user_id=$user_id\"> <span class=\"title\">$user_firstname $user_lastname</span></a>
                 <div class=\"secondary-content\">
                     <a title=\"en savoir plus\" href=\"index.php?action=read&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
-                    <a title=\"supprimer\" href=\"index.php?action=delete&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">delete</i></a>
+                    <a title=\"supprimer\" href=\"#confirmation$user_id\" class=\"btn modal-trigger\"><i class=\"material-icons\">delete</i></a>
                     <a title=\"accepter\" href=\"index.php?action=accepterUtilisateur&controller=festival&user_id=$user_id&festival_id=$festival_id\" class=\"btn\">Accepter</a>
+                </div>
+                <div id=\"confirmation$user_id\" class=\"modal\">
+                    <div class=\"modal-content\">
+                        <h4>Êtes vous sûr de vouloir le supprimer ?</h4>
+                        <p>Cette action serat irréversible.</p>
+                    </div>
+                    <div class=\"modal-footer\">
+                        <a href=\"#!\" class=\"modal-close waves-effect waves-green btn-flat\">Annuler</a>
+                        <a href=\"index.php?action=delete&user_id=$user_id\" class=\"btn red modal-close waves-effect waves-green btn-flat\">Supprimer</a>
+                    </div>
                 </div>
                 </li>";
                 $i++;
