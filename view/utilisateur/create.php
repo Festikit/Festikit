@@ -78,7 +78,7 @@
     <div class="modal-content">
         <h4>Partager le formulaire</h4>
         <div class="row">
-            <input class="col s9" type="text" value="https://benevoles.herokuapp.com/index.php?action=create&festival_id=<?php echo $festival_id ?>" id="urlPartage">
+            <input class="col s9" readonly type="text" value="https://benevoles.herokuapp.com/index.php?action=create&festival_id=<?php echo $festival_id ?>" id="urlPartage">
             <div class="tooltip col s3">
                 <button class="btn" onclick="copier()" onmouseout="outFunc()">
                     <span class="tooltiptext" id="myTooltip">Copier l'URL</span>
