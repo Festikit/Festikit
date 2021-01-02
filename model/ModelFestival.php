@@ -395,6 +395,31 @@ class ModelFestival extends Model
     }
   }
 
+  public static function checkResponsableWhereUserInFestival($responsable_id, $user_id)
+  {
+    try {
+      $sql = "SELECT * FROM responsable r JOIN postuler p ON r.festival_id=p.festival_id WHERE p.user_id=:user_id AND r.responsable_id=:responsable_id";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "user_id" => $user_id,
+        "responsable_id" => $responsable_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelResponsable');
+      $tab_responsable = $req_prep->fetchAll();
+
+      if (empty($tab_responsable)) return false;
+      return true;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
   // Pour générer le formulaire dynamiquement (disponible)
   public static function getCreneauxGeneriquesHeure($festival_id)
   {

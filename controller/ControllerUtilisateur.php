@@ -41,8 +41,11 @@ class ControllerUtilisateur
     public static function read()
     {
         $user_id = $_GET['user_id'];
+        if(Session::is_responsable()) {
+            $responsable_id = ModelResponsable::getResponsableByUser($_SESSION['login'])->getResponsableId();
+        }
 
-        if (Session::is_user($user_id) || Session::is_admin()) {
+        if (Session::is_user($user_id) || Session::is_admin() || (Session::is_responsable() && ModelFestival::checkResponsableWhereUserInFestival($responsable_id, $user_id))) {
             $u = ModelUtilisateur::select($user_id);
 
             $tab_festivalWhereAccepted = ModelUtilisateur::getFestivalWhereAccepted($user_id);
@@ -64,7 +67,7 @@ class ControllerUtilisateur
             if ($u == false) {
                 $pagetitle = 'Erreur action';
                 $controller = 'utilisateur';
-                $view = 'error';
+                $view = 'messageRetour';
                 $message = "erreur de la fonction read dans le controller utilisateur";
             } else {
                 $pagetitle = 'Détail de l\'utilisateur';
@@ -351,7 +354,7 @@ class ControllerUtilisateur
         // Vérification d'une éventuelle erreur
         if (isset($message)) {
             $controller = 'utilisateur';
-            $view = 'error';
+            $view = 'messageRetour';
             $pagetitle = 'erreur';
         } else {
             $festival = ModelFestival::select($_GET['festival_id']);
@@ -519,7 +522,7 @@ class ControllerUtilisateur
         } else {
             $controller = 'utilisateur';
             $message = "Erreur Champs non remplies";
-            $view = "error";
+            $view = "messageRetour";
             $pagetitle = "Erreur";
         }
         require File::build_path(array("view", "view.php"));

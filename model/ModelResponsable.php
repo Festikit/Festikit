@@ -107,6 +107,31 @@ class ModelResponsable extends ModelUtilisateur
         }
     }
 
+    public static function getResponsableByUser($user_id)
+    {
+        try {
+            $sql = "SELECT * from responsable WHERE user_id=:nom_tag";
+            $req_prep = Model::$pdo->prepare($sql);
+            $values = array(
+                "nom_tag" => $user_id,
+            );
+            $req_prep->execute($values);
+            $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelResponsable');
+            $responsable = $req_prep->fetchAll();
+
+            if (empty($responsable))
+                return false;
+            return $responsable[0];
+        } catch (PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage();
+            } else {
+                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
+
     /* public function desassignerResponsable($id){
         try{
           $sql = "DELETE FROM responsable WHERE responsable_id =:nom_tag";

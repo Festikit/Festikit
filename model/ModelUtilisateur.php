@@ -1,6 +1,6 @@
 <?php
 require_once File::build_path(array("model", "Model.php"));
-require 'vendor/autoload.php';
+//require 'vendor/autoload.php';
 
 use Mailgun\Mailgun;
 
