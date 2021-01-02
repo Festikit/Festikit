@@ -54,10 +54,10 @@ class ControllerUtilisateur
             $boolBenevole = 0;
             $boolAdmin = 0;
             $boolResponsable = 0;
-            if (Session::is_responsable()) {
+            if (Session::is_responsable() && Session::is_user($user_id)) {
                 $tab_festivalWhereResponsable = ModelFestival::getFestivalByResponsable($user_id);
                 $boolResponsable = 1;
-            } else if (Session::is_admin()) {
+            } else if (Session::is_admin() && Session::is_user($user_id)) {
                 $tab_festivalWhereCreateur = ModelFestival::getFestivalByCreateur($user_id);
                 $boolAdmin = 1;
             } else {
