@@ -250,26 +250,43 @@ class ControllerUtilisateur
                 $message = 'Erreur: Image non upload';
             }
 
+            
 
+            
             // Insertion pour user
             if ($reussitePicture) {
-                if (isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license, $user_password1, $user_password2, $admin)) {
-                    $reussiteInitUser = true;
-                    if (self::createdUser($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license, $user_password1, $user_password2, $admin)) {
-                        $reussiteUser = true;
+                //Verification mail
+                $reussite_mail = false;
+                if (!ModelUtilisateur::mailExiste($user_mail))
+                {
+                    if (isset($user_firstname, $user_lastname, $user_mail, $user_phone, $user_postal_code, $user_birthdate, $user_picture, $user_driving_license, $user_password1, $user_password2, $admin)) {
+                        $reussiteInitUser = true;
+                        if (self::createdUser($user_firstname, $user_lastname, $user_mail, $user_phone, $user_birthdate, $user_picture, $user_postal_code, $user_driving_license, $user_password1, $user_password2, $admin)) {
+                            $reussiteUser = true;
+                        } else {
+                            $message = "Erreur: createdUser";
+                            $reussiteUser = false;
+                        }
                     } else {
-                        $message = "Erreur: createdUser";
-                        $reussiteUser = false;
+                        $message = 'Erreur: initialisation des variables nécessaire à la création d\'un utilisateur';
+                        $reussiteInitUser = false;
                     }
-                } else {
-                    $message = 'Erreur: initialisation des variables nécessaire à la création d\'un utilisateur';
-                    $reussiteInitUser = false;
+                    $reussite_mail = true;
                 }
+                else{
+                    $reussite_mail = false;
+                    $reussiteInitUser = false;
+                    $controller = 'utilisateur';
+                    $view = 'messageRetour';
+                    $message = 'Un compte existe déjà avec ce mail';
+                    $pagetitle = 'erreur';
+                }
+                
             }
 
 
             // L'utilisateur étant créé, on récupère son id à partir de son mail
-            if ($reussitePicture && $reussiteInitUser && $reussiteUser) {
+            if ($reussitePicture && $reussiteInitUser && $reussiteUser && $reussite_mail) {
                 $user_id = ModelUtilisateur::getIdByMail($user_mail);
                 $user_id = $user_id->getId();
                 if (!empty($user_id)) {

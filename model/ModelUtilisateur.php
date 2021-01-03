@@ -490,4 +490,33 @@ class ModelUtilisateur extends Model
       die();
     }
   }
+
+  public static function mailExiste($user_mail)
+  {
+    try {
+      $sql = "SELECT * from user WHERE user_mail=:nom_tag";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "nom_tag" => $user_mail,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+      $tab_mail = $req_prep->fetchAll();
+      if (!empty($tab_mail)) //le mail n'existe pas
+      {
+        return true;
+      } else //le mail existe deja
+      {
+        return false;
+      }
+      return $tab_mail[0];
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
 }
