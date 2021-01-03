@@ -206,7 +206,9 @@ class ControllerCreneau
         $pagetitle = 'ajout d\'un créneau générique';
 
         $festival_id = $_GET['festival_id'];
-        $poste_id = 37;
+        $ap =ModelPoste::getPosteIdGenByFestival($festival_id);
+        $poste_id = $ap->get('poste_id');
+    
 
         require(File::build_path(array("view", "view.php")));
     }

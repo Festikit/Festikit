@@ -66,6 +66,21 @@ class ModelPoste extends Model
     $this->festival_id = $id2;
   }
 
+   // Getter générique
+   public function get($nom_attribut)
+   {
+     if (property_exists($this, $nom_attribut))
+       return $this->$nom_attribut;
+     return false;
+   }
+   // Setter générique
+   public function set($nom_attribut, $valeur)
+   {
+     if (property_exists($this, $nom_attribut))
+       $this->$nom_attribut = $valeur;
+     return false;
+   }
+
   /*
   public static function getAllPostes()
   {
@@ -85,7 +100,32 @@ class ModelPoste extends Model
   }
  */
 
-  /*
+  //SELECT poste_id FROM poste WHERE festival_id = 6 AND poste_name = 'Generique'
+  public static function getPosteIdGenByFestival($festival_id)
+  {
+    try {
+      $sql = "SELECT poste_id FROM poste WHERE festival_id=:nom_tag AND poste_name = 'Generique'";      
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "nom_tag" => $festival_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelPoste');
+      $tab_poste = $req_prep->fetchAll();
+      if(empty($tab_poste))
+        return false;
+      return $tab_poste[0];
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
+  
   public static function getPosteById($poste_id)
   {
     try {
@@ -110,7 +150,7 @@ class ModelPoste extends Model
       die();
     }
   }
-  */
+  
 
 
   /*

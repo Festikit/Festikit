@@ -108,6 +108,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
     </li>
     <?php
     $festivalGenerique = $_GET['festival_id'];
+
     $compteur = 1;
     if (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique)) {
         foreach (ModelFestival::getCreneauxGeneriquesDate($festivalGenerique) as $creneau_de_date_courant) { ?>
