@@ -40,6 +40,60 @@ class ModelPostuler extends Model
     $this->postuler_id = $postuler_id2;
   }
 
+  //Getter : festival_id
+  public function getFestivalId()
+  {
+    return $this->festival_id;
+  }
+
+  //Getter : vehicule
+  public function getVenirAvecVehicule()
+  {
+    return $this->venir_avec_vehicule;
+  }
+
+  //Getter : besoin hebergement
+  public function getBesoinHebergement()
+  {
+    return $this->besoin_hebergement;
+  }
+
+  //Getter : peut heberger
+  public function getPeutHeberger()
+  {
+    return $this->peut_heberger;
+  }
+
+  //Getter : configuration_couchage
+  public function getConfigurationCouchage()
+  {
+    return $this->configuration_couchage;
+  }
+
+  //Getter : arrivee_festival
+  public function getArriveeFestival()
+  {
+    return $this->arrivee_festival;
+  }
+
+  //Getter : depart_festival
+  public function getDepartFestival()
+  {
+    return $this->depart_festival;
+  }
+
+  //Getter : autres_dispos
+  public function getAutresDispos()
+  {
+    return $this->autres_dispos;
+  }
+
+  //Getter : experience
+  public function getExperience()
+  {
+    return $this->experience;
+  }
+
   /*
   public static function getAllPostuler()
   {
@@ -74,6 +128,32 @@ class ModelPostuler extends Model
 
       if (empty($tab_postuler)) return false;
       return $tab_postuler;
+    } catch (PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage();
+      } else {
+        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+  }
+
+  public static function getIdByUserAndFestival($user_id, $festival_id)
+  {
+    try {
+      $sql = "SELECT postuler_id from postuler WHERE user_id=:user_id AND festival_id=:festival_id";
+      $req_prep = Model::$pdo->prepare($sql);
+      $values = array(
+        "user_id" => $user_id,
+        "festival_id" => $festival_id,
+      );
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelPostuler');
+      $tab_postuler_id = $req_prep->fetchAll();
+
+      if (empty($tab_postuler_id))
+        return false;
+      return $tab_postuler_id[0];
     } catch (PDOException $e) {
       if (Conf::getDebug()) {
         echo $e->getMessage();

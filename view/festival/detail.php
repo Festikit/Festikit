@@ -231,7 +231,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                 $user_picture = $b->getPicture();
                 echo '<li class="collection-item avatar">
         <img src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="70px"/>';
-                echo "<a href=\"index.php?action=read&user_id=$user_id\"> <span class=\"title\">$user_firstname $user_lastname</span></a>
+                echo "<a href=\"index.php?action=readForCreator&user_id=$user_id&festival_id=$festival_id\"> <span class=\"title\">$user_firstname $user_lastname</span></a>
                 <div class=\"secondary-content\">
                     <a title=\"en savoir plus\" href=\"index.php?action=read&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
                     <a title=\"supprimer\" href=\"#confirmation$user_id\" class=\"btn modal-trigger\"><i class=\"material-icons\">delete</i></a>
