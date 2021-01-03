@@ -2,7 +2,7 @@
     <form class="col s6">
         <?php
         $festival_nameHTML = htmlspecialchars($festival->getFestivalName());
-        echo '<p>Inscription validé pour le festival' . "\"$festival_nameHTML\"" . ', veuillez confirmer votre compte par mail !</p>'; 
+        echo '<p>Inscription validée pour le festival' . "\"$festival_nameHTML\"" . '! </p>'; 
             
         ?>
     </form>

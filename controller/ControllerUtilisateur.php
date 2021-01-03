@@ -421,7 +421,7 @@ class ControllerUtilisateur
             $view = 'messageRetour';
             $pagetitle = 'erreur';
         } else {
-            $festival = ModelFestival::select($_GET['festival_id']);
+            $festival = ModelFestival::select($_POST['festival_id']);
             $controller = 'utilisateur';
             $view = 'created';
             $pagetitle = 'creation utilisateur';
