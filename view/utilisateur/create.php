@@ -36,6 +36,14 @@
         visibility: visible;
         opacity: 1;
     }
+
+    .icon-green {
+        color: green;
+    }
+
+    .icon-red {
+        color: red;
+    }
 </style>
 <script>
     function share() {
@@ -130,7 +138,7 @@
 
                         <div class="input-field col s12 m4 registrationFormAlert">
                             <label>
-                                <i class="material-icons verification-length"></i>
+                                <i id="verif-test" class="material-icons verification-length"></i>
                                 <span id="checkPasswordLength"></span>
                             </label>
                         </div>

@@ -46,6 +46,11 @@
 			if (user_password1.length < 6) {
 				$("#checkPasswordLength").html("Le mot de passe doit contenir au moins 6 caractères");
 				$(".verification-length").html("close");
+				var element = document.getElementsById("verif-test");
+				//element.classList.add("cyan-text");
+				//element.classList.add("cyan-text text-darken-4");
+				element.className += "cyan-text"; 
+				element.className += "text-darken-4"; 
 			} else {
 				$("#checkPasswordLength").html("Mot de passe de bonne taille");
 				$(".verification-length").html("check");
