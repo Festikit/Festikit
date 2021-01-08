@@ -45,8 +45,10 @@
 
 			if (user_password1.length < 6) {
 				$("#checkPasswordLength").html("Le mot de passe doit contenir au moins 6 caractères");
+				$(".verification-length").html("close");
 			} else {
 				$("#checkPasswordLength").html("Mot de passe de bonne taille");
+				$(".verification-length").html("check");
 			}
 		}
 
@@ -58,10 +60,13 @@
 			var user_password1 = $("#user_password1").val();
 			var user_password2 = $("#user_password2").val();
 
-			if (user_password1 != user_password2)
+			if (user_password1 != user_password2) {
 				$("#checkPasswordMatch").html("Les mots de passe de correspondent pas !");
-			else
+				$(".verification-match").html("close");
+			} else {
 				$("#checkPasswordMatch").html("Mots de passe identiques");
+				$(".verification-match").html("check");
+			}
 		}
 
 		$(document).ready(function () {

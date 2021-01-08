@@ -127,7 +127,19 @@
                             <input name="user_password2" id="user_password2" type="password" class="validate" onChange="checkPasswordMatch();" required>
                             <label for="user_password2">Retapez le mot de passe<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
                         </div>
-                        <div class="input-field col s12 m4 registrationFormAlert" id="checkPasswordLength"></div>
+
+                        <div class="input-field col s12 m4 registrationFormAlert">
+                            <label>
+                                <i class="material-icons verification-length"></i>
+                                <span id="checkPasswordLength"></span>
+                            </label>
+                        </div>
+                        <div class="input-field col s12 m4 registrationFormAlert">
+                            <label>
+                                <i class="material-icons verification-match"></i>
+                                <span id="checkPasswordMatch"></span>
+                            </label>
+                        </div>
                         <div class="input-field col s12 m4 registrationFormAlert" id="checkPasswordMatch"></div>
                     </div>
 
