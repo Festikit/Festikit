@@ -137,7 +137,7 @@ class ControllerPoste {
                 $controller = 'utilisateur';
                 $view = 'messageSuite';
                 $message = 'Le poste ' . "\"$poste_name\"" . ' a été créer avec succés !';
-                $path='action=detail&controller=festival';
+                $path='action=read&controller=festival&festival_id=' . $festival_id;
             }
         } else {
             $pagetitle = 'Erreur';
