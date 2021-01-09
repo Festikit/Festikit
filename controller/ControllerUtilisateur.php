@@ -84,55 +84,6 @@ class ControllerUtilisateur
         require File::build_path(array("view", "view.php"));
     }
 
-    public static function readForCreator()
-    {
-        $user_id = $_GET['user_id'];
-        $festival_id = $_GET['festival_id'];        
-        if(Session::is_responsable()) {
-            $responsable_id = ModelResponsable::getResponsableByUser($_SESSION['login'])->getResponsableId();
-        }
-
-        if (Session::is_user($user_id) || Session::is_admin() || (Session::is_responsable() && ModelFestival::checkResponsableWhereUserInFestival($responsable_id, $user_id))) {
-            $u = ModelUtilisateur::select($user_id);
-
-            $tab_festivalWhereAccepted = ModelUtilisateur::getFestivalWhereAccepted($user_id);
-            $tab_festivalWhereCandidat = ModelUtilisateur::getFestivalWhereCandidat($user_id);
-            $tab_postuler = ModelPostuler::getIdByUserAndFestival($user_id, $festival_id);
-            
-
-            $boolBenevole = 0;
-            $boolAdmin = 0;
-            $boolResponsable = 0;
-            if (Session::is_responsable() && Session::is_user($user_id)) {
-                $tab_festivalWhereResponsable = ModelFestival::getFestivalByResponsable($user_id);
-                $boolResponsable = 1;
-            } else if (Session::is_admin() && Session::is_user($user_id)) {
-                $tab_festivalWhereCreateur = ModelFestival::getFestivalByCreateur($user_id);
-                $boolAdmin = 1;
-            } else {
-                $boolBenevole = 1;
-            }
-
-            if ($u == false) {
-                $pagetitle = 'Erreur action';
-                $controller = 'utilisateur';
-                $view = 'messageRetour';
-                $message = "erreur de la fonction read dans le controller utilisateur";
-            } else {
-                $pagetitle = 'Détail de l\'utilisateur';
-                $controller = 'utilisateur';
-                $view = 'detailForCreator';
-            }
-        } else {
-            $pagetitle = 'Erreur';
-            $controller = 'utilisateur';
-            $message = "Vous n'avez pas l'autorisation !";
-            $view = 'messageRetour';
-        }
-
-        require File::build_path(array("view", "view.php"));
-    }
-
     public static function delete()
     {
         $user_id = $_GET['user_id'];
