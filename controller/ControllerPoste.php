@@ -151,11 +151,21 @@ class ControllerPoste {
 
     public static function delete(){
         if (Session::is_admin()) {
-            $controller = 'poste';
-            $pagetitle = 'supprimons ceci';
-            $view = 'deleted';
             $poste_id = $_GET['poste_id'];
-            ModelPoste::delete($poste_id);
+            $festival_id = ModelPoste::select($poste_id)->get('festival_id');
+
+            if (is_bool(ModelPoste::delete($poste_id))) {
+                $controller = 'utilisateur';
+                $view = 'messageRetour';
+                $message = 'Erreur: Suppression des données dans la table poste';
+                $pagetitle = 'erreur';
+            } else {
+                $pagetitle = 'Détail du festival';
+                $controller = 'utilisateur';
+                $view = 'messageSuite';
+                $message = 'Le poste a été supprimer avec succés !';
+                $path='action=read&controller=festival&festival_id=' . $festival_id;
+            }
         } else {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
