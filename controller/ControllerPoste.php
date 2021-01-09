@@ -154,7 +154,7 @@ class ControllerPoste {
             $poste_id = $_GET['poste_id'];
             $festival_id = ModelPoste::select($poste_id)->get('festival_id');
 
-            if (is_bool(ModelPoste::delete($poste_id))) {
+            if (!is_bool(ModelPoste::delete($poste_id))) {
                 $controller = 'utilisateur';
                 $view = 'messageRetour';
                 $message = 'Erreur: Suppression des données dans la table poste';
