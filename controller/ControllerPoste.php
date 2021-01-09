@@ -15,7 +15,7 @@ class ControllerPoste {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
         require File::build_path(array("view","view.php"));
     }
@@ -33,7 +33,7 @@ class ControllerPoste {
             if ($p == false) {
                 $pagetitle = 'Erreur action read';
                 $controller = 'poste';
-                $view = 'error';
+                $view = 'messageRetour';
                 $message = 'erreur de la fonction read dans le controller Poste';
             } else {
                 $pagetitle = 'Détail du poste';
@@ -44,7 +44,7 @@ class ControllerPoste {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
         require File::build_path(array("view", "view.php"));
     }
@@ -60,7 +60,7 @@ class ControllerPoste {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
         require (File::build_path(array("view","view.php")));
     }
@@ -89,7 +89,7 @@ class ControllerPoste {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
         require (File::build_path(array("view","view.php")));
     }
@@ -104,7 +104,7 @@ class ControllerPoste {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
 
         require(File::build_path(array("view", "view.php")));
@@ -128,8 +128,8 @@ class ControllerPoste {
             );
         
             if (is_bool(ModelPoste::save($dataPoste))) {
-                $controller = 'creneau';
-                $view = 'error';
+                $controller = 'utilisateur';
+                $view = 'messageRetour';
                 $message = 'Erreur: Insertion des données dans la table poste';
                 $pagetitle = 'erreur';
             } else {
@@ -143,7 +143,7 @@ class ControllerPoste {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
         
         require(File::build_path(array("view", "view.php")));
@@ -160,7 +160,7 @@ class ControllerPoste {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
         require File::build_path(array("view","view.php"));
     }
