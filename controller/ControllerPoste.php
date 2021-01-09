@@ -15,7 +15,7 @@ class ControllerPoste {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
         require File::build_path(array("view","view.php"));
     }
@@ -33,7 +33,7 @@ class ControllerPoste {
             if ($p == false) {
                 $pagetitle = 'Erreur action read';
                 $controller = 'poste';
-                $view = 'error';
+                $view = 'messageRetour';
                 $message = 'erreur de la fonction read dans le controller Poste';
             } else {
                 $pagetitle = 'Détail du poste';
@@ -44,7 +44,7 @@ class ControllerPoste {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
         require File::build_path(array("view", "view.php"));
     }
@@ -60,7 +60,7 @@ class ControllerPoste {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
         require (File::build_path(array("view","view.php")));
     }
@@ -89,7 +89,7 @@ class ControllerPoste {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
         require (File::build_path(array("view","view.php")));
     }
@@ -104,7 +104,7 @@ class ControllerPoste {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
 
         require(File::build_path(array("view", "view.php")));
@@ -114,10 +114,7 @@ class ControllerPoste {
 
     public static function created()
     {
-        if (Session::is_admin()) {
-            $controller = 'poste';
-            $view = 'created';
-            $pagetitle = 'ajout d\'un poste';
+        if (Session::is_admin()) {    
 
             $poste_name = $_GET['poste_name'];
             $poste_description = $_GET['poste_description'];
@@ -131,30 +128,22 @@ class ControllerPoste {
             );
         
             if (is_bool(ModelPoste::save($dataPoste))) {
-                $controller = 'creneau';
-                $view = 'error';
+                $controller = 'utilisateur';
+                $view = 'messageRetour';
                 $message = 'Erreur: Insertion des données dans la table poste';
                 $pagetitle = 'erreur';
-            }
-            $f = ModelFestival::select($festival_id);
-            $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
-            $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
-            $tab_poste = ModelFestival::getPostesByFestival($festival_id);
-            $tab_date = ModelFestival::getJoursByFestival($festival_id);
-            $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
-            
-            $tab_creneau_gen = ModelCreneau::getCreneauxGen($festival_id);
-            if(Session::is_responsable()) {
-                $boolResponsable = 1;
             } else {
-                $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
-                $boolResponsable = 0;
+                $pagetitle = 'Détail du festival';
+                $controller = 'utilisateur';
+                $view = 'messageSuite';
+                $message = 'Le poste ' . "\"$poste_name\"" . ' a été créer avec succés !';
+                $path='action=read&controller=festival&festival_id=' . $festival_id;
             }
         } else {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
         
         require(File::build_path(array("view", "view.php")));
@@ -162,16 +151,26 @@ class ControllerPoste {
 
     public static function delete(){
         if (Session::is_admin()) {
-            $controller = 'poste';
-            $pagetitle = 'supprimons ceci';
-            $view = 'deleted';
             $poste_id = $_GET['poste_id'];
-            ModelPoste::delete($poste_id);
+            $festival_id = ModelPoste::select($poste_id)->get('festival_id');
+
+            if (!is_bool(ModelPoste::delete($poste_id))) {
+                $controller = 'utilisateur';
+                $view = 'messageRetour';
+                $message = 'Erreur: Suppression des données dans la table poste';
+                $pagetitle = 'erreur';
+            } else {
+                $pagetitle = 'Détail du festival';
+                $controller = 'utilisateur';
+                $view = 'messageSuite';
+                $message = 'Le poste a été supprimer avec succés !';
+                $path='action=read&controller=festival&festival_id=' . $festival_id;
+            }
         } else {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
             $message = "Vous n'avez pas l'autorisation !";
-            $view = 'errorAccess';
+            $view = 'messageRetour';
         }
         require File::build_path(array("view","view.php"));
     }

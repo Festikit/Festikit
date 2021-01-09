@@ -91,6 +91,17 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                 <div class=\"secondary-content\">
                     <a title=\"en savoir plus\" href=\"index.php?action=read&controller=poste&poste_id=$poste_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
                     <a title=\"modifier\" href=\"index.php?action=update&controller=poste&poste_id=$poste_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
+                    <a title=\"supprimer\" href=\"#confirmation$poste_id\" class=\"btn modal-trigger\"><i class=\"material-icons\">delete</i></a>
+                    <div id=\"confirmation$poste_id\" class=\"modal\">
+                    <div class=\"modal-content\">
+                        <h4>Êtes vous sûr de vouloir le supprimer ?</h4>
+                        <p>Cette action sera irréversible.</p>
+                    </div>
+                    <div class=\"modal-footer\">
+                        <a href=\"#!\" class=\"modal-close waves-effect waves-green btn-flat\">Annuler</a>
+                        <a href=\"index.php?action=delete&controller=poste&poste_id=$poste_id\" class=\"btn red modal-close waves-effect waves-green btn-flat\">Supprimer</a>
+                    </div>
+                </div>
                 </div>
                 </li>";
             }

@@ -373,10 +373,9 @@ class ControllerFestival
                     $view = 'messageRetour';
                     $message = 'erreur de la fonction refuserUtilisateur dans le controller festival';
                 } else {
-                    $pagetitle = 'Erreur';
-                    $controller = 'utilisateur';
-                    $message = "Vous n'avez pas l'autorisation !";
-                    $view = 'messageRetour';
+                    $pagetitle = 'Détail du festival';
+                    $controller = 'festival';
+                    $view = 'detail';
                 }
             } else {
                 $pagetitle = 'Détail du festival';

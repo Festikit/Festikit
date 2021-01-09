@@ -36,6 +36,14 @@
         visibility: visible;
         opacity: 1;
     }
+
+    .icon-green {
+        color: green;
+    }
+
+    .icon-red {
+        color: red;
+    }
 </style>
 <script>
     function share() {
@@ -118,16 +126,27 @@
                     </div>
 
                     <div class="row">
-                        <div class="input-field col s6 m4">
+                        <div class="input-field col s6 m12 l4">
                             <i class="material-icons prefix">lock</i>
                             <input name="user_password1" id="user_password1" type="password" autocomplete="new-password" class="validate" onChange="checkPasswordLength();" required>
                             <label for="user_password1">Mot de passe<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
                         </div>
-                        <div class="input-field col s6 m4">
+                        <div class="input-field col s6 m12 l4">
                             <input name="user_password2" id="user_password2" type="password" class="validate" onChange="checkPasswordMatch();" required>
                             <label for="user_password2">Retapez le mot de passe<span class="flow-text red-text" title="Ce champ est obligatoire ">*</span></label>
                         </div>
-                        <div class="input-field col s12 m4 registrationFormAlert" id="checkPasswordLength"></div>
+                        <div class="input-field col s12 m12 l4 registrationFormAlert">
+                            <label>
+                                <i id="verif-test" class="material-icons verification-length"></i>
+                                <span id="checkPasswordLength"></span>
+                            </label>
+                        </div>
+                        <div class="input-field col s12 m12 l4 registrationFormAlert">
+                            <label>
+                                <i class="material-icons verification-match"></i>
+                                <span id="checkPasswordMatch"></span>
+                            </label>
+                        </div>
                         <div class="input-field col s12 m4 registrationFormAlert" id="checkPasswordMatch"></div>
                     </div>
 
