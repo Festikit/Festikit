@@ -114,10 +114,7 @@ class ControllerPoste {
 
     public static function created()
     {
-        if (Session::is_admin()) {
-            $controller = 'poste';
-            $view = 'created';
-            $pagetitle = 'ajout d\'un poste';
+        if (Session::is_admin()) {    
 
             $poste_name = $_GET['poste_name'];
             $poste_description = $_GET['poste_description'];
@@ -135,20 +132,12 @@ class ControllerPoste {
                 $view = 'error';
                 $message = 'Erreur: Insertion des données dans la table poste';
                 $pagetitle = 'erreur';
-            }
-            $f = ModelFestival::select($festival_id);
-            $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
-            $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
-            $tab_poste = ModelFestival::getPostesByFestival($festival_id);
-            $tab_date = ModelFestival::getJoursByFestival($festival_id);
-            $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
-            
-            $tab_creneau_gen = ModelCreneau::getCreneauxGen($festival_id);
-            if(Session::is_responsable()) {
-                $boolResponsable = 1;
             } else {
-                $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
-                $boolResponsable = 0;
+                $pagetitle = 'Détail du festival';
+                $controller = 'utilisateur';
+                $view = 'messageSuite';
+                $message = 'Le poste ' . "\"$poste_name\"" . ' a été créer avec succés !';
+                $path='action=detail&controller=festival';
             }
         } else {
             $pagetitle = 'Erreur';
