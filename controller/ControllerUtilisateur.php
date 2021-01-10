@@ -43,9 +43,13 @@ class ControllerUtilisateur
         $user_id = $_GET['user_id'];
         if(Session::is_responsable()) {
             $responsable_id = ModelResponsable::getResponsableByUser($_SESSION['login'])->getResponsableId();
+            $estResponsable = ModelFestival::checkResponsableWhereUserInFestival($responsable_id, $user_id);
         }
 
-        if (Session::is_user($user_id) || Session::is_admin() || (Session::is_responsable() && ModelFestival::checkResponsableWhereUserInFestival($responsable_id, $user_id))) {
+        if (Session::is_user($user_id) || Session::is_admin() || $estResponsable) {
+            
+            // Afficher la vue détail d'un utilisateur
+            
             $u = ModelUtilisateur::select($user_id);
 
             $tab_festivalWhereAccepted = ModelUtilisateur::getFestivalWhereAccepted($user_id);
@@ -297,6 +301,10 @@ class ControllerUtilisateur
         } else {
             // On est ici si l'utilisateur à déjà un compte 
             $user_id = $_SESSION['login'];
+            $reussitePicture = true;
+            $reussiteInitUser = true;
+            $reussiteUser = true;
+            $reussiteId = true;
         }
 
         // Insertion pour postuler
