@@ -207,7 +207,7 @@ class ControllerCreneau
 
         $festival_id = $_GET['festival_id'];
         $ap =ModelPoste::getPosteIdGenByFestival($festival_id);
-        $poste_id = $ap->get('poste_id');
+        $poste_id = $ap->getPosteId();
     
 
         require(File::build_path(array("view", "view.php")));
