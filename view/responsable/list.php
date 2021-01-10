@@ -9,7 +9,7 @@
             // Liste tous les responsables
             $i = 1;
             foreach ($tab_nomResponsable as $r) {
-                $user_id = rawurlencode($r->getResponsableId());
+                $user_id = rawurlencode($r->getId());
 		$user_firstname = htmlspecialchars($r->getUserFirstname());
                 $user_lastname = htmlspecialchars($r->getUserLastname());
                 $user_picture = $r->getPicture();
