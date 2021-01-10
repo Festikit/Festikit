@@ -5,7 +5,8 @@ require_once File::build_path(array("model","ModelResponsable.php"));
 class ControllerResponsable {
 
     public static function readAll() {
-        $tab_nomResponsable = ModelResponsable::getAllResponsable();
+        $tab_r = ModelResponsable::selectAll();
+        $tab_nomResponsable = ModelResponsable::getNomResponsable();
 
         $pagetitle = 'Liste des responsables';
         $controller = 'responsable';

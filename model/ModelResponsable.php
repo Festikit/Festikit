@@ -51,29 +51,26 @@ class ModelResponsable extends ModelUtilisateur
         $this->festival_id = $festivalId2;
     }
 
+    public function getUserFirstname()
+    {
+        return $this->user_firstname;
+    }
+
+    public function getUserLastname()
+    {
+        return $this->user_lastname;
+    }
+
+
+
+
     public static function getNomResponsable()
     {
         try {
-            $sql = "SELECT u.user_firstname, u.user_lastname, responsable_id from user u JOIN responsable r ON  u.user_id = r.user_id";
+            $sql = "SELECT u.user_firstname, u.user_lastname, r.responsable_id from user u
+            JOIN responsable r ON  u.user_id = r.user_id";
             $rep = Model::$pdo->query($sql);
-            $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
-            return $rep->fetchAll();
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage();
-            } else {
-                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-            }
-            die();
-        }
-    }
-
-    public static function getAllResponsable()
-    {
-        try {
-            $sql = "SELECT u.user_id, user_firstname, user_lastname from user u JOIN responsable r ON u.user_id = r.user_id";
-            $rep = Model::$pdo->query($sql);
-            $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+            $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelResponsable');
             return $rep->fetchAll();
         } catch (PDOException $e) {
             if (Conf::getDebug()) {
