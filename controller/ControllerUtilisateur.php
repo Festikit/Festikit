@@ -278,10 +278,7 @@ class ControllerUtilisateur
                 else{
                     $reussite_mail = false;
                     $reussiteInitUser = false;
-                    $controller = 'utilisateur';
-                    $view = 'messageRetour';
                     $message = 'Un compte existe déjà avec ce mail';
-                    $pagetitle = 'erreur';
                 }
                 
             }
