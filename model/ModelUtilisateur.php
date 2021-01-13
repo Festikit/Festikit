@@ -137,52 +137,6 @@ class ModelUtilisateur extends Model
     return $this->admin;
   }
 
-  /*
-  public static function getAllUtilisateurs()
-  {
-    try {
-      $sql = "SELECT * from user";
-      $rep = Model::$pdo->query($sql);
-      $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
-      return $rep->fetchAll();
-    } catch (PDOException $e) {
-      if (Conf::getDebug()) {
-        echo $e->getMessage();
-      } else {
-        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-      }
-      die();
-    }
-  }
-  */
-
-
-  /*public static function getUtilisateurById($user_id)
-  {
-    try {
-      $sql = "SELECT * from user WHERE user_id=:nom_tag";
-      $req_prep = Model::$pdo->prepare($sql);
-      $values = array(
-        "nom_tag" => $user_id,
-      );
-      $req_prep->execute($values);
-      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
-      $tab_user = $req_prep->fetchAll();
-
-      if (empty($tab_user))
-        return false;
-      return $tab_user[0];
-    } catch (PDOException $e) {
-      if (Conf::getDebug()) {
-        echo $e->getMessage();
-      } else {
-        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-      }
-      die();
-    }
-  }
-  */
-
   public static function envoyerEmailVerfification($user_mail)
   {
     $mgClient = Mailgun::create('f0fe14b78df21c891f0c59e428d56dfc-e5da0167-a189ce96', 'https://api.eu.mailgun.net');
@@ -302,58 +256,6 @@ class ModelUtilisateur extends Model
     }
   }
 
-  /*
-  public static function deleteById($id)
-  {
-    try {
-      $sql = "DELETE FROM user WHERE user_id =:nom_tag";
-      $req_prep = Model::$pdo->prepare($sql);
-      $values = array(
-        "nom_tag" => $id,
-      );
-      $req_prep->execute($values);
-    } catch (PDOException $e) {
-      if (Conf::getDebug()) {
-        echo $e->getMessage();
-      } else echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-      die();
-    }
-  }
-  */
-
-
-  /*
-  public function update($data)
-  {
-    try {
-      $sql = "UPDATE user SET user_firstname = :user_firstname, user_lastname = :user_lastname, user_mail = :user_mail, 
-             user_phone = :user_phone, user_birthdate = :user_birthdate, user_postal_code = :user_postal_code WHERE user_id = :user_id";
-
-      // Préparation de la requête
-      $req_prep = Model::$pdo->prepare($sql);
-
-      $values = array(
-        "user_id" => $data['user_id'],
-        "user_firstname" => $data['user_firstname'],
-        "user_lastname" => $data['user_lastname'],
-        "user_mail" => $data['user_mail'],
-        "user_phone" => $data['user_phone'],
-        "user_postal_code" => $data['user_postal_code'],
-        "user_birthdate" => $data['user_birthdate'],
-      );
-      // On donne les valeurs et on exécute la requête    
-      $req_prep->execute($values);
-      // echo $sql;
-    } catch (PDOException $e) {
-      if (Conf::getDebug()) {
-        echo $e->getMessage(); // affiche un message d'erreur
-      } else {
-        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-      }
-      die();
-    }
-  }
-  */
 
   // postuler_accepted = 1 dans la table "postuler"
   public static function getFestivalWhereAccepted($user_id)
@@ -449,34 +351,6 @@ class ModelUtilisateur extends Model
       $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelPostuler');
       $estCandidat = $req_prep->fetchAll();
       if (empty($estCandidat)) {
-        return false;
-      } else {
-        return true;
-      }
-    } catch (PDOException $e) {
-      if (Conf::getDebug()) {
-        echo $e->getMessage();
-      } else {
-        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-      }
-      die();
-    }
-  }
-
-  public static function estAccepte($user_id, $festival_id)
-  {
-    try {
-      $sql = "SELECT p.user_id  FROM postuler p JOIN festival f ON p.festival_id=f.festival_id WHERE p.user_id=:id_tag AND postuler_accepted=:accepted_tag AND f.festival_id=:festival_id_tag";
-      $req_prep = Model::$pdo->prepare($sql);
-      $values = array(
-        "id_tag" => $user_id,
-        "accepted_tag" => 1,
-        "festival_id_tag" => $festival_id,
-      );
-      $req_prep->execute($values);
-      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelPostuler');
-      $estAccepte = $req_prep->fetchAll();
-      if (empty($estAccepte)) {
         return false;
       } else {
         return true;

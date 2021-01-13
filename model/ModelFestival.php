@@ -86,53 +86,6 @@ class ModelFestival extends Model
     return false;
   }
 
-
-
-  /*public static function getAllFestivals()
-  {
-    try {
-      $sql = "SELECT * from festival";
-      $rep = Model::$pdo->query($sql);
-      $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelFestival');
-      return $rep->fetchAll();
-    } catch (PDOException $e) {
-      if (Conf::getDebug()) {
-        echo $e->getMessage();
-      } else {
-        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-      }
-      die();
-    }
-  }
-  */
-
-  /*
-  public static function getFestivalsById($festival_id)
-  {
-    try {
-      $sql = "SELECT * from festival WHERE festival_id=:id_tag";
-      $req_prep = Model::$pdo->prepare($sql);
-      $values = array(
-        "id_tag" => $festival_id,
-      );
-      $req_prep->execute($values);
-      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFestival');
-      $tab_festival = $req_prep->fetchAll();
-
-      if (empty($tab_festival)) return false;
-      return $tab_festival[0];
-    } catch (PDOException $e) {
-      if (Conf::getDebug()) {
-        echo $e->getMessage();
-      } else {
-        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-      }
-      die();
-    }
-  }
-  */
-
-
   // postuler_accepted = 1 dans la table "postuler"
   public static function getBenevolesAcceptedByFestival($festival_id)
   {
@@ -222,10 +175,6 @@ class ModelFestival extends Model
       die();
     }
   }
-
-
-
-
 
   // postuler_accepted = 0 dans la table "postuler"
   public static function getCandidatsByFestival($festival_id)
@@ -320,20 +269,6 @@ class ModelFestival extends Model
       $tab_date = $req_prep->fetchAll();
 
       if (empty($tab_date)) return false;
-
-      //foreach ($tab_date as $date) {
-      //$date = date_format($date,'l j F');
-      //$date = DateTime::createFromFormat('Y-m-d', $date);
-      //$date = date_create_from_format('j-M-Y',$date);
-      //$date = date_format($date, 'd-m-Y');
-      //$date = $date->format('d-m-Y');
-      // }
-
-      //$dateTime = DateTime::createFromFormat('Y-m-d', $date);
-      //$dateTime = new DateTime($date);
-      //$date = $dateTime->format('d-m-Y');
-
-
       return $tab_date;
     } catch (PDOException $e) {
       if (Conf::getDebug()) {
@@ -535,30 +470,6 @@ class ModelFestival extends Model
   {
     try {
       $sql = "SELECT * FROM festival WHERE user_id=:id_tag";
-      $req_prep = Model::$pdo->prepare($sql);
-      $values = array(
-        "id_tag" => $user_id,
-      );
-      $req_prep->execute($values);
-      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFestival');
-      $tab_festival = $req_prep->fetchAll();
-
-      if (empty($tab_festival)) return false;
-      return $tab_festival;
-    } catch (PDOException $e) {
-      if (Conf::getDebug()) {
-        echo $e->getMessage();
-      } else {
-        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-      }
-      die();
-    }
-  }
-
-  public static function getCreatorByFestival($user_id)
-  {
-    try {
-      $sql = "SELECT * FROM user u JOIN festival f ON u.user_id = f.user_id WHERE f.user_id=:id_tag";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
         "id_tag" => $user_id,
