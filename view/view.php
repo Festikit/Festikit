@@ -77,7 +77,7 @@
 		main {
 			padding-top: 10vh;
 			padding-bottom: 10vh;
-			min-height: 70vh;
+			min-height: calc(100vh - 294px);
 			place-content: center;
 			gap: 1ch;
 		}
