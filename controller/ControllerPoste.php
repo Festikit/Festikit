@@ -163,7 +163,7 @@ class ControllerPoste {
                 $pagetitle = 'Détail du festival';
                 $controller = 'utilisateur';
                 $view = 'messageSuite';
-                $message = 'Le poste a été supprimer avec succés !';
+                $message = 'Le poste a été supprimé avec succès !';
                 $path='action=read&controller=festival&festival_id=' . $festival_id;
             }
         } else {
