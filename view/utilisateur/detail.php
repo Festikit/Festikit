@@ -17,7 +17,7 @@
             }
             $user_picture = $u->getPicture();
 
-            echo "<h5> $user_firstname $user_lastname </h5>
+            echo "<h1> $user_firstname $user_lastname </h1>
             <p>Adresse mail: $user_mail </br>
             Téléphone: $user_phone </br>
             Date de naissance: $user_birthdate </br>
@@ -31,9 +31,10 @@
             echo '<img alt="photo de profil" src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="200px"/>';
             ?>
         </div>
-
+    </div>
+    <div class="row">
         <?php if(isset($tab_postuler)) {?>
-            <div class="col s6">
+            <div class="col s12">
             <?php
             //Detail les informations de la table postuler  
             
@@ -47,7 +48,8 @@
             $depart_festival = htmlspecialchars($p->getDepartFestival());
             $autres_dispos = htmlspecialchars($p->getAutresDispos());
             $experience = htmlspecialchars($p->getExperience());
-            
+            $festival_nom = htmlspecialchars($festival_nom);
+            echo "<h5> Informations pour l'inscription au festival $festival_nom </h5>";
             echo "<p>Vient avec un véhicule : "; if ($venir_avec_vehicule == 1){echo "Non";}
                 else{echo "Oui";} echo "</br>
                 Besoin d'un hébergement : "; if ($besoin_hebergement == 0){echo "Non";}
@@ -66,7 +68,8 @@
             ?>
             </div>
             <?php } ?>
-
+    </div>
+    <div class="row">
         <div class="col s12">
             <?php
             echo "<p><a class=\"btn waves-effect waves-light modal-trigger\" href=\"#confirmation$user_id\">Supprimer utilisateur</a>  ";

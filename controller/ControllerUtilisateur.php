@@ -49,7 +49,9 @@ class ControllerUtilisateur
         if (Session::is_user($user_id) || Session::is_admin() || $estResponsable) {
             
             if(isset($_GET['festival_id'])) {
-                $tab_postuler = ModelPostuler::getIdByUserAndFestival($user_id, $_GET['festival_id']);
+                $festival_id = $_GET['festival_id'];
+                $tab_postuler = ModelPostuler::getIdByUserAndFestival($user_id, $festival_id);
+                $festival_nom = ModelFestival::select($festival_id)->get('festival_name');
             }
             
             $u = ModelUtilisateur::select($user_id);
