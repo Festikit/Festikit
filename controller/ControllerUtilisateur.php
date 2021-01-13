@@ -387,7 +387,7 @@ class ControllerUtilisateur
             $view = 'created';
             $pagetitle = 'creation utilisateur';
             if (isset($_SESSION['login'])) {   
-                $user_id = $_SESSION['login'];
+                $user_current = $_SESSION['login'];
             }
         }
         require(File::build_path(array("view", "view.php")));
@@ -474,7 +474,7 @@ class ControllerUtilisateur
 
     public static function connect()
     {
-        if(session_status() === PHP_SESSION_ACTIVE) {
+        if(isset($_SESSION['login'])) {
             $user_id = $_SESSION['login'];
             if(Session::is_responsable()) {
                 $responsable_id = ModelResponsable::getResponsableByUser($_SESSION['login'])->getResponsableId();
