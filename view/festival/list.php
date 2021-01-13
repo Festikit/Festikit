@@ -33,8 +33,7 @@
 						echo "<li class=\"collection-item\">
 		<a href=\"index.php?action=read&controller=festival&festival_id=$festival_id\"> <span class=\"title\">$festival_name</span></a>
 		<div class=\"secondary-content\">
-			<a title=\"en savoir plus\" href=\"index.php?action=read&controller=festival&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
-			<a title=\"voir le formulaire\" href=\"index.php?action=create&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">assignment</i></a>
+			<a title=\"en savoir plus\" href=\"index.php?action=read&controller=festival&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>	
 		</div>
 	</li>";
 						$i++;
