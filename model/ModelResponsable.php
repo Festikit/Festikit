@@ -110,6 +110,32 @@ class ModelResponsable extends ModelUtilisateur
         }
     }
 
+    public static function getResponsableByFestivalAndUser($festival_id, $user_id)
+    {
+        try {
+            $sql = "SELECT * from responsable WHERE festival_id=:festival_id AND user_id=:user_id";
+            $req_prep = Model::$pdo->prepare($sql);
+            $values = array(
+                "festival_id" => $festival_id,
+                "user_id" => $user_id,
+            );
+            $req_prep->execute($values);
+            $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelResponsable');
+            $tab_responsable = $req_prep->fetchAll();
+
+            if (empty($tab_responsable))
+                return false;
+            return $tab_responsable[0];
+        } catch (PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage();
+            } else {
+                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
+
     public static function boolResponsableByUserId($user_id)
     {
         try {

@@ -445,9 +445,10 @@ class ControllerFestival
     public static function desassignerResponsable()
     {
         if (Session::is_admin()) {
-            $responsable_id = $_GET['responsable_id'];
+            
             $festival_id = $_GET['festival_id'];
             $user_id = $_GET['user_id'];
+            $responsable_id = ModelResponsable::getResponsableByFestivalAndUser($festival_id, $user_id)->getResponsableId();
             if (ModelUtilisateur::estResponsable($user_id, $festival_id)) { // Si l'utilisateur est bien responsable du festival                
                 // Suppression dans responsable + test de suppression
                 if (is_bool(ModelResponsable::delete($responsable_id))) {
