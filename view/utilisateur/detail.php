@@ -32,6 +32,41 @@
             ?>
         </div>
 
+        <?php if(isset($tab_postuler)) {?>
+            <div class="col s6">
+            <?php
+            //Detail les informations de la table postuler  
+            
+            $postuler_id = htmlspecialchars($tab_postuler->getPostulerId());
+            $p = ModelPostuler::select($postuler_id);
+            $venir_avec_vehicule = htmlspecialchars($p->getVenirAvecVehicule());
+            $besoin_hebergement = htmlspecialchars($p->getBesoinHebergement());
+            $peut_heberger = htmlspecialchars($p->getPeutHeberger());
+            $configuration_couchage = htmlspecialchars($p->getConfigurationCouchage());
+            $arrivee_festival = htmlspecialchars($p->getArriveeFestival());
+            $depart_festival = htmlspecialchars($p->getDepartFestival());
+            $autres_dispos = htmlspecialchars($p->getAutresDispos());
+            $experience = htmlspecialchars($p->getExperience());
+            
+            echo "<p>Vient avec un véhicule : "; if ($venir_avec_vehicule == 1){echo "Non";}
+                else{echo "Oui";} echo "</br>
+                Besoin d'un hébergement : "; if ($besoin_hebergement == 0){echo "Non";}
+                else{echo "Oui";} echo "</br>
+                Peut héberger : "; if ($peut_heberger == 0){echo "Non";}
+                else{echo "Oui </br> Configuration de couchage : $configuration_couchage";} echo "</br>
+                
+                Date d'arrivée au festival : $arrivee_festival </br>
+                Date de départ du festival : $depart_festival </br>
+                Autres disponibilités : $autres_dispos </br>
+                A déjà participé à ce festival : "; if ($experience == 0){echo "Non";}
+                else{echo "Oui";} echo "</br>
+                ";
+                        
+            
+            ?>
+            </div>
+            <?php } ?>
+
         <div class="col s12">
             <?php
             echo "<p><a class=\"btn waves-effect waves-light modal-trigger\" href=\"#confirmation$user_id\">Supprimer utilisateur</a>  ";
