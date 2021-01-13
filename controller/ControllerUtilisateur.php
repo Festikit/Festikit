@@ -386,6 +386,9 @@ class ControllerUtilisateur
             $controller = 'utilisateur';
             $view = 'created';
             $pagetitle = 'creation utilisateur';
+            if (isset($_SESSION['login'])) {   
+                $user_id = $_SESSION['login'];
+            }
         }
         require(File::build_path(array("view", "view.php")));
     }
