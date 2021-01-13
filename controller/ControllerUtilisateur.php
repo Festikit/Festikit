@@ -471,9 +471,47 @@ class ControllerUtilisateur
 
     public static function connect()
     {
-        $controller = "utilisateur";
-        $view = "connect";
-        $pagetitle = "Connexion";
+        if(session_status() === PHP_SESSION_ACTIVE) {
+            $user_id = $_SESSION['login'];
+            if(Session::is_responsable()) {
+                $responsable_id = ModelResponsable::getResponsableByUser($_SESSION['login'])->getResponsableId();
+                $estResponsable = ModelFestival::checkResponsableWhereUserInFestival($responsable_id, $user_id);
+            }
+
+            if (Session::is_user($user_id) || Session::is_admin() || $estResponsable) {
+                
+                if(isset($_GET['festival_id'])) {
+                    $festival_id = $_GET['festival_id'];
+                    $tab_postuler = ModelPostuler::getIdByUserAndFestival($user_id, $festival_id);
+                    $festival_nom = ModelFestival::select($festival_id)->get('festival_name');
+                }
+                
+                $u = ModelUtilisateur::select($user_id);
+
+                $tab_festivalWhereAccepted = ModelUtilisateur::getFestivalWhereAccepted($user_id);
+                $tab_festivalWhereCandidat = ModelUtilisateur::getFestivalWhereCandidat($user_id);
+
+                $boolBenevole = 0;
+                $boolAdmin = 0;
+                $boolResponsable = 0;
+                if (Session::is_responsable() && Session::is_user($user_id)) {
+                    $tab_festivalWhereResponsable = ModelFestival::getFestivalByResponsable($user_id);
+                    $boolResponsable = 1;
+                } else if (Session::is_admin() && Session::is_user($user_id)) {
+                    $tab_festivalWhereCreateur = ModelFestival::getFestivalByCreateur($user_id);
+                    $boolAdmin = 1;
+                } else {
+                    $boolBenevole = 1;
+                }
+            }
+            $pagetitle = 'Détail de l\'utilisateur';
+            $controller = 'utilisateur';
+            $view = 'detail';
+        } else {
+            $controller = "utilisateur";
+            $view = "connect";
+            $pagetitle = "Connexion";
+        }
         require File::build_path(array("view", "view.php"));
     }
 
