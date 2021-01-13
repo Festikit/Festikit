@@ -11,25 +11,16 @@ $user_birthdate = htmlspecialchars($tab_u->getBirthdate());
 ?>
 
 <div class="row">
-    <div class="col s12 m10 offset-m1 l8 offset-l2">
+    <div class="card-panel col s12 m10 offset-m1 l8 offset-l2 grey lighten-4">
         <form method="get" action="index.php?action=updated">
-            <div class="card-panel col s12 m10 offset-m1 l8 offset-l2 grey lighten-4">
-                <h5 class="center-align">À propos de moi</h5>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">assignment_ind</i>
-                        <?php echo '<input name="user_id" id="user_id" type="number" value="' . rawurldecode($log_u) . '" required readonly>'; ?>
-                        <label class="active" for="user_id">ID</label>
-                    </div>
+            <h5 class="center-align">À propos de moi</h5>
+            <div class="row">
+                <div class="input-field col s9">
+                    <i class="material-icons prefix">email</i>
+                    <?php echo '<input name="user_mail" id="user_mail" type="email" value="' . rawurldecode($user_mail) . '" required>'; ?>
+                    <label class="active" for="user_mail">Email</label>
                 </div>
-                <div class="row">
-                    <div class="input-field col s9">
-                        <i class="material-icons prefix">email</i>
-                        <?php echo '<input name="user_mail" id="user_mail" type="email" value="' . rawurldecode($user_mail) . '" required>'; ?>
-                        <label class="active" for="user_mail">Email</label>
-                    </div>
-                    <div class="col s3"></div>
-                </div>
+                <div class="col s3"></div>
             </div>
 
             <div class="row">
@@ -74,10 +65,11 @@ $user_birthdate = htmlspecialchars($tab_u->getBirthdate());
                     <label for="user_phone" class="active">Numéro de Téléphone</label>
                 </div>
             </div>
-            <div class="row">
-                <input type="hidden" name="action" value="updated">
-                <button class="btn col s12 m4 offset-m4 l4 offset-l4" type="submit">Modifier</button>
-            </div>
+    </div>
+    <div class="row">
+        <input type="hidden" name="action" value="updated">
+        <input type="hidden" name="user_id" value="<?php echo rawurldecode($log_u) ?>">
+        <button class="btn col s12 m4 offset-m4 l4 offset-l4" type="submit">Modifier</button>
     </div>
     </form>
 </div>
