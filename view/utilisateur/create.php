@@ -173,7 +173,7 @@
                             <div class="btn">
                                 <i class="material-icons">file_download</i>
                                 <span>Photo de profil</span>
-                                <input type="hidden" name="MAX_FILE_SIZE" value="250000" />
+                                <input type="hidden" name="MAX_FILE_SIZE" value="64000" />
                                 <input name="user_picture" id="user_picture" type="file" accept="image/png, image/jpeg, image/jpg" required>
                             </div>
                             <div class="file-path-wrapper">

@@ -286,7 +286,7 @@ class ControllerUtilisateur
 
                     // Vérification de la taille
                     if ($_FILES['user_picture']['size'] < $_POST['MAX_FILE_SIZE']) {
-                        $user_picture = addslashes(file_get_contents($_FILES['user_picture']['tmp_name']));
+                        $user_picture = file_get_contents($_FILES['user_picture']['tmp_name']);
                         if ($user_picture == false) {
                             $message = 'Erreur: Initialisation de $user_picture';
                         } else {
