@@ -320,19 +320,19 @@ if (!$boolResponsable) {
                 echo "Il n'y a pas encore de responsable pour ce festival.</br>";
             } else {
                 $i = 1;
+                
                 foreach ($tab_responsable as $r) {
                     $festival_id = rawurlencode($f->getFestivalId());
-                    $user_id = rawurlencode($r->getUserId());
-                    $responsable_id = rawurlencode($r->getResponsableId());
-                    $user_firstname = rawurlencode($r->getUserFirstname());
-                    $user_lastname = rawurlencode($r->getUserLastName());
+                    $user_id = rawurlencode($r->getId());
+                    $user_firstname = htmlspecialchars($r->getFirstname());
+                    $user_lastname = htmlspecialchars($r->getLastname());
                     $user_picture = $r->getPicture();
                     echo '<li class="collection-item avatar">
         <img src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="70px"/>';
                     echo "<a href=\"index.php?action=read&user_id=$user_id\"> <span class=\"title\">$user_firstname $user_lastname</span></a>
                 <div class=\"secondary-content\">
                     <a title=\"en savoir plus\" href=\"index.php?action=read&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
-                    <a title=\"Désassigner\" href=\"index.php?action=desassignerResponsable&controller=festival&responsable_id=$responsable_id&user_id=$user_id&festival_id=$festival_id\" class=\"btn\">Désassigner</a>
+                    <a title=\"Désassigner\" href=\"index.php?action=desassignerResponsable&controller=festival&user_id=$user_id&festival_id=$festival_id\" class=\"btn\">Désassigner</a>
                 </div>
                 
             </li>";

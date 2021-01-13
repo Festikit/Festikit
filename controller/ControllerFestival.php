@@ -75,7 +75,7 @@ class ControllerFestival
             if(Session::is_responsable()) {
                 $boolResponsable = 1;
             } else {
-                $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+                $tab_responsable = ModelResponsable::getResponsableByFestival($festival_id);
                 $boolResponsable = 0;
             }
 
@@ -315,12 +315,11 @@ class ControllerFestival
             $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
             $tab_poste = ModelFestival::getPostesByFestival($festival_id);
             $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
-            $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
             $createur = ModelFestival::getNomCreateur($festival_id);
             if(Session::is_responsable()) {
                 $boolResponsable = 1;
             } else {
-                $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+                $tab_responsable = ModelResponsable::getResponsableByFestival($festival_id);
                 $boolResponsable = 0;
             }
 
@@ -358,12 +357,11 @@ class ControllerFestival
                 $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
                 $tab_poste = ModelFestival::getPostesByFestival($festival_id);
                 $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
-                $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
                 $createur = ModelFestival::getNomCreateur($festival_id);
                 if(Session::is_responsable()) {
                     $boolResponsable = 1;
                 } else {
-                    $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+                    $tab_responsable = ModelResponsable::getResponsableByFestival($festival_id);
                     $boolResponsable = 0;
                 }
 
@@ -406,17 +404,16 @@ class ControllerFestival
                 if (!is_bool(ModelResponsable::save($data))) {
                     // Pour la vue détail
                     $f = ModelFestival::select($festival_id);
-                    $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+                    $tab_responsable = ModelResponsable::getResponsableByFestival($festival_id);
                     $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
                     $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
                     $tab_poste = ModelFestival::getPostesByFestival($festival_id);
                     $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
-                    $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
                     $createur = ModelFestival::getNomCreateur($festival_id);
                     if(Session::is_responsable()) {
                         $boolResponsable = 1;
                     } else {
-                        $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+                        $tab_responsable = ModelResponsable::getResponsableByFestival($festival_id);
                         $boolResponsable = 0;
                     }
 
@@ -456,17 +453,15 @@ class ControllerFestival
                 if (is_bool(ModelResponsable::delete($responsable_id))) {
                     // Pour la vue détail
                     $f = ModelFestival::select($festival_id);
-                    $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
                     $tab_benevoleAccepted = ModelFestival::getBenevolesAcceptedByFestival($festival_id);
                     $tab_candidature = ModelFestival::getCandidatsByFestival($festival_id);
                     $tab_poste = ModelFestival::getPostesByFestival($festival_id);
                     $tab_creneau = ModelFestival::getCreneauxByFestival($festival_id);
-                    $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
                     $createur = ModelFestival::getNomCreateur($festival_id);
                     if(Session::is_responsable()) {
                         $boolResponsable = 1;
                     } else {
-                        $tab_responsable = ModelFestival::getResponsableByFestival($festival_id);
+                        $tab_responsable = ModelResponsable::getResponsableByFestival($festival_id);
                         $boolResponsable = 0;
                     }
 

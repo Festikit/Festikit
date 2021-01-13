@@ -345,31 +345,6 @@ class ModelFestival extends Model
     }
   }
 
-
-  public static function getResponsableByFestival($festival_id)
-  {
-    try {
-      $sql = "SELECT r.responsable_id, r.festival_id, u.user_id, u.user_firstname, u.user_lastname FROM responsable r JOIN user u ON u.user_id=r.user_id WHERE festival_id=:id_tag";
-      $req_prep = Model::$pdo->prepare($sql);
-      $values = array(
-        "id_tag" => $festival_id,
-      );
-      $req_prep->execute($values);
-      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelResponsable');
-      $tab_responsable = $req_prep->fetchAll();
-
-      if (empty($tab_responsable)) return false;
-      return $tab_responsable;
-    } catch (PDOException $e) {
-      if (Conf::getDebug()) {
-        echo $e->getMessage();
-      } else {
-        echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-      }
-      die();
-    }
-  }
-
   public static function getResponsableByFestivalAndUser($festival_id, $user_id)
   {
     try {
