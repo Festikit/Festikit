@@ -173,52 +173,6 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
             </table>
 </ul>
 
-<?php /*?>
-<ul class="collection">
-    <li class="collection-header">
-        <a class="btn-large waves-effect waves-light secondary-content" href="index.php?action=createGen&controller=creneau&festival_id=<?php echo $festival_id; ?>"> Ajouter un creneau</a>
-        <h4 class="center">Liste des creneaux</h4>
-    </li>
-    <?php
-    if (empty($tab_creneau_gen)) {
-        echo "Il n'y a pas encore de créneaux génériques pour ce festival.</br>";
-    } else {
-        $i = 1;
-        foreach ($tab_creneau_gen as $cg) {
-            $c = ModelCreneau::select($cg);
-            $creneau_id = htmlspecialchars($c->getCreneauId());
-            $creneau_startdate = htmlspecialchars($c->getCreneauStart());
-            $creneau_enddate = $c->getCreneauEnd();
-            echo "<li class=\"collection-item avatar\">
-                <span class=\"title\"> <a href=\"index.php?action=read&controller=creneau&creneau_id=$creneau_id\">Créneau $creneau_id</a> </span>
-                <p>Début: $creneau_startdate</p>
-                <p>Fin: $creneau_enddate</p>
-                <div class=\"secondary-content\">
-                    <a title=\"en savoir plus\" href=\"index.php?action=read&controller=creneau&creneau_id=$creneau_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
-                    <a title=\"modifier\" href=\"index.php?action=update&controller=creneau&creneau_id=$creneau_id\" class=\"btn\"><i class=\"material-icons\">edit</i></a>
-                </div>
-            </li>";
-            $i++;
-        }
-
-        /*
-        $creneau = ModelCreneau::select($tab_creneau_gen[0]);
-        $deb = $creneau->getCreneauStart();
-        $fin = $creneau->getCreneauEnd();
-        
-        
-        $deb = $deb."";
-        $modif = substr($deb, 4);
-        $deb_gen = 2020 . "$modif";
-        
-        $date_debut = date('Y-m-d H:i:s', strtotime("$deb_gen"));
-        echo "$date_debut"; 
-        
-    }
-    ?>
-</ul>*/ ?>
-
-
 
 <div class="row">
     <ul class="collection col s12 m12 l6">
@@ -237,7 +191,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                 $user_lastname = htmlspecialchars($b->getLastname());
                 $user_picture = $b->getPicture();
                 echo '<li class="collection-item avatar">
-        <img src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="70px"/>';
+                    <img class="circle" alt="profil" src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="70px"/>';
                 echo "<a href=\"index.php?action=read&user_id=$user_id&festival_id=$festival_id\"> <span class=\"title\">$user_firstname $user_lastname</span></a>
                 <div class=\"secondary-content\">
                     <a title=\"en savoir plus\" href=\"index.php?action=read&user_id=$user_id&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
@@ -277,7 +231,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
                 $user_lastname = htmlspecialchars($c->getLastname());
                 $user_picture = $c->getPicture();
                 echo '<li class="collection-item avatar">
-        <img src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="70px"/>';
+                <img class="circle" alt="profil" src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="70px"/>';
                 echo "<a href=\"index.php?action=read&user_id=$user_id&festival_id=$festival_id\"> <span class=\"title\">$user_firstname $user_lastname</span></a>
                 <div class=\"secondary-content\">
                     <a title=\"en savoir plus\" href=\"index.php?action=read&user_id=$user_id&festival_id=$festival_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>
@@ -323,7 +277,7 @@ if (!$boolResponsable) {
                     $user_lastname = htmlspecialchars($r->getLastname());
                     $user_picture = $r->getPicture();
                     echo '<li class="collection-item avatar">
-        <img src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="70px"/>';
+                    <img class="circle" alt="profil" src="data:image/jpg;base64,' . base64_encode($user_picture) . '" onerror="this.onerror=null; this.src=\'data:image/png;base64,' . base64_encode($user_picture) . '\'" width="70px"/>';
                     echo "<a href=\"index.php?action=read&user_id=$user_id\"> <span class=\"title\">$user_firstname $user_lastname</span></a>
                 <div class=\"secondary-content\">
                     <a title=\"en savoir plus\" href=\"index.php?action=read&user_id=$user_id\" class=\"btn\"><i class=\"material-icons\">more</i></a>

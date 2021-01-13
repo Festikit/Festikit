@@ -88,7 +88,7 @@ class ModelResponsable extends ModelUtilisateur
     public static function getResponsableByFestival($festival_id)
     {
         try {
-            $sql = "SELECT u.user_id, u.user_firstname, u.user_lastname, responsable_id from user u JOIN responsable r ON u.user_id = r.user_id WHERE festival_id=:festival_id";
+            $sql = "SELECT u.user_id, u.user_firstname, u.user_lastname, u.user_picture, responsable_id from user u JOIN responsable r ON u.user_id = r.user_id WHERE festival_id=:festival_id";
             $req_prep = Model::$pdo->prepare($sql);
             $values = array(
                 "festival_id" => $festival_id,
