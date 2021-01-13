@@ -438,7 +438,6 @@
                             $nomPoste = $post->getPosteName();
                             $descriptionPoste = $post->getPosteDescription();
                             $idPoste = $post->getPosteId();
-                            if($nomPoste != 'Generique'){
                                 echo "
                                 <tr>
                                 <td><label for=\"$idPoste\"> <span class=\"black-text\" >$nomPoste</span><br>$descriptionPoste</label></td>
@@ -448,7 +447,6 @@
                                 <td><label><input type=\"radio\" name=\"" . "Poste" . $idPoste . "\" id=\"$idPoste\" value=\"4\" required /><span> </span></label></td>
                                 </tr>
                                 ";
-                            }
                         }
                         ?>
                     </tbody>

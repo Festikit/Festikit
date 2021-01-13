@@ -1,7 +1,7 @@
 <?php
 class Conf {
   static private $debug = true;
-  //si ça marche je pleure
+
   static private $databases = array(
     'hostname' => 'webinfo.iutmontp.univ-montp2.fr',
     'database' => 'albautb',
