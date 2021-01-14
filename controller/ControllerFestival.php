@@ -178,8 +178,13 @@ class ControllerFestival
                 );
 
                 ModelFestival::update($data);
-                $controller = 'festival';
-                $view = 'updated';
+                $festival_name = $_POST['festival_name'];
+                $festival_id = $_GET['festival_id'];
+
+                $message = "Festival $festival_name mis à jour !";
+                $path = "action=read&controller=festival&festival_id=$festival_id";
+                $controller = 'utilisateur';
+                $view = 'messageSuite';
                 $pagetitle = 'modification festival';
             }
 
