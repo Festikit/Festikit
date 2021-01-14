@@ -14,6 +14,17 @@ class ControllerUtilisateur
 
         $festival_id = $_GET['festival_id'];
         $f = ModelFestival::select($festival_id);
+        
+        if (isset($_SESSION['login'])) {
+            $user_id = $_SESSION['login'];
+            if (ModelUtilisateur::estCandidatOuBenevole($user_id, $festival_id)) {
+                $pagetitle = 'Erreur';
+                $controller = 'utilisateur';
+                $message = "Vous êtes déjà inscrit à ce festival !";
+                $view = 'messageRetour';
+                require File::build_path(array("view", "view.php"));
+            }
+        }
 
         $pagetitle = 'Formulaire d\'enregistrement';
         $controller = 'utilisateur';
@@ -423,6 +434,13 @@ class ControllerUtilisateur
             $pagetitle = 'creation utilisateur';
             if (isset($_SESSION['login'])) {   
                 $user_current = $_SESSION['login'];
+                if (ModelUtilisateur::estCandidatOuBenevole($user_current, $festival_id)) {
+                    $pagetitle = 'Erreur';
+                    $controller = 'utilisateur';
+                    $message = "Vous êtes déjà inscrit à ce festival !";
+                    $view = 'messageRetour';
+                    require File::build_path(array("view", "view.php"));
+                }
             }
         }
         require(File::build_path(array("view", "view.php")));

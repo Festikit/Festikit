@@ -337,20 +337,19 @@ class ModelUtilisateur extends Model
     }
   }
 
-  public static function estCandidat($user_id, $festival_id)
+  public static function estCandidatOuBenevole($user_id, $festival_id)
   {
     try {
-      $sql = "SELECT p.user_id  FROM postuler p JOIN festival f ON p.festival_id=f.festival_id WHERE p.user_id=:id_tag AND postuler_accepted=:accepted_tag AND f.festival_id=:festival_id_tag";
+      $sql = "SELECT p.user_id FROM postuler p JOIN festival f ON p.festival_id=f.festival_id WHERE p.user_id=:id_tag AND f.festival_id=:festival_id_tag";
       $req_prep = Model::$pdo->prepare($sql);
       $values = array(
         "id_tag" => $user_id,
-        "accepted_tag" => 0,
         "festival_id_tag" => $festival_id,
       );
       $req_prep->execute($values);
       $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelPostuler');
-      $estCandidat = $req_prep->fetchAll();
-      if (empty($estCandidat)) {
+      $estCandidatOuBenevole = $req_prep->fetchAll();
+      if (empty($estCandidatOuBenevole)) {
         return false;
       } else {
         return true;
