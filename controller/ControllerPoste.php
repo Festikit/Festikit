@@ -24,7 +24,7 @@ class ControllerPoste {
         $poste_id = $_GET['poste_id'];
         $p = ModelPoste::select($poste_id);
         $festival_id = $p->getFestivalId();
-
+        $festival_name = ModelFestival::select($festival_id)->getFestivalName();
         $boolResponsable = 0;
         if(Session::is_responsable()) {
             $boolResponsable = 1;
