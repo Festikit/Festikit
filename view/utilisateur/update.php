@@ -12,7 +12,7 @@ $user_birthdate = htmlspecialchars($tab_u->getBirthdate());
 
 <div class="row">
     <div class="card-panel col s12 m10 offset-m1 l8 offset-l2 grey lighten-4">
-        <form method="get" action="index.php?action=updated">
+        <form method="post" action="index.php?action=updated" enctype="multipart/form-data">
             <h5 class="center-align">À propos de moi</h5>
             <div class="row">
                 <div class="input-field col s9">
@@ -45,7 +45,8 @@ $user_birthdate = htmlspecialchars($tab_u->getBirthdate());
                     <div class="btn">
                         <i class="material-icons">file_download</i>
                         <span>Photo de profil</span>
-                        <input name="user_picture" id="user_picture" type="file" accept="image/png, image/jpeg">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="64000" />
+                        <input name="user_picture" id="user_picture" type="file" accept="image/png, image/jpeg, image/jpg" required>
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text">

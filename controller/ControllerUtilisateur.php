@@ -145,37 +145,72 @@ class ControllerUtilisateur
 
     public static function updated()
     {
-        $user_id = $_GET['user_id'];
+        $user_id = $_POST['user_id'];
         if (Session::is_user($user_id) || Session::is_admin()) {
 
-            $user_id = $_GET['user_id'];
-            $user_firstname = $_GET['user_firstname'];
-            $user_lastname = $_GET['user_lastname'];
-            $user_mail = $_GET['user_mail'];
-            $user_phone = $_GET['user_phone'];
-            $user_postal_code = $_GET['user_postal_code'];
-            $user_birthdate = $_GET['user_birthdate'];
+            $user_id = $_POST['user_id'];
+            $user_firstname = $_POST['user_firstname'];
+            $user_lastname = $_POST['user_lastname'];
+            $user_mail = $_POST['user_mail'];
+            $user_phone = $_POST['user_phone'];
+            $user_postal_code = $_POST['user_postal_code'];
+            $user_birthdate = $_POST['user_birthdate'];
+            
+            // Test d'upload de la photo
+            $reussitePicture = false;
+            if (!empty($_FILES['user_picture']) && is_uploaded_file($_FILES['user_picture']['tmp_name'])) {
 
-            $tab_umod = array(
-                "user_id" => $user_id,
-                "user_firstname" => $user_firstname,
-                "user_lastname" => $user_lastname,
-                "user_mail" => $user_mail,
-                "user_phone" => $user_phone,
-                "user_postal_code" => $user_postal_code,
-                "user_birthdate" => $user_birthdate
-            );
-            $utilisateurmod = new ModelUtilisateur();
-            $utilisateurmod->update($tab_umod);
+                // Vérification de l'extension
+                $listeExtensions = array('/png', '/jpg', '/jpeg');
+                $extension = strrchr($_FILES['user_picture']['type'], '/');
+                if (in_array($extension, $listeExtensions)) {
 
-            $user_lastname = htmlspecialchars(ModelUtilisateur::select($user_id)->getLastname());
-            $user_firstname = htmlspecialchars(ModelUtilisateur::select($user_id)->getFirstname());
+                    // Vérification de la taille
+                    if ($_FILES['user_picture']['size'] < $_POST['MAX_FILE_SIZE']) {
+                        $user_picture = file_get_contents($_FILES['user_picture']['tmp_name']);
+                        if ($user_picture == false) {
+                            $message = 'Erreur: Initialisation de $user_picture';
+                        } else {
+                            $reussitePicture = true;
+                        }
+                    } else {
+                        $message = 'Erreur: L\'image est trop volumineuse' . "( > " . $_POST['MAX_FILE_SIZE'] . ")";
+                    }
+                } else {
+                    $message = 'Erreur: Le format de l\'image n\'est pas autorisé (!= png jpg ou jpeg)';
+                }
+            } else {
+                $message = 'Erreur: Image non upload';
+            }
 
-            $controller = 'utilisateur';
-            $view = 'messageSuite';
-            $path = "action=read&user_id=$user_id";
-            $message = "L'utilisateur $user_lastname $user_firstname a été modifié avec succès.";
-            $pagetitle = 'modification utilisateur';
+            if($reussitePicture) {
+                $tab_umod = array(
+                    "user_id" => $user_id,
+                    "user_firstname" => $user_firstname,
+                    "user_lastname" => $user_lastname,
+                    "user_mail" => $user_mail,
+                    "user_phone" => $user_phone,
+                    "user_postal_code" => $user_postal_code,
+                    "user_birthdate" => $user_birthdate,
+                    "user_picture" => $user_picture,
+                );
+
+                $utilisateurmod = new ModelUtilisateur();
+                $utilisateurmod->update($tab_umod);
+
+                $user_lastname = htmlspecialchars(ModelUtilisateur::select($user_id)->getLastname());
+                $user_firstname = htmlspecialchars(ModelUtilisateur::select($user_id)->getFirstname());
+
+                $controller = 'utilisateur';
+                $view = 'messageSuite';
+                $path = "action=read&user_id=$user_id";
+                $message = "L'utilisateur $user_lastname $user_firstname a été modifié avec succès.";
+                $pagetitle = 'modification utilisateur';
+            } else {
+                $pagetitle = 'Erreur';
+                $controller = 'utilisateur';
+                $view = 'messageRetour';
+            }
         } else {
             $pagetitle = 'Erreur';
             $controller = 'utilisateur';
