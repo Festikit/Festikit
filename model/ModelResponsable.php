@@ -71,7 +71,7 @@ class ModelResponsable extends ModelUtilisateur
     public static function getAllResponsable()
     {
         try {
-            $sql = "SELECT u.user_id, user_firstname, user_lastname from user u JOIN responsable r ON u.user_id = r.user_id";
+            $sql = "SELECT u.user_id, user_firstname, user_lastname, u.user_picture from user u JOIN responsable r ON u.user_id = r.user_id";
             $rep = Model::$pdo->query($sql);
             $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
             return $rep->fetchAll();
@@ -185,68 +185,4 @@ class ModelResponsable extends ModelUtilisateur
             die();
         }
     }
-
-    /* public function desassignerResponsable($id){
-        try{
-          $sql = "DELETE FROM responsable WHERE responsable_id =:nom_tag";
-          $req_prep = Model::$pdo->prepare($sql);
-          $values = array(
-            "nom_tag" => $id,
-          );
-          $req_prep->execute($values);
-        }
-        catch (PDOException $e) {
-          if (Conf::getDebug()) {
-            echo $e->getMessage(); // affiche un message d'erreur
-          } else {
-            echo 'Une erreur est survenue lors de la suppression du responsable';
-          }
-          die();
-        }
-      } */
-
-
-    /*public static function getAllResponsables()
-    {
-        try {
-            $sql = "SELECT * from responsable";
-            $rep = Model::$pdo->query($sql);
-            $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelResponsable');
-            return $rep->fetchAll();
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage();
-            } else {
-                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-            }
-            die();
-        }
-    }
-    */
-
-    /*public static function getResponsableById($responsable_id)
-    {
-        try {
-            $sql = "SELECT * from responsable WHERE responsable_id=:id_tag";
-            $req_prep = Model::$pdo->prepare($sql);
-            $values = array(
-                "id_tag" => $responsable_id,
-            );
-            $req_prep->execute($values);
-            $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelResponsable');
-            $tab_responsable = $req_prep->fetchAll();
-
-            if (empty($tab_responsable))
-                return false;
-            return $tab_responsable[0];
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage();
-            } else {
-                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-            }
-            die();
-        }
-    }
-    */
 }
