@@ -2,13 +2,9 @@
 
 //---------- recupération des infos ----------//
 // HTML
-$festival_idHTML = htmlspecialchars($f->get("festival_id"));
+
 $nameHTML = htmlspecialchars($f->get("festival_name"));
-$startdateHTML = htmlspecialchars($f->get("festival_startdate"));
-$enddateHTML = htmlspecialchars($f->get("festival_enddate"));
-$descriptionHTML = htmlspecialchars($f->get("festival_description"));
-$cityHTML = htmlspecialchars($f->get("city"));
-$creatorHTML = htmlspecialchars($f->get("user_id"));
+
 // URL
 $festival_idURL = rawurldecode($f->get("festival_id"));
 $nameURL = rawurldecode($f->get("festival_name"));
@@ -16,7 +12,7 @@ $startdateURL = rawurldecode($f->get("festival_startdate"));
 $enddateURL = rawurldecode($f->get("festival_enddate"));
 $descriptionURL = rawurldecode($f->get("festival_description"));
 $cityURL = rawurldecode($f->get("city"));
-$creatorURL = rawurldecode($f->get("user_id"));
+
 
 
 // Détail les informations d'un festival
@@ -42,7 +38,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
         <div class="row">
             <div class="input-field col s12">
                 <?php
-                $festival_description = $f->getFestivalDescription();
+                $festival_description = htmlspecialchars($f->getFestivalDescription());
                 $festival_id = htmlspecialchars($f->getFestivalId());
                 echo "<textarea name=\"festival_description\" id=\"festival_description\" class=\"materialize-textarea\" readonly>$festival_description</textarea>" ?>
                 <label for="festival_description">Description</label>
@@ -52,15 +48,15 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
             <div class="input-field col s6">
                 <i class="material-icons prefix">insert_invitation</i>
                 <?php
-                $festival_startdate = rawurlencode($f->getFestivalStartDate());
-                echo "<input id=\"festival_startdate\" value=\"$festival_startdate\" type=\"date\" class=\"validate\" readonly>" ?>
+                
+                echo "<input id=\"festival_startdate\" value=\"$startdateURL\" type=\"date\" class=\"validate\" readonly>" ?>
                 <label for="festival_startdate" class="active">Début du festival</label>
             </div>
             <div class="input-field col s6">
                 <i class="material-icons prefix">insert_invitation</i>
                 <?php
-                $festival_enddate = rawurlencode($f->getFestivalEndDate());
-                echo "<input id=\"festival_enddate\" value=\"$festival_enddate\" type=\"date\" class=\"validate\" readonly>" ?>
+                
+                echo "<input id=\"festival_enddate\" value=\"$enddateURL\" type=\"date\" class=\"validate\" readonly>" ?>
                 <label for="festival_enddate" class="active">Fin du festival</label>
             </div>
         </div>
@@ -80,7 +76,7 @@ echo "<h2 class=\"flow-text center\"> Festival " . $nameHTML . "</h2>";
         foreach ($tab_poste as $p) {
             $poste_name = htmlspecialchars($p->getPosteName());
             $poste_description = htmlspecialchars($p->getPosteDescription());
-            $poste_id = $p->getPosteId();
+            $poste_id = rawurldecode($p->getPosteId());
                 echo "<li class=\"collection-item avatar\">
                 <span class=\"title\"> <a href=\"index.php?action=read&controller=poste&poste_id=$poste_id\"> $poste_name</a> </span>
                 <p> $poste_description </p>

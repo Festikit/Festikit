@@ -2,19 +2,9 @@
 
 //---------- recupération des infos ----------//
 // HTML
-$festival_idHTML = htmlspecialchars($f->get("festival_id"));
 $nameHTML = htmlspecialchars($f->get("festival_name"));
-$startdateHTML = htmlspecialchars($f->get("festival_startdate"));
-$enddateHTML = htmlspecialchars($f->get("festival_enddate"));
-$descriptionHTML = htmlspecialchars($f->get("festival_description"));
-$cityHTML = htmlspecialchars($f->get("city"));
-// URL
-$festival_idURL = rawurldecode($f->get("festival_id"));
-$nameURL = rawurldecode($f->get("festival_name"));
-$startdateURL = rawurldecode($f->get("festival_startdate"));
-$enddateURL = rawurldecode($f->get("festival_enddate"));
-$descriptionURL = rawurldecode($f->get("festival_description"));
-$cityURL = rawurldecode($f->get("city"));
+
+
 
 
 // Détail les informations d'un festival
